@@ -1,8 +1,6 @@
-# Table of content
-# Learn more at https://jupyterbook.org/customize/toc.html
-#
-- file: Preface/Preface
-  numbered: false
+format: jb-article
+root: Preface/Preface
+sections:
 - file: 00_Introduction/00_Introduction
 - file: 01_AutoRegressiveIntegratedMovingAverage/01_AutoRegressiveIntegratedMovingAverage
 - file: 02_LinearForecastingTrendandMomentumForecasting/02_LinearTrendandMomentumForecasting
@@ -11,11 +9,10 @@
 - file: 05_SimplexandSmapProjections/05_Empirical Dynamic Modelling (Simplex and SMap_Projections)
 - file: 06_ConvergentCrossMappingandSugiharaCausality/ccm_sugihara
   sections:
-    - file: 06_ConvergentCrossMappingandSugiharaCausality/using_causal_ccm_package
+  - file: 06_ConvergentCrossMappingandSugiharaCausality/using_causal_ccm_package
 - file: 07_CrosscorrelationsFourierTransformandWaveletTransform/07_CrosscorrelationsFourierTransformandWaveletTransform
 - file: 08_WinningestMethods/lightgbm_m5_forecasting
   sections:
-    - file: 08_WinningestMethods/lightgbm_m5_tuning
-    - file: 08_WinningestMethods/lightgbm_jena_forecasting
+  - file: 08_WinningestMethods/lightgbm_m5_tuning
+  - file: 08_WinningestMethods/lightgbm_jena_forecasting
 - file: data/README
-# exclude_patterns: [*/README.md]
