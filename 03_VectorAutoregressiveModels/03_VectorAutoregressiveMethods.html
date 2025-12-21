@@ -67,8 +67,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = '03_VectorAutoregressiveModels/03_VectorAutoregressiveMethods';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Chapter 4: Granger Causality Test" href="../04_GrangerCausality/04_GrangerCausality.html" />
-    <link rel="prev" title="Chapter 2: Linear, Trend, and Momentum Forecasting" href="../02_LinearForecastingTrendandMomentumForecasting/02_LinearTrendandMomentumForecasting.html" />
+    <link rel="next" title="Chapter 4: Chương 4: Kiểm định nhân quả Granger (Granger Causality)" href="../04_GrangerCausality/04_GrangerCausality.html" />
+    <link rel="prev" title="Chương 2: Dự báo Tuyến tính, Xu hướng và Động lượng" href="../02_LinearForecastingTrendandMomentumForecasting/02_LinearTrendandMomentumForecasting.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -172,10 +172,10 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../00_Introduction/00_Introduction.html">Chương 0: Phân tích Chuỗi Thời gian Nâng cao</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../01_AutoRegressiveIntegratedMovingAverage/01_AutoRegressiveIntegratedMovingAverage.html">Chương 1: Trung bình trượt tích hợp tự hồi quy (ARIMA)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../02_LinearForecastingTrendandMomentumForecasting/02_LinearTrendandMomentumForecasting.html">Chapter 2: Linear, Trend, and Momentum Forecasting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_LinearForecastingTrendandMomentumForecasting/02_LinearTrendandMomentumForecasting.html">Chương 2: Dự báo Tuyến tính, Xu hướng và Động lượng</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Chương 3: Các phương pháp Vectơ tự hồi quy (Vector Autoregressive Methods)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../04_GrangerCausality/04_GrangerCausality.html">Chapter 4: Granger Causality Test</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../05_SimplexandSmapProjections/05_Empirical%20Dynamic%20Modelling%20%28Simplex%20and%20SMap_Projections%29.html">Chapter 5 : Dynamical Forecasting Methods (Simplex and SMap Projections)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_GrangerCausality/04_GrangerCausality.html">Chapter 4: Chương 4: Kiểm định nhân quả Granger (Granger Causality)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_SimplexandSmapProjections/05_Empirical%20Dynamic%20Modelling%20%28Simplex%20and%20SMap_Projections%29.html">Chapter 5 : Chương 5: Các phương pháp dự báo động lực (Simplex và SMap Projections)</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../06_ConvergentCrossMappingandSugiharaCausality/ccm_sugihara.html">Chapter 6: Convergent Cross Mapping</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../06_ConvergentCrossMappingandSugiharaCausality/using_causal_ccm_package.html">Applying CCM Using causal-ccm package</a></li>
 </ul>
@@ -418,7 +418,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="chuong-3-cac-phuong-phap-vecto-tu-hoi-quy-vector-autoregressive-methods">
 <h1>Chương 3: Các phương pháp Vectơ tự hồi quy (Vector Autoregressive Methods)<a class="headerlink" href="#chuong-3-cac-phuong-phap-vecto-tu-hoi-quy-vector-autoregressive-methods" title="Permalink to this heading">#</a></h1>
-<p>Được viết bởi: Maria Eloisa Ventura</p>
+<p>Biên soạn bởi: Maria Eloisa Ventura</p>
 <p>Trước đây, chúng ta đã giới thiệu các phương pháp cổ điển trong việc dự báo chuỗi thời gian đơn biến như mô hình ARIMA (tự hồi quy tích hợp trung bình động) và mô hình hồi quy tuyến tính đơn giản. Chúng ta đã biết rằng tính dừng (stationarity) là một điều kiện cần thiết khi sử dụng ARIMA, trong khi điều kiện này không bắt buộc khi sử dụng mô hình hồi quy tuyến tính. Trong nội dung này, chúng ta mở rộng bài toán dự báo sang một khuôn khổ tổng quát hơn, nơi chúng ta xử lý <strong>chuỗi thời gian đa biến (multivariate time series)</strong> – loại chuỗi thời gian có nhiều hơn một biến phụ thuộc vào thời gian. Cụ thể hơn, chúng ta sẽ giới thiệu các mô hình <strong>Vectơ tự hồi quy (VAR)</strong> và chỉ ra cách chúng được sử dụng trong việc dự báo chuỗi thời gian đa biến.</p>
 <section id="mo-hinh-chuoi-thoi-gian-da-bien">
 <h2>Mô hình chuỗi thời gian đa biến<a class="headerlink" href="#mo-hinh-chuoi-thoi-gian-da-bien" title="Permalink to this heading">#</a></h2>
@@ -2703,7 +2703,7 @@ Wall time: 631 ms
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Chapter 2: Linear, Trend, and Momentum Forecasting</p>
+        <p class="prev-next-title">Chương 2: Dự báo Tuyến tính, Xu hướng và Động lượng</p>
       </div>
     </a>
     <a class="right-next"
@@ -2711,7 +2711,7 @@ Wall time: 631 ms
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Chapter 4: Granger Causality Test</p>
+        <p class="prev-next-title">Chapter 4: Chương 4: Kiểm định nhân quả Granger (Granger Causality)</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

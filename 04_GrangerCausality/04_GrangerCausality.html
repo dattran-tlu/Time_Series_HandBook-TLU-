@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Chapter 4: Granger Causality Test &#8212; Bản dịch Time Series Analysis Handbook</title>
+    <title>Chapter 4: Chương 4: Kiểm định nhân quả Granger (Granger Causality) &#8212; Bản dịch Time Series Analysis Handbook</title>
   
   
   
@@ -67,8 +67,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = '04_GrangerCausality/04_GrangerCausality';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Chapter 5 : Dynamical Forecasting Methods (Simplex and SMap Projections)" href="../05_SimplexandSmapProjections/05_Empirical%20Dynamic%20Modelling%20%28Simplex%20and%20SMap_Projections%29.html" />
-    <link rel="prev" title="Chapter 3: Vector Autoregressive Methods" href="../03_VectorAutoregressiveModels/03_VectorAutoregressiveMethods.html" />
+    <link rel="next" title="Chapter 5 : Chương 5: Các phương pháp dự báo động lực (Simplex và SMap Projections)" href="../05_SimplexandSmapProjections/05_Empirical%20Dynamic%20Modelling%20%28Simplex%20and%20SMap_Projections%29.html" />
+    <link rel="prev" title="Chương 3: Các phương pháp Vectơ tự hồi quy (Vector Autoregressive Methods)" href="../03_VectorAutoregressiveModels/03_VectorAutoregressiveMethods.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -171,11 +171,11 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../00_Introduction/00_Introduction.html">Chương 0: Phân tích Chuỗi Thời gian Nâng cao</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../01_AutoRegressiveIntegratedMovingAverage/01_AutoRegressiveIntegratedMovingAverage.html">Chương 1: Mô hình Trung bình động tích hợp tự hồi quy (AutoRegressive Integrated Moving Average - ARIMA)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../02_LinearForecastingTrendandMomentumForecasting/02_LinearTrendandMomentumForecasting.html">Chapter 2: Linear, Trend, and Momentum Forecasting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../03_VectorAutoregressiveModels/03_VectorAutoregressiveMethods.html">Chapter 3: Vector Autoregressive Methods</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Chapter 4: Granger Causality Test</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../05_SimplexandSmapProjections/05_Empirical%20Dynamic%20Modelling%20%28Simplex%20and%20SMap_Projections%29.html">Chapter 5 : Dynamical Forecasting Methods (Simplex and SMap Projections)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_AutoRegressiveIntegratedMovingAverage/01_AutoRegressiveIntegratedMovingAverage.html">Chương 1: Trung bình trượt tích hợp tự hồi quy (ARIMA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_LinearForecastingTrendandMomentumForecasting/02_LinearTrendandMomentumForecasting.html">Chương 2: Dự báo Tuyến tính, Xu hướng và Động lượng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_VectorAutoregressiveModels/03_VectorAutoregressiveMethods.html">Chương 3: Các phương pháp Vectơ tự hồi quy (Vector Autoregressive Methods)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Chapter 4: Chương 4: Kiểm định nhân quả Granger (Granger Causality)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_SimplexandSmapProjections/05_Empirical%20Dynamic%20Modelling%20%28Simplex%20and%20SMap_Projections%29.html">Chapter 5 : Chương 5: Các phương pháp dự báo động lực (Simplex và SMap Projections)</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../06_ConvergentCrossMappingandSugiharaCausality/ccm_sugihara.html">Chapter 6: Convergent Cross Mapping</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../06_ConvergentCrossMappingandSugiharaCausality/using_causal_ccm_package.html">Applying CCM Using causal-ccm package</a></li>
 </ul>
@@ -324,7 +324,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Chapter 4: Granger Causality Test</h1>
+    <h1>Chapter 4: Chương 4: Kiểm định nhân quả Granger (Granger Causality)</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -334,35 +334,34 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notations">Notations</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definitions">Definitions</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#causality">Causality</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#feedback">Feedback</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instantaneous-causality">Instantaneous Causality</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#causality-lag">Causality Lag</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ky-hieu">Ký hiệu</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dinh-nghia">Định nghĩa</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nhan-qua">Nhân quả</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#phan-hoi">Phản hồi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nhan-qua-tuc-thoi">Nhân quả tức thời</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#do-tre-nhan-qua">Độ trễ nhân quả</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assumptions">Assumptions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-for-granger-causality">Testing for Granger Causality</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1-ipo-dam-dataset">Example 1: Ipo Dam Dataset</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#causality-between-rainfall-and-ipo-dam-water-level">Causality between Rainfall and Ipo Dam Water Level</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#causality-between-nia-release-flow-and-ipo-dam-water-level">Causality between NIA Release Flow and Ipo Dam Water Level</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gia-dinh">Giả định</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kiem-dinh-nhan-qua-granger">Kiểm định nhân quả Granger</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vi-du-1-bo-du-lieu-dap-ipo">Ví dụ 1: Bộ dữ liệu đập Ipo</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#nhan-qua-giua-luong-mua-va-muc-nuoc-dap-ipo">Nhân quả giữa lượng mưa và mực nước đập Ipo</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#nhan-qua-giua-luu-luong-xa-nia-va-muc-nuoc-dap-ipo">Nhân quả giữa lưu lượng xả NIA và mực nước đập Ipo</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-causality-for-la-mesa-dam">Example 2: Causality for La Mesa Dam</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#causality-between-rainfall-and-la-mesa-dam-water-level">Causality between Rainfall and La Mesa Dam Water Level</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#causality-between-nia-release-flow-and-la-mesa-dam-water-level">Causality between NIA Release Flow and La Mesa Dam Water Level</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vi-du-2-nhan-qua-doi-voi-dap-la-mesa">Ví dụ 2: Nhân quả đối với đập La Mesa</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#nhan-qua-giua-luong-mua-va-muc-nuoc-dap-la-mesa">Nhân quả giữa lượng mưa và mực nước đập La Mesa</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#nhan-qua-giua-luu-luong-xa-nia-va-muc-nuoc-dap-la-mesa">Nhân quả giữa lưu lượng xả NIA và mực nước đập La Mesa</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-3-jena-climate-data">Example 3: Jena Climate Data</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#causality-between-pressure-and-temperature">Causality between Pressure and Temperature</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bai-tap">Bài tập</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#nhan-qua-giua-ap-suat-va-nhiet-do">Nhân quả giữa áp suất và nhiệt độ</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tom-tat">Tóm tắt</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tai-lieu-tham-khao">Tài liệu tham khảo</a></li>
 </ul>
             </nav>
         </div>
@@ -374,45 +373,45 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="chapter-4-granger-causality-test">
-<h1>Chapter 4: Granger Causality Test<a class="headerlink" href="#chapter-4-granger-causality-test" title="Permalink to this heading">#</a></h1>
-<p>In the first three chapters, we discussed the classical methods for both univariate and multivariate time series forecasting. We now introduce the notion of causality and its implications on time series analysis in general. We also describe a test for the linear VAR model discussed in the previous chapter.</p>
-<p>Prepared by: Carlo Vincienzo G. Dajac</p>
-<section id="notations">
-<h2>Notations<a class="headerlink" href="#notations" title="Permalink to this heading">#</a></h2>
-<p>If <span class="math notranslate nohighlight">\(A_t\)</span> is a stationary stochastic process, let <span class="math notranslate nohighlight">\(\overline A_t\)</span> represent the set of <em>past</em> values <span class="math notranslate nohighlight">\({A_{t-j}, \; j=1,2,\ldots,\infty}\)</span> and <span class="math notranslate nohighlight">\(\overline{\overline A}_t\)</span> represent the set of <em>past and present</em> values <span class="math notranslate nohighlight">\({A_{t-j}, \; j=0,1,\ldots,\infty}\)</span>. Further, let <span class="math notranslate nohighlight">\(\overline A(k)\)</span> represent the set <span class="math notranslate nohighlight">\({A_{t-j}, \; j=k,k+1,\ldots,\infty}\)</span>.</p>
-<p>Denote the optimum, unbiased, least-squares predictor of <span class="math notranslate nohighlight">\(A_t\)</span> using the set of values <span class="math notranslate nohighlight">\(B_t\)</span> by <span class="math notranslate nohighlight">\(P_t (A|B)\)</span>. Thus, for instance, <span class="math notranslate nohighlight">\(P_t (X|\overline X)\)</span> will be the optimum predictor of <span class="math notranslate nohighlight">\(X_t\)</span> using only past <span class="math notranslate nohighlight">\(X_t\)</span>. The predictive error series will be denoted by <span class="math notranslate nohighlight">\(\varepsilon_t(A|B) = A_t - P_t(A|B)\)</span>. Let <span class="math notranslate nohighlight">\(\sigma^2 (A|B)\)</span> be the variance of <span class="math notranslate nohighlight">\(\varepsilon_t(A|B)\)</span>.</p>
-<p>Let <span class="math notranslate nohighlight">\(U_t\)</span> be all the information in the universe accumulated since time <span class="math notranslate nohighlight">\(t-1\)</span> and let <span class="math notranslate nohighlight">\(U_t - Y_t\)</span> denote all this information <em>apart</em> from the specified series <span class="math notranslate nohighlight">\(Y_t\)</span>, which is another stationary time series that is different from <span class="math notranslate nohighlight">\(X_t\)</span>.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="chapter-4-chuong-4-kiem-dinh-nhan-qua-granger-granger-causality">
+<h1>Chapter 4: Chương 4: Kiểm định nhân quả Granger (Granger Causality)<a class="headerlink" href="#chapter-4-chuong-4-kiem-dinh-nhan-qua-granger-granger-causality" title="Permalink to this heading">#</a></h1>
+<p>Trong ba chương đầu, chúng ta đã thảo luận các phương pháp cổ điển cho dự báo chuỗi thời gian đơn biến và đa biến. Giờ đây, chúng ta giới thiệu khái niệm nhân quả và những hàm ý của nó đối với phân tích chuỗi thời gian nói chung. Chúng ta cũng trình bày một phép kiểm định dành cho mô hình VAR tuyến tính đã được thảo luận trong chương trước.</p>
+<p>Biên soạn bởi: Carlo Vincienzo G. Dajac</p>
+<section id="ky-hieu">
+<h2>Ký hiệu<a class="headerlink" href="#ky-hieu" title="Permalink to this heading">#</a></h2>
+<p>Nếu <span class="math notranslate nohighlight">\(A_t\)</span> là một quá trình ngẫu nhiên dừng, ký hiệu <span class="math notranslate nohighlight">\(\overline A_t\)</span> biểu diễn tập các giá trị trong <em>quá khứ</em> <span class="math notranslate nohighlight">\({A_{t-j}, \; j=1,2,\ldots,\infty}\)</span> và <span class="math notranslate nohighlight">\(\overline{\overline A}_t\)</span> biểu diễn tập các giá trị <em>quá khứ và hiện tại</em> <span class="math notranslate nohighlight">\({A_{t-j}, \; j=0,1,\ldots,\infty}\)</span>. Ngoài ra, ký hiệu <span class="math notranslate nohighlight">\(\overline A(k)\)</span> biểu diễn tập <span class="math notranslate nohighlight">\({A_{t-j}, \; j=k,k+1,\ldots,\infty}\)</span>.</p>
+<p>Ký hiệu <span class="math notranslate nohighlight">\(P_t (A|B)\)</span> là bộ dự báo tối ưu, không chệch, theo phương pháp bình phương tối thiểu của <span class="math notranslate nohighlight">\(A_t\)</span> khi sử dụng tập các giá trị <span class="math notranslate nohighlight">\(B_t\)</span> . Do đó, chẳng hạn, <span class="math notranslate nohighlight">\(P_t (X|\overline X)\)</span> sẽ là bộ dự báo tối ưu của <span class="math notranslate nohighlight">\(X_t\)</span> chỉ sử dụng các giá trị quá khứ của <span class="math notranslate nohighlight">\(X_t\)</span>. Chuỗi sai số dự báo được ký hiệu là <span class="math notranslate nohighlight">\(\varepsilon_t(A|B) = A_t - P_t(A|B)\)</span>. Gọi <span class="math notranslate nohighlight">\(\sigma^2 (A|B)\)</span> là phương sai của <span class="math notranslate nohighlight">\(\varepsilon_t(A|B)\)</span>.</p>
+<p>Gọi <span class="math notranslate nohighlight">\(U_t\)</span> là toàn bộ thông tin trong vũ trụ được tích lũy kể từ thời điểm <span class="math notranslate nohighlight">\(t-1\)</span> và ký hiệu <span class="math notranslate nohighlight">\(U_t - Y_t\)</span> là toàn bộ thông tin này <em>ngoại trừ</em> chuỗi đã được chỉ định <span class="math notranslate nohighlight">\(Y_t\)</span>, trong đó <span class="math notranslate nohighlight">\(Y_t\)</span> là một chuỗi thời gian dừng khác với <span class="math notranslate nohighlight">\(X_t\)</span>.</p>
 </section>
-<section id="definitions">
-<h2>Definitions<a class="headerlink" href="#definitions" title="Permalink to this heading">#</a></h2>
-<section id="causality">
-<h3>Causality<a class="headerlink" href="#causality" title="Permalink to this heading">#</a></h3>
-<p>If <span class="math notranslate nohighlight">\(\sigma^2 (X|U) &lt; \sigma^2 (X| \overline{U-Y})\)</span>, we say that <span class="math notranslate nohighlight">\(Y\)</span> is causing <span class="math notranslate nohighlight">\(X\)</span>, denoted by <span class="math notranslate nohighlight">\(Y_t \implies X_t\)</span>. We say that <span class="math notranslate nohighlight">\(Y_t\)</span> is causing <span class="math notranslate nohighlight">\(X_t\)</span> if we are <strong>able to predict</strong> <span class="math notranslate nohighlight">\(X_t\)</span> using all available information than if the information apart from <span class="math notranslate nohighlight">\(Y_t\)</span> had been used.</p>
+<section id="dinh-nghia">
+<h2>Định nghĩa<a class="headerlink" href="#dinh-nghia" title="Permalink to this heading">#</a></h2>
+<section id="nhan-qua">
+<h3>Nhân quả<a class="headerlink" href="#nhan-qua" title="Permalink to this heading">#</a></h3>
+<p>Nếu <span class="math notranslate nohighlight">\(\sigma^2 (X|U) &lt; \sigma^2 (X| \overline{U-Y})\)</span>, ta nói rằng <span class="math notranslate nohighlight">\(Y\)</span> gây ra <span class="math notranslate nohighlight">\(X\)</span>, ký hiệu là <span class="math notranslate nohighlight">\(Y_t \implies X_t\)</span>. Ta nói rằng <span class="math notranslate nohighlight">\(Y_t\)</span> gây ra <span class="math notranslate nohighlight">\(X_t\)</span> nếu chúng ta <strong>có thể dự báo</strong> <span class="math notranslate nohighlight">\(X_t\)</span> tốt hơn khi sử dụng toàn bộ thông tin sẵn có so với trường hợp sử dụng thông tin ngoại trừ <span class="math notranslate nohighlight">\(Y_t\)</span>.</p>
 </section>
-<section id="feedback">
-<h3>Feedback<a class="headerlink" href="#feedback" title="Permalink to this heading">#</a></h3>
-<p>If <span class="math notranslate nohighlight">\(\sigma^2 (X|\overline U) &lt; \sigma^2 (X| \overline{U-Y})\)</span> and <span class="math notranslate nohighlight">\(\sigma^2 (Y|\overline U) &lt; \sigma^2 (Y| \overline{U-X})\)</span>, we say that feedback is occurring, which is denoted by <span class="math notranslate nohighlight">\(Y_t \iff X_t\)</span>, i.e., feedback is said to occur when <span class="math notranslate nohighlight">\(X_t\)</span> is causing <span class="math notranslate nohighlight">\(Y_t\)</span> and also <span class="math notranslate nohighlight">\(Y_t\)</span> is causing <span class="math notranslate nohighlight">\(X_t\)</span>.</p>
+<section id="phan-hoi">
+<h3>Phản hồi<a class="headerlink" href="#phan-hoi" title="Permalink to this heading">#</a></h3>
+<p>Nếu <span class="math notranslate nohighlight">\(\sigma^2 (X|\overline U) &lt; \sigma^2 (X| \overline{U-Y})\)</span> và <span class="math notranslate nohighlight">\(\sigma^2 (Y|\overline U) &lt; \sigma^2 (Y| \overline{U-X})\)</span>, ta nói rằng hiện tượng phản hồi xảy ra, được ký hiệu là <span class="math notranslate nohighlight">\(Y_t \iff X_t\)</span>, i.e., tức là phản hồi được cho là xảy ra khi <span class="math notranslate nohighlight">\(X_t\)</span> gây ra <span class="math notranslate nohighlight">\(Y_t\)</span> và đồng thời <span class="math notranslate nohighlight">\(Y_t\)</span> cũng gây ra <span class="math notranslate nohighlight">\(X_t\)</span>.</p>
 </section>
-<section id="instantaneous-causality">
-<h3>Instantaneous Causality<a class="headerlink" href="#instantaneous-causality" title="Permalink to this heading">#</a></h3>
-<p>If <span class="math notranslate nohighlight">\(\sigma^2 (X|\overline U, \overline{\overline Y}) &lt; \sigma^2 (X| \overline U)\)</span>, we say that instantaneous causality <span class="math notranslate nohighlight">\(Y_t \implies X_t\)</span> is occurring. In other words, the current value of <span class="math notranslate nohighlight">\(X_t\)</span> is better “predicted” if the present value of <span class="math notranslate nohighlight">\(Y_t\)</span> is included in the “prediction” than if it is not.</p>
+<section id="nhan-qua-tuc-thoi">
+<h3>Nhân quả tức thời<a class="headerlink" href="#nhan-qua-tuc-thoi" title="Permalink to this heading">#</a></h3>
+<p>Nếu <span class="math notranslate nohighlight">\(\sigma^2 (X|\overline U, \overline{\overline Y}) &lt; \sigma^2 (X| \overline U)\)</span>, ta nói rằng tồn tại nhân quả tức thời <span class="math notranslate nohighlight">\(Y_t \implies X_t\)</span>. Nói cách khác, giá trị hiện tại của <span class="math notranslate nohighlight">\(X_t\)</span> được “dự báo” tốt hơn nếu giá trị hiện tại của <span class="math notranslate nohighlight">\(Y_t\)</span> được đưa vào “dự báo” so với trường hợp không đưa vào.</p>
 </section>
-<section id="causality-lag">
-<h3>Causality Lag<a class="headerlink" href="#causality-lag" title="Permalink to this heading">#</a></h3>
-<p>If <span class="math notranslate nohighlight">\(Y_t \implies X_t\)</span>, we define the (integer) causality lag <span class="math notranslate nohighlight">\(m\)</span> to be the least value of <span class="math notranslate nohighlight">\(k\)</span> such that <span class="math notranslate nohighlight">\(\sigma^2 (X|U-Y(k)) &lt; \sigma^2 (X|U-Y(k+1))\)</span>. Thus, knowing the values <span class="math notranslate nohighlight">\(Y_{t-j}, \; j=0,1,\ldots,m-1\)</span> will be of no help in improving the prediction of <span class="math notranslate nohighlight">\(X_t\)</span></p>
+<section id="do-tre-nhan-qua">
+<h3>Độ trễ nhân quả<a class="headerlink" href="#do-tre-nhan-qua" title="Permalink to this heading">#</a></h3>
+<p>Nếu <span class="math notranslate nohighlight">\(Y_t \implies X_t\)</span>, ta định nghĩa độ trễ nhân quả (số nguyên) <span class="math notranslate nohighlight">\(m\)</span> là giá trị nhỏ nhất của <span class="math notranslate nohighlight">\(k\)</span> sao cho <span class="math notranslate nohighlight">\(\sigma^2 (X|U-Y(k)) &lt; \sigma^2 (X|U-Y(k+1))\)</span>. Do đó, việc biết các giá trị <span class="math notranslate nohighlight">\(Y_{t-j}, \; j=0,1,\ldots,m-1\)</span> sẽ không giúp cải thiện việc dự báo <span class="math notranslate nohighlight">\(X_t\)</span></p>
 </section>
 </section>
-<section id="assumptions">
-<h2>Assumptions<a class="headerlink" href="#assumptions" title="Permalink to this heading">#</a></h2>
+<section id="gia-dinh">
+<h2>Giả định<a class="headerlink" href="#gia-dinh" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(X_t\)</span> and <span class="math notranslate nohighlight">\(Y_t\)</span> are stationary.</p></li>
-<li><p><span class="math notranslate nohighlight">\(P_t (A|B)\)</span> is already optimized.</p></li>
+<li><p><span class="math notranslate nohighlight">\(X_t\)</span> và <span class="math notranslate nohighlight">\(Y_t\)</span> là các chuỗi dừng.</p></li>
+<li><p><span class="math notranslate nohighlight">\(P_t (A|B)\)</span> đã được tối ưu.</p></li>
 </ul>
 </section>
-<section id="testing-for-granger-causality">
-<h2>Testing for Granger Causality<a class="headerlink" href="#testing-for-granger-causality" title="Permalink to this heading">#</a></h2>
-<p>We will be first building VAR models for our examples in this section. In addition to the steps outlined in the previous chapter, we will just call built-in Granger causality test function and configure it accordingly.</p>
+<section id="kiem-dinh-nhan-qua-granger">
+<h2>Kiểm định nhân quả Granger<a class="headerlink" href="#kiem-dinh-nhan-qua-granger" title="Permalink to this heading">#</a></h2>
+<p>Trước tiên, chúng ta sẽ xây dựng các mô hình VAR cho các ví dụ trong phần này. Bên cạnh các bước đã được trình bày trong chương trước, chúng ta sẽ chỉ cần gọi hàm kiểm định nhân quả Granger có sẵn và cấu hình nó cho phù hợp.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
@@ -427,9 +426,9 @@ document.write(`
 </div>
 </div>
 </div>
-<section id="example-1-ipo-dam-dataset">
-<h3>Example 1: Ipo Dam Dataset<a class="headerlink" href="#example-1-ipo-dam-dataset" title="Permalink to this heading">#</a></h3>
-<p>We will use the Ipo dataset in this example. It contains daily measurements of the following variables: rainfall (in millimeters), Oceanic Niño Index (ONI), NIA release flow (in cubic meters per second), and dam water level (in meters), respectively.</p>
+<section id="vi-du-1-bo-du-lieu-dap-ipo">
+<h3>Ví dụ 1: Bộ dữ liệu đập Ipo<a class="headerlink" href="#vi-du-1-bo-du-lieu-dap-ipo" title="Permalink to this heading">#</a></h3>
+<p>Chúng ta sẽ sử dụng bộ dữ liệu Ipo trong ví dụ này. Bộ dữ liệu này chứa các phép đo hằng ngày của các biến sau: lượng mưa (tính bằng milimét), Chỉ số Niño đại dương (Oceanic Niño Index – ONI), lưu lượng xả của NIA (tính bằng mét khối trên giây) và mực nước đập (tính bằng mét).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ipo_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/Ipo_dataset.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s1">&#39;Time&#39;</span><span class="p">);</span>
@@ -527,9 +526,9 @@ document.write(`
 <img alt="../_images/07278feef8f0cd19da288a7ed6bc22604ec85a1dd1baf5ef0819b6666ea2ff1f.png" src="../_images/07278feef8f0cd19da288a7ed6bc22604ec85a1dd1baf5ef0819b6666ea2ff1f.png" />
 </div>
 </div>
-<section id="causality-between-rainfall-and-ipo-dam-water-level">
-<h4>Causality between Rainfall and Ipo Dam Water Level<a class="headerlink" href="#causality-between-rainfall-and-ipo-dam-water-level" title="Permalink to this heading">#</a></h4>
-<p>For this example, we will focus on the Rain and Dam time series.</p>
+<section id="nhan-qua-giua-luong-mua-va-muc-nuoc-dap-ipo">
+<h4>Nhân quả giữa lượng mưa và mực nước đập Ipo<a class="headerlink" href="#nhan-qua-giua-luong-mua-va-muc-nuoc-dap-ipo" title="Permalink to this heading">#</a></h4>
+<p>Trong ví dụ này, chúng ta sẽ tập trung vào hai chuỗi thời gian lượng mưa và mực nước đập.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_df</span> <span class="o">=</span> <span class="n">ipo_df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;ONI&#39;</span><span class="p">,</span> <span class="s1">&#39;NIA&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -595,7 +594,7 @@ document.write(`
 </table>
 </div></div></div>
 </div>
-<p>We look at the lag plots to quickly check for stationarity.</p>
+<p>Chúng ta xem các biểu đồ độ trễ (lag plots) để nhanh chóng kiểm tra tính dừng.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">lag_plots</span><span class="p">(</span><span class="n">data_df</span><span class="p">):</span>
@@ -627,8 +626,8 @@ document.write(`
 <img alt="../_images/7f1fb3eb1031d90599e8ac8b32ce7c6f16815a83ee2cbb827eb05afd7517b7d7.png" src="../_images/7f1fb3eb1031d90599e8ac8b32ce7c6f16815a83ee2cbb827eb05afd7517b7d7.png" />
 </div>
 </div>
-<p><strong>Result:</strong> Dam does not look stationary. Rainfall lag plot is inconclusive.</p>
-<p>We use KPSS and ADF tests discussed in the previous chapter to conclusively check for stationarity.</p>
+<p><strong>Kết quả:</strong> Chuỗi mực nước đập không có vẻ là chuỗi dừng. Biểu đồ độ trễ của lượng mưa chưa cho kết luận rõ ràng.</p>
+<p>Chúng ta sử dụng các kiểm định KPSS và ADF đã được thảo luận trong chương trước để kiểm tra tính dừng một cách chắc chắn.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">kpss_test</span><span class="p">(</span><span class="n">data_df</span><span class="p">):</span>
@@ -719,7 +718,7 @@ document.write(`
 </table>
 </div></div></div>
 </div>
-<p><strong>Result:</strong> Rain is stationary, while Dam is not.</p>
+<p><strong>Kết quả:</strong> Chuỗi lượng mưa là chuỗi dừng, trong khi chuỗi mực nước đập thì không.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">adf_test</span><span class="p">(</span><span class="n">data_df</span><span class="p">):</span>
@@ -803,8 +802,8 @@ document.write(`
 </table>
 </div></div></div>
 </div>
-<p><strong>Result:</strong> Both data are stationary.</p>
-<p>Since both the lag plot and KPSS test indicate that Dam is not stationary, we apply differencing first before building our VAR model.</p>
+<p><strong>Kết quả:</strong> Cả hai chuỗi dữ liệu đều là chuỗi dừng.</p>
+<p>Do cả biểu đồ độ trễ và kiểm định KPSS đều cho thấy chuỗi mực nước đập không dừng, chúng ta áp dụng phép sai phân trước khi xây dựng mô hình VAR.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_df</span><span class="p">[</span><span class="s1">&#39;Dam&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_df</span><span class="p">[</span><span class="s1">&#39;Dam&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">data_df</span><span class="p">[</span><span class="s1">&#39;Dam&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
@@ -813,7 +812,7 @@ document.write(`
 </div>
 </div>
 </div>
-<p>We again look at the lag plots and apply the KPSS and ADF tests.</p>
+<p>Chúng ta tiếp tục xem các biểu đồ độ trễ và áp dụng các kiểm định KPSS và ADF.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lag_plots</span><span class="p">(</span><span class="n">data_df</span><span class="p">)</span>
@@ -947,8 +946,8 @@ document.write(`
 </table>
 </div></div></div>
 </div>
-<p><strong>Result:</strong> All three conclusively agree that both data are now stationary.</p>
-<p>We next split the data into train and test sets for the VAR model.</p>
+<p><strong>Kết quả:</strong> Cả ba phương pháp đều nhất quán và cho thấy rằng cả hai chuỗi dữ liệu hiện nay đều là chuỗi dừng.</p>
+<p>Tiếp theo, chúng ta chia dữ liệu thành tập huấn luyện và tập kiểm tra cho mô hình VAR.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">splitter</span><span class="p">(</span><span class="n">data_df</span><span class="p">):</span>
@@ -967,7 +966,7 @@ document.write(`
 </div>
 </div>
 </div>
-<p>We then select the VAR order <span class="math notranslate nohighlight">\(p\)</span> by computing the different multivariate information criteria (AIC, BIC, HQIC), and FPE.</p>
+<p>Sau đó, chúng ta lựa chọn bậc VAR <span class="math notranslate nohighlight">\(p\)</span> bằng cách tính các tiêu chí thông tin đa biến khác nhau (AIC, BIC, HQIC) và FPE.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">select_p</span><span class="p">(</span><span class="n">train_df</span><span class="p">):</span>
@@ -1010,8 +1009,8 @@ dtype: int64
 <img alt="../_images/50120852c63e5ca4a63b85bcb0e7503e94a1f3ac211fd2f9f6cd82effdbc0fae.png" src="../_images/50120852c63e5ca4a63b85bcb0e7503e94a1f3ac211fd2f9f6cd82effdbc0fae.png" />
 </div>
 </div>
-<p><strong>Result:</strong> We see that BIC has the lowest value at <span class="math notranslate nohighlight">\(p=8\)</span> while HQIC  at <span class="math notranslate nohighlight">\(p=11\)</span>. Although both AIC and FPE have the lowest value at <span class="math notranslate nohighlight">\(p=21\)</span>, their plots also show an elbow. We can thus select the number of lags to be 8 (also for computational efficiency).</p>
-<p>We now fit the VAR model with the chosen order.</p>
+<p><strong>Kết quả:</strong> Chúng ta thấy rằng BIC đạt giá trị nhỏ nhất tại <span class="math notranslate nohighlight">\(p=8\)</span>, trong khi HQIC đạt giá trị nhỏ nhất tại <span class="math notranslate nohighlight">\(p=11\)</span>. Mặc dù cả AIC và FPE đều đạt giá trị nhỏ nhất tại <span class="math notranslate nohighlight">\(p=21\)</span>, các đồ thị của chúng cũng cho thấy một điểm “khuỷu tay”. Do đó, chúng ta có thể lựa chọn số độ trễ là 8 (đồng thời để đảm bảo hiệu quả tính toán).</p>
+<p>Tiếp theo, chúng ta tiến hành ước lượng mô hình VAR với bậc đã được lựa chọn.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="mi">8</span>
@@ -1021,7 +1020,7 @@ dtype: int64
 </div>
 </div>
 </div>
-<p>We can finally test the variables for Granger Causality</p>
+<p>Cuối cùng, chúng ta có thể kiểm định nhân quả Granger giữa các biến.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">granger_causation_matrix</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">variables</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">test</span> <span class="o">=</span> <span class="s1">&#39;ssr_chi2test&#39;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>    
@@ -1093,13 +1092,13 @@ dtype: int64
 </table>
 </div></div></div>
 </div>
-<p><strong>Recall:</strong> If a given p-value is &lt; significance level (0.05), then, the corresponding X series (column) causes the Y (row).</p>
-<p><strong>Results:</strong> For this particular example, we can say that rainfall Granger causes changes in the dam water level. This means that rainfall data improves changes in dam water level prediction performance.</p>
-<p>On the other hand, changes in dam water level does not Granger cause rainfall. This means that changes in dam water level data does not improve rainfall prediction performance.</p>
+<p><strong>Nhắc lại:</strong> Nếu một giá trị p-value &lt; mức ý nghĩa (0.05), thì chuỗi X tương ứng (cột)gây ra chuỗi Y (hàng).</p>
+<p><strong>Kết quả:</strong> Đối với ví dụ cụ thể này, chúng ta có thể kết luận rằng lượng mưa có quan hệ nhân quả Granger đối với sự thay đổi của mực nước đập. Điều này có nghĩa là dữ liệu lượng mưa giúp cải thiện hiệu quả dự báo sự thay đổi mực nước đập.</p>
+<p>Ngược lại, sự thay đổi mực nước đập không có quan hệ nhân quả Granger đối với lượng mưa. Điều này có nghĩa là dữ liệu về sự thay đổi mực nước đập không giúp cải thiện hiệu quả dự báo lượng mưa.</p>
 </section>
-<section id="causality-between-nia-release-flow-and-ipo-dam-water-level">
-<h4>Causality between NIA Release Flow and Ipo Dam Water Level<a class="headerlink" href="#causality-between-nia-release-flow-and-ipo-dam-water-level" title="Permalink to this heading">#</a></h4>
-<p>In this next example, we now focus on the NIA and Dam time series.</p>
+<section id="nhan-qua-giua-luu-luong-xa-nia-va-muc-nuoc-dap-ipo">
+<h4>Nhân quả giữa lưu lượng xả NIA và mực nước đập Ipo<a class="headerlink" href="#nhan-qua-giua-luu-luong-xa-nia-va-muc-nuoc-dap-ipo" title="Permalink to this heading">#</a></h4>
+<p>Trong ví dụ tiếp theo này, chúng ta sẽ tập trung vào hai chuỗi thời gian lưu lượng xả NIA và mực nước đập.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_df</span> <span class="o">=</span> <span class="n">ipo_df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;ONI&#39;</span><span class="p">,</span> <span class="s1">&#39;Rain&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -1165,7 +1164,7 @@ dtype: int64
 </table>
 </div></div></div>
 </div>
-<p>We first check for stationarity by looking at the lag plots and applying the KPSS and ADF tests.</p>
+<p>Trước tiên, chúng ta kiểm tra tính dừng bằng cách quan sát các biểu đồ độ trễ và áp dụng các kiểm định KPSS và ADF.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lag_plots</span><span class="p">(</span><span class="n">data_df</span><span class="p">)</span>
@@ -1299,8 +1298,8 @@ dtype: int64
 </table>
 </div></div></div>
 </div>
-<p><strong>Result:</strong> All three conclusively show that both data are not stationary.</p>
-<p>We apply differencing and recheck for stationarity.</p>
+<p><strong>Kết quả:</strong> Cả ba phương pháp đều cho thấy rõ ràng rằng cả hai chuỗi dữ liệu đều không dừng.</p>
+<p>Chúng ta áp dụng phép sai phân và kiểm tra lại tính dừng.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_df</span><span class="p">[</span><span class="s1">&#39;NIA&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_df</span><span class="p">[</span><span class="s1">&#39;NIA&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">data_df</span><span class="p">[</span><span class="s1">&#39;NIA&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
@@ -1443,8 +1442,8 @@ dtype: int64
 </table>
 </div></div></div>
 </div>
-<p><strong>Result:</strong> All three conclusively agree that both data are now stationary.</p>
-<p>We next split the data and select the lag order <span class="math notranslate nohighlight">\(p\)</span>.</p>
+<p><strong>Kết quả:</strong> Cả ba phương pháp đều nhất quán và cho thấy rằng cả hai chuỗi dữ liệu hiện nay đều là chuỗi dừng.</p>
+<p>Tiếp theo, chúng ta chia dữ liệu và lựa chọn bậc độ trễ <span class="math notranslate nohighlight">\(p\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df</span><span class="p">,</span> <span class="n">test_df</span> <span class="o">=</span> <span class="n">splitter</span><span class="p">(</span><span class="n">data_df</span><span class="p">)</span>
@@ -1469,7 +1468,7 @@ dtype: int64
 <img alt="../_images/e61b796a223cbeccbe954f9d1c76791cbf55620d3fd821c9137df977617635fb.png" src="../_images/e61b796a223cbeccbe954f9d1c76791cbf55620d3fd821c9137df977617635fb.png" />
 </div>
 </div>
-<p>We select <span class="math notranslate nohighlight">\(p=8\)</span> with the same reasons as before. We finally fit our VAR model and test for Granger Causality.</p>
+<p>Chúng ta chọn <span class="math notranslate nohighlight">\(p=8\)</span> với cùng các lý do như trước. Cuối cùng, chúng ta ước lượng mô hình VAR và thực hiện kiểm định nhân quả Granger.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="mi">8</span>
@@ -1523,13 +1522,13 @@ dtype: int64
 </table>
 </div></div></div>
 </div>
-<p><strong>Recall:</strong> If a given p-value is &lt; significance level (0.05), then, the corresponding X series (column) causes the Y (row).</p>
-<p><strong>Result:</strong> For this particular example, we can say that changes in NIA release flow Granger causes changes in the dam water level. Conversely, changes in dam water level also Granger causes changes in the NIA release flow. This is an example of the feedback mentioned in an earlier section above. This means that NIA release flow data improves changes in dam water level prediction performance, and dam water level data also improves changes in NIA release flow prediction performance.</p>
+<p><strong>Nhắc lại:</strong> Nếu một giá trị p-value &lt; mức ý nghĩa (0.05), thì chuỗi X tương ứng (cột) gây ra chuỗi Y (hàng).</p>
+<p><strong>Kết quả:</strong> Đối với ví dụ cụ thể này, chúng ta có thể kết luận rằng sự thay đổi của lưu lượng xả NIA có quan hệ nhân quả Granger đối với sự thay đổi của mực nước đập. Ngược lại, sự thay đổi của mực nước đập cũng có quan hệ nhân quả Granger đối với sự thay đổi của lưu lượng xả NIA. Đây là một ví dụ về hiện tượng phản hồi đã được đề cập ở phần trước. Điều này có nghĩa là dữ liệu về lưu lượng xả NIA giúp cải thiện hiệu quả dự báo sự thay đổi mực nước đập, và dữ liệu về mực nước đập cũng giúp cải thiện hiệu quả dự báo sự thay đổi lưu lượng xả NIA.</p>
 </section>
 </section>
-<section id="example-2-causality-for-la-mesa-dam">
-<h3>Example 2: Causality for La Mesa Dam<a class="headerlink" href="#example-2-causality-for-la-mesa-dam" title="Permalink to this heading">#</a></h3>
-<p>We now do the same steps for the La Mesa dataset.</p>
+<section id="vi-du-2-nhan-qua-doi-voi-dap-la-mesa">
+<h3>Ví dụ 2: Nhân quả đối với đập La Mesa<a class="headerlink" href="#vi-du-2-nhan-qua-doi-voi-dap-la-mesa" title="Permalink to this heading">#</a></h3>
+<p>Chúng ta tiếp tục thực hiện các bước tương tự cho bộ dữ liệu La Mesa.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lamesa_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/La Mesa_dataset.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s1">&#39;Time&#39;</span><span class="p">);</span>
@@ -1627,9 +1626,9 @@ dtype: int64
 <img alt="../_images/785aee77d75edf395a70f2737c7c657fb538e5be3e1c1ef20464088decf565a1.png" src="../_images/785aee77d75edf395a70f2737c7c657fb538e5be3e1c1ef20464088decf565a1.png" />
 </div>
 </div>
-<section id="causality-between-rainfall-and-la-mesa-dam-water-level">
-<h4>Causality between Rainfall and La Mesa Dam Water Level<a class="headerlink" href="#causality-between-rainfall-and-la-mesa-dam-water-level" title="Permalink to this heading">#</a></h4>
-<p>In this next example, we first consider the Rain and Dam time series.</p>
+<section id="nhan-qua-giua-luong-mua-va-muc-nuoc-dap-la-mesa">
+<h4>Nhân quả giữa lượng mưa và mực nước đập La Mesa<a class="headerlink" href="#nhan-qua-giua-luong-mua-va-muc-nuoc-dap-la-mesa" title="Permalink to this heading">#</a></h4>
+<p>Trong ví dụ tiếp theo này, trước tiên chúng ta xem xét hai chuỗi thời gian lượng mưa và mực nước đập.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_df</span> <span class="o">=</span> <span class="n">lamesa_df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;ONI&#39;</span><span class="p">,</span> <span class="s1">&#39;NIA&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -1695,7 +1694,7 @@ dtype: int64
 </table>
 </div></div></div>
 </div>
-<p>We first check for stationarity by looking at the lag plots and applying the KPSS and ADF tests.</p>
+<p>Chúng ta kiểm tra tính dừng bằng cách quan sát các biểu đồ độ trễ và áp dụng các kiểm định KPSS và ADF.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lag_plots</span><span class="p">(</span><span class="n">data_df</span><span class="p">)</span>
@@ -1829,8 +1828,8 @@ dtype: int64
 </table>
 </div></div></div>
 </div>
-<p><strong>Result:</strong> All three conclusively show that again Rain is stationary, while Dam is not.</p>
-<p>We apply differencing and recheck for stationarity.</p>
+<p><strong>Kết quả:</strong> Cả ba phương pháp đều cho thấy rõ ràng rằng một lần nữa chuỗi lượng mưa là chuỗi dừng, trong khi chuỗi mực nước đập thì không dừng.</p>
+<p>Chúng ta áp dụng phép sai phân và kiểm tra lại tính dừng.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_df</span><span class="p">[</span><span class="s1">&#39;Dam&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_df</span><span class="p">[</span><span class="s1">&#39;Dam&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">data_df</span><span class="p">[</span><span class="s1">&#39;Dam&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
@@ -1972,8 +1971,8 @@ dtype: int64
 </table>
 </div></div></div>
 </div>
-<p><strong>Result:</strong> All three conclusively agree that both data are now stationary.</p>
-<p>We next split the data and select the lag order <span class="math notranslate nohighlight">\(p\)</span>.</p>
+<p><strong>Kết quả:</strong> Cả ba phương pháp đều cho thấy rõ ràng rằng cả hai chuỗi dữ liệu đều không dừng.</p>
+<p>Tiếp theo, chúng ta chia dữ liệu và lựa chọn bậc độ trễ <span class="math notranslate nohighlight">\(p\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df</span><span class="p">,</span> <span class="n">test_df</span> <span class="o">=</span> <span class="n">splitter</span><span class="p">(</span><span class="n">data_df</span><span class="p">)</span>
@@ -1998,7 +1997,7 @@ dtype: int64
 <img alt="../_images/de46626a944e1cf302820bf6c3adad964836aef26780e31668370f19746c04c0.png" src="../_images/de46626a944e1cf302820bf6c3adad964836aef26780e31668370f19746c04c0.png" />
 </div>
 </div>
-<p>We select <span class="math notranslate nohighlight">\(p=7\)</span>. We finally fit our VAR model and test for Granger Causality.</p>
+<p>Chúng ta lựa chọn <span class="math notranslate nohighlight">\(p=7\)</span>. Cuối cùng, chúng ta ước lượng mô hình VAR và kiểm định nhân quả Granger.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="mi">7</span>
@@ -2052,12 +2051,12 @@ dtype: int64
 </table>
 </div></div></div>
 </div>
-<p><strong>Recall:</strong> If a given p-value is &lt; significance level (0.05), then, the corresponding X series (column) causes the Y (row).</p>
-<p><strong>Result:</strong> For this particular example, we can say that rainfall Granger causes changes in the dam water level. Conversely, changes in dam water level also Granger causes rainfall. This is another example of feedback. This means that rainfall data improves changes in dam water level prediction performance, and dam water level data also improves rainfall prediction performance.</p>
+<p><strong>Nhắc lại:</strong> Nếu một giá trị p-value &lt; mức ý nghĩa (0.05), thì chuỗi X tương ứng (cột) gây ra chuỗi Y (hàng).</p>
+<p><strong>Kết quả:</strong> Đối với ví dụ cụ thể này, chúng ta có thể kết luận rằng lượng mưa có quan hệ nhân quả Granger đối với sự thay đổi của mực nước đập. Ngược lại, sự thay đổi của mực nước đập cũng có quan hệ nhân quả Granger đối với lượng mưa. Đây là một ví dụ khác về hiện tượng phản hồi. Điều này có nghĩa là dữ liệu lượng mưa giúp cải thiện hiệu quả dự báo sự thay đổi mực nước đập, và dữ liệu mực nước đập cũng giúp cải thiện hiệu quả dự báo lượng mưa.</p>
 </section>
-<section id="causality-between-nia-release-flow-and-la-mesa-dam-water-level">
-<h4>Causality between NIA Release Flow and La Mesa Dam Water Level<a class="headerlink" href="#causality-between-nia-release-flow-and-la-mesa-dam-water-level" title="Permalink to this heading">#</a></h4>
-<p>In this next example, we now focus on the NIA and Dam time series.</p>
+<section id="nhan-qua-giua-luu-luong-xa-nia-va-muc-nuoc-dap-la-mesa">
+<h4>Nhân quả giữa lưu lượng xả NIA và mực nước đập La Mesa<a class="headerlink" href="#nhan-qua-giua-luu-luong-xa-nia-va-muc-nuoc-dap-la-mesa" title="Permalink to this heading">#</a></h4>
+<p>Trong ví dụ tiếp theo này, chúng ta sẽ tập trung vào hai chuỗi thời gian lưu lượng xả NIA và mực nước đập.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_df</span> <span class="o">=</span> <span class="n">lamesa_df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;ONI&#39;</span><span class="p">,</span> <span class="s1">&#39;Rain&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -2123,7 +2122,7 @@ dtype: int64
 </table>
 </div></div></div>
 </div>
-<p>We first check for stationarity by looking at the lag plots and applying the KPSS and ADF tests.</p>
+<p>Trước tiên, chúng ta kiểm tra tính dừng bằng cách quan sát các biểu đồ độ trễ và áp dụng các kiểm định KPSS và ADF.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lag_plots</span><span class="p">(</span><span class="n">data_df</span><span class="p">)</span>
@@ -2257,8 +2256,8 @@ dtype: int64
 </table>
 </div></div></div>
 </div>
-<p><strong>Result:</strong> All three conclusively show that both data are not stationary.</p>
-<p>We apply differencing and recheck for stationarity.</p>
+<p><strong>Kết quả:</strong> Cả ba phương pháp đều cho thấy rõ ràng rằng cả hai chuỗi dữ liệu đều không dừng.</p>
+<p>Chúng ta áp dụng phép sai phân và kiểm tra lại tính dừng.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_df</span><span class="p">[</span><span class="s1">&#39;NIA&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_df</span><span class="p">[</span><span class="s1">&#39;NIA&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">data_df</span><span class="p">[</span><span class="s1">&#39;NIA&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
@@ -2401,8 +2400,8 @@ dtype: int64
 </table>
 </div></div></div>
 </div>
-<p><strong>Result:</strong> All three conclusively agree that both data are now stationary.</p>
-<p>We next split the data and select the lag order <span class="math notranslate nohighlight">\(p\)</span>.</p>
+<p><strong>Kết quả:</strong> Cả ba phương pháp đều nhất quán và cho thấy rằng cả hai chuỗi dữ liệu hiện nay đều là chuỗi dừng.</p>
+<p>Tiếp theo, chúng ta chia dữ liệu và lựa chọn bậc độ trễ <span class="math notranslate nohighlight">\(p\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df</span><span class="p">,</span> <span class="n">test_df</span> <span class="o">=</span> <span class="n">splitter</span><span class="p">(</span><span class="n">data_df</span><span class="p">)</span>
@@ -2427,7 +2426,7 @@ dtype: int64
 <img alt="../_images/44628b309d18448a6f141a97f5379cfb9960f228764b44ee111d2384759e0516.png" src="../_images/44628b309d18448a6f141a97f5379cfb9960f228764b44ee111d2384759e0516.png" />
 </div>
 </div>
-<p>We select <span class="math notranslate nohighlight">\(p=14\)</span>. We finally fit our VAR model and test for Granger Causality.</p>
+<p>Chúng ta lựa chọn <span class="math notranslate nohighlight">\(p=14\)</span>. Cuối cùng, chúng ta ước lượng mô hình VAR và kiểm định nhân quả Granger.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="mi">14</span>
@@ -2481,17 +2480,15 @@ dtype: int64
 </table>
 </div></div></div>
 </div>
-<p><strong>Recall:</strong> If a given p-value is &lt; significance level (0.05), then, the corresponding X series (column) causes the Y (row).</p>
-<p><strong>Result:</strong> We see that, unlike for Ipo Dam, changes in NIA release flow and changes in the dam water level do NOT Granger cause one another for La Mesa Dam. This means that NIA release flow data does NOT improve changes in dam water level prediction performance, and dam water level data also does NOT improve changes in NIA release flow prediction performance.</p>
+<p><strong>Nhắc lại:</strong> Nếu một giá trị p-value &lt; mức ý nghĩa (0.05), thì chuỗi X tương ứng (cột) gây ra chuỗi Y (hàng).</p>
+<p><strong>Kết quả:</strong> Chúng ta thấy rằng, không giống như trường hợp của đập Ipo, sự thay đổi của lưu lượng xả NIA và sự thay đổi của mực nước đập không có quan hệ nhân quả Granger lẫn nhau đối với đập La Mesa. Điều này có nghĩa là dữ liệu về lưu lượng xả NIA không cải thiện hiệu quả dự báo sự thay đổi mực nước đập, và dữ liệu về mực nước đập cũng không cải thiện hiệu quả dự báo sự thay đổi lưu lượng xả NIA.</p>
 </section>
 </section>
-<section id="exercises">
-<h3>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h3>
-<p>As exercises, the reader can test for Granger Causality between other pairs of variables from both the Ipo and La Mesa datasets, as well as from the Angat dataset.</p>
-</section>
-<section id="example-3-jena-climate-data">
-<h3>Example 3: Jena Climate Data<a class="headerlink" href="#example-3-jena-climate-data" title="Permalink to this heading">#</a></h3>
-<p>We look back at the Jena climate dataset and explore which variables are Granger causal to another.</p>
+<section id="bai-tap">
+<h3>Bài tập<a class="headerlink" href="#bai-tap" title="Permalink to this heading">#</a></h3>
+<p>Như các bài tập, người đọc có thể kiểm định nhân quả Granger giữa các cặp biến khác từ cả hai bộ dữ liệu Ipo và La Mesa, cũng như từ bộ dữ liệu Angat.</p>
+<p>Ví dụ 3: Dữ liệu khí hậu Jena</p>
+<p>Chúng ta quay lại bộ dữ liệu khí hậu Jena và khám phá xem những biến nào có quan hệ nhân quả Granger đối với các biến khác.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/train_series_datetime.csv&#39;</span><span class="p">,</span><span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Date Time&#39;</span><span class="p">)</span>
@@ -2649,9 +2646,9 @@ dtype: int64
 </table>
 </div></div></div>
 </div>
-<section id="causality-between-pressure-and-temperature">
-<h4>Causality between Pressure and Temperature<a class="headerlink" href="#causality-between-pressure-and-temperature" title="Permalink to this heading">#</a></h4>
-<p>In this next example, we first consider the p and T time series.</p>
+<section id="nhan-qua-giua-ap-suat-va-nhiet-do">
+<h4>Nhân quả giữa áp suất và nhiệt độ<a class="headerlink" href="#nhan-qua-giua-ap-suat-va-nhiet-do" title="Permalink to this heading">#</a></h4>
+<p>Trong ví dụ tiếp theo này, trước tiên chúng ta xem xét hai chuỗi thời gian p và T.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_df</span> <span class="o">=</span> <span class="n">jena_df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,:</span><span class="mi">2</span><span class="p">]</span>
@@ -2717,7 +2714,7 @@ dtype: int64
 </table>
 </div></div></div>
 </div>
-<p>We first check for stationarity by looking at the lag plots and applying the KPSS and ADF tests.</p>
+<p>Chúng ta kiểm tra tính dừng bằng cách quan sát các biểu đồ độ trễ và áp dụng các kiểm định KPSS và ADF.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lag_plots</span><span class="p">(</span><span class="n">data_df</span><span class="p">)</span>
@@ -2851,8 +2848,8 @@ dtype: int64
 </table>
 </div></div></div>
 </div>
-<p><strong>Result:</strong> All three conclusively show that both data are not stationary.</p>
-<p>We apply differencing and recheck for stationarity.</p>
+<p><strong>Kết quả:</strong> Cả ba phương pháp đều cho thấy rõ ràng rằng cả hai chuỗi dữ liệu đều không dừng.</p>
+<p>Chúng ta áp dụng phép sai phân và kiểm tra lại tính dừng.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_df</span><span class="p">[</span><span class="s1">&#39;p (mbar)&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_df</span><span class="p">[</span><span class="s1">&#39;p (mbar)&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">data_df</span><span class="p">[</span><span class="s1">&#39;p (mbar)&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
@@ -2995,8 +2992,8 @@ dtype: int64
 </table>
 </div></div></div>
 </div>
-<p><strong>Result:</strong> All three conclusively agree that both data are now stationary.</p>
-<p>We next split the data and select the lag order <span class="math notranslate nohighlight">\(p\)</span>.</p>
+<p><strong>Kết quả:</strong> Cả ba phương pháp đều nhất quán và cho thấy rằng cả hai chuỗi dữ liệu hiện nay đều là chuỗi dừng.</p>
+<p>Tiếp theo, chúng ta chia dữ liệu và lựa chọn bậc độ trễ <span class="math notranslate nohighlight">\(p\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df</span><span class="p">,</span> <span class="n">test_df</span> <span class="o">=</span> <span class="n">splitter</span><span class="p">(</span><span class="n">data_df</span><span class="p">)</span>
@@ -3021,7 +3018,7 @@ dtype: int64
 <img alt="../_images/1f26e1799b9decb504651f842651ca099fd2a86eafd2c925118b61a9879b4190.png" src="../_images/1f26e1799b9decb504651f842651ca099fd2a86eafd2c925118b61a9879b4190.png" />
 </div>
 </div>
-<p>We select <span class="math notranslate nohighlight">\(p=30\)</span>. We finally fit our VAR model and test for Granger Causality.</p>
+<p>Chúng tôi lựa chọn <span class="math notranslate nohighlight">\(p=30\)</span>. Cuối cùng, chúng ta ước lượng mô hình VAR và kiểm định nhân quả Granger.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="mi">30</span>
@@ -3075,19 +3072,19 @@ dtype: int64
 </table>
 </div></div></div>
 </div>
-<p><strong>Recall:</strong> If a given p-value is &lt; significance level (0.05), then, the corresponding X series (column) causes the Y (row).</p>
-<p><strong>Result:</strong> For this particular example, we can say that changes in pressure Granger causes changes in temperature. Conversely, changes in temperature also Granger causes pressure. This is another example of feedback. This means that pressure data improves changes in temperature prediction performance, and temperature data also improves pressure prediction performance.</p>
+<p><strong>Nhắc lại:</strong> Nếu một giá trị p-value &lt; mức ý nghĩa (0.05), thì chuỗi X tương ứng (cột) gây ra chuỗi Y (hàng).</p>
+<p><strong>Kết quả:</strong> Đối với ví dụ cụ thể này, chúng ta có thể kết luận rằng sự thay đổi của áp suất có quan hệ nhân quả Granger đối với sự thay đổi của nhiệt độ. Ngược lại, sự thay đổi của nhiệt độ cũng có quan hệ nhân quả Granger đối với áp suất. Đây là một ví dụ khác về hiện tượng phản hồi. Điều này có nghĩa là dữ liệu áp suất giúp cải thiện hiệu quả dự báo sự thay đổi nhiệt độ, và dữ liệu nhiệt độ cũng giúp cải thiện hiệu quả dự báo sự thay đổi áp suất.</p>
 </section>
 </section>
 </section>
-<section id="summary">
-<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this heading">#</a></h2>
-<p>We have introduced the notion of causality in this chapter, and discussed its implications on time series analysis. We also applied the Granger Causality Test for linear VAR models for several datasets, seeing different examples of causality between the variables explored.</p>
-<p>Causality will be revisited in a later chapter, in particular addressing the limitations of the method discussed in this chapter and discussing causality for nonlinear models.</p>
+<section id="tom-tat">
+<h2>Tóm tắt<a class="headerlink" href="#tom-tat" title="Permalink to this heading">#</a></h2>
+<p>Trong chương này, chúng ta đã giới thiệu khái niệm nhân quả và thảo luận các hàm ý của nó đối với phân tích chuỗi thời gian. Chúng ta cũng đã áp dụng kiểm định nhân quả Granger cho các mô hình VAR tuyến tính trên nhiều bộ dữ liệu khác nhau, qua đó quan sát các ví dụ đa dạng về mối quan hệ nhân quả giữa các biến được xem xét.</p>
+<p>Khái niệm nhân quả sẽ được đề cập lại trong một chương sau, đặc biệt là nhằm giải quyết các hạn chế của phương pháp được thảo luận trong chương này và bàn luận về nhân quả đối với các mô hình phi tuyến.</p>
 </section>
-<section id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
-<p>The contents of this notebook are compiled from the following references:</p>
+<section id="tai-lieu-tham-khao">
+<h2>Tài liệu tham khảo<a class="headerlink" href="#tai-lieu-tham-khao" title="Permalink to this heading">#</a></h2>
+<p>Nội dung của notebook này được tổng hợp từ các tài liệu tham khảo sau:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.jstor.org/stable/1912791">Granger, C. (1969). Investigating Causal Relations by Econometric Models and Cross-spectral Methods. Econometrica, 37(3), 424-438.</a></p></li>
 <li><p><a class="reference external" href="https://ideas.repec.org/a/eee/econom/v66y1995i1-2p225-250.html">Toda, Hiro Y. &amp; Yamamoto, Taku (1995). Statistical inference in vector autoregressions with possibly integrated processes. Journal of Econometrics, 66(1-2), 225-250.</a></p></li>
@@ -3133,7 +3130,7 @@ dtype: int64
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Chapter 3: Vector Autoregressive Methods</p>
+        <p class="prev-next-title">Chương 3: Các phương pháp Vectơ tự hồi quy (Vector Autoregressive Methods)</p>
       </div>
     </a>
     <a class="right-next"
@@ -3141,7 +3138,7 @@ dtype: int64
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Chapter 5 : Dynamical Forecasting Methods (Simplex and SMap Projections)</p>
+        <p class="prev-next-title">Chapter 5 : Chương 5: Các phương pháp dự báo động lực (Simplex và SMap Projections)</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -3161,35 +3158,34 @@ dtype: int64
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notations">Notations</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definitions">Definitions</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#causality">Causality</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#feedback">Feedback</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instantaneous-causality">Instantaneous Causality</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#causality-lag">Causality Lag</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ky-hieu">Ký hiệu</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dinh-nghia">Định nghĩa</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nhan-qua">Nhân quả</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#phan-hoi">Phản hồi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nhan-qua-tuc-thoi">Nhân quả tức thời</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#do-tre-nhan-qua">Độ trễ nhân quả</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assumptions">Assumptions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-for-granger-causality">Testing for Granger Causality</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1-ipo-dam-dataset">Example 1: Ipo Dam Dataset</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#causality-between-rainfall-and-ipo-dam-water-level">Causality between Rainfall and Ipo Dam Water Level</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#causality-between-nia-release-flow-and-ipo-dam-water-level">Causality between NIA Release Flow and Ipo Dam Water Level</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gia-dinh">Giả định</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kiem-dinh-nhan-qua-granger">Kiểm định nhân quả Granger</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vi-du-1-bo-du-lieu-dap-ipo">Ví dụ 1: Bộ dữ liệu đập Ipo</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#nhan-qua-giua-luong-mua-va-muc-nuoc-dap-ipo">Nhân quả giữa lượng mưa và mực nước đập Ipo</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#nhan-qua-giua-luu-luong-xa-nia-va-muc-nuoc-dap-ipo">Nhân quả giữa lưu lượng xả NIA và mực nước đập Ipo</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-causality-for-la-mesa-dam">Example 2: Causality for La Mesa Dam</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#causality-between-rainfall-and-la-mesa-dam-water-level">Causality between Rainfall and La Mesa Dam Water Level</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#causality-between-nia-release-flow-and-la-mesa-dam-water-level">Causality between NIA Release Flow and La Mesa Dam Water Level</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vi-du-2-nhan-qua-doi-voi-dap-la-mesa">Ví dụ 2: Nhân quả đối với đập La Mesa</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#nhan-qua-giua-luong-mua-va-muc-nuoc-dap-la-mesa">Nhân quả giữa lượng mưa và mực nước đập La Mesa</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#nhan-qua-giua-luu-luong-xa-nia-va-muc-nuoc-dap-la-mesa">Nhân quả giữa lưu lượng xả NIA và mực nước đập La Mesa</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-3-jena-climate-data">Example 3: Jena Climate Data</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#causality-between-pressure-and-temperature">Causality between Pressure and Temperature</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bai-tap">Bài tập</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#nhan-qua-giua-ap-suat-va-nhiet-do">Nhân quả giữa áp suất và nhiệt độ</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tom-tat">Tóm tắt</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tai-lieu-tham-khao">Tài liệu tham khảo</a></li>
 </ul>
   </nav></div>
 
