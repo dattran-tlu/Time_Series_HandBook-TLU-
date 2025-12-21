@@ -1,478 +1,412 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" data-content_root="" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chapter 2: Linear, Trend, and Momentum Forecasting &#8212; Time Series Analysis Handbook</title>
-    
-  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    
-  <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+    <title>Chapter 2: Linear, Trend, and Momentum Forecasting &#8212; Bản dịch Time Series Analysis Handbook</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    
-      
-  <link rel="stylesheet"
-    href="../_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    
-  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script >
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '02_LinearForecastingTrendandMomentumForecasting/02_LinearTrendandMomentumForecasting';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Chapter 3: Vector Autoregressive Methods" href="../03_VectorAutoregressiveModels/03_VectorAutoregressiveMethods.html" />
-    <link rel="prev" title="Chapter 1: AutoRegressive Integrated Moving Average (ARIMA)" href="../01_AutoRegressiveIntegratedMovingAverage/01_AutoRegressiveIntegratedMovingAverage.html" />
-
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
-
-
-
+    <link rel="prev" title="Chương 1: Mô hình Trung bình động tích hợp tự hồi quy (AutoRegressive Integrated Moving Average - ARIMA)" href="../01_AutoRegressiveIntegratedMovingAverage/01_AutoRegressiveIntegratedMovingAverage.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    <div class="container-xl">
-      <div class="row">
-          
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
     
-        <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="../index.html">
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../Preface/Preface.html">
   
   
-  <h1 class="site-logo" id="site-title">Time Series Analysis Handbook</h1>
   
+  
+  
+  
+    <p class="title logo__title">Bản dịch Time Series Analysis Handbook</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../Preface/Preface.html">
+                    Preface: Introduction to Time Series Analysis
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../00_Introduction/00_Introduction.html">Chương 0: Phân tích Chuỗi Thời gian Nâng cao</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_AutoRegressiveIntegratedMovingAverage/01_AutoRegressiveIntegratedMovingAverage.html">Chương 1: Mô hình Trung bình động tích hợp tự hồi quy (AutoRegressive Integrated Moving Average - ARIMA)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Chapter 2: Linear, Trend, and Momentum Forecasting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_VectorAutoregressiveModels/03_VectorAutoregressiveMethods.html">Chapter 3: Vector Autoregressive Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_GrangerCausality/04_GrangerCausality.html">Chapter 4: Granger Causality Test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_SimplexandSmapProjections/05_Empirical%20Dynamic%20Modelling%20%28Simplex%20and%20SMap_Projections%29.html">Chapter 5 : Dynamical Forecasting Methods (Simplex and SMap Projections)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../06_ConvergentCrossMappingandSugiharaCausality/ccm_sugihara.html">Chapter 6: Convergent Cross Mapping</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../06_ConvergentCrossMappingandSugiharaCausality/using_causal_ccm_package.html">Applying CCM Using causal-ccm package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../07_CrosscorrelationsFourierTransformandWaveletTransform/07_CrosscorrelationsFourierTransformandWaveletTransform.html">Chapter 7: Cross-Correlations, Fourier Transform, and Wavelet Transform</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../08_WinningestMethods/lightgbm_m5_forecasting.html">Chapter 8: Winningest Methods in Time Series Forecasting</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../08_WinningestMethods/lightgbm_m5_tuning.html">Hyperparameter Tuning (Supplementary Notebook)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../08_WinningestMethods/lightgbm_jena_forecasting.html">Temperature Forecasting (Supplementary Notebook)</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/02_LinearForecastingTrendandMomentumForecasting/02_LinearTrendandMomentumForecasting.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
 </a>
-</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <ul class="nav sidenav_l1">
- <li class="toctree-l1">
-  <a class="reference internal" href="../Preface/Preface.html">
-   Preface: Introduction to Time Series Analysis
-  </a>
- </li>
-</ul>
-<ul class="current nav sidenav_l1">
- <li class="toctree-l1">
-  <a class="reference internal" href="../00_Introduction/00_Introduction.html">
-   Chapter 0: Advanced Time Series Analysis
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../01_AutoRegressiveIntegratedMovingAverage/01_AutoRegressiveIntegratedMovingAverage.html">
-   Chapter 1: AutoRegressive Integrated Moving Average (ARIMA)
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Chapter 2: Linear, Trend, and Momentum Forecasting
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../03_VectorAutoregressiveModels/03_VectorAutoregressiveMethods.html">
-   Chapter 3: Vector Autoregressive Methods
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../04_GrangerCausality/04_GrangerCausality.html">
-   Chapter 4: Granger Causality Test
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../05_SimplexandSmapProjections/05_Empirical%20Dynamic%20Modelling%20%28Simplex%20and%20SMap_Projections%29.html">
-   Chapter 5 : Dynamical Forecasting Methods (Simplex and SMap Projections)
-  </a>
- </li>
- <li class="toctree-l1 collapsible-parent">
-  <a class="reference internal" href="../06_ConvergentCrossMappingandSugiharaCausality/ccm_sugihara.html">
-   Chapter 6: Convergent Cross Mapping
-  </a>
-  <ul class="collapse-ul">
-   <li class="toctree-l2">
-    <a class="reference internal" href="../06_ConvergentCrossMappingandSugiharaCausality/using_causal_ccm_package.html">
-     Applying CCM Using causal-ccm package
-    </a>
-   </li>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../07_CrosscorrelationsFourierTransformandWaveletTransform/07_CrosscorrelationsFourierTransformandWaveletTransform.html">
-   Chapter 7: Cross-Correlations, Fourier Transform, and Wavelet Transform
-  </a>
- </li>
- <li class="toctree-l1 collapsible-parent">
-  <a class="reference internal" href="../08_WinningestMethods/lightgbm_m5_forecasting.html">
-   Chapter 8: Winningest Methods in Time Series Forecasting
-  </a>
-  <ul class="collapse-ul">
-   <li class="toctree-l2">
-    <a class="reference internal" href="../08_WinningestMethods/lightgbm_m5_tuning.html">
-     Hyperparameter Tuning (Supplementary Notebook)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../08_WinningestMethods/lightgbm_jena_forecasting.html">
-     Temperature Forecasting (Supplementary Notebook)
-    </a>
-   </li>
-  </ul>
-  <i class="fas fa-chevron-down">
-  </i>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../data/README.html">
-   Datasets
-  </a>
- </li>
-</ul>
-
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
 </div>
 
 
-          
 
 
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
     </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/02_LinearForecastingTrendandMomentumForecasting/02_LinearTrendandMomentumForecasting.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
+  
 </div>
-
-        <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/phdinds-aim/time_series_handbook"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/phdinds-aim/time_series_handbook/issues/new?title=Issue%20on%20page%20%2F02_LinearForecastingTrendandMomentumForecasting/02_LinearTrendandMomentumForecasting.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        
-    </div>
 </div>
+              
+              
 
-
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
-
-        <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/phdinds-aim/time_series_handbook/main?urlpath=tree/02_LinearForecastingTrendandMomentumForecasting/02_LinearTrendandMomentumForecasting.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        
-    </div>
-</div>
-
-    </div>
-
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Chapter 2: Linear, Trend, and Momentum Forecasting</h1>
     <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
-        </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#how-to-use-this-notebook">
-   How to Use This Notebook
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#linear-regression-lr-forecasting">
-   Linear Regression (LR) Forecasting
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#gauss-markov-assumptions">
-     Gauss Markov Assumptions
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#example-1-univariate-lr-in-stock-price-of-netflix">
-     Example 1: Univariate LR in Stock Price of Netflix
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#testing-for-stationarity">
-       Testing for Stationarity
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#testing-for-autocorrelation">
-       Testing for Autocorrelation
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#compare-with-model-where-x-x-t-1">
-       Compare with model where
-       <span class="math notranslate nohighlight">
-        \(X=X_{t-1}\)
-       </span>
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#example-2-univariate-forecasting-using-jena-climate-data">
-     Example 2. Univariate Forecasting using Jena Climate Data
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#simultaneous-prediction-of-temperature-in-the-next-24-hours">
-       Simultaneous prediction of temperature in the next 24 hours
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#example-3-multivariate-linear-regression-and-regularization-techniques">
-     Example 3: Multivariate Linear Regression and Regularization Techniques
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#interpretation-of-coefficients">
-       Interpretation of coefficients:
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#interpretation-of-metrics">
-       Interpretation of metrics:
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#l1-lasso-and-l2-ridge-regularization-for-multi-variate-linear-regression">
-     L1 (Lasso) and L2 (Ridge) regularization for multi-variate linear regression
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#lasso-regularization">
-       Lasso Regularization
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#ridge-regularization">
-       Ridge Regularization
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#l1-regularization">
-       L1 Regularization
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#l2-regularization">
-       L2 Regularization
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#example-4-multi-variate-linear-regression-on-jena-climate-data">
-     Example 4: Multi-variate Linear Regression on Jena Climate Data
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id1">
-       L1 Regularization
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id2">
-       L2 Regularization
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#simultaneous-prediction-of-the-temperature-for-the-next-24-hours">
-       Simultaneous prediction of the temperature for the next 24 hours
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#momentum-and-trend-forecasting">
-   Momentum and Trend Forecasting
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#moving-average-ma">
-     Moving Average MA
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#example-5-extracting-the-trend-in-climate-data-using-ma">
-     Example 5: Extracting the Trend in Climate Data Using MA
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#momentum-strategies">
-     Momentum Strategies
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#how-to-apply-momentum-strategy">
-       How to apply momentum strategy:
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#example-6-momentum-trading-strategy-using-two-ma-s">
-     Example 6: Momentum Trading Strategy Using Two MA’s
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#example-7-momentum-trading-strategy-using-macd">
-     Example 7: Momentum Trading Strategy Using MACD
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#macd-indicators">
-       MACD Indicators
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#summary">
-   Summary
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#preview-to-the-next-chapter">
-   Preview to the next chapter…
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#references">
-   References
-  </a>
- </li>
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-use-this-notebook">How to Use This Notebook</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-regression-lr-forecasting">Linear Regression (LR) Forecasting</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gauss-markov-assumptions">Gauss Markov Assumptions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1-univariate-lr-in-stock-price-of-netflix">Example 1: Univariate LR in Stock Price of Netflix</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-for-stationarity">Testing for Stationarity</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-for-autocorrelation">Testing for Autocorrelation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-with-model-where-x-x-t-1">Compare with model where <span class="math notranslate nohighlight">\(X=X_{t-1}\)</span></a></li>
 </ul>
-
-        </nav>
-        
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-univariate-forecasting-using-jena-climate-data">Example 2. Univariate Forecasting using Jena Climate Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#simultaneous-prediction-of-temperature-in-the-next-24-hours">Simultaneous prediction of temperature in the next 24 hours</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-3-multivariate-linear-regression-and-regularization-techniques">Example 3: Multivariate Linear Regression and Regularization Techniques</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretation-of-coefficients">Interpretation of coefficients:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretation-of-metrics">Interpretation of metrics:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#l1-lasso-and-l2-ridge-regularization-for-multi-variate-linear-regression">L1 (Lasso) and L2 (Ridge) regularization for multi-variate linear regression</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lasso-regularization">Lasso Regularization</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ridge-regularization">Ridge Regularization</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#l1-regularization">L1 Regularization</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#l2-regularization">L2 Regularization</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-4-multi-variate-linear-regression-on-jena-climate-data">Example 4: Multi-variate Linear Regression on Jena Climate Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">L1 Regularization</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">L2 Regularization</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#simultaneous-prediction-of-the-temperature-for-the-next-24-hours">Simultaneous prediction of the temperature for the next 24 hours</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#momentum-and-trend-forecasting">Momentum and Trend Forecasting</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#moving-average-ma">Moving Average MA</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-5-extracting-the-trend-in-climate-data-using-ma">Example 5: Extracting the Trend in Climate Data Using MA</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#momentum-strategies">Momentum Strategies</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-apply-momentum-strategy">How to apply momentum strategy:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-6-momentum-trading-strategy-using-two-ma-s">Example 6: Momentum Trading Strategy Using Two MA’s</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-7-momentum-trading-strategy-using-macd">Example 7: Momentum Trading Strategy Using MACD</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#macd-indicators">MACD Indicators</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preview-to-the-next-chapter">Preview to the next chapter…</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+            </nav>
+        </div>
     </div>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
-              <div>
+
+              
                 
-  <div class="section" id="chapter-2-linear-trend-and-momentum-forecasting">
-<h1>Chapter 2: Linear, Trend, and Momentum Forecasting<a class="headerlink" href="#chapter-2-linear-trend-and-momentum-forecasting" title="Permalink to this headline">¶</a></h1>
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="chapter-2-linear-trend-and-momentum-forecasting">
+<h1>Chapter 2: Linear, Trend, and Momentum Forecasting<a class="headerlink" href="#chapter-2-linear-trend-and-momentum-forecasting" title="Permalink to this heading">#</a></h1>
 <p>Prepared by: Marissa P. Liponhay and Maria Eloisa M. Ventura</p>
 <p>In this chapter we introduce basic tools on forecasting, which utilize simple algebraic formula. In the previous chapter, ARIMA was discussed where the future values of a time series are forecasted using its past or lagged values. It was shown that ARIMA can only be applied after removing the trend and seasonality of the data. We note however that for some forecasting tools, the trend is relevant and is part of the formula for prediction. In this work, forecasting will be demonstrated while making use of the relationships and trends in the data.</p>
 <p>In the first half of this notebook, we demonstrate forecasting by fitting time series data with linear regression. For the second half, we demonstrate that by using the trends of the time series data such as moving averages, we can predict the possible future direction of the trend using momentum forecasting.</p>
 <p>Lastly, it is important to note that the concept of moving average (MA) in ARIMA is not the same in this chapter since the moving average that will be discussed is just the classical definition of MA.</p>
-<div class="section" id="how-to-use-this-notebook">
-<h2>How to Use This Notebook<a class="headerlink" href="#how-to-use-this-notebook" title="Permalink to this headline">¶</a></h2>
+<section id="how-to-use-this-notebook">
+<h2>How to Use This Notebook<a class="headerlink" href="#how-to-use-this-notebook" title="Permalink to this heading">#</a></h2>
 <p>This chapter is divided into two parts mainly about: (a) linear regression and (b) trend and momentum forecasting  using moving averages. In each section, the theory is discussed followed by examples that are implemented in Python 3. The chapter outline can be seen in the <strong><span class="xref myst">readme</span></strong> file for this chapter.</p>
-</div>
-<div class="section" id="linear-regression-lr-forecasting">
-<h2>Linear Regression (LR) Forecasting<a class="headerlink" href="#linear-regression-lr-forecasting" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="linear-regression-lr-forecasting">
+<h2>Linear Regression (LR) Forecasting<a class="headerlink" href="#linear-regression-lr-forecasting" title="Permalink to this heading">#</a></h2>
 <p>Linear regression forecasting is used when forecasting a time series y, with the assumption that it has a linear relationship with another time series x.</p>
 <p>The basic equation in doing linear regression is:
 <span class="math notranslate nohighlight">\(y= mx + b \)</span></p>
@@ -485,10 +419,10 @@
 <p>where <span class="math notranslate nohighlight">\(\mu_{i}\)</span> represent the outliers or the terms that cannot fit into the regression line.</p>
 <p>OLS quantifies the  evaluation of different regression lines. Using OLS, the regression line that minimizes the sum of the squares of the differences between the observed dependent variable and the predicted dependent variable is chosen as the best fit.</p>
 <p>But what if there are outliers causing the best regression by OLS do not really fit the data? This leads us to check when OLS can be applied to a data set. The following are the assumptions that are necessarily met before we can apply OLS.</p>
-<div class="section" id="gauss-markov-assumptions">
-<h3>Gauss Markov Assumptions<a class="headerlink" href="#gauss-markov-assumptions" title="Permalink to this headline">¶</a></h3>
+<section id="gauss-markov-assumptions">
+<h3>Gauss Markov Assumptions<a class="headerlink" href="#gauss-markov-assumptions" title="Permalink to this heading">#</a></h3>
 <p>The following assumptions for sampled data (from a population) should be met so that the parameters calculated using OLS indeed represent the best unbiased estimator of the population parameters.</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Linearity in parameters. This assumption requires that parameter <span class="math notranslate nohighlight">\(m\)</span> is linear. (Independent variable is not required to be linear).</p></li>
 <li><p>Both the independent and dependent variables <span class="math notranslate nohighlight">\((x,y)\)</span> are random variables. This will result to zero autocorrelation of outlier or the residual term.</p></li>
 <li><p>For multivariate regression method,there should be no perfect collinearity between multiple independent variables. To test for the presence of collinearity, <span class="math notranslate nohighlight">\(R^{2}\)</span> is good.</p></li>
@@ -497,23 +431,23 @@
 <li><p>The residual term <span class="math notranslate nohighlight">\(\mu_{i}\)</span> have zero autocorrelation, i.e., <span class="math notranslate nohighlight">\(cov(\mu_{i}, \mu_{j})=0\)</span>.</p></li>
 </ol>
 <p>Using OLS for time series data, the samples are drawn from the same process, and we can no longer assume that the independent variable <span class="math notranslate nohighlight">\(x\)</span> is random variable. In this case, the assumptions (4-6) should be strictly met by all <span class="math notranslate nohighlight">\(x\)</span> at all points.</p>
-</div>
-<div class="section" id="example-1-univariate-lr-in-stock-price-of-netflix">
-<h3>Example 1: Univariate LR in Stock Price of Netflix<a class="headerlink" href="#example-1-univariate-lr-in-stock-price-of-netflix" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="example-1-univariate-lr-in-stock-price-of-netflix">
+<h3>Example 1: Univariate LR in Stock Price of Netflix<a class="headerlink" href="#example-1-univariate-lr-in-stock-price-of-netflix" title="Permalink to this heading">#</a></h3>
 <p>Linear regression is one of the most successful tools used in technical analysis of prices and is widely available as a charting tool. For the sake of demonstration, we will use the historical data of Netflix downloaded from Yahoo.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
-<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
-<span class="kn">from</span> <span class="nn">pandas.plotting</span> <span class="kn">import</span> <span class="n">autocorrelation_plot</span>
-<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
-<span class="kn">from</span> <span class="nn">statsmodels.graphics</span> <span class="kn">import</span> <span class="n">tsaplots</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">r2_score</span>
-<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
-<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">metrics</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">LinearRegression</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pandas.plotting</span><span class="w"> </span><span class="kn">import</span> <span class="n">autocorrelation_plot</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">statsmodels.api</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sm</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">statsmodels.graphics</span><span class="w"> </span><span class="kn">import</span> <span class="n">tsaplots</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">r2_score</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn</span><span class="w"> </span><span class="kn">import</span> <span class="n">metrics</span>
 
 <span class="o">%</span><span class="k">matplotlib</span> inline
 <span class="c1">#from sklearn.model_selection </span>
@@ -536,11 +470,11 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/02_LinearTrendandMomentumForecasting_4_0.png" src="../_images/02_LinearTrendandMomentumForecasting_4_0.png" />
+<img alt="../_images/5b24bde99f14423334e0cf74b3ce7620795fdfade664f6b73575643d0993f90f.png" src="../_images/5b24bde99f14423334e0cf74b3ce7620795fdfade664f6b73575643d0993f90f.png" />
 </div>
 </div>
-<div class="section" id="testing-for-stationarity">
-<h4>Testing for Stationarity<a class="headerlink" href="#testing-for-stationarity" title="Permalink to this headline">¶</a></h4>
+<section id="testing-for-stationarity">
+<h4>Testing for Stationarity<a class="headerlink" href="#testing-for-stationarity" title="Permalink to this heading">#</a></h4>
 <p>We have learned from the previous chapter that one of the first steps to do when doing time series forecasting is to check the stationarity of the data, especially when there is a prominent trend. In this notebook, we will use the most widely used statistical test called the Augmented Dickey-Fuller, a unit root test. Note that a unit root test determines how strongly a time series is defined by a trend. The test uses an autoregressive model and optimizes an information criterion across different lag values. Recall that:</p>
 <p>Null Hypothesis (H0):</p>
 <ul class="simple">
@@ -557,7 +491,7 @@
 <p>In other references, they simply compare the ADF statistic to the critical values, such that if it is greater than the critical values, the time series is said to be non-stationary.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">statsmodels.tsa.stattools</span> <span class="kn">import</span> <span class="n">adfuller</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">statsmodels.tsa.stattools</span><span class="w"> </span><span class="kn">import</span> <span class="n">adfuller</span>
 <span class="n">series</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/NFLX3.csv&#39;</span><span class="p">,</span><span class="n">usecols</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Close&#39;</span><span class="p">])</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">series</span><span class="o">.</span><span class="n">values</span>
 <span class="n">result</span> <span class="o">=</span> <span class="n">adfuller</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
@@ -581,9 +515,9 @@ Critical Values:
 </div>
 </div>
 <p>Based on the results, the time series in non-stationary at all significance levels (1%,…) as the ADF statistic is greater the the critical values.</p>
-</div>
-<div class="section" id="testing-for-autocorrelation">
-<h4>Testing for Autocorrelation<a class="headerlink" href="#testing-for-autocorrelation" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="testing-for-autocorrelation">
+<h4>Testing for Autocorrelation<a class="headerlink" href="#testing-for-autocorrelation" title="Permalink to this heading">#</a></h4>
 <p>The autocorrelation coefficient measures the strength of the relationship between the data and its lag. The first coefficient measures the relationship between <span class="math notranslate nohighlight">\(y_{t}\)</span> to <span class="math notranslate nohighlight">\(y_{t-1}\)</span>, while the second coefficient measures the relationship between <span class="math notranslate nohighlight">\(y_{t}\)</span> to <span class="math notranslate nohighlight">\(y_{t-2}\)</span>, and so on.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -595,7 +529,7 @@ Critical Values:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/02_LinearTrendandMomentumForecasting_9_0.png" src="../_images/02_LinearTrendandMomentumForecasting_9_0.png" />
+<img alt="../_images/240abbbc31cb56d540bd325b361988594099cbfc3bcfc2d3c75a86a7f5545a2b.png" src="../_images/240abbbc31cb56d540bd325b361988594099cbfc3bcfc2d3c75a86a7f5545a2b.png" />
 </div>
 </div>
 <p>Another way to visualize the autocorrellation using pandas tools with respect to lag is shown below.</p>
@@ -607,10 +541,10 @@ Critical Values:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;Lag&#39;, ylabel=&#39;Autocorrelation&#39;&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f8505d7fd60&gt;
 </pre></div>
 </div>
-<img alt="../_images/02_LinearTrendandMomentumForecasting_11_1.png" src="../_images/02_LinearTrendandMomentumForecasting_11_1.png" />
+<img alt="../_images/72d83500dd5cc7b4395877a43158b0fa1a1cbaf0322d5d8311f7ea365c4c56b8.png" src="../_images/72d83500dd5cc7b4395877a43158b0fa1a1cbaf0322d5d8311f7ea365c4c56b8.png" />
 </div>
 </div>
 <p>One can better imagine the concept of lagged autocorrelation if we make the lagged data as a moving version of the original data and look at the overlap (in this case, their autocorrelation). If the trends of the original are both goin up or down as the lagged data is moved, the correlation is positive, otherwise negative.</p>
@@ -630,10 +564,10 @@ Critical Values:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;Date&#39;&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f8505dae0d0&gt;
 </pre></div>
 </div>
-<img alt="../_images/02_LinearTrendandMomentumForecasting_15_1.png" src="../_images/02_LinearTrendandMomentumForecasting_15_1.png" />
+<img alt="../_images/89b2df110f25cc328689f7065341d9b14880b7a742589fe452ace21fa78d10fb.png" src="../_images/89b2df110f25cc328689f7065341d9b14880b7a742589fe452ace21fa78d10fb.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -649,7 +583,7 @@ Critical Values:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/02_LinearTrendandMomentumForecasting_16_0.png" src="../_images/02_LinearTrendandMomentumForecasting_16_0.png" />
+<img alt="../_images/4e8fed92567d0b08f2352d1c41a2646850fadb059fb2ea5cba6de50f052f7947.png" src="../_images/4e8fed92567d0b08f2352d1c41a2646850fadb059fb2ea5cba6de50f052f7947.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -750,7 +684,7 @@ Critical Values:
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>the equation of the linear fit is: 
-y=  [0.98010473] x +  17.065244311865115
+y=  [0.98010473] x +  17.065244311865058
 lr confidence:  0.720499481096278
 </pre></div>
 </div>
@@ -769,10 +703,10 @@ lr confidence:  0.720499481096278
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f9d05727610&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f8505d23640&gt;
 </pre></div>
 </div>
-<img alt="../_images/02_LinearTrendandMomentumForecasting_25_1.png" src="../_images/02_LinearTrendandMomentumForecasting_25_1.png" />
+<img alt="../_images/e93bfd8c566fc0de4b674b44e9f8f283304e4bdb5d7cf7990face8670c2ddc55.png" src="../_images/e93bfd8c566fc0de4b674b44e9f8f283304e4bdb5d7cf7990face8670c2ddc55.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -785,7 +719,7 @@ lr confidence:  0.720499481096278
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/02_LinearTrendandMomentumForecasting_26_0.png" src="../_images/02_LinearTrendandMomentumForecasting_26_0.png" />
+<img alt="../_images/f72390e8dce687c80ac56e00c60fb9f5d733d6db415d3492eb6905e2c6021114.png" src="../_images/f72390e8dce687c80ac56e00c60fb9f5d733d6db415d3492eb6905e2c6021114.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -820,10 +754,10 @@ lr confidence:  0.720499481096278
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f9d06639950&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f850cd21e50&gt;]
 </pre></div>
 </div>
-<img alt="../_images/02_LinearTrendandMomentumForecasting_28_1.png" src="../_images/02_LinearTrendandMomentumForecasting_28_1.png" />
+<img alt="../_images/eca11596ca710a1a8f210374e1066a123b61a2b5f58afa3dd06e6a72b6dd7582.png" src="../_images/eca11596ca710a1a8f210374e1066a123b61a2b5f58afa3dd06e6a72b6dd7582.png" />
 </div>
 </div>
 <p>Now, we try to plot the predicted values over the original time series.</p>
@@ -840,10 +774,10 @@ lr confidence:  0.720499481096278
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f9d06680250&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f850a7bde20&gt;
 </pre></div>
 </div>
-<img alt="../_images/02_LinearTrendandMomentumForecasting_30_1.png" src="../_images/02_LinearTrendandMomentumForecasting_30_1.png" />
+<img alt="../_images/909774e7920109dece6c49da1ad71628dbc152a59980c2a0b4e8ff5bffc0d835.png" src="../_images/909774e7920109dece6c49da1ad71628dbc152a59980c2a0b4e8ff5bffc0d835.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -863,15 +797,15 @@ lr confidence:  0.720499481096278
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train set R^2:  0.7682299277930607
-Test set R^2:  0.9187750163794539
-The mean absolute error, MAE is:  6.973973107834818
+Test set R^2:  0.9187750163794522
+The mean absolute error, MAE is:  6.973973107834884
 </pre></div>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="compare-with-model-where-x-x-t-1">
-<h4>Compare with model where <span class="math notranslate nohighlight">\(X=X_{t-1}\)</span><a class="headerlink" href="#compare-with-model-where-x-x-t-1" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="compare-with-model-where-x-x-t-1">
+<h4>Compare with model where <span class="math notranslate nohighlight">\(X=X_{t-1}\)</span><a class="headerlink" href="#compare-with-model-where-x-x-t-1" title="Permalink to this heading">#</a></h4>
 <p>Here, we check the R^2 value with respect to the lagged series.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -908,8 +842,8 @@ The mean absolute error, MAE is:  6.973973107834818
 <p>Now we check the relationship between the test data and the prediction, we see that there is a perfect linear relationship as seen below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scipy</span>
-<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">linregress</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">scipy</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">linregress</span>
 <span class="n">slope</span><span class="p">,</span> <span class="n">intercept</span><span class="p">,</span> <span class="n">r_value</span><span class="p">,</span> <span class="n">p_value</span><span class="p">,</span> <span class="n">std_err</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">linregress</span><span class="p">(</span><span class="n">x_forecast</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">lr_prediction2</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -923,16 +857,16 @@ The mean absolute error, MAE is:  6.973973107834818
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f9d056fbd90&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f850d10bfd0&gt;]
 </pre></div>
 </div>
-<img alt="../_images/02_LinearTrendandMomentumForecasting_37_1.png" src="../_images/02_LinearTrendandMomentumForecasting_37_1.png" />
+<img alt="../_images/d9426ee1c9a76097c5616308fe88fa621cc7ff29fad4df60c75b470585f6aa95.png" src="../_images/d9426ee1c9a76097c5616308fe88fa621cc7ff29fad4df60c75b470585f6aa95.png" />
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="example-2-univariate-forecasting-using-jena-climate-data">
-<h3>Example 2. Univariate Forecasting using Jena Climate Data<a class="headerlink" href="#example-2-univariate-forecasting-using-jena-climate-data" title="Permalink to this headline">¶</a></h3>
+</section>
+</section>
+<section id="example-2-univariate-forecasting-using-jena-climate-data">
+<h3>Example 2. Univariate Forecasting using Jena Climate Data<a class="headerlink" href="#example-2-univariate-forecasting-using-jena-climate-data" title="Permalink to this heading">#</a></h3>
 <p>We will use the temperature values of the data in this part of the chapter to see if we can forecast the next 24hr temperature values. For this book, the data has been divided into training_series, validation_series, and test_series as described in the preface. In this chapter, I do not need perform any validation procedure, thus I will combine the training and validation series and it will serve as my raw data. We will then follow the steps outlined in Example 1 and see the average MAE of the prediction using linear regression.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -996,7 +930,7 @@ The mean absolute error, MAE is:  6.973973107834818
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/02_LinearTrendandMomentumForecasting_44_0.png" src="../_images/02_LinearTrendandMomentumForecasting_44_0.png" />
+<img alt="../_images/b58a42a172759fb87900f9567c47c73dfcfd8987183ac53c871010373c3745df.png" src="../_images/b58a42a172759fb87900f9567c47c73dfcfd8987183ac53c871010373c3745df.png" />
 </div>
 </div>
 <p>To perform linear regression, we follow the same step we did in Example 1. We will use the shifted (by 24-hrs) temperature data (x-variable) as the prediction variable (y-variable). We get the equation by fitting with LR and use the equation in predicting the temperature in the next 24 hours.</p>
@@ -1048,8 +982,8 @@ The mean absolute error, MAE is:  6.973973107834818
 </div>
 </div>
 </div>
-<div class="section" id="simultaneous-prediction-of-temperature-in-the-next-24-hours">
-<h4>Simultaneous prediction of temperature in the next 24 hours<a class="headerlink" href="#simultaneous-prediction-of-temperature-in-the-next-24-hours" title="Permalink to this headline">¶</a></h4>
+<section id="simultaneous-prediction-of-temperature-in-the-next-24-hours">
+<h4>Simultaneous prediction of temperature in the next 24 hours<a class="headerlink" href="#simultaneous-prediction-of-temperature-in-the-next-24-hours" title="Permalink to this heading">#</a></h4>
 <p>In order to make predictions for the next 24 hours, we will need to reshape our <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(y\)</span> data so that we can  use only one sample point <span class="math notranslate nohighlight">\(X\)</span> to predict the temperature for the next 24 hours.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1122,10 +1056,10 @@ The mean absolute error, MAE is:  6.973973107834818
 </div>
 </div>
 <p>We see that the average MAE is 9.067496890754962, which shows that LR is not a good model for forecasting the next 24-hr temperature using the Jena Climate Data.</p>
-</div>
-</div>
-<div class="section" id="example-3-multivariate-linear-regression-and-regularization-techniques">
-<h3>Example 3: Multivariate Linear Regression and Regularization Techniques<a class="headerlink" href="#example-3-multivariate-linear-regression-and-regularization-techniques" title="Permalink to this headline">¶</a></h3>
+</section>
+</section>
+<section id="example-3-multivariate-linear-regression-and-regularization-techniques">
+<h3>Example 3: Multivariate Linear Regression and Regularization Techniques<a class="headerlink" href="#example-3-multivariate-linear-regression-and-regularization-techniques" title="Permalink to this heading">#</a></h3>
 <p>In the previous example, we used univariate LR to demonstrate forecasting time series. In this example, we would like to demonstrate LR for a case where there are more than 1 independent variable, called the multivariate linear regression. To start off, we demonstrate the LR model first using a simple data on cars downloaded from one of the references. Take note that this is not yet forecasting in time series, but just a simple demonstration how multivariate LR works.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1291,7 +1225,7 @@ The mean absolute error, MAE is:  6.973973107834818
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">LinearRegression</span>
 
 <span class="c1"># We will model C02 emission (as y variable) using the parameters volume and weight as predictors (x variable)</span>
 <span class="c1"># for a multi-variate linear regression</span>
@@ -1318,7 +1252,7 @@ The mean absolute error, MAE is:  6.973973107834818
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Using Multivariate Linear Regression, we have the following equation: 
-CO2=  0.0078052575277471215 x1 +  0.007550947270300686 x2 +  79.6947192911594
+CO2=  0.007805257527747122 x1 +  0.007550947270300685 x2 +  79.6947192911594
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([95.05092409])
@@ -1326,8 +1260,8 @@ CO2=  0.0078052575277471215 x1 +  0.007550947270300686 x2 +  79.6947192911594
 </div>
 </div>
 </div>
-<div class="section" id="interpretation-of-coefficients">
-<h4>Interpretation of coefficients:<a class="headerlink" href="#interpretation-of-coefficients" title="Permalink to this headline">¶</a></h4>
+<section id="interpretation-of-coefficients">
+<h4>Interpretation of coefficients:<a class="headerlink" href="#interpretation-of-coefficients" title="Permalink to this heading">#</a></h4>
 <p>The slope for volume and weight of the cars are equal to 0.00781 and 0.00755, respectively. This means that for every 1 unit change in volume (weight) of cars, the expected increase in CO2 emission is 0.00781% (0.00755%).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1339,39 +1273,39 @@ CO2=  0.0078052575277471215 x1 +  0.007550947270300686 x2 +  79.6947192911594
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean Absolute Error: 5.670405502652306
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean Absolute Error: 5.67040550265231
 </pre></div>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="interpretation-of-metrics">
-<h4>Interpretation of metrics:<a class="headerlink" href="#interpretation-of-metrics" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="interpretation-of-metrics">
+<h4>Interpretation of metrics:<a class="headerlink" href="#interpretation-of-metrics" title="Permalink to this heading">#</a></h4>
 <p>We can see that the value of mean absolute error is 5.67, which is less than 6% of the mean value of the CO2 emission. This means that our prediction is good.</p>
 <p>For multi-variate linear regression, sometimes we do not know which among the parameters are relevant to the prediction. Thus in order to make our predictions more accurate, we need to penalize the less relevant parameters (or basically decrease their effect on our predictions and sometimes let them approach zero). This is usually done using regularization techniques.</p>
-</div>
-</div>
-<div class="section" id="l1-lasso-and-l2-ridge-regularization-for-multi-variate-linear-regression">
-<h3>L1 (Lasso) and L2 (Ridge) regularization for multi-variate linear regression<a class="headerlink" href="#l1-lasso-and-l2-ridge-regularization-for-multi-variate-linear-regression" title="Permalink to this headline">¶</a></h3>
+</section>
+</section>
+<section id="l1-lasso-and-l2-ridge-regularization-for-multi-variate-linear-regression">
+<h3>L1 (Lasso) and L2 (Ridge) regularization for multi-variate linear regression<a class="headerlink" href="#l1-lasso-and-l2-ridge-regularization-for-multi-variate-linear-regression" title="Permalink to this heading">#</a></h3>
 <p>Regularization techniques is based on the idea that proper constraining the allowed values of variables will increase the accuracy. In this notebook, we will use two techniques:</p>
-<div class="section" id="lasso-regularization">
-<h4>Lasso Regularization<a class="headerlink" href="#lasso-regularization" title="Permalink to this headline">¶</a></h4>
+<section id="lasso-regularization">
+<h4>Lasso Regularization<a class="headerlink" href="#lasso-regularization" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
 <li><p>It puts constraints on the absolute value of the coefficients.</p></li>
 </ul>
-</div>
-<div class="section" id="ridge-regularization">
-<h4>Ridge Regularization<a class="headerlink" href="#ridge-regularization" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="ridge-regularization">
+<h4>Ridge Regularization<a class="headerlink" href="#ridge-regularization" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
 <li><p>It puts contraints on the square of the coefficients.</p></li>
 </ul>
-</div>
-<div class="section" id="l1-regularization">
-<h4>L1 Regularization<a class="headerlink" href="#l1-regularization" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="l1-regularization">
+<h4>L1 Regularization<a class="headerlink" href="#l1-regularization" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Lasso Regularization... alpha=0 is equivalent to linear regression</span>
-<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">Lasso</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">Lasso</span>
 <span class="n">lassoreg</span> <span class="o">=</span> <span class="n">Lasso</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">model3</span> <span class="o">=</span> <span class="n">lassoreg</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 
@@ -1387,7 +1321,7 @@ CO2=  0.0078052575277471215 x1 +  0.007550947270300686 x2 +  79.6947192911594
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Using Multivariate Linear Regression, we have the following equation: 
-CO2=  0.007716758354774065 x1 +  0.007406759259298173 x2 +  80.02363225450095
+CO2=  0.007716758354774066 x1 +  0.007406759259298172 x2 +  80.02363225450095
 </pre></div>
 </div>
 </div>
@@ -1400,18 +1334,18 @@ CO2=  0.007716758354774065 x1 +  0.007406759259298173 x2 +  80.02363225450095
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean Absolute Error: 5.655740800489042
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean Absolute Error: 5.65574080048904
 </pre></div>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="l2-regularization">
-<h4>L2 Regularization<a class="headerlink" href="#l2-regularization" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="l2-regularization">
+<h4>L2 Regularization<a class="headerlink" href="#l2-regularization" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ridge Regularization... alpha=0 is equivalent to linear regression</span>
-<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">Ridge</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">Ridge</span>
 <span class="n">ridgereg</span> <span class="o">=</span> <span class="n">Ridge</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">model2</span> <span class="o">=</span> <span class="n">ridgereg</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 
@@ -1433,8 +1367,8 @@ CO2=  0.007019810017740837 x1 +  0.007728894654883425 x2 +  80.73020505101513
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
-<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">metrics</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn</span><span class="w"> </span><span class="kn">import</span> <span class="n">metrics</span>
 
 <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">y_pred</span> <span class="o">=</span> <span class="n">ridgereg</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
@@ -1449,10 +1383,10 @@ CO2=  0.007019810017740837 x1 +  0.007728894654883425 x2 +  80.73020505101513
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="example-4-multi-variate-linear-regression-on-jena-climate-data">
-<h3>Example 4: Multi-variate Linear Regression on Jena Climate Data<a class="headerlink" href="#example-4-multi-variate-linear-regression-on-jena-climate-data" title="Permalink to this headline">¶</a></h3>
+</section>
+</section>
+<section id="example-4-multi-variate-linear-regression-on-jena-climate-data">
+<h3>Example 4: Multi-variate Linear Regression on Jena Climate Data<a class="headerlink" href="#example-4-multi-variate-linear-regression-on-jena-climate-data" title="Permalink to this heading">#</a></h3>
 <p>In this section, we use the climate data to demonstrate forecasting using multivariate linear regression and regularization. The idea of forecasting method in this example is different from the method used in Example 1. In Example 1, we used the lagged value of the close prices of NFLX, i.e., we predicted <span class="math notranslate nohighlight">\(y_{T,t}\)</span> using the lagged value <span class="math notranslate nohighlight">\(y_{T-30}\)</span>. In this example, we will use different variables <span class="math notranslate nohighlight">\(x_{1,t}\)</span>, <span class="math notranslate nohighlight">\(x_{2,t}\)</span>,…, <span class="math notranslate nohighlight">\(x_{n,t}\)</span>, where n is the total number of variables used to predict y. In this case, n=14.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1993,18 +1927,18 @@ CO2=  0.007019810017740837 x1 +  0.007728894654883425 x2 +  80.73020505101513
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean Absolute Error: 0.0074509637143215
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean Absolute Error: 0.0074509637143237
 </pre></div>
 </div>
 </div>
 </div>
 <p>We can see that the value of MAE error is 0.007635891353557461. This means that linear regression is good for this dataset if all the parameters are used. Now we try to use the regularization techniques if the errors will improve.</p>
-<div class="section" id="id1">
-<h4>L1 Regularization<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<section id="id1">
+<h4>L1 Regularization<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Lasso Regularization... alpha=0 is equivalent to linear regression</span>
-<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">Lasso</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">Lasso</span>
 <span class="c1"># X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=2020)</span>
 <span class="n">lassoreg2</span> <span class="o">=</span> <span class="n">Lasso</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">model_temp2</span> <span class="o">=</span> <span class="n">lassoreg2</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
@@ -2026,13 +1960,13 @@ CO2=  0.007019810017740837 x1 +  0.007728894654883425 x2 +  80.73020505101513
 </div>
 </div>
 <p>L1 Regularization has worse performance having large errors, based on the metrics.</p>
-</div>
-<div class="section" id="id2">
-<h4>L2 Regularization<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="id2">
+<h4>L2 Regularization<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ridge Regularization... alpha=0 is equivalent to linear regression</span>
-<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">Ridge</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">Ridge</span>
 <span class="c1"># X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=2020)</span>
 
 <span class="n">ridgereg2</span> <span class="o">=</span> <span class="n">Ridge</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -2044,15 +1978,15 @@ CO2=  0.007019810017740837 x1 +  0.007728894654883425 x2 +  80.73020505101513
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean Absolute Error: 0.11708568925419785
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean Absolute Error: 0.11708568925420408
 </pre></div>
 </div>
 </div>
 </div>
 <p>Using L2 regularization, penalizing the other parameters didn’t lead to significant improvement in the prediction.</p>
-</div>
-<div class="section" id="simultaneous-prediction-of-the-temperature-for-the-next-24-hours">
-<h4>Simultaneous prediction of the temperature for the next 24 hours<a class="headerlink" href="#simultaneous-prediction-of-the-temperature-for-the-next-24-hours" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="simultaneous-prediction-of-the-temperature-for-the-next-24-hours">
+<h4>Simultaneous prediction of the temperature for the next 24 hours<a class="headerlink" href="#simultaneous-prediction-of-the-temperature-for-the-next-24-hours" title="Permalink to this heading">#</a></h4>
 <p>In this part, we perform the same re-shaping of the data similar to what we did above when we applied univariate linear regression and use one sample point from each of the 730 24-hr test set described in Example 2 to predict the temperature for the next 24 hours.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2110,29 +2044,29 @@ CO2=  0.007019810017740837 x1 +  0.007728894654883425 x2 +  80.73020505101513
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The average Mean Absolute Error is for 730 sets of 24-hr data:  2.859973277766325
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The average Mean Absolute Error is for 730 sets of 24-hr data:  2.8599732777663123
 </pre></div>
 </div>
 </div>
 </div>
 <p>We can see that the MAE improved compared to the MAE when we forecasted the temperature for the next 24 hours using univariate LR.</p>
-</div>
-</div>
-</div>
-<div class="section" id="momentum-and-trend-forecasting">
-<h2>Momentum and Trend Forecasting<a class="headerlink" href="#momentum-and-trend-forecasting" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+</section>
+<section id="momentum-and-trend-forecasting">
+<h2>Momentum and Trend Forecasting<a class="headerlink" href="#momentum-and-trend-forecasting" title="Permalink to this heading">#</a></h2>
 <p>Now let us move to common tools in momentum and trend forecasting. We will see that these two topics on momentum and trend goes together, i.e., the momentum forecasting is based on the usage of trend forecasting. In this section, we will discuss by considering the applications in technical analysis and strategies in stock trading. In this are, the most common used tools are</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Moving Average</p></li>
 <li><p>Momentum</p></li>
 </ol>
-<div class="section" id="moving-average-ma">
-<h3>Moving Average MA<a class="headerlink" href="#moving-average-ma" title="Permalink to this headline">¶</a></h3>
+<section id="moving-average-ma">
+<h3>Moving Average MA<a class="headerlink" href="#moving-average-ma" title="Permalink to this heading">#</a></h3>
 <p>MA trading rule is the most popular trading tool for traders. The trading signal or indicator is normally derived by first computing for the average closing price over a window of size <span class="math notranslate nohighlight">\(n\)</span>, with the following formula:</p>
 <p><span class="math notranslate nohighlight">\(MA_{n}(t) = \frac{w_{0}P_{t}+ w_{1}P_{t-1}+ w_{2}P_{t-2}+...+ w_{n-1}P_{t-n+1}}{w_{0}+ w_{1}+ w_{2}+... + w_{n-1}}\)</span> (1)</p>
 <p><span class="math notranslate nohighlight">\(MA_{n}(t) = \frac{\sum\limits _{i=0} ^{n-1} w_{i}P_{t-i}}{\sum\limits _{i=0} ^{n-1} w_{i}}\)</span> (2)</p>
 <p>There are three types of MA and they are as follows:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Simple Moving Average (SMA) - all prices are weighted equally such that <span class="math notranslate nohighlight">\(w_{i}=1\)</span> in equations (1, 2).</p></li>
 <li><p>Linear Moving Average (LMA) - the weights change, putting more relevance to the prices closer to the current price such that <span class="math notranslate nohighlight">\(w_{i}= n-i\)</span></p></li>
 <li><p>Exponential Moving Average (EMA) - similar to LMA, bigger weights are assigned to more recent prices and the weights drop exponentially. There are several ways proposed to compute the weights in EMA. We will discuss here the general formulation of EMA given as:</p></li>
@@ -2142,7 +2076,7 @@ CO2=  0.007019810017740837 x1 +  0.007728894654883425 x2 +  80.73020505101513
 <p>Momentum on the other hand, in its simplest form, is just the difference in the current price and the price <span class="math notranslate nohighlight">\(n\)</span> days ago. In other definitiions it can also be a change in the simple moving average with a scale factor of <span class="math notranslate nohighlight">\(N+1\)</span>:</p>
 <p><span class="math notranslate nohighlight">\(\frac{MOM}{N+1} = SMA_{today}- SMA_{yesterday}\)</span></p>
 <p>In trading, the indicators for both tools is given as:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Moving average:
 <span class="math notranslate nohighlight">\(I_{t}(n) = P_{t}- MA_{n}\)</span></p></li>
 <li><p>Momentum
@@ -2150,9 +2084,9 @@ CO2=  0.007019810017740837 x1 +  0.007728894654883425 x2 +  80.73020505101513
 </ol>
 <p>The trader is suggested to buy if <span class="math notranslate nohighlight">\(I&gt;0\)</span> and sell otherwise.</p>
 <p>To understand these concepts in financial analysis more in depth, we will look at various examples in trading. But first, we will demonstrate using the climate data that MA trends are also used in smooting time series data. After which, we will proceed with the examples on stock price analysis.</p>
-</div>
-<div class="section" id="example-5-extracting-the-trend-in-climate-data-using-ma">
-<h3>Example 5: Extracting the Trend in Climate Data Using MA<a class="headerlink" href="#example-5-extracting-the-trend-in-climate-data-using-ma" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="example-5-extracting-the-trend-in-climate-data-using-ma">
+<h3>Example 5: Extracting the Trend in Climate Data Using MA<a class="headerlink" href="#example-5-extracting-the-trend-in-climate-data-using-ma" title="Permalink to this heading">#</a></h3>
 <p>First, let us try to apply MA to see a smoother trend of the temperature measurements in the climate data. Here, we will use the simple MA and the exponential MA.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2171,29 +2105,29 @@ CO2=  0.007019810017740837 x1 +  0.007728894654883425 x2 +  80.73020505101513
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f9d0284ed10&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f84f0ddb610&gt;
 </pre></div>
 </div>
-<img alt="../_images/02_LinearTrendandMomentumForecasting_105_1.png" src="../_images/02_LinearTrendandMomentumForecasting_105_1.png" />
+<img alt="../_images/b9afd6859076f03c9674d1c6b01c98b366ec8b2f2fe87dbe930364a69dd23b36.png" src="../_images/b9afd6859076f03c9674d1c6b01c98b366ec8b2f2fe87dbe930364a69dd23b36.png" />
 </div>
 </div>
 <p>Looking at our data, we can see that there is an apparent seasonal trend of temperature measurements and at this point, we might be interested to know which among the factors in the data are causing this trend in temperature. This concept is called causation and it will be discussed at a later chapter in this book.</p>
-</div>
-<div class="section" id="momentum-strategies">
-<h3>Momentum Strategies<a class="headerlink" href="#momentum-strategies" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="momentum-strategies">
+<h3>Momentum Strategies<a class="headerlink" href="#momentum-strategies" title="Permalink to this heading">#</a></h3>
 <p>Momentum is used as a measure of strength of the current or future trend regardless of the direction, i.e., whether it will go up or down. It is purely a technical analysis technique and does not consider the fundamentals of the company. Traders use momentum strategy for short-term, when the trends are strong or when the price action momentum is high. An indicator of high momentum is the price advancing or declining over a wide range in a short period of time. High levels of momentum indicates increased volatility, too.</p>
 <p>Momentum investors tries to understand and anticipate the behavior of the market, since awareness of the biases and emotions of other investors make the momentum investing strategy to work better.</p>
-<div class="section" id="how-to-apply-momentum-strategy">
-<h4>How to apply momentum strategy:<a class="headerlink" href="#how-to-apply-momentum-strategy" title="Permalink to this headline">¶</a></h4>
-<ol class="simple">
+<section id="how-to-apply-momentum-strategy">
+<h4>How to apply momentum strategy:<a class="headerlink" href="#how-to-apply-momentum-strategy" title="Permalink to this heading">#</a></h4>
+<ol class="arabic simple">
 <li><p>A trader checks the existence of trends using indicators such as trend lines, moving averages, and  ADX to identify the existence of a trend.</p></li>
 <li><p>As the trend gains momentum – strengthens – the trader decides what position to take following the direction of the trend (buy an uptrend; sell a downtrend).</p></li>
 <li><p>A trader exits when the momentum of the trend shows signs of weakening. Divergence between price action and the movement of momentum indicators such as the MACD or RSI is a usual indicator.</p></li>
 </ol>
-</div>
-</div>
-<div class="section" id="example-6-momentum-trading-strategy-using-two-ma-s">
-<h3>Example 6: Momentum Trading Strategy Using Two MA’s<a class="headerlink" href="#example-6-momentum-trading-strategy-using-two-ma-s" title="Permalink to this headline">¶</a></h3>
+</section>
+</section>
+<section id="example-6-momentum-trading-strategy-using-two-ma-s">
+<h3>Example 6: Momentum Trading Strategy Using Two MA’s<a class="headerlink" href="#example-6-momentum-trading-strategy-using-two-ma-s" title="Permalink to this heading">#</a></h3>
 <p>As mentioned above, momentum strategy can be applied after checking for trends using moving averages. SMA and EMA are widely used in technical analysis of stock prices and in generating buy/sell signals. The basic idea is to use two different windows (short and long observation window) and see where the two MA’s cross over. A shorter window reacts faster to price changes than a longer window. Thus if MA(n=short) &gt; MA(n=long), the trading strategy or signal is to buy. Otherwise, the signal is to sell.</p>
 <p>SMA works fine in technical analysis however, it’s behavior lags the current price by <span class="math notranslate nohighlight">\(n/2\)</span> days. This means that the changes in the trend can only be seen after the lag days making the strategy being delayed. EMA reduces this lag significantly as weights are decaying exponentially. The same strategy of looking for crossovers between two EMAs with short and long window of observation is always applied, i.e., a signal to buy is generated when the EMA with shorter window crosses above the EMA with longer observation window.</p>
 <p>Now let us demonstrate this idea using the Netflix data on how to use MA and EMA in making signals or decisions whether to buy or sell the stock.</p>
@@ -2210,7 +2144,7 @@ CO2=  0.007019810017740837 x1 +  0.007728894654883425 x2 +  80.73020505101513
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Price&#39;)
 </pre></div>
 </div>
-<img alt="../_images/02_LinearTrendandMomentumForecasting_109_1.png" src="../_images/02_LinearTrendandMomentumForecasting_109_1.png" />
+<img alt="../_images/8bb965ac847a644abb96aaef1cd22315b5d4cacaed684cdebbac2d4c9366f17b.png" src="../_images/8bb965ac847a644abb96aaef1cd22315b5d4cacaed684cdebbac2d4c9366f17b.png" />
 </div>
 </div>
 <p>We will use window size of n=25 for the short MA and n=65 for the long MA.</p>
@@ -2252,10 +2186,10 @@ CO2=  0.007019810017740837 x1 +  0.007728894654883425 x2 +  80.73020505101513
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f9cec26c890&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f84f33ae220&gt;
 </pre></div>
 </div>
-<img alt="../_images/02_LinearTrendandMomentumForecasting_114_1.png" src="../_images/02_LinearTrendandMomentumForecasting_114_1.png" />
+<img alt="../_images/0bc2dcac216889dfbb9d10eb5d978ebb10656a27527e4ba1c7b4421911ee7bae.png" src="../_images/0bc2dcac216889dfbb9d10eb5d978ebb10656a27527e4ba1c7b4421911ee7bae.png" />
 </div>
 </div>
 <p>Using two MA’s and getting their crossover or difference as indicator, we can decide whether to buy (green) the stock or sell (red). We can do the same process we did above using EMA.</p>
@@ -2296,21 +2230,21 @@ CO2=  0.007019810017740837 x1 +  0.007728894654883425 x2 +  80.73020505101513
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f9cee5bb550&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f84f4caff70&gt;
 </pre></div>
 </div>
-<img alt="../_images/02_LinearTrendandMomentumForecasting_118_1.png" src="../_images/02_LinearTrendandMomentumForecasting_118_1.png" />
+<img alt="../_images/a92229d511f019a364838529be5e14a32dc0fd86203c0912419fb3edc0f86c60.png" src="../_images/a92229d511f019a364838529be5e14a32dc0fd86203c0912419fb3edc0f86c60.png" />
 </div>
 </div>
 <p>For this case, the momentum indicators generally helps us generate decisions whether to buy or not. The crossover is a sign of reversal of trend. In the context of technical analysis, “To buy” predicts that the price will increase, while “To Sell” predicts that the price will decrease.</p>
 <p>These tools work in general but there are more sophisticated tools that can be used in doing technical analysis.</p>
-</div>
-<div class="section" id="example-7-momentum-trading-strategy-using-macd">
-<h3>Example 7: Momentum Trading Strategy Using MACD<a class="headerlink" href="#example-7-momentum-trading-strategy-using-macd" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="example-7-momentum-trading-strategy-using-macd">
+<h3>Example 7: Momentum Trading Strategy Using MACD<a class="headerlink" href="#example-7-momentum-trading-strategy-using-macd" title="Permalink to this heading">#</a></h3>
 <p>There are many Momentum Trading Strategies that can be used. In this example, we will use the Moving Average Convergence Divergence (MACD). MACD is one of the most popular momentum indicators, which makes use of the difference between two exponential moving averages (12-day and 26-day) and compare it with EMA (9-day) of MACD.</p>
-<div class="section" id="macd-indicators">
-<h4>MACD Indicators<a class="headerlink" href="#macd-indicators" title="Permalink to this headline">¶</a></h4>
-<ol class="simple">
+<section id="macd-indicators">
+<h4>MACD Indicators<a class="headerlink" href="#macd-indicators" title="Permalink to this heading">#</a></h4>
+<ol class="arabic simple">
 <li><p>bullish crossover (buy) -  occurs when MACD crosses above the signal line.</p></li>
 <li><p>bearish signal (sell) - MACD crosses below the signal line.</p></li>
 <li><p>overbought or oversold - crossover has a high sloping MACD, depending on if the crossover is bullish or bearish respectively. A correction or reversal of direction will soon follow.</p></li>
@@ -2332,7 +2266,7 @@ CO2=  0.007019810017740837 x1 +  0.007728894654883425 x2 +  80.73020505101513
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/02_LinearTrendandMomentumForecasting_121_0.png" src="../_images/02_LinearTrendandMomentumForecasting_121_0.png" />
+<img alt="../_images/a0e006eba9aab7c572594af7448fa04814fabc994f60f80824bc8cf2508cee25.png" src="../_images/a0e006eba9aab7c572594af7448fa04814fabc994f60f80824bc8cf2508cee25.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2360,10 +2294,10 @@ CO2=  0.007019810017740837 x1 +  0.007728894654883425 x2 +  80.73020505101513
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f9cee823490&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f84f4e1e3d0&gt;
 </pre></div>
 </div>
-<img alt="../_images/02_LinearTrendandMomentumForecasting_123_1.png" src="../_images/02_LinearTrendandMomentumForecasting_123_1.png" />
+<img alt="../_images/021ad6011e7877b68a8da8c3686956045c28d118f9e95359d4d758cca8da6ede.png" src="../_images/021ad6011e7877b68a8da8c3686956045c28d118f9e95359d4d758cca8da6ede.png" />
 </div>
 </div>
 <p>In the plot above, we can see the approximate dates where a bullish (buy) and bearish (sell) crossover happened. Now we want to examine the strength and identify overbought and oversold conditions. Here we use the same parameters, but we plot the original price and its MACD.</p>
@@ -2376,7 +2310,7 @@ CO2=  0.007019810017740837 x1 +  0.007728894654883425 x2 +  80.73020505101513
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/02_LinearTrendandMomentumForecasting_125_0.png" src="../_images/02_LinearTrendandMomentumForecasting_125_0.png" />
+<img alt="../_images/fbc16b2d6e60bd1fc7e0ef4d3e9cff61bf2520a25562906e1ff27b46f59a96b9.png" src="../_images/fbc16b2d6e60bd1fc7e0ef4d3e9cff61bf2520a25562906e1ff27b46f59a96b9.png" />
 </div>
 </div>
 <p>Here, MACD stays somehow flat but notice that there are times where the MACD curve is steeper than other times, indicative of overbought or oversold conditions (e.g. before 2020-04).  Zooming-in to the MACD plot to see the slopes, we have the ff:</p>
@@ -2393,24 +2327,24 @@ CO2=  0.007019810017740837 x1 +  0.007728894654883425 x2 +  80.73020505101513
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/02_LinearTrendandMomentumForecasting_127_0.png" src="../_images/02_LinearTrendandMomentumForecasting_127_0.png" />
+<img alt="../_images/a67f51b3604e6ea9b6640f83d9367da5a970a31e4cde8630182a5b9aae0904de.png" src="../_images/a67f51b3604e6ea9b6640f83d9367da5a970a31e4cde8630182a5b9aae0904de.png" />
 </div>
 </div>
 <p>From the above plots, the steep slopes of MACD happened before 2020-04 (oversold) and 2020-10 (overbought). Note that there are still some steep sloped in MACD after 2020-07 and could be indicative of other instances of overbuying and overselling.</p>
 <p>Finally, as discussed above, there are other momentum indicators that are used in trading such as RSI and ADX. The reader is left to explore on them following the procedure presented in this notebook.</p>
-</div>
-</div>
-</div>
-<div class="section" id="summary">
-<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+</section>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this heading">#</a></h2>
 <p>In this chapter we discussed and demonstrated how we can use forecasting tools such as linear, trend, and momentum. Compared to the previous chapter, we noted here that there is no need to check for the stationarity of the time series and there is no need for differencing. We also showed that linear regression (and multi-variate LR) is limited and performs poorly when applied to some data. Finally we emphasized that while other forecasting tools require the removal of trends, in this notebook we showed that trends can be utilized to predict the future direction of the data.</p>
-</div>
-<div class="section" id="preview-to-the-next-chapter">
-<h2>Preview to the next chapter…<a class="headerlink" href="#preview-to-the-next-chapter" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="preview-to-the-next-chapter">
+<h2>Preview to the next chapter…<a class="headerlink" href="#preview-to-the-next-chapter" title="Permalink to this heading">#</a></h2>
 <p>As simple as it is, the forecasting methods discussed here are not applicable in many other cases. Following our discussion, the next chapters will provide better forecasting models. In Chapter 3, the concept of vector autoregressive model (VAR) which is pressumed to be a better tool in forecasting time series data as it can incorportate information from the previous time step of another data, will be discussed.</p>
-</div>
-<div class="section" id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
 <p>The discussions in this notebook were made with the help of the following references</p>
 <ul class="simple">
 <li><p>https://www.tandfonline.com/doi/pdf/10.1080/14697688.2020.1716057?needAccess=true</p></li>
@@ -2425,8 +2359,8 @@ CO2=  0.007019810017740837 x1 +  0.007728894654883425 x2 +  80.73020505101513
 <li><p>https://stackabuse.com/linear-regression-in-python-with-scikit-learn/</p></li>
 <li><p>https://corporatefinanceinstitute.com/resources/knowledge/trading-investing/momentum-investing/</p></li>
 </ul>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -2440,7 +2374,7 @@ CO2=  0.007019810017740837 x1 +  0.007728894654883425 x2 +  80.73020505101513
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./02_LinearForecastingTrendandMomentumForecasting"
         },
         predefinedOutput: true
@@ -2448,38 +2382,152 @@ CO2=  0.007019810017740837 x1 +  0.007728894654883425 x2 +  80.73020505101513
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-        </div>
-    </div>
-    
-    
-    <div class='prev-next-bottom'>
-        
-    <a class='left-prev' id="prev-link" href="../01_AutoRegressiveIntegratedMovingAverage/01_AutoRegressiveIntegratedMovingAverage.html" title="previous page">Chapter 1: AutoRegressive Integrated Moving Average (ARIMA)</a>
-    <a class='right-next' id="next-link" href="../03_VectorAutoregressiveModels/03_VectorAutoregressiveMethods.html" title="next page">Chapter 3: Vector Autoregressive Methods</a>
 
-    </div>
-    <footer class="footer mt-5 mt-md-0">
-    <div class="container">
-      <p>
-        
-          By students of PhD in Data Science Batch 2023 at the Asian Institute of Management<br/>
-        
-            &copy; Copyright 2020.<br/>
-      </p>
-    </div>
-  </footer>
-</main>
-
-
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../01_AutoRegressiveIntegratedMovingAverage/01_AutoRegressiveIntegratedMovingAverage.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Chương 1: Mô hình Trung bình động tích hợp tự hồi quy (AutoRegressive Integrated Moving Average - ARIMA)</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="../03_VectorAutoregressiveModels/03_VectorAutoregressiveMethods.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Chapter 3: Vector Autoregressive Methods</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-use-this-notebook">How to Use This Notebook</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-regression-lr-forecasting">Linear Regression (LR) Forecasting</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gauss-markov-assumptions">Gauss Markov Assumptions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1-univariate-lr-in-stock-price-of-netflix">Example 1: Univariate LR in Stock Price of Netflix</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-for-stationarity">Testing for Stationarity</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-for-autocorrelation">Testing for Autocorrelation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-with-model-where-x-x-t-1">Compare with model where <span class="math notranslate nohighlight">\(X=X_{t-1}\)</span></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-univariate-forecasting-using-jena-climate-data">Example 2. Univariate Forecasting using Jena Climate Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#simultaneous-prediction-of-temperature-in-the-next-24-hours">Simultaneous prediction of temperature in the next 24 hours</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-3-multivariate-linear-regression-and-regularization-techniques">Example 3: Multivariate Linear Regression and Regularization Techniques</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretation-of-coefficients">Interpretation of coefficients:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretation-of-metrics">Interpretation of metrics:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#l1-lasso-and-l2-ridge-regularization-for-multi-variate-linear-regression">L1 (Lasso) and L2 (Ridge) regularization for multi-variate linear regression</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lasso-regularization">Lasso Regularization</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ridge-regularization">Ridge Regularization</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#l1-regularization">L1 Regularization</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#l2-regularization">L2 Regularization</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-4-multi-variate-linear-regression-on-jena-climate-data">Example 4: Multi-variate Linear Regression on Jena Climate Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">L1 Regularization</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">L2 Regularization</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#simultaneous-prediction-of-the-temperature-for-the-next-24-hours">Simultaneous prediction of the temperature for the next 24 hours</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#momentum-and-trend-forecasting">Momentum and Trend Forecasting</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#moving-average-ma">Moving Average MA</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-5-extracting-the-trend-in-climate-data-using-ma">Example 5: Extracting the Trend in Climate Data Using MA</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#momentum-strategies">Momentum Strategies</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-apply-momentum-strategy">How to apply momentum strategy:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-6-momentum-trading-strategy-using-two-ma-s">Example 6: Momentum Trading Strategy Using Two MA’s</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-7-momentum-trading-strategy-using-macd">Example 7: Momentum Trading Strategy Using MACD</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#macd-indicators">MACD Indicators</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preview-to-the-next-chapter">Preview to the next chapter…</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Trần Vũ Quang Huy - TLU
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
     </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    
-  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
-
-
-    
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

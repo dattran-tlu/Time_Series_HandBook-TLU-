@@ -1,543 +1,516 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" data-content_root="" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chapter 1: AutoRegressive Integrated Moving Average (ARIMA) &#8212; Time Series Analysis Handbook</title>
-    
-  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    
-  <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+    <title>Chương 1: Mô hình Trung bình động tích hợp tự hồi quy (AutoRegressive Integrated Moving Average - ARIMA) &#8212; Bản dịch Time Series Analysis Handbook</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    
-      
-  <link rel="stylesheet"
-    href="../_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    
-  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script >
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '01_AutoRegressiveIntegratedMovingAverage/01_AutoRegressiveIntegratedMovingAverage';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Chapter 2: Linear, Trend, and Momentum Forecasting" href="../02_LinearForecastingTrendandMomentumForecasting/02_LinearTrendandMomentumForecasting.html" />
-    <link rel="prev" title="Chapter 0: Advanced Time Series Analysis" href="../00_Introduction/00_Introduction.html" />
-
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
-
-
-
+    <link rel="prev" title="Chương 0: Phân tích Chuỗi Thời gian Nâng cao" href="../00_Introduction/00_Introduction.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    <div class="container-xl">
-      <div class="row">
-          
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
     
-        <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="../index.html">
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../Preface/Preface.html">
   
   
-  <h1 class="site-logo" id="site-title">Time Series Analysis Handbook</h1>
   
+  
+  
+  
+    <p class="title logo__title">Bản dịch Time Series Analysis Handbook</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../Preface/Preface.html">
+                    Preface: Introduction to Time Series Analysis
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../00_Introduction/00_Introduction.html">Chương 0: Phân tích Chuỗi Thời gian Nâng cao</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Chương 1: Mô hình Trung bình động tích hợp tự hồi quy (AutoRegressive Integrated Moving Average - ARIMA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_LinearForecastingTrendandMomentumForecasting/02_LinearTrendandMomentumForecasting.html">Chapter 2: Linear, Trend, and Momentum Forecasting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_VectorAutoregressiveModels/03_VectorAutoregressiveMethods.html">Chapter 3: Vector Autoregressive Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_GrangerCausality/04_GrangerCausality.html">Chapter 4: Granger Causality Test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_SimplexandSmapProjections/05_Empirical%20Dynamic%20Modelling%20%28Simplex%20and%20SMap_Projections%29.html">Chapter 5 : Dynamical Forecasting Methods (Simplex and SMap Projections)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../06_ConvergentCrossMappingandSugiharaCausality/ccm_sugihara.html">Chapter 6: Convergent Cross Mapping</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../06_ConvergentCrossMappingandSugiharaCausality/using_causal_ccm_package.html">Applying CCM Using causal-ccm package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../07_CrosscorrelationsFourierTransformandWaveletTransform/07_CrosscorrelationsFourierTransformandWaveletTransform.html">Chapter 7: Cross-Correlations, Fourier Transform, and Wavelet Transform</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../08_WinningestMethods/lightgbm_m5_forecasting.html">Chapter 8: Winningest Methods in Time Series Forecasting</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../08_WinningestMethods/lightgbm_m5_tuning.html">Hyperparameter Tuning (Supplementary Notebook)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../08_WinningestMethods/lightgbm_jena_forecasting.html">Temperature Forecasting (Supplementary Notebook)</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/01_AutoRegressiveIntegratedMovingAverage/01_AutoRegressiveIntegratedMovingAverage.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
 </a>
-</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <ul class="nav sidenav_l1">
- <li class="toctree-l1">
-  <a class="reference internal" href="../Preface/Preface.html">
-   Preface: Introduction to Time Series Analysis
-  </a>
- </li>
-</ul>
-<ul class="current nav sidenav_l1">
- <li class="toctree-l1">
-  <a class="reference internal" href="../00_Introduction/00_Introduction.html">
-   Chapter 0: Advanced Time Series Analysis
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Chapter 1: AutoRegressive Integrated Moving Average (ARIMA)
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../02_LinearForecastingTrendandMomentumForecasting/02_LinearTrendandMomentumForecasting.html">
-   Chapter 2: Linear, Trend, and Momentum Forecasting
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../03_VectorAutoregressiveModels/03_VectorAutoregressiveMethods.html">
-   Chapter 3: Vector Autoregressive Methods
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../04_GrangerCausality/04_GrangerCausality.html">
-   Chapter 4: Granger Causality Test
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../05_SimplexandSmapProjections/05_Empirical%20Dynamic%20Modelling%20%28Simplex%20and%20SMap_Projections%29.html">
-   Chapter 5 : Dynamical Forecasting Methods (Simplex and SMap Projections)
-  </a>
- </li>
- <li class="toctree-l1 collapsible-parent">
-  <a class="reference internal" href="../06_ConvergentCrossMappingandSugiharaCausality/ccm_sugihara.html">
-   Chapter 6: Convergent Cross Mapping
-  </a>
-  <ul class="collapse-ul">
-   <li class="toctree-l2">
-    <a class="reference internal" href="../06_ConvergentCrossMappingandSugiharaCausality/using_causal_ccm_package.html">
-     Applying CCM Using causal-ccm package
-    </a>
-   </li>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../07_CrosscorrelationsFourierTransformandWaveletTransform/07_CrosscorrelationsFourierTransformandWaveletTransform.html">
-   Chapter 7: Cross-Correlations, Fourier Transform, and Wavelet Transform
-  </a>
- </li>
- <li class="toctree-l1 collapsible-parent">
-  <a class="reference internal" href="../08_WinningestMethods/lightgbm_m5_forecasting.html">
-   Chapter 8: Winningest Methods in Time Series Forecasting
-  </a>
-  <ul class="collapse-ul">
-   <li class="toctree-l2">
-    <a class="reference internal" href="../08_WinningestMethods/lightgbm_m5_tuning.html">
-     Hyperparameter Tuning (Supplementary Notebook)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../08_WinningestMethods/lightgbm_jena_forecasting.html">
-     Temperature Forecasting (Supplementary Notebook)
-    </a>
-   </li>
-  </ul>
-  <i class="fas fa-chevron-down">
-  </i>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../data/README.html">
-   Datasets
-  </a>
- </li>
-</ul>
-
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
 </div>
 
 
-          
 
 
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
     </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/01_AutoRegressiveIntegratedMovingAverage/01_AutoRegressiveIntegratedMovingAverage.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
+  
 </div>
-
-        <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/phdinds-aim/time_series_handbook"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/phdinds-aim/time_series_handbook/issues/new?title=Issue%20on%20page%20%2F01_AutoRegressiveIntegratedMovingAverage/01_AutoRegressiveIntegratedMovingAverage.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        
-    </div>
 </div>
+              
+              
 
-
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
-
-        <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/phdinds-aim/time_series_handbook/main?urlpath=tree/01_AutoRegressiveIntegratedMovingAverage/01_AutoRegressiveIntegratedMovingAverage.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        
-    </div>
-</div>
-
-    </div>
-
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Chương 1: Mô hình Trung bình động tích hợp tự hồi quy (AutoRegressive Integrated Moving Average - ARIMA)</h1>
     <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
-        </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#introduction-to-arima">
-   Introduction to ARIMA
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#example-1-stationary-and-non-stationary-univartiate-time-series">
-     Example 1: Stationary and Non-Stationary Univartiate Time Series
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#model-components">
-     Model Components
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#model-parameters-p-d-and-q-and-special-cases">
-   Model parameters
-   <em>
-    p, d, and q
-   </em>
-   and Special Cases
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#determining-p-d-and-q">
-     Determining
-     <em>
-      p
-     </em>
-     ,
-     <em>
-      d
-     </em>
-     , and
-     <em>
-      q
-     </em>
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#finding-the-order-differencing-d">
-       Finding the order differencing
-       <em>
-        d
-       </em>
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#finding-the-order-of-the-autoregressive-term-p">
-       Finding the order of the AutoRegressive term
-       <em>
-        p
-       </em>
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#finding-the-order-of-the-moving-average-term-q">
-       Finding the order of the Moving Average term
-       <em>
-        q
-       </em>
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#building-the-arima-model">
-   Building the ARIMA model
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#implementation-and-forecasting-using-arima">
-   Implementation and Forecasting using ARIMA
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#example-2-forecasting-temperature-in-jena-climate-data">
-     Example 2: Forecasting Temperature in Jena Climate Data
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#model-order-selection-hyperparameter-tuning">
-       Model order selection (hyperparameter tuning)
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#evaluate-model-performance-on-test-set">
-       Evaluate model performance on test set
-      </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h5 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#forecast-24-hours-beyond-test-set">
-         Forecast 24 hours beyond test set
-        </a>
-       </li>
-      </ul>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#example-3-using-arima-for-multivariate-time-series">
-     Example 3: Using ARIMA for Multivariate Time Series
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#preview-to-the-next-chapter">
-   Preview to the next Chapter
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#references">
-   References
-  </a>
- </li>
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gioi-thieu-ve-arima">Giới thiệu về ARIMA</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vi-du-1-chuoi-thoi-gian-don-bien-dung-va-khong-dung">Ví dụ 1: Chuỗi thời gian đơn biến dừng và không dừng</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cac-thanh-phan-cua-mo-hinh">Các thành phần của mô hình</a></li>
 </ul>
-
-        </nav>
-        
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cac-tham-so-mo-hinh-p-d-va-q-va-cac-truong-hop-dac-biet">Các tham số mô hình <em>p, d, và q</em> và Các trường hợp đặc biệt</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#xac-dinh-p-d-va-q-determining-p-d-and-q">Xác định p, d, và q (Determining p, d, and q)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tim-bac-sai-phan-d-finding-the-order-differencing-d">Tìm bậc sai phân d (Finding the order differencing d)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#finding-the-order-of-the-autoregressive-term-p">Finding the order of the AutoRegressive term <em>p</em></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#finding-the-order-of-the-moving-average-term-q">Finding the order of the Moving Average term <em>q</em></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-the-arima-model">Building the ARIMA model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation-and-forecasting-using-arima">Implementation and Forecasting using ARIMA</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-forecasting-temperature-in-jena-climate-data">Example 2: Forecasting Temperature in Jena Climate Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#model-order-selection-hyperparameter-tuning">Model order selection (hyperparameter tuning)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluate-model-performance-on-test-set">Evaluate model performance on test set</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#forecast-24-hours-beyond-test-set">Forecast 24 hours beyond test set</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-3-using-arima-for-multivariate-time-series">Example 3: Using ARIMA for Multivariate Time Series</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preview-to-the-next-chapter">Preview to the next Chapter</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+            </nav>
+        </div>
     </div>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
-              <div>
+
+              
                 
-  <div class="section" id="chapter-1-autoregressive-integrated-moving-average-arima">
-<h1>Chapter 1: AutoRegressive Integrated Moving Average (ARIMA)<a class="headerlink" href="#chapter-1-autoregressive-integrated-moving-average-arima" title="Permalink to this headline">¶</a></h1>
-<p>Prepared by: Benjur Emmanuel L. Borja and Maria Eloisa M. Ventura</p>
-<p>In this notebook, we will introduce our first approach to time-series forecasting which is <strong>ARIMA</strong> or AutoRegressive Integrated Moving Average. This notebook will discuss:</p>
-<ol class="simple">
-<li><p>Definition and Formulation of ARIMA models</p></li>
-<li><p>Model Parameters (p, d, and q) and Special Cases of ARIMA models</p></li>
-<li><p>Model Statistics and How to Interpret</p></li>
-<li><p>Implementation and Forecasting using ARIMA</p></li>
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="chuong-1-mo-hinh-trung-binh-dong-tich-hop-tu-hoi-quy-autoregressive-integrated-moving-average-arima">
+<h1>Chương 1: Mô hình Trung bình động tích hợp tự hồi quy (AutoRegressive Integrated Moving Average - ARIMA)<a class="headerlink" href="#chuong-1-mo-hinh-trung-binh-dong-tich-hop-tu-hoi-quy-autoregressive-integrated-moving-average-arima" title="Permalink to this heading">#</a></h1>
+<p>Được viết bởi: Benjur Emmanuel L. Borja và Maria Eloisa M. Ventura</p>
+<p>Trong notebook này, chúng ta sẽ giới thiệu phương pháp đầu tiên để dự báo chuỗi thời gian, đó là <strong>ARIMA</strong> (Trung bình động tích hợp tự hồi quy - AutoRegressive Integrated Moving Average). Notebook này sẽ trình bày:</p>
+<ol class="arabic simple">
+<li><p>Định nghĩa và công thức của mô hình ARIMA</p></li>
+<li><p>Các tham số mô hình (p, d, và q) và các trường hợp đặc biệt của mô hình ARIMA</p></li>
+<li><p>Các thống kê mô hình và cách diễn giải</p></li>
+<li><p>Triển khai và dự báo sử dụng ARIMA</p></li>
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Import required Libraries</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span><span class="o">,</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">statsmodels.graphics.tsaplots</span> <span class="kn">import</span> <span class="n">plot_acf</span><span class="p">,</span> <span class="n">plot_pacf</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">statsmodels.tsa.stattools</span> <span class="kn">import</span> <span class="n">adfuller</span>
-<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">log</span>
-<span class="kn">from</span> <span class="nn">statsmodels.tsa.arima_model</span> <span class="kn">import</span> <span class="n">ARIMA</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">mean_absolute_error</span>
-<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">sqrt</span>
-<span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">read_csv</span>
-<span class="kn">import</span> <span class="nn">multiprocessing</span> <span class="k">as</span> <span class="nn">mp</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span><span class="o">,</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">statsmodels.graphics.tsaplots</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_acf</span><span class="p">,</span> <span class="n">plot_pacf</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">statsmodels.tsa.stattools</span><span class="w"> </span><span class="kn">import</span> <span class="n">adfuller</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="kn">import</span> <span class="n">log</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">statsmodels.tsa.arima_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">ARIMA</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">mean_absolute_error</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="kn">import</span> <span class="n">sqrt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="kn">import</span> <span class="n">read_csv</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">multiprocessing</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mp</span>
 
 <span class="c1">### Just to remove warnings to prettify the notebook. </span>
-<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="section" id="introduction-to-arima">
-<h2>Introduction to ARIMA<a class="headerlink" href="#introduction-to-arima" title="Permalink to this headline">¶</a></h2>
-<p>ARIMA, or AutoRegressive Integrated Moving Average, is a set of models that explains a time series using its own previous values given by the lags (<strong>A</strong>uto<strong>R</strong>egressive) and lagged errors (<strong>M</strong>oving <strong>A</strong>verage) while considering stationarity corrected by differencing (oppossite of <strong>I</strong>ntegration.) In other words, ARIMA assumes that the time series is described by autocorrelations in the data rather than trends and seasonality. In these context, we define trends and seasonality as the following:</p>
+<section id="gioi-thieu-ve-arima">
+<h2>Giới thiệu về ARIMA<a class="headerlink" href="#gioi-thieu-ve-arima" title="Permalink to this heading">#</a></h2>
+<p>ARIMA, hay Trung bình động tích hợp tự hồi quy (AutoRegressive Integrated Moving Average), là một tập hợp các mô hình giải thích chuỗi thời gian dựa trên các giá trị trước đó của chính nó (được gọi là các độ trễ - <strong>Tự hồi quy</strong> (AutoRegressive)) và các sai số trễ (<strong>Trung bình động</strong> (Moving Average)), đồng thời xem xét tính dừng (stationarity) được hiệu chỉnh bằng phép lấy sai phân (trái ngược với <strong>Tích phân</strong> (Integration)). Nói cách khác, ARIMA giả định rằng chuỗi thời gian được mô tả bởi các tự tương quan (autocorrelations) trong dữ liệu thay vì xu hướng (trend) và tính mùa vụ (seasonality). Trong bối cảnh này, chúng ta định nghĩa xu hướng và tính mùa vụ như sau:</p>
 <ul class="simple">
-<li><p><strong>Trend</strong>: A time series has a trend if there is a overlying long term increase or decrease in the data, which is not necessarily linear.</p></li>
-<li><p><strong>Seasonality</strong>: A time series data has seasonality when it is affected by seasonal factors such as the time of the year or the day of the week. The seasonality of data is apparent as there is a fixed frequency of pattern occurence.</p></li>
+<li><p><strong>Xu hướng</strong> (Trend): Một chuỗi thời gian có xu hướng nếu có sự tăng hoặc giảm dài hạn trong dữ liệu, không nhất thiết phải là tuyến tính.</p></li>
+<li><p><strong>Tính mùa vụ</strong> (Seasonality): Dữ liệu chuỗi thời gian có tính mùa vụ khi bị ảnh hưởng bởi các yếu tố theo mùa như thời điểm trong năm hoặc ngày trong tuần. Tính mùa vụ của dữ liệu thể hiện rõ khi có tần suất xuất hiện mẫu cố định.</p></li>
 </ul>
-<div class="section" id="example-1-stationary-and-non-stationary-univartiate-time-series">
-<h3>Example 1: Stationary and Non-Stationary Univartiate Time Series<a class="headerlink" href="#example-1-stationary-and-non-stationary-univartiate-time-series" title="Permalink to this headline">¶</a></h3>
-<p>To illustrate, lets look at the following examples of time series (<strong><a class="reference external" href="https://otexts.com/fpp2/fpp_files/figure-html/stationary-1.png">source</a></strong>):</p>
-<p>(a) Google stock price for 200 consecutive days</p>
-<p>(b) Daily change in the Google stock price for 200 consecutive days</p>
-<p>(c) Annual number of strikes in the US</p>
-<p>(d) Monthly sales of new one-family houses sold in the US; (e) Annual price of a dozen eggs in the US (constant dollars)</p>
-<p>(f) Monthly total of pigs slaughtered in Victoria, Australia</p>
-<p>(g) Annual total of lynx trapped in the McKenzie River district of north-west Canada; (h) Monthly Australian beer production</p>
-<p>(i) Monthly Australian electricity production.</p>
+<section id="vi-du-1-chuoi-thoi-gian-don-bien-dung-va-khong-dung">
+<h3>Ví dụ 1: Chuỗi thời gian đơn biến dừng và không dừng<a class="headerlink" href="#vi-du-1-chuoi-thoi-gian-don-bien-dung-va-khong-dung" title="Permalink to this heading">#</a></h3>
+<p>Để minh họa, hãy xem các ví dụ sau về chuỗi thời gian (<strong><a class="reference external" href="https://otexts.com/fpp2/fpp_files/figure-html/stationary-1.png">nguồn</a></strong>):</p>
+<p>(a) Giá cổ phiếu Google trong 200 ngày liên tiếp</p>
+<p>(b) Biến động giá hàng ngày của cổ phiếu Google trong 200 ngày liên tiếp</p>
+<p>(c) Số lượng cuộc đình công hàng năm tại Mỹ</p>
+<p>(d) Doanh số bán hàng tháng của các căn nhà một gia đình mới tại Mỹ; (e) Giá một tá trứng hàng năm tại Mỹ (giá cố định)</p>
+<p>(f) Tổng số lợn bị giết mổ hàng tháng tại Victoria, Úc</p>
+<p>(g) Tổng số linh miêu bị bẫy hàng năm tại khu vực sông McKenzie ở tây bắc Canada; (h) Sản lượng bia Úc hàng tháng</p>
+<p>(i) Sản lượng điện Úc hàng tháng.</p>
 <p><img alt="stationary-1.png" src="../_images/stationary-1.png" /></p>
-<p><strong>Which of these series are stationary?</strong></p>
-<p>Obvious seasonality rules out series (d), (h) and (i). Trends and changing levels rules out series (a), (c), (e), (f) and (i). Increasing variance also rules out (i). That leaves only (b) and (g) as stationary series. At a first glance, (g) might seem non-stationary but these cycles are aperiodic, and is dependedent on the complex interactions between lynx population and the availability of the food source. The timing of these cycles is unpredictable hence, this time series is non-stationary.</p>
-<p>Now notice the Google Stock Price (a) and the daily change in the Google Stock Price (b). These time-series came from the same system, but exhibits different dynamics. This illustrates that we can make non-stationary time-series stationary by taking the difference between consecutive observations - or <strong>Differencing</strong>. Differencing stabilizes our time-series by removing changes in the level of our time series, therefore reducing trends and seasonality.</p>
-</div>
-<div class="section" id="model-components">
-<h3>Model Components<a class="headerlink" href="#model-components" title="Permalink to this headline">¶</a></h3>
-<p>As previously mentioned, ARIMA models are built given the following key aspects:</p>
-<p><strong>AR</strong>: Autoregression. A model that uses the dependent relationship between an observation and some number of lagged observations.<br />
-<strong>I</strong>: Integrated. The use of differencing of raw observations (e.g. subtracting an observation from an observation at the previous time step) in order to make the time series stationary.<br />
-<strong>MA</strong>: Moving Average. A model that uses the dependency between an observation and a residual error from a moving average model applied to lagged observations.</p>
-<p>Each of these components are explicitly specified in the model as a parameter. A standard notation is used of ARIMA(p,d,q) where the parameters are substituted with integer values to quickly indicate the specific ARIMA model being used:<br />
-<strong>p</strong>: The number of lag observations included in the model, also called the lag order (<em>deals with <strong>window</strong> of <span class="math notranslate nohighlight">\(X_t\)</span></em>)<br />
-<strong>d</strong>: The number of times that the raw observations are differenced, also called the degree of differencing (<em>deals with order of <strong>differencing</strong> of <span class="math notranslate nohighlight">\(X_t\)</span></em>)<br />
-<strong>q</strong>: The size of the moving average window, also called the order of moving average (<em>deals with <strong>residuals</strong></em>)</p>
-<p>Given this, the general case of <em><strong>ARIMA(p,d,q)</strong></em> can be written as:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1139a832-cb92-40b5-970f-9823735ec044">
-<span class="eqno">(1)<a class="headerlink" href="#equation-1139a832-cb92-40b5-970f-9823735ec044" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<p><strong>Chuỗi nào trong số này là chuỗi dừng (stationary)?</strong></p>
+<p>Tính mùa vụ (seasonality) rõ ràng loại trừ các chuỗi (d), (h) và (i). Xu hướng (trend) và mức độ thay đổi loại trừ các chuỗi (a), (c), (e), (f) và (i). Độ biến động tăng dần cũng loại trừ (i). Như vậy chỉ còn lại (b) và (g) là chuỗi dừng (stationary). Nhìn qua, (g) có vẻ không dừng nhưng các chu kỳ này là không định kỳ (aperiodic), và phụ thuộc vào sự tương tác phức tạp giữa số lượng linh miêu và nguồn thức ăn. Thời điểm của các chu kỳ này là không thể dự đoán, do đó chuỗi thời gian này là không dừng (non-stationary).</p>
+<p>Bây giờ hãy chú ý đến Giá cổ phiếu Google (a) và biến động giá hàng ngày của cổ phiếu Google (b). Hai chuỗi thời gian này xuất phát từ cùng một hệ thống, nhưng lại thể hiện động lực khác nhau. Điều này cho thấy chúng ta có thể biến chuỗi thời gian không dừng (non-stationary) thành chuỗi dừng (stationary) bằng cách lấy hiệu giữa các quan sát liên tiếp – hay gọi là <strong>Lấy sai phân (Differencing)</strong>. Lấy sai phân giúp ổn định chuỗi thời gian bằng cách loại bỏ sự thay đổi về mức độ của chuỗi, từ đó giảm xu hướng (trend) và tính mùa vụ (seasonality).</p>
+</section>
+<section id="cac-thanh-phan-cua-mo-hinh">
+<h3>Các thành phần của mô hình<a class="headerlink" href="#cac-thanh-phan-cua-mo-hinh" title="Permalink to this heading">#</a></h3>
+<p>Như đã đề cập trước đó, các mô hình ARIMA được xây dựng dựa trên các khía cạnh chính sau:</p>
+<p><strong>AR</strong>: Tự hồi quy (Autoregression). Một mô hình sử dụng mối quan hệ phụ thuộc giữa một quan sát và một số quan sát trễ (lagged observations).<br />
+<strong>I</strong>: Tích phân (Integrated). Việc sử dụng phép lấy sai phân (differencing) các quan sát gốc (ví dụ: lấy hiệu giữa một quan sát và quan sát ở bước thời gian trước đó) nhằm làm cho chuỗi thời gian trở nên dừng (stationary).<br />
+<strong>MA</strong>: Trung bình động (Moving Average). Một mô hình sử dụng sự phụ thuộc giữa một quan sát và sai số dư (residual error) từ mô hình trung bình động được áp dụng cho các quan sát trễ.</p>
+<p>Mỗi thành phần này được chỉ định rõ ràng trong mô hình dưới dạng một tham số. Một ký hiệu chuẩn được sử dụng là ARIMA(p,d,q), trong đó các tham số được thay thế bằng các giá trị nguyên để nhanh chóng chỉ ra mô hình ARIMA cụ thể đang được sử dụng:<br />
+<strong>p</strong>: Số lượng quan sát trễ (lag observations) được đưa vào mô hình, còn gọi là bậc trễ (lag order) (<em>liên quan đến <strong>cửa sổ (window)</strong> của <span class="math notranslate nohighlight">\(X_t\)</span></em>)<br />
+<strong>d</strong>: Số lần các quan sát gốc được lấy sai phân (differenced), còn gọi là bậc sai phân (degree of differencing) (<em>liên quan đến thứ tự <strong>lấy sai phân (differencing)</strong> của <span class="math notranslate nohighlight">\(X_t\)</span></em>)<br />
+<strong>q</strong>: Kích thước cửa sổ trung bình động (moving average window), còn gọi là bậc trung bình động (order of moving average) (<em>liên quan đến <strong>sai số dư (residuals)</strong></em>)</p>
+<p>Với các tham số này, trường hợp tổng quát của <em><strong>ARIMA(p,d,q)</strong></em> có thể được viết như sau:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-1d8a2e84-36cb-48cb-807d-4abac6f271d8">
+<span class="eqno">(1)<a class="headerlink" href="#equation-1d8a2e84-36cb-48cb-807d-4abac6f271d8" title="Permalink to this equation">#</a></span>\[\begin{equation}
 X_{t} = \alpha _{1}X_{t-1} + \dots + \alpha _{p}X_{t-p} + \varepsilon _{t}+\theta_{1}\varepsilon _{t-1}+\cdots +\theta _{q}\varepsilon _{t-q}
 \end{equation}\]</div>
-<p>Or in words :</p>
-<p><strong>Predicted <span class="math notranslate nohighlight">\(X_t\)</span></strong> = Constant + Linear combination of <strong>Lags of <span class="math notranslate nohighlight">\(X\)</span> (up to <span class="math notranslate nohighlight">\(p\)</span> lags)</strong> + Linear Combination of <strong>Lagged forecast errors (up to q lags)</strong>. Provided that the time-series is already <strong>differenced (up to d terms)</strong> to ensure stationarity.</p>
-</div>
-</div>
-<div class="section" id="model-parameters-p-d-and-q-and-special-cases">
-<h2>Model parameters <em>p, d, and q</em> and Special Cases<a class="headerlink" href="#model-parameters-p-d-and-q-and-special-cases" title="Permalink to this headline">¶</a></h2>
-<p>Before we discuss how we determine p, d, and q that are best to represent a time series, let’s first take a look at special cases of ARIMA models that should help us illustrate the formulation of the ARIMA equation.</p>
-<p><strong>Case 1: ARIMA(p,0,0) = autoregressive model</strong>: if the series is stationary and autocorrelated, perhaps it can be predicted as a multiple of its own previous value, plus a constant.</p>
-<p>The forecasting equation for ARIMA(1,0,0) is:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-93218596-c130-4c76-85dd-60b46472a152">
-<span class="eqno">(2)<a class="headerlink" href="#equation-93218596-c130-4c76-85dd-60b46472a152" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<p>Hoặc diễn giải bằng lời:</p>
+<p><strong>Giá trị dự báo <span class="math notranslate nohighlight">\(X_t\)</span></strong> = Hằng số + Tổ hợp tuyến tính các <strong>giá trị trễ của <span class="math notranslate nohighlight">\(X\)</span> (tối đa <span class="math notranslate nohighlight">\(p\)</span> trễ)</strong> + Tổ hợp tuyến tính các <strong>sai số dự báo trễ (tối đa <span class="math notranslate nohighlight">\(q\)</span> trễ)</strong>. Với điều kiện chuỗi thời gian đã được <strong>lấy sai phân (tối đa <span class="math notranslate nohighlight">\(d\)</span> lần)</strong> để đảm bảo tính dừng.</p>
+</section>
+</section>
+<section id="cac-tham-so-mo-hinh-p-d-va-q-va-cac-truong-hop-dac-biet">
+<h2>Các tham số mô hình <em>p, d, và q</em> và Các trường hợp đặc biệt<a class="headerlink" href="#cac-tham-so-mo-hinh-p-d-va-q-va-cac-truong-hop-dac-biet" title="Permalink to this heading">#</a></h2>
+<p>Trước khi chúng ta bàn về cách xác định các giá trị p, d, và q phù hợp nhất để biểu diễn một chuỗi thời gian, hãy cùng xem qua các trường hợp đặc biệt của mô hình ARIMA, điều này sẽ giúp minh họa rõ hơn về công thức của phương trình ARIMA.</p>
+<p><strong>Trường hợp 1: ARIMA(p,0,0) = mô hình tự hồi quy (autoregressive)</strong>: nếu chuỗi là dừng (stationary) và có tự tương quan (autocorrelated), có thể dự báo nó như một bội số của chính giá trị trước đó, cộng với một hằng số.</p>
+<p>Phương trình dự báo cho ARIMA(1,0,0) là:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-63ceec85-2585-4c52-ac46-c5f94d6a11d8">
+<span class="eqno">(2)<a class="headerlink" href="#equation-63ceec85-2585-4c52-ac46-c5f94d6a11d8" title="Permalink to this equation">#</a></span>\[\begin{equation}
 X_{t}  =  \mu  + \alpha _{1}X_{t-1}
 \end{equation}\]</div>
-<p>while ARIMA(2,0,0)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-92567d6d-ace7-4089-8c18-fa79a927d5f2">
-<span class="eqno">(3)<a class="headerlink" href="#equation-92567d6d-ace7-4089-8c18-fa79a927d5f2" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<p>Với ARIMA(2,0,0):</p>
+<div class="amsmath math notranslate nohighlight" id="equation-ef988088-78c9-487e-9dda-8b0493316ca9">
+<span class="eqno">(3)<a class="headerlink" href="#equation-ef988088-78c9-487e-9dda-8b0493316ca9" title="Permalink to this equation">#</a></span>\[\begin{equation}
 X_{t}  =  \mu  + \alpha _{1}X_{t-1} +  \alpha _{2}X_{t-2}
 \end{equation}\]</div>
-<p>or in general ARIMA(p,0,0)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0ea810a7-3492-4005-80cf-58bb943ede73">
-<span class="eqno">(4)<a class="headerlink" href="#equation-0ea810a7-3492-4005-80cf-58bb943ede73" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<p>Hoặc tổng quát hơn với ARIMA(p,0,0):</p>
+<div class="amsmath math notranslate nohighlight" id="equation-8a5df8c6-4c7a-419a-aaf1-abe2b31c99bb">
+<span class="eqno">(4)<a class="headerlink" href="#equation-8a5df8c6-4c7a-419a-aaf1-abe2b31c99bb" title="Permalink to this equation">#</a></span>\[\begin{equation}
 X_{t}  =  \mu  + \alpha _{1}X_{t-1} +  \alpha _{2}X_{t-2} \dots + \alpha _{p}X_{t-p}
 \end{equation}\]</div>
-<p><strong>Case 2: ARIMA(0,0,q) = moving average model</strong>: if the series is stationary but is correlated to the errors of previous values, we can regress using the past forecast errors.</p>
-<p>The forecasting equation for this is ARIMA(0,0,1) given by:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a59746c0-dcdd-479a-8f66-c8db5dda9e46">
-<span class="eqno">(5)<a class="headerlink" href="#equation-a59746c0-dcdd-479a-8f66-c8db5dda9e46" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<p><strong>Trường hợp 2: ARIMA(0,0,q) = mô hình trung bình động (moving average)</strong>: nếu chuỗi là dừng (stationary) nhưng lại có tương quan với sai số (errors) của các giá trị trước đó, ta có thể hồi quy dựa trên các sai số dự báo trong quá khứ.</p>
+<p>Phương trình dự báo cho ARIMA(0,0,1) là:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-33105476-bf1e-4e0d-8eea-022e049cf164">
+<span class="eqno">(5)<a class="headerlink" href="#equation-33105476-bf1e-4e0d-8eea-022e049cf164" title="Permalink to this equation">#</a></span>\[\begin{equation}
 X_{t} = \varepsilon _{t}+\theta_{1}\varepsilon _{t-1}
 \end{equation}\]</div>
-<p>or in simillar fashion to p, this can be generalized to ARIMA(0,0,q):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-547e8dff-1cc9-49c2-8cfa-6cb4c8f325f0">
-<span class="eqno">(6)<a class="headerlink" href="#equation-547e8dff-1cc9-49c2-8cfa-6cb4c8f325f0" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<p>Và tương tự như với p, có thể tổng quát hóa thành ARIMA(0,0,q):</p>
+<div class="amsmath math notranslate nohighlight" id="equation-7ad635e5-3ef7-4322-a2e7-5913de502307">
+<span class="eqno">(6)<a class="headerlink" href="#equation-7ad635e5-3ef7-4322-a2e7-5913de502307" title="Permalink to this equation">#</a></span>\[\begin{equation}
 X_{t} = \varepsilon _{t}+\theta_{1}\varepsilon _{t-1}+\cdots +\theta _{q}\varepsilon _{t-q}
 \end{equation}\]</div>
-<p>where <span class="math notranslate nohighlight">\(\theta_{q}\)</span> is the coefficient at time <span class="math notranslate nohighlight">\(t-q\)</span> of the residual <span class="math notranslate nohighlight">\(\varepsilon _{t-q}\)</span>.</p>
-<p><strong>Case 3: ARIMA(0,1,0) = Random Walk</strong>: if the series is non-stationary then the simplest model that we can use is a random walk model, which is given by:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7514f418-e28b-454a-be6f-85bb58946e13">
-<span class="eqno">(7)<a class="headerlink" href="#equation-7514f418-e28b-454a-be6f-85bb58946e13" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<p>Trong đó <span class="math notranslate nohighlight">\(\theta_{q}\)</span> là hệ số tại thời điểm <span class="math notranslate nohighlight">\(t-q\)</span> của phần dư (residual) <span class="math notranslate nohighlight">\(\varepsilon _{t-q}\)</span>.</p>
+<p><strong>Trường hợp 3: ARIMA(0,1,0) = Mô hình bước ngẫu nhiên (Random Walk)</strong>: nếu chuỗi là không dừng (non-stationary) thì mô hình đơn giản nhất có thể sử dụng là mô hình bước ngẫu nhiên, được cho bởi:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-cf706557-3581-4a9a-9db6-0918c05771e1">
+<span class="eqno">(7)<a class="headerlink" href="#equation-cf706557-3581-4a9a-9db6-0918c05771e1" title="Permalink to this equation">#</a></span>\[\begin{equation}
 X_{t}  =  \mu  + X_{t-1}
 \end{equation}\]</div>
-<p><em>This can then further be generalized to ARIMA(0,d,0) simillar to the first two cases.</em></p>
-<p>As shown in our cases, we can use value of 0 for a parameter, which indicates to not use that element of the model. This way, the ARIMA model can be configured to perform the function of an ARMA model, and even a simple AR, I, or MA model. <strong>It is good to note that the case ARIMA(0,1,1) is a Simple Exponential Smoothing model</strong> but we’ll leave that in another discussion.</p>
-<p>Implementing an ARIMA model for a time series assumes that the observations is an ARIMA process. To implement ARIMA, a linear regression model is constructed including the specified number and type of terms, and the data is prepared by a degree of differencing in order to make it stationary, i.e. to remove trend and seasonal structures that negatively affect the regression model.</p>
-<div class="section" id="determining-p-d-and-q">
-<h3>Determining <em>p</em>, <em>d</em>, and <em>q</em><a class="headerlink" href="#determining-p-d-and-q" title="Permalink to this headline">¶</a></h3>
-<p>We need to explicitly indicate p, d, and q when implementing ARIMA models. Selecting appropriate p, d, and q can be difficult but there are several methods of automating this process. For example, we can use grid search in python to scan through different values and check which model would be optimal (will be discussed later.) R uses the auto.arima() function to do this automatically. For our case, we will look at the Augmented-Dickey Fuller Test (ADF), AutoCorrelation Function (ACF), and Partial Autocorrelation Function (PACF) to determine our model parameters.</p>
-<div class="section" id="finding-the-order-differencing-d">
-<h4>Finding the order differencing <em>d</em><a class="headerlink" href="#finding-the-order-differencing-d" title="Permalink to this headline">¶</a></h4>
-<p>As stated before, ARIMA models are assumed to be stationary. Implementing differencing may induce stationarity for various time series. The quickest way to determine <em>d</em> for our models is to difference and simply run ADF to check for stationarity. We can also look at the PACF and ACF to see if our time series is stationary after <em>d</em> differencing.</p>
-<p>To illustrate, let’s take a look at the following example:</p>
+<p><em>Điều này có thể được tổng quát hóa thành ARIMA(0,d,0) tương tự như hai trường hợp đầu.</em></p>
+<p>Như đã trình bày ở các trường hợp trên, ta có thể sử dụng giá trị 0 cho một tham số, điều này có nghĩa là không sử dụng thành phần đó trong mô hình. Bằng cách này, mô hình ARIMA có thể được cấu hình để thực hiện chức năng của mô hình ARMA, thậm chí là các mô hình AR, I, hoặc MA đơn giản. <strong>Lưu ý rằng trường hợp ARIMA(0,1,1) chính là mô hình làm mịn hàm mũ đơn giản (Simple Exponential Smoothing)</strong>, nhưng chúng ta sẽ bàn về điều này ở một phần khác.</p>
+<p>Việc triển khai mô hình ARIMA cho một chuỗi thời gian giả định rằng các quan sát là một quá trình ARIMA. Để triển khai ARIMA, một mô hình hồi quy tuyến tính được xây dựng bao gồm số lượng và loại các thành phần đã chỉ định, và dữ liệu sẽ được lấy sai phân (differencing) một số lần nhất định để làm cho chuỗi trở nên dừng (stationary), tức là loại bỏ xu hướng (trend) và cấu trúc mùa vụ (seasonal) có thể ảnh hưởng tiêu cực đến mô hình hồi quy.</p>
+<section id="xac-dinh-p-d-va-q-determining-p-d-and-q">
+<h3>Xác định p, d, và q (Determining p, d, and q)<a class="headerlink" href="#xac-dinh-p-d-va-q-determining-p-d-and-q" title="Permalink to this heading">#</a></h3>
+<p>Chúng ta cần chỉ định rõ ràng các giá trị <span class="math notranslate nohighlight">\(p, d,\)</span> và <span class="math notranslate nohighlight">\(q\)</span> khi triển khai các mô hình ARIMA. Việc lựa chọn các giá trị <span class="math notranslate nohighlight">\(p, d,\)</span> và <span class="math notranslate nohighlight">\(q\)</span> phù hợp có thể gặp khó khăn, nhưng có một vài phương pháp để tự động hóa quy trình (process) này. Ví dụ, chúng ta có thể sử dụng tìm kiếm lưới (grid search) trong Python để quét qua các giá trị khác nhau và kiểm tra xem mô hình nào sẽ là tối ưu (sẽ được thảo luận sau). R sử dụng hàm auto.arima() để thực hiện việc này một cách tự động. Đối với trường hợp của chúng ta, chúng ta sẽ xem xét Kiểm định Augmented-Dickey Fuller (Augmented-Dickey Fuller Test - ADF), Hàm tự tương quan (AutoCorrelation Function - ACF), và Hàm tự tương quan riêng phần (Partial Autocorrelation Function - PACF) để xác định các tham số của mô hình.</p>
+</section>
+<section id="tim-bac-sai-phan-d-finding-the-order-differencing-d">
+<h3>Tìm bậc sai phân d (Finding the order differencing d)<a class="headerlink" href="#tim-bac-sai-phan-d-finding-the-order-differencing-d" title="Permalink to this heading">#</a></h3>
+<p>Như đã nêu trước đó, các mô hình ARIMA (ARIMA models) được giả định là có tính dừng (stationary). Việc thực hiện lấy sai phân (implementing differencing) có thể tạo ra tính dừng (induce stationarity) cho nhiều chuỗi thời gian (time series) khác nhau. Cách nhanh nhất để xác định d cho các mô hình của chúng ta là lấy sai phân (difference) và chỉ đơn giản là chạy kiểm định ADF (run ADF) để kiểm tra tính dừng (check for stationarity). Chúng ta cũng có thể quan sát PACF (Partial Autocorrelation Function) và ACF (AutoCorrelation Function) để xem liệu chuỗi thời gian của mình đã đạt được tính dừng (stationary) sau khi lấy sai phân (differencing) bậc <span class="math notranslate nohighlight">\(d\)</span> hay chưa.Để minh họa (To illustrate), hãy cùng xem ví dụ sau đây:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We&#39;re using a sample data from https://raw.githubusercontent.com/selva86/datasets/master/wwwusage.csv</span>
-<span class="c1"># Import data</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Chúng ta đang sử dụng một dữ liệu mẫu (sample data) từ https://raw.githubusercontent.com/selva86/datasets/master/wwwusage.csv</span>
+<span class="c1"># Nhập dữ liệu (Import data)</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/wwwusage.csv&#39;</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">],</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Original Series&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Value&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Chuỗi gốc (Original Series)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Thời gian (Time)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Giá trị (Value)&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/01_AutoRegressiveIntegratedMovingAverage_12_0.png" src="../_images/01_AutoRegressiveIntegratedMovingAverage_12_0.png" />
+<img alt="../_images/97c086f53681fdddd5e1647a523ebbba12d276a1bc0db1f5a58e9a25d250bc64.png" src="../_images/97c086f53681fdddd5e1647a523ebbba12d276a1bc0db1f5a58e9a25d250bc64.png" />
 </div>
 </div>
-<p>Initial eyeballing shows that there is a trend for this time series and is non-stationary. Checking using ADF:</p>
+<p>Quan sát sơ bộ (Initial eyeballing) cho thấy chuỗi thời gian (time series) này có một xu hướng (trend) và không dừng (non-stationary). Kiểm tra bằng cách sử dụng kiểm định ADF (Checking using ADF):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">adfuller</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">dropna</span><span class="p">())</span>
@@ -593,7 +566,7 @@ p-value: 0.124419
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/01_AutoRegressiveIntegratedMovingAverage_16_0.png" src="../_images/01_AutoRegressiveIntegratedMovingAverage_16_0.png" />
+<img alt="../_images/e31f90ed5a298e5a002455616c84ede4425ea315fd54fd377db5dec7183260a1.png" src="../_images/e31f90ed5a298e5a002455616c84ede4425ea315fd54fd377db5dec7183260a1.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ADF Statistic for 1st Order Differencing
 ADF Statistic: -2.722238
 p-value: 0.070268
@@ -614,9 +587,8 @@ Critical Values:
 </div>
 </div>
 <p>Given the results of our ACF and ADF, we can see that our time series reachees stationarity after two orders of differencing. However, the ACF of the 2nd order differencing goes into the negative zone fairly quick. This can indicates that the series might have been over differenced. It is now up to us if we want consider the first or second order differencing for our ARIMA models.</p>
-</div>
-<div class="section" id="finding-the-order-of-the-autoregressive-term-p">
-<h4>Finding the order of the AutoRegressive term <em>p</em><a class="headerlink" href="#finding-the-order-of-the-autoregressive-term-p" title="Permalink to this headline">¶</a></h4>
+<section id="finding-the-order-of-the-autoregressive-term-p">
+<h4>Finding the order of the AutoRegressive term <em>p</em><a class="headerlink" href="#finding-the-order-of-the-autoregressive-term-p" title="Permalink to this heading">#</a></h4>
 <p>As we have discussed previously, we can look at the PACF plot to determine the lag for our AR terms. Partial autocorrelation can be imagined as the correlation between the series and its lag, after excluding the contributions from the intermediate lags. So, PACF sort of conveys the pure correlation between a lag and the series. That way, we will know if that lag is needed in the AR term or not.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -633,14 +605,14 @@ Critical Values:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/01_AutoRegressiveIntegratedMovingAverage_19_0.png" src="../_images/01_AutoRegressiveIntegratedMovingAverage_19_0.png" />
+<img alt="../_images/bd62eedf892e40a739f9c34170757f7587c2d1dba725c7d6dba1a3adf42e7b93.png" src="../_images/bd62eedf892e40a739f9c34170757f7587c2d1dba725c7d6dba1a3adf42e7b93.png" />
 </div>
 </div>
 <p>Immediately, we can observe that our PACF returns sigificance at Lag 1 and Lag 2, meaning it crosses the significance limit (blue region). We can also observe significance at higher order terms but note that given the amount of lag that we are testing, it is statistically probable to see random spikes in our PACF and ACF plots. <em>Although this can also be attributed to Seasonality which will be tackled separately.</em></p>
 <p>With this, we can now decide to use <span class="math notranslate nohighlight">\(p = 2\)</span> for our ARIMA model.</p>
-</div>
-<div class="section" id="finding-the-order-of-the-moving-average-term-q">
-<h4>Finding the order of the Moving Average term <em>q</em><a class="headerlink" href="#finding-the-order-of-the-moving-average-term-q" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="finding-the-order-of-the-moving-average-term-q">
+<h4>Finding the order of the Moving Average term <em>q</em><a class="headerlink" href="#finding-the-order-of-the-moving-average-term-q" title="Permalink to this heading">#</a></h4>
 <p>Simillar to how we determined <span class="math notranslate nohighlight">\(p\)</span>, we will now look at the ACF to determine the <span class="math notranslate nohighlight">\(q\)</span> terms to be considered for our MA. The ACF tells how many MA terms are required to remove any autocorrelation in the stationary series.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -657,15 +629,15 @@ Critical Values:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/01_AutoRegressiveIntegratedMovingAverage_22_0.png" src="../_images/01_AutoRegressiveIntegratedMovingAverage_22_0.png" />
+<img alt="../_images/de1b0adc2464e68d5acadfd1067b9b08d024b84492597389ca93427d5308a250.png" src="../_images/de1b0adc2464e68d5acadfd1067b9b08d024b84492597389ca93427d5308a250.png" />
 </div>
 </div>
 <p>Our results for the ACF is not as apparent compared to our PCF. We can observed several ACF terms that is above our significance level. This may be  attritbuted to the fact that our model has a weak stationarity. This may also be caused by the fact that our time series is not perfectly MA and is an ARIMA model. For now, let’s consider <span class="math notranslate nohighlight">\(q = 3\)</span>.</p>
-</div>
-</div>
-</div>
-<div class="section" id="building-the-arima-model">
-<h2>Building the ARIMA model<a class="headerlink" href="#building-the-arima-model" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+</section>
+<section id="building-the-arima-model">
+<h2>Building the ARIMA model<a class="headerlink" href="#building-the-arima-model" title="Permalink to this heading">#</a></h2>
 <p>Now that we’ve determined the values of p, d and q, we have everything needed to fit the ARIMA model. Let’s implement using this dataset first before we move on to a deeper look at the implementation of ARIMA in the next section. Let’s use the ARIMA() implementation in statsmodels package. As computed, we will use ARIMA(2,1,3):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -681,8 +653,8 @@ Critical Values:
 Dep. Variable:                D.value   No. Observations:                   99
 Model:                 ARIMA(2, 1, 3)   Log Likelihood                -251.701
 Method:                       css-mle   S.D. of innovations              3.050
-Date:                Wed, 24 Feb 2021   AIC                            517.402
-Time:                        14:54:10   BIC                            535.568
+Date:                Sun, 21 Feb 2021   AIC                            517.402
+Time:                        00:47:38   BIC                            535.568
 Sample:                             1   HQIC                           524.752
                                                                               
 =================================================================================
@@ -723,8 +695,8 @@ MA.3           -1.1296           +0.7624j            1.3628            0.4055
 Dep. Variable:                D.value   No. Observations:                   99
 Model:                 ARIMA(1, 1, 1)   Log Likelihood                -253.790
 Method:                       css-mle   S.D. of innovations              3.119
-Date:                Wed, 24 Feb 2021   AIC                            515.579
-Time:                        14:54:11   BIC                            525.960
+Date:                Sun, 21 Feb 2021   AIC                            515.579
+Time:                        00:47:38   BIC                            525.960
 Sample:                             1   HQIC                           519.779
                                                                               
 =================================================================================
@@ -757,7 +729,7 @@ MA.1           -1.8879           +0.0000j            1.8879            0.5000
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/01_AutoRegressiveIntegratedMovingAverage_29_0.png" src="../_images/01_AutoRegressiveIntegratedMovingAverage_29_0.png" />
+<img alt="../_images/c561531e7cd5a83ed8e23b90dcb2609e077daeff60cd92c5b7ac0e889ec0d1fe.png" src="../_images/c561531e7cd5a83ed8e23b90dcb2609e077daeff60cd92c5b7ac0e889ec0d1fe.png" />
 </div>
 </div>
 <p>The residuals is a good final check for our ARIMA models. Ideally, the residual errors should be a Gaussian with a zero mean and uniform variance. With this, we can now proceed with fitting our initial time series with our model.</p>
@@ -772,12 +744,12 @@ MA.1           -1.8879           +0.0000j            1.8879            0.5000
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/01_AutoRegressiveIntegratedMovingAverage_31_0.png" src="../_images/01_AutoRegressiveIntegratedMovingAverage_31_0.png" />
+<img alt="../_images/1c3166e2fc6fac7ef0d0ebfe8ac0b1549000f50d939db16e992de63fdb06a85c.png" src="../_images/1c3166e2fc6fac7ef0d0ebfe8ac0b1549000f50d939db16e992de63fdb06a85c.png" />
 </div>
 </div>
 <p>When we set dynamic=False the in-sample lagged values are used for prediction. That is, the model gets trained up until the previous value to make the next prediction. We can also call this as a <strong>walk-forward</strong> or <strong>one-step ahead</strong> prediction.</p>
 <p>However, we should note two things:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>We used the entire time series to train our model</p></li>
 <li><p>Some of the use-cases that we will be tackling will require us to forecast t-steps ahead</p></li>
 </ol>
@@ -793,15 +765,15 @@ MA.1           -1.8879           +0.0000j            1.8879            0.5000
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/01_AutoRegressiveIntegratedMovingAverage_33_0.png" src="../_images/01_AutoRegressiveIntegratedMovingAverage_33_0.png" />
+<img alt="../_images/f9cbf2d9269327beaac08465b57b22b0518e353eb429c3014d959d91087657c1.png" src="../_images/f9cbf2d9269327beaac08465b57b22b0518e353eb429c3014d959d91087657c1.png" />
 </div>
 </div>
 <p>Notice that our confidence interval is now increasing as we go farther our given data set since we will be compounding errors given by out forecasted values. Also note that generally, our ARIMA model captured the direction of the trend of our time series but is consistently lower than the actual values. We can correct this by varying the parameters of our ARIMA models and validating using performance metrics.</p>
-</div>
-<div class="section" id="implementation-and-forecasting-using-arima">
-<h2>Implementation and Forecasting using ARIMA<a class="headerlink" href="#implementation-and-forecasting-using-arima" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="implementation-and-forecasting-using-arima">
+<h2>Implementation and Forecasting using ARIMA<a class="headerlink" href="#implementation-and-forecasting-using-arima" title="Permalink to this heading">#</a></h2>
 <p>Given the steps discussed in the first three sections of this notebook, we can now create a framework of how we can approach ARIMA models in general. We can use a modified version of the Hyndman-Khandakar algorithm (Hyndman &amp; Khandakar, 2008), which combines unit root tests, minimisation of the AIC and MLE to obtain an ARIMA model. The steps are outlined below:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>The differencing term d is determined using repeated ADF tests.</p></li>
 <li><p>The values of p and q are chosen based on the AIC, ACF, and PACF of our differenced time series.</p></li>
 <li><p>Use a step-wise traversal of our parameter space (+-1) for p, d, and q to find a lower AIC. <em>We can use insights and heuristics to observe our ACF and PACF to determine if we need to add or reduce our p, d, and q.</em></p></li>
@@ -814,7 +786,7 @@ MA.1           -1.8879           +0.0000j            1.8879            0.5000
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create a differenced series</span>
-<span class="k">def</span> <span class="nf">difference</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">difference</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
     <span class="n">diff</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">interval</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">dataset</span><span class="p">)):</span>
         <span class="n">value</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">dataset</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">interval</span><span class="p">]</span>
@@ -822,11 +794,11 @@ MA.1           -1.8879           +0.0000j            1.8879            0.5000
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">diff</span><span class="p">)</span>
 
 <span class="c1"># invert differenced value</span>
-<span class="k">def</span> <span class="nf">inverse_difference</span><span class="p">(</span><span class="n">history</span><span class="p">,</span> <span class="n">yhat</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">inverse_difference</span><span class="p">(</span><span class="n">history</span><span class="p">,</span> <span class="n">yhat</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">yhat</span> <span class="o">+</span> <span class="n">history</span><span class="p">[</span><span class="o">-</span><span class="n">interval</span><span class="p">]</span>
 
 <span class="c1"># evaluate an ARIMA model for a given order (p,d,q) and return RMSE</span>
-<span class="k">def</span> <span class="nf">evaluate_arima_model</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">arima_order</span><span class="p">,</span> <span class="n">train_size</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">evaluate_arima_model</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">arima_order</span><span class="p">,</span> <span class="n">train_size</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="c1"># prepare training dataset</span>
     <span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float32&#39;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">train_size</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -852,7 +824,7 @@ MA.1           -1.8879           +0.0000j            1.8879            0.5000
 
 
 <span class="c1"># evaluate combinations of p, d and q values for an ARIMA model</span>
-<span class="k">def</span> <span class="nf">evaluate_models</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">p_values</span><span class="p">,</span> <span class="n">d_values</span><span class="p">,</span> <span class="n">q_values</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">evaluate_models</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">p_values</span><span class="p">,</span> <span class="n">d_values</span><span class="p">,</span> <span class="n">q_values</span><span class="p">):</span>
     <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float32&#39;</span><span class="p">)</span>
     <span class="n">best_score</span><span class="p">,</span> <span class="n">best_cfg</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;inf&quot;</span><span class="p">),</span> <span class="kc">None</span>
     <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">p_values</span><span class="p">:</span>
@@ -871,8 +843,8 @@ MA.1           -1.8879           +0.0000j            1.8879            0.5000
 </div>
 </div>
 </div>
-<div class="section" id="example-2-forecasting-temperature-in-jena-climate-data">
-<h3>Example 2: Forecasting Temperature in Jena Climate Data<a class="headerlink" href="#example-2-forecasting-temperature-in-jena-climate-data" title="Permalink to this headline">¶</a></h3>
+<section id="example-2-forecasting-temperature-in-jena-climate-data">
+<h3>Example 2: Forecasting Temperature in Jena Climate Data<a class="headerlink" href="#example-2-forecasting-temperature-in-jena-climate-data" title="Permalink to this heading">#</a></h3>
 <p>We now use the method above to perform <strong>multi-step forecasting</strong> (24-step) in the Jena temperature data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -888,11 +860,11 @@ MA.1           -1.8879           +0.0000j            1.8879            0.5000
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/01_AutoRegressiveIntegratedMovingAverage_40_0.png" src="../_images/01_AutoRegressiveIntegratedMovingAverage_40_0.png" />
+<img alt="../_images/b60937971c3f47f1701d37effe00ca674f313e25e6f03ecdb2e9a7439ad89fc4.png" src="../_images/b60937971c3f47f1701d37effe00ca674f313e25e6f03ecdb2e9a7439ad89fc4.png" />
 </div>
 </div>
-<div class="section" id="model-order-selection-hyperparameter-tuning">
-<h4>Model order selection (hyperparameter tuning)<a class="headerlink" href="#model-order-selection-hyperparameter-tuning" title="Permalink to this headline">¶</a></h4>
+<section id="model-order-selection-hyperparameter-tuning">
+<h4>Model order selection (hyperparameter tuning)<a class="headerlink" href="#model-order-selection-hyperparameter-tuning" title="Permalink to this heading">#</a></h4>
 <p>Before we proceed with the grid-search algorithm, we perform some preliminary tests on the time series to narrow down our parameter search. We can start by checking the stationarity of the signal to estimate <span class="math notranslate nohighlight">\(d\)</span>. Then, we plot the PACF and ACF of the time series to estimate <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(q\)</span>, respectively.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -931,7 +903,7 @@ Critical Values:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/01_AutoRegressiveIntegratedMovingAverage_45_0.png" src="../_images/01_AutoRegressiveIntegratedMovingAverage_45_0.png" />
+<img alt="../_images/eae6887b759768a25b77c9065c6c63483d28b87e0db3634670748d5bcb92338c.png" src="../_images/eae6887b759768a25b77c9065c6c63483d28b87e0db3634670748d5bcb92338c.png" />
 </div>
 </div>
 <p><strong>Observation</strong>: Based on the plot of the PACF, we can see that the function drops to a value of almost zero for lags &gt; 2. So, we can set <span class="math notranslate nohighlight">\(p\)</span> to be from 0 to 2.</p>
@@ -948,7 +920,7 @@ Critical Values:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/01_AutoRegressiveIntegratedMovingAverage_47_0.png" src="../_images/01_AutoRegressiveIntegratedMovingAverage_47_0.png" />
+<img alt="../_images/b140478c6d373c1dc0f92c35100ab5fe2b8254a9a17518e0b9c78e9161c9bb38.png" src="../_images/b140478c6d373c1dc0f92c35100ab5fe2b8254a9a17518e0b9c78e9161c9bb38.png" />
 </div>
 </div>
 <p><strong>Observation</strong>: Unlike the PACF which displayed a sharp cutoff, the ACF decays more slowly. We can say that the  series has an <em>autoregressive signature</em> which means that the autocorrelation pattern can be explained more easily by adding AR terms than by adding MA terms. Let’s test for values <span class="math notranslate nohighlight">\(q\)</span> from 0 to <span class="math notranslate nohighlight">\(5\)</span>.</p>
@@ -956,7 +928,7 @@ Critical Values:
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># evaluate an ARIMA model for a given order (p,d,q) and return RMSE</span>
-<span class="k">def</span> <span class="nf">evaluate_arima_jena_24hrstep</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">arima_order</span><span class="p">,</span> <span class="n">train_size</span><span class="o">=</span><span class="mi">35045</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">evaluate_arima_jena_24hrstep</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">arima_order</span><span class="p">,</span> <span class="n">train_size</span><span class="o">=</span><span class="mi">35045</span><span class="p">):</span>
     <span class="c1"># prepare training dataset</span>
     <span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float32&#39;</span><span class="p">)</span>
     <span class="n">train</span><span class="p">,</span> <span class="n">test</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:</span><span class="n">train_size</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="n">train_size</span><span class="p">:]</span>
@@ -1029,20 +1001,20 @@ Critical Values:
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="evaluate-model-performance-on-test-set">
-<h4>Evaluate model performance on test set<a class="headerlink" href="#evaluate-model-performance-on-test-set" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="evaluate-model-performance-on-test-set">
+<h4>Evaluate model performance on test set<a class="headerlink" href="#evaluate-model-performance-on-test-set" title="Permalink to this heading">#</a></h4>
 <p>We use the multiprocessing package which supports spawning processes using an API similar to the threading module.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">wrapper_fit_arima</span><span class="p">(</span><span class="n">x_vals</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">wrapper_fit_arima</span><span class="p">(</span><span class="n">x_vals</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)):</span>
     <span class="n">model</span> <span class="o">=</span> <span class="n">ARIMA</span><span class="p">(</span><span class="n">x_vals</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">)</span>
     <span class="n">model_fit</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">disp</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
     <span class="n">y_hat</span> <span class="o">=</span> <span class="n">model_fit</span><span class="o">.</span><span class="n">forecast</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="mi">24</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 <span class="c1">#     print(len(x_vals))</span>
     <span class="k">return</span> <span class="n">y_hat</span>
 
-<span class="k">def</span> <span class="nf">evaluate_arima_jena_mp</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">arima_order</span><span class="p">,</span> <span class="n">train_size</span><span class="o">=</span><span class="mi">35045</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">evaluate_arima_jena_mp</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">arima_order</span><span class="p">,</span> <span class="n">train_size</span><span class="o">=</span><span class="mi">35045</span><span class="p">):</span>
     <span class="c1"># prepare training dataset</span>
     <span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float32&#39;</span><span class="p">)</span>
     <span class="n">train</span><span class="p">,</span> <span class="n">test</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:</span><span class="n">train_size</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="n">train_size</span><span class="p">:]</span>
@@ -1100,13 +1072,26 @@ Critical Values:
 </div>
 </div>
 <p><strong>Observation/s</strong>: The ARIMA(1,0,2) model had a poorer performance (ARIMA MAE: 3.19) on the test set compared to our <a class="reference internal" href="../08_WinningestMethods/lightgbm_jena_forecasting.html"><span class="doc std std-doc">baseline models</span></a> (naive MAE: 3.18, seasonal naive MAE: 2.61).</p>
-<div class="section" id="forecast-24-hours-beyond-test-set">
-<h5>Forecast 24 hours beyond test set<a class="headerlink" href="#forecast-24-hours-beyond-test-set" title="Permalink to this headline">¶</a></h5>
+<section id="forecast-24-hours-beyond-test-set">
+<h5>Forecast 24 hours beyond test set<a class="headerlink" href="#forecast-24-hours-beyond-test-set" title="Permalink to this heading">#</a></h5>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
 <span class="n">future_data</span> <span class="o">=</span> <span class="n">wrapper_fit_arima</span><span class="p">(</span><span class="n">temp2</span><span class="p">)</span>
 <span class="n">future_data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 24.7 s, sys: 25.2 s, total: 49.9 s
+Wall time: 49.3 s
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-4.28561198, -4.26056166, -4.02705644, -3.79736279, -3.57141847,
+       -3.3491623 , -3.13053407, -2.91547455, -2.7039255 , -2.49582961,
+       -2.29113051, -2.08977277, -1.89170183, -1.69686405, -1.50520666,
+       -1.31667773, -1.1312262 , -0.94880183, -0.76935522, -0.59283776,
+       -0.41920164, -0.24839981, -0.08038602,  0.08488524])
 </pre></div>
 </div>
 </div>
@@ -1123,14 +1108,14 @@ Critical Values:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/01_AutoRegressiveIntegratedMovingAverage_63_0.png" src="../_images/01_AutoRegressiveIntegratedMovingAverage_63_0.png" />
+<img alt="../_images/a095822f391dfc62a8f50b115e06b607433e68df715173b9d70f955d965cc8e3.png" src="../_images/a095822f391dfc62a8f50b115e06b607433e68df715173b9d70f955d965cc8e3.png" />
 </div>
 </div>
-</div>
-</div>
-</div>
-<div class="section" id="example-3-using-arima-for-multivariate-time-series">
-<h3>Example 3: Using ARIMA for Multivariate Time Series<a class="headerlink" href="#example-3-using-arima-for-multivariate-time-series" title="Permalink to this headline">¶</a></h3>
+</section>
+</section>
+</section>
+<section id="example-3-using-arima-for-multivariate-time-series">
+<h3>Example 3: Using ARIMA for Multivariate Time Series<a class="headerlink" href="#example-3-using-arima-for-multivariate-time-series" title="Permalink to this heading">#</a></h3>
 <p>In this final example, we use ARIMA to forecast different time series signals from an Air Quality Dataset measured in a polluted area at an Italian City. To illustrate, we forecast the data for the last 24 hours for CO, and NO2. The following figure shows the training data for each of these parameters.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1215,12 +1200,12 @@ Critical Values:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/01_AutoRegressiveIntegratedMovingAverage_67_0.png" src="../_images/01_AutoRegressiveIntegratedMovingAverage_67_0.png" />
+<img alt="../_images/c5cf2cd33024974181b00572b3ff28e2e25dfc6f731fb796a85b829e1075a671.png" src="../_images/c5cf2cd33024974181b00572b3ff28e2e25dfc6f731fb796a85b829e1075a671.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">evaluate_arima_multistep</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">arima_order</span><span class="p">,</span> <span class="n">train_size</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">evaluate_arima_multistep</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">arima_order</span><span class="p">,</span> <span class="n">train_size</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="c1"># prepare training dataset</span>
     <span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float32&#39;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">train_size</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -1236,7 +1221,7 @@ Critical Values:
     <span class="n">predictions</span> <span class="o">=</span> <span class="n">yhat</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">predictions</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">evaluate_models_mae</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">p_values</span><span class="p">,</span> <span class="n">d_values</span><span class="p">,</span> <span class="n">q_values</span><span class="p">,</span> <span class="n">train_size</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">evaluate_models_mae</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">p_values</span><span class="p">,</span> <span class="n">d_values</span><span class="p">,</span> <span class="n">q_values</span><span class="p">,</span> <span class="n">train_size</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float32&#39;</span><span class="p">)</span>
     <span class="n">best_score</span><span class="p">,</span> <span class="n">best_cfg</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;inf&quot;</span><span class="p">),</span> <span class="kc">None</span>
     <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">p_values</span><span class="p">:</span>
@@ -1335,30 +1320,30 @@ RH: [(3, 1, 1) 9.583232972711079]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/01_AutoRegressiveIntegratedMovingAverage_74_0.png" src="../_images/01_AutoRegressiveIntegratedMovingAverage_74_0.png" />
-<img alt="../_images/01_AutoRegressiveIntegratedMovingAverage_74_1.png" src="../_images/01_AutoRegressiveIntegratedMovingAverage_74_1.png" />
-<img alt="../_images/01_AutoRegressiveIntegratedMovingAverage_74_2.png" src="../_images/01_AutoRegressiveIntegratedMovingAverage_74_2.png" />
+<img alt="../_images/dd6d9832b399a786389935fdb0dd7d1d25be0d680344f237c09a999f458ffdf6.png" src="../_images/dd6d9832b399a786389935fdb0dd7d1d25be0d680344f237c09a999f458ffdf6.png" />
+<img alt="../_images/f17a59eb533d68abee9c8d8ef83b36aeafd5481ed33a0c3715d096e374a54c66.png" src="../_images/f17a59eb533d68abee9c8d8ef83b36aeafd5481ed33a0c3715d096e374a54c66.png" />
+<img alt="../_images/80173aaea585bb99f84b9b2b3733be3711ed0220424b775c8fcc62a3e7c40775.png" src="../_images/80173aaea585bb99f84b9b2b3733be3711ed0220424b775c8fcc62a3e7c40775.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 6.32 s, sys: 192 ms, total: 6.52 s
 Wall time: 1.9 s
 </pre></div>
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="preview-to-the-next-chapter">
-<h2>Preview to the next Chapter<a class="headerlink" href="#preview-to-the-next-chapter" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="preview-to-the-next-chapter">
+<h2>Preview to the next Chapter<a class="headerlink" href="#preview-to-the-next-chapter" title="Permalink to this heading">#</a></h2>
 <p>ARIMA model is just one of the many algorithms that we will discuss. We can see the inherent limitations of ARIMA. In particular, we are not considering:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Trends and seasonality</p></li>
 <li><p>Long-range dependence</p></li>
 <li><p>Multi-variate time series</p></li>
 </ol>
 <p>These factors are generally more frequent and will be important in several applications. For example, trend is important in technical analysis in stock trading. This can be solved using Momentum Forecasting which will be discussed in Chapter 2, among other methods.</p>
 <p>In Chapter 3, we will revisit the Air Quality example and use a multivariate approach.  We’ll introduce vector autoregressive (VAR) methods—a family of models that expresses each variable as a linear function of past lags and past lags of the other variables—and show that we can improve the forecasts by extending this to a multivariate time series problem.</p>
-</div>
-<div class="section" id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
 <p>The contents of this notebook is compiled from the following sources:</p>
 <ul class="simple">
 <li><p>https://www.machinelearningplus.com/time-series/arima-model-time-series-forecasting-python/</p></li>
@@ -1371,8 +1356,8 @@ Wall time: 1.9 s
 <li><p>C.Monterola, <em>“Notebook 10 Time Series Forecasting Method — ARIMA MSDS2021”</em></p></li>
 <li><p>Hyndman, R. J., &amp; Khandakar, Y. (2008). Automatic time series forecasting: The forecast package for R. Journal of Statistical Software, 27(1), 1–22. https://doi.org/10.18637/jss.v027.i03</p></li>
 </ul>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1386,7 +1371,7 @@ Wall time: 1.9 s
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./01_AutoRegressiveIntegratedMovingAverage"
         },
         predefinedOutput: true
@@ -1394,38 +1379,131 @@ Wall time: 1.9 s
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-        </div>
-    </div>
-    
-    
-    <div class='prev-next-bottom'>
-        
-    <a class='left-prev' id="prev-link" href="../00_Introduction/00_Introduction.html" title="previous page">Chapter 0: Advanced Time Series Analysis</a>
-    <a class='right-next' id="next-link" href="../02_LinearForecastingTrendandMomentumForecasting/02_LinearTrendandMomentumForecasting.html" title="next page">Chapter 2: Linear, Trend, and Momentum Forecasting</a>
 
-    </div>
-    <footer class="footer mt-5 mt-md-0">
-    <div class="container">
-      <p>
-        
-          By students of PhD in Data Science Batch 2023 at the Asian Institute of Management<br/>
-        
-            &copy; Copyright 2020.<br/>
-      </p>
-    </div>
-  </footer>
-</main>
-
-
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../00_Introduction/00_Introduction.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Chương 0: Phân tích Chuỗi Thời gian Nâng cao</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="../02_LinearForecastingTrendandMomentumForecasting/02_LinearTrendandMomentumForecasting.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Chapter 2: Linear, Trend, and Momentum Forecasting</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gioi-thieu-ve-arima">Giới thiệu về ARIMA</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vi-du-1-chuoi-thoi-gian-don-bien-dung-va-khong-dung">Ví dụ 1: Chuỗi thời gian đơn biến dừng và không dừng</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cac-thanh-phan-cua-mo-hinh">Các thành phần của mô hình</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cac-tham-so-mo-hinh-p-d-va-q-va-cac-truong-hop-dac-biet">Các tham số mô hình <em>p, d, và q</em> và Các trường hợp đặc biệt</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#xac-dinh-p-d-va-q-determining-p-d-and-q">Xác định p, d, và q (Determining p, d, and q)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tim-bac-sai-phan-d-finding-the-order-differencing-d">Tìm bậc sai phân d (Finding the order differencing d)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#finding-the-order-of-the-autoregressive-term-p">Finding the order of the AutoRegressive term <em>p</em></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#finding-the-order-of-the-moving-average-term-q">Finding the order of the Moving Average term <em>q</em></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-the-arima-model">Building the ARIMA model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation-and-forecasting-using-arima">Implementation and Forecasting using ARIMA</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-forecasting-temperature-in-jena-climate-data">Example 2: Forecasting Temperature in Jena Climate Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#model-order-selection-hyperparameter-tuning">Model order selection (hyperparameter tuning)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluate-model-performance-on-test-set">Evaluate model performance on test set</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#forecast-24-hours-beyond-test-set">Forecast 24 hours beyond test set</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-3-using-arima-for-multivariate-time-series">Example 3: Using ARIMA for Multivariate Time Series</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preview-to-the-next-chapter">Preview to the next Chapter</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Trần Vũ Quang Huy - TLU
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
     </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    
-  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
-
-
-    
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

@@ -1,556 +1,473 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" data-content_root="" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chapter 6: Convergent Cross Mapping &#8212; Time Series Analysis Handbook</title>
-    
-  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    
-  <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+    <title>Chapter 6: Convergent Cross Mapping &#8212; Bản dịch Time Series Analysis Handbook</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    
-      
-  <link rel="stylesheet"
-    href="../_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    
-  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script >
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '06_ConvergentCrossMappingandSugiharaCausality/ccm_sugihara';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Applying CCM Using causal-ccm package" href="using_causal_ccm_package.html" />
     <link rel="prev" title="Chapter 5 : Dynamical Forecasting Methods (Simplex and SMap Projections)" href="../05_SimplexandSmapProjections/05_Empirical%20Dynamic%20Modelling%20%28Simplex%20and%20SMap_Projections%29.html" />
-
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
-
-
-
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    <div class="container-xl">
-      <div class="row">
-          
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
     
-        <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="../index.html">
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../Preface/Preface.html">
   
   
-  <h1 class="site-logo" id="site-title">Time Series Analysis Handbook</h1>
   
+  
+  
+  
+    <p class="title logo__title">Bản dịch Time Series Analysis Handbook</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../Preface/Preface.html">
+                    Preface: Introduction to Time Series Analysis
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../00_Introduction/00_Introduction.html">Chương 0: Phân tích Chuỗi Thời gian Nâng cao</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_AutoRegressiveIntegratedMovingAverage/01_AutoRegressiveIntegratedMovingAverage.html">Chương 1: Mô hình Trung bình động tích hợp tự hồi quy (AutoRegressive Integrated Moving Average - ARIMA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_LinearForecastingTrendandMomentumForecasting/02_LinearTrendandMomentumForecasting.html">Chapter 2: Linear, Trend, and Momentum Forecasting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_VectorAutoregressiveModels/03_VectorAutoregressiveMethods.html">Chapter 3: Vector Autoregressive Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_GrangerCausality/04_GrangerCausality.html">Chapter 4: Granger Causality Test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_SimplexandSmapProjections/05_Empirical%20Dynamic%20Modelling%20%28Simplex%20and%20SMap_Projections%29.html">Chapter 5 : Dynamical Forecasting Methods (Simplex and SMap Projections)</a></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Chapter 6: Convergent Cross Mapping</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="using_causal_ccm_package.html">Applying CCM Using causal-ccm package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../07_CrosscorrelationsFourierTransformandWaveletTransform/07_CrosscorrelationsFourierTransformandWaveletTransform.html">Chapter 7: Cross-Correlations, Fourier Transform, and Wavelet Transform</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../08_WinningestMethods/lightgbm_m5_forecasting.html">Chapter 8: Winningest Methods in Time Series Forecasting</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../08_WinningestMethods/lightgbm_m5_tuning.html">Hyperparameter Tuning (Supplementary Notebook)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../08_WinningestMethods/lightgbm_jena_forecasting.html">Temperature Forecasting (Supplementary Notebook)</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/06_ConvergentCrossMappingandSugiharaCausality/ccm_sugihara.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
 </a>
-</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <ul class="nav sidenav_l1">
- <li class="toctree-l1">
-  <a class="reference internal" href="../Preface/Preface.html">
-   Preface: Introduction to Time Series Analysis
-  </a>
- </li>
-</ul>
-<ul class="current nav sidenav_l1">
- <li class="toctree-l1">
-  <a class="reference internal" href="../00_Introduction/00_Introduction.html">
-   Chapter 0: Advanced Time Series Analysis
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../01_AutoRegressiveIntegratedMovingAverage/01_AutoRegressiveIntegratedMovingAverage.html">
-   Chapter 1: AutoRegressive Integrated Moving Average (ARIMA)
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../02_LinearForecastingTrendandMomentumForecasting/02_LinearTrendandMomentumForecasting.html">
-   Chapter 2: Linear, Trend, and Momentum Forecasting
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../03_VectorAutoregressiveModels/03_VectorAutoregressiveMethods.html">
-   Chapter 3: Vector Autoregressive Methods
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../04_GrangerCausality/04_GrangerCausality.html">
-   Chapter 4: Granger Causality Test
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../05_SimplexandSmapProjections/05_Empirical%20Dynamic%20Modelling%20%28Simplex%20and%20SMap_Projections%29.html">
-   Chapter 5 : Dynamical Forecasting Methods (Simplex and SMap Projections)
-  </a>
- </li>
- <li class="toctree-l1 current active collapsible-parent">
-  <a class="current reference internal" href="#">
-   Chapter 6: Convergent Cross Mapping
-  </a>
-  <ul class="collapse-ul">
-   <li class="toctree-l2">
-    <a class="reference internal" href="using_causal_ccm_package.html">
-     Applying CCM Using causal-ccm package
-    </a>
-   </li>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../07_CrosscorrelationsFourierTransformandWaveletTransform/07_CrosscorrelationsFourierTransformandWaveletTransform.html">
-   Chapter 7: Cross-Correlations, Fourier Transform, and Wavelet Transform
-  </a>
- </li>
- <li class="toctree-l1 collapsible-parent">
-  <a class="reference internal" href="../08_WinningestMethods/lightgbm_m5_forecasting.html">
-   Chapter 8: Winningest Methods in Time Series Forecasting
-  </a>
-  <ul class="collapse-ul">
-   <li class="toctree-l2">
-    <a class="reference internal" href="../08_WinningestMethods/lightgbm_m5_tuning.html">
-     Hyperparameter Tuning (Supplementary Notebook)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../08_WinningestMethods/lightgbm_jena_forecasting.html">
-     Temperature Forecasting (Supplementary Notebook)
-    </a>
-   </li>
-  </ul>
-  <i class="fas fa-chevron-down">
-  </i>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../data/README.html">
-   Datasets
-  </a>
- </li>
-</ul>
-
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
 </div>
 
 
-          
 
 
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
     </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/06_ConvergentCrossMappingandSugiharaCausality/ccm_sugihara.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
+  
 </div>
-
-        <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/phdinds-aim/time_series_handbook"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/phdinds-aim/time_series_handbook/issues/new?title=Issue%20on%20page%20%2F06_ConvergentCrossMappingandSugiharaCausality/ccm_sugihara.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        
-    </div>
 </div>
+              
+              
 
-
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
-
-        <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/phdinds-aim/time_series_handbook/main?urlpath=tree/06_ConvergentCrossMappingandSugiharaCausality/ccm_sugihara.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        
-    </div>
-</div>
-
-    </div>
-
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Chapter 6: Convergent Cross Mapping</h1>
     <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
-        </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#introduction">
-   Introduction
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#causal-ccm-package">
-     causal-ccm Package
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#importance-of-understanding-causality">
-     Importance of Understanding Causality
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#limitations-of-granger-causality">
-     Limitations of Granger Causality
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#ccm-addresses-limits-of-granger-causality">
-     CCM addresses limits of Granger causality
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#related-concepts">
-   Related Concepts
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#deterministic-dynamical-systems">
-     Deterministic Dynamical Systems
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#attractors">
-     Attractors
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#takens-embedding-theorem-and-shadow-manifolds">
-     Takens’ Embedding Theorem and Shadow Manifolds
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#overview-of-ccm">
-   Overview of CCM
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#cross-mapping">
-     Cross Mapping
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#convergence">
-     Convergence
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#defining-our-sample-system">
-   Defining our Sample System
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#ccm-algorithm">
-   CCM Algorithm
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#defining-ccm-functions">
-     Defining CCM Functions
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#functions-for-visualizing">
-     Functions for Visualizing
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#applying-ccm-to-our-sample-systems">
-   Applying CCM to our Sample Systems
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#can-ccm-predict-causality-in-our-test-system">
-     Can CCM predict causality in our test system?
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#how-betas-affect-causality-as-indicated-by-convergence">
-     How Betas Affect Causality As Indicated By Convergence
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#what-if-asymmetrically-coupled-the-effect-is-only-in-one-direction">
-     What if asymmetrically coupled (the effect is only in one direction)?
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#effect-of-strong-forcing">
-   Effect of “Strong Forcing”
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#application-in-real-world-systems">
-   Application in Real World Systems
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#nicolas-cage-films-and-number-of-drowned-victims-in-the-us">
-     Nicolas Cage Films and Number of Drowned Victims in the US
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#dam-system">
-     Dam System
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#angat-dam-vs-rain">
-       Angat Dam vs Rain
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#angat-dam-vs-nia">
-       Angat Dam vs NIA
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#ipo-dam-vs-rain">
-       Ipo Dam vs Rain
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#ipo-dam-vs-nia">
-       Ipo Dam vs NIA
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#ipo-dam-vs-angat-dam">
-       Ipo Dam vs Angat Dam
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#dam-system-inferred-causal-relationships">
-     Dam System Inferred Causal Relationships
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#jena-climate-data">
-     Jena climate data
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#climate-change">
-     Climate change
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#co2-emissions-global-temperature-and-arctic-ice-area-non-ecological">
-       CO2 emissions, global temperature, and arctic ice area (Non-ecological)
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#inferred-climate-system-causal-relationships">
-     Inferred Climate System Causal Relationships
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#limitation">
-   Limitation
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#summary">
-   Summary
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#references">
-   References
-  </a>
- </li>
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#causal-ccm-package">causal-ccm Package</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#importance-of-understanding-causality">Importance of Understanding Causality</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#limitations-of-granger-causality">Limitations of Granger Causality</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ccm-addresses-limits-of-granger-causality">CCM addresses limits of Granger causality</a></li>
 </ul>
-
-        </nav>
-        
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#related-concepts">Related Concepts</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deterministic-dynamical-systems">Deterministic Dynamical Systems</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attractors">Attractors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#takens-embedding-theorem-and-shadow-manifolds">Takens’ Embedding Theorem and Shadow Manifolds</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview-of-ccm">Overview of CCM</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-mapping">Cross Mapping</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convergence">Convergence</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-our-sample-system">Defining our Sample System</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ccm-algorithm">CCM Algorithm</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-ccm-functions">Defining CCM Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#functions-for-visualizing">Functions for Visualizing</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#applying-ccm-to-our-sample-systems">Applying CCM to our Sample Systems</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#can-ccm-predict-causality-in-our-test-system">Can CCM predict causality in our test system?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-betas-affect-causality-as-indicated-by-convergence">How Betas Affect Causality As Indicated By Convergence</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-if-asymmetrically-coupled-the-effect-is-only-in-one-direction">What if asymmetrically coupled (the effect is only in one direction)?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#effect-of-strong-forcing">Effect of “Strong Forcing”</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#application-in-real-world-systems">Application in Real World Systems</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nicolas-cage-films-and-number-of-drowned-victims-in-the-us">Nicolas Cage Films and Number of Drowned Victims in the US</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dam-system">Dam System</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#angat-dam-vs-rain">Angat Dam vs Rain</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#angat-dam-vs-nia">Angat Dam vs NIA</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ipo-dam-vs-rain">Ipo Dam vs Rain</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ipo-dam-vs-nia">Ipo Dam vs NIA</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ipo-dam-vs-angat-dam">Ipo Dam vs Angat Dam</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dam-system-inferred-causal-relationships">Dam System Inferred Causal Relationships</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jena-climate-data">Jena climate data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#climate-change">Climate change</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#co2-emissions-global-temperature-and-arctic-ice-area-non-ecological">CO2 emissions, global temperature, and arctic ice area (Non-ecological)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inferred-climate-system-causal-relationships">Inferred Climate System Causal Relationships</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limitation">Limitation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+            </nav>
+        </div>
     </div>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
-              <div>
+
+              
                 
-  <div class="section" id="chapter-6-convergent-cross-mapping">
-<h1>Chapter 6: Convergent Cross Mapping<a class="headerlink" href="#chapter-6-convergent-cross-mapping" title="Permalink to this headline">¶</a></h1>
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="chapter-6-convergent-cross-mapping">
+<h1>Chapter 6: Convergent Cross Mapping<a class="headerlink" href="#chapter-6-convergent-cross-mapping" title="Permalink to this heading">#</a></h1>
 <p>Prepared by: Prince Joseph Erneszer Javier</p>
-<div class="section" id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
 <p>In the previous chapters we talked about Simplex Projection, a forecasting technique that looks for similar trends in the past to forecast the future by computing for nearest neighbors on an embedding. In this chapter, we discuss  Convergent Cross Mapping (CCM) also formulated by <a class="reference external" href="https://science.sciencemag.org/content/338/6106/496">Sugihara et al., 2012</a> as a methodology that uses ideas from Simplex Projection to identify causality between variables in a complex dynamical system (e.g. ecosystem) using just time series data.</p>
 <p>We will go through the key ideas of CCM, how it addresses the limitations of Granger causality, and the algorithm behind it. We will then test the CCM framework on simulated data where we will deliberately adjust the influence of one variable over the other. Finally, we will apply CCM on some real world data to infer the relationships between variables in a system.</p>
-<div class="section" id="causal-ccm-package">
-<h3>causal-ccm Package<a class="headerlink" href="#causal-ccm-package" title="Permalink to this headline">¶</a></h3>
+<section id="causal-ccm-package">
+<h3>causal-ccm Package<a class="headerlink" href="#causal-ccm-package" title="Permalink to this heading">#</a></h3>
 <p>This chapter explains the CCM methodology in detail. If you wish to apply this in your own projects, install the framework using <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">causal-ccm</span></code>. See <code class="docutils literal notranslate"><span class="pre">using_causal_ccm_package.ipynb</span></code> notebook for details how to use.</p>
-</div>
-<div class="section" id="importance-of-understanding-causality">
-<h3>Importance of Understanding Causality<a class="headerlink" href="#importance-of-understanding-causality" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="importance-of-understanding-causality">
+<h3>Importance of Understanding Causality<a class="headerlink" href="#importance-of-understanding-causality" title="Permalink to this heading">#</a></h3>
 <p>We define causality as the influence of one variable on another. Understanding causality is important because it allows us to:</p>
 <ul class="simple">
 <li><p>Explain phenomena that they are not necessarily supernatural/paranormal</p></li>
 <li><p>Anticipate the future and make the necessary adjustments</p></li>
 <li><p>Apply interventions in the system to achieve desired outcomes</p></li>
 </ul>
-</div>
-<div class="section" id="limitations-of-granger-causality">
-<h3>Limitations of Granger Causality<a class="headerlink" href="#limitations-of-granger-causality" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="limitations-of-granger-causality">
+<h3>Limitations of Granger Causality<a class="headerlink" href="#limitations-of-granger-causality" title="Permalink to this heading">#</a></h3>
 <p>In chapter 4, we talked about a framework for establishing causality in a system called Granger Causality. However Granger Causality has its limitations.</p>
 <p>The intuition behind Granger causality is that a variable A causes B if we have a model that improves prediction of B if we include A. This framework assumes that we can “separate” the information about A from the rest of the system. However, in many systems that have interacting parts, information about a variable may not necessarily be removable from the rest of the system. They are integrated or in other words, not separable.</p>
 <p>Granger causality framework does not apply to cases where information about variables are not separable from the rest of the system especially for those whose causalities are weak to moderate (like in our test systems in the following sections). Finally, Granger Causality is dependent on the performance of a linear predictive model that assumes linear combination of variables. This model may not perform well for some systems that need nonlinear models to improve predictions.</p>
-</div>
-<div class="section" id="ccm-addresses-limits-of-granger-causality">
-<h3>CCM addresses limits of Granger causality<a class="headerlink" href="#ccm-addresses-limits-of-granger-causality" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="ccm-addresses-limits-of-granger-causality">
+<h3>CCM addresses limits of Granger causality<a class="headerlink" href="#ccm-addresses-limits-of-granger-causality" title="Permalink to this heading">#</a></h3>
 <p>Convergent Cross Mapping is designed to identify and quantify causalities in systems whose variables are not separable. Beyond this, it is designed to identify and quantify weak to moderate causalities, which Granger Causality may miss. Finally, CCM is independent of a predictive model so we’re not at the mercy of model performance.</p>
-</div>
-</div>
-<div class="section" id="related-concepts">
-<h2>Related Concepts<a class="headerlink" href="#related-concepts" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="related-concepts">
+<h2>Related Concepts<a class="headerlink" href="#related-concepts" title="Permalink to this heading">#</a></h2>
 <p>We briefly discuss key concepts related to CCM. Many of these concepts have been tackled in depth in the previous chapter: Dynamical Forecasting Methods</p>
-<div class="section" id="deterministic-dynamical-systems">
-<h3>Deterministic Dynamical Systems<a class="headerlink" href="#deterministic-dynamical-systems" title="Permalink to this headline">¶</a></h3>
+<section id="deterministic-dynamical-systems">
+<h3>Deterministic Dynamical Systems<a class="headerlink" href="#deterministic-dynamical-systems" title="Permalink to this heading">#</a></h3>
 <p>“Deterministic” means there’s no randomness in the system (even if it may look random, e.g. chaos). “Dynamical” means the values or “states” of the system change over time. “System” means it’s a set of things that interact with each other.</p>
-</div>
-<div class="section" id="attractors">
-<h3>Attractors<a class="headerlink" href="#attractors" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="attractors">
+<h3>Attractors<a class="headerlink" href="#attractors" title="Permalink to this heading">#</a></h3>
 <img alt="https://fromsystosys.netlify.com/img/lorenz_custom_pers_small.gif" src="https://fromsystosys.netlify.com/img/lorenz_custom_pers_small.gif" />
 <p>An attractor is a “space” of states that the system tends to get attracted to as time goes on. When attractors can be thought of as curved spaces, they are called “manifolds.” I like to think of attractors as a way to summarize our system, like an embedding layer in a neural network architecture.</p>
 <p><em>Q: What do you think is the simplest type of attractor?</em></p>
-</div>
-<div class="section" id="takens-embedding-theorem-and-shadow-manifolds">
-<h3>Takens’ Embedding Theorem and Shadow Manifolds<a class="headerlink" href="#takens-embedding-theorem-and-shadow-manifolds" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="takens-embedding-theorem-and-shadow-manifolds">
+<h3>Takens’ Embedding Theorem and Shadow Manifolds<a class="headerlink" href="#takens-embedding-theorem-and-shadow-manifolds" title="Permalink to this heading">#</a></h3>
 <a class="reference internal image-reference" href="https://www.researchgate.net/profile/Pablo_Verdes/publication/51595532/figure/fig4/AS:305687352627206&#64;1449892952960/Color-online-Schematic-representation-of-the-measurement-process-and-reconstruction-of.png"><img alt="https://www.researchgate.net/profile/Pablo_Verdes/publication/51595532/figure/fig4/AS:305687352627206&#64;1449892952960/Color-online-Schematic-representation-of-the-measurement-process-and-reconstruction-of.png" src="https://www.researchgate.net/profile/Pablo_Verdes/publication/51595532/figure/fig4/AS:305687352627206&#64;1449892952960/Color-online-Schematic-representation-of-the-measurement-process-and-reconstruction-of.png" style="width: 500px;" /></a>
 <p>Uzal, Lucas &amp; Grinblat, G &amp; Verdes, Pablo. (2011). Optimal reconstruction of dynamical systems: A noise amplification approach. Physical review. E, Statistical, nonlinear, and soft matter physics. 84. 016223. 10.1103/PhysRevE.84.016223.</p>
 <p>From the term “shadow”, shadow manifolds are “projections” of the true system manifold on some variable <span class="math notranslate nohighlight">\(X\)</span>. What Takens’ theorem tells us is if <span class="math notranslate nohighlight">\(X\)</span> belongs to a system <span class="math notranslate nohighlight">\(S\)</span> then we can generate a shadow manifold of the true manifold <span class="math notranslate nohighlight">\(M_s\)</span> using vectors of lagged (historical) values of <span class="math notranslate nohighlight">\(X\)</span>. The points in this shadow manifold <span class="math notranslate nohighlight">\(M_x\)</span> will have a 1:1 correspondence with the points in the true (unknown) manifold <span class="math notranslate nohighlight">\(M_s\)</span>.</p>
-</div>
-</div>
-<div class="section" id="overview-of-ccm">
-<h2>Overview of CCM<a class="headerlink" href="#overview-of-ccm" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="overview-of-ccm">
+<h2>Overview of CCM<a class="headerlink" href="#overview-of-ccm" title="Permalink to this heading">#</a></h2>
 <a class="reference internal image-reference" href="https://media.springernature.com/lw785/springer-static/image/chp%3A10.1007%2F978-3-319-58895-7_27/MediaObjects/429072_1_En_27_Fig1_HTML.gif"><img alt="https://media.springernature.com/lw785/springer-static/image/chp%3A10.1007%2F978-3-319-58895-7_27/MediaObjects/429072_1_En_27_Fig1_HTML.gif" src="https://media.springernature.com/lw785/springer-static/image/chp%3A10.1007%2F978-3-319-58895-7_27/MediaObjects/429072_1_En_27_Fig1_HTML.gif" style="width: 400px;" /></a>
 <p>Tsonis A.A., Deyle E.R., Ye H., Sugihara G. (2018) Convergent Cross Mapping: Theory and an Example. In: Tsonis A. (eds) Advances in Nonlinear Geosciences. Springer, Cham. https://doi.org/10.1007/978-3-319-58895-7_27</p>
-<div class="section" id="cross-mapping">
-<h3>Cross Mapping<a class="headerlink" href="#cross-mapping" title="Permalink to this headline">¶</a></h3>
+<section id="cross-mapping">
+<h3>Cross Mapping<a class="headerlink" href="#cross-mapping" title="Permalink to this heading">#</a></h3>
 <p>In a system <span class="math notranslate nohighlight">\(Y=f(X,Y)\)</span>, cross Mapping means given the points on the manifold of one variable <span class="math notranslate nohighlight">\(M_y\)</span>, we look for the corresponding points on <span class="math notranslate nohighlight">\(M_x\)</span>, i.e. points at the same time <span class="math notranslate nohighlight">\(t\)</span>.</p>
 <p>If <span class="math notranslate nohighlight">\(X\)</span> causes <span class="math notranslate nohighlight">\(Y\)</span>, then we say some information about <span class="math notranslate nohighlight">\(X\)</span> gets stored in <span class="math notranslate nohighlight">\(Y\)</span>. If this is the case, then we can predict the values of <span class="math notranslate nohighlight">\(X\)</span> given values from <span class="math notranslate nohighlight">\(Y\)</span>. Note that this sounds counter intuitive. We contrast this with Granger causality which says that <span class="math notranslate nohighlight">\(X\)</span> causes <span class="math notranslate nohighlight">\(Y\)</span> if we can predict <span class="math notranslate nohighlight">\(Y\)</span> better given <span class="math notranslate nohighlight">\(X\)</span>.</p>
 <p>We use shadow manifolds because we do not know the true manifold of the system. Given Takens’ theorem however, we can say that we can compute shadow manifolds <span class="math notranslate nohighlight">\(M_x\)</span> and <span class="math notranslate nohighlight">\(M_y\)</span> which then cross map with 1:1 correspondence to the true manifold of the system.</p>
 <p>If we use the analogy that manifolds are “summaries” of system, we can think of <span class="math notranslate nohighlight">\(M_x\)</span> and <span class="math notranslate nohighlight">\(M_y\)</span> as summaries of <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span>. If <span class="math notranslate nohighlight">\(X\)</span> causes <span class="math notranslate nohighlight">\(Y\)</span>, information from <span class="math notranslate nohighlight">\(X\)</span> gets embedded in <span class="math notranslate nohighlight">\(Y\)</span>. It follows that we can then use <span class="math notranslate nohighlight">\(M_x\)</span> to predict <span class="math notranslate nohighlight">\(Y\)</span>, i.e. <span class="math notranslate nohighlight">\(\hat{Y}|M_x\)</span>. Finally, we can use the “accuracy” (MAE, MSE, or correlation) of this prediction as our metric for causality.</p>
-</div>
-<div class="section" id="convergence">
-<h3>Convergence<a class="headerlink" href="#convergence" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="convergence">
+<h3>Convergence<a class="headerlink" href="#convergence" title="Permalink to this heading">#</a></h3>
 <p>Convergence in CCM means that for variables with causalities, the longer our observation period (or more data we gather), the better we can predict one variable using the other. In the attractor example above, we can imagine the attractor will get denser as time goes on since our system will eventually fill in some of the gaps in the manifold. Stated another way, more defined manifolds imply that for variables with causalities, we can expect the accuracy of <span class="math notranslate nohighlight">\(\hat{Y}|M_x\)</span> to improve. If two variables have no causal link, then improving their manifolds will not translate to improvement in predictions.</p>
 <p>Cross mapping and convergence are two requirements in the CCM framework that we need to satisfy to consider the possiblity of causality between variables.</p>
-</div>
-</div>
-<div class="section" id="defining-our-sample-system">
-<h2>Defining our Sample System<a class="headerlink" href="#defining-our-sample-system" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="defining-our-sample-system">
+<h2>Defining our Sample System<a class="headerlink" href="#defining-our-sample-system" title="Permalink to this heading">#</a></h2>
 <p>We show here a sample nonlinear system. Here, we explicitly defined <span class="math notranslate nohighlight">\(X\)</span> to be influenced by <span class="math notranslate nohighlight">\(Y\)</span> and vice versa. The effect of <span class="math notranslate nohighlight">\(X\)</span> on <span class="math notranslate nohighlight">\(Y\)</span> is a factor of <span class="math notranslate nohighlight">\(\beta_{y,x}\)</span> and the effect of <span class="math notranslate nohighlight">\(Y\)</span> on <span class="math notranslate nohighlight">\(X\)</span> is a factor of <span class="math notranslate nohighlight">\(\beta_{x,y}\)</span>. One way to read <span class="math notranslate nohighlight">\(\beta_{y,x}\)</span>: “the influence of <span class="math notranslate nohighlight">\(x\)</span> on <span class="math notranslate nohighlight">\(y\)</span>”. <span class="math notranslate nohighlight">\(r_x\)</span> and <span class="math notranslate nohighlight">\(r_y\)</span> are some constants that affect how chaotic the system is. As we increase <span class="math notranslate nohighlight">\(r\)</span> say <span class="math notranslate nohighlight">\(r &gt; 3.5\)</span> we get more unpredictable (“chaotic”) behavior.</p>
 <p><span class="math notranslate nohighlight">\(X(t+1)=X(t)[r_x-r_xX_t-\beta_{x,y}Y(t)]\)</span>
 <br><span class="math notranslate nohighlight">\(Y(t+1)=Y(t)[r_y-r_yY_t-\beta_{y,x}X(t)]\)</span></p>
@@ -561,26 +478,32 @@
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">jdc</span> <span class="c1"># used fo defining functions for a class in separate cells</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-<span class="kn">from</span> <span class="nn">scipy.spatial</span> <span class="kn">import</span> <span class="n">distance</span>
-<span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">make_interp_spline</span>
-<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span> <span class="c1"># for showing progress bar in for loops</span>
-<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">pearsonr</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">jdc</span> <span class="c1"># used fo defining functions for a class in separate cells</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.spatial</span><span class="w"> </span><span class="kn">import</span> <span class="n">distance</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.interpolate</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_interp_spline</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tqdm</span><span class="w"> </span><span class="kn">import</span> <span class="n">tqdm</span> <span class="c1"># for showing progress bar in for loops</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">pearsonr</span>
 
 <span class="c1">### Just to remove warnings to prettify the notebook. </span>
-<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/prince.javier/opt/anaconda3/lib/python3.7/site-packages/statsmodels/tools/_testing.py:19: FutureWarning: pandas.util.testing is deprecated. Use the functions in the public API at pandas.testing instead.
+  import pandas.util.testing as tm
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">func_1</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">beta</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">func_1</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">beta</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">A</span> <span class="o">*</span> <span class="p">(</span><span class="n">r</span> <span class="o">-</span> <span class="n">r</span> <span class="o">*</span> <span class="n">A</span> <span class="o">-</span> <span class="n">beta</span> <span class="o">*</span> <span class="n">B</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -622,10 +545,10 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f8ad660ec10&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7ff9b3824510&gt;
 </pre></div>
 </div>
-<img alt="../_images/ccm_sugihara_11_1.png" src="../_images/ccm_sugihara_11_1.png" />
+<img alt="../_images/002c4ccff239d6f24dde97c59eb7475a39bb0c11c50a86a19f1e470942a664c3.png" src="../_images/002c4ccff239d6f24dde97c59eb7475a39bb0c11c50a86a19f1e470942a664c3.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -643,7 +566,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ccm_sugihara_12_0.png" src="../_images/ccm_sugihara_12_0.png" />
+<img alt="../_images/4f130a51ba946885b718856a4741e306b90cbf2579e2b4b8784c5ae11d68e691.png" src="../_images/4f130a51ba946885b718856a4741e306b90cbf2579e2b4b8784c5ae11d68e691.png" />
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.005395539983091772, 0.8646878689811068)
 </pre></div>
 </div>
@@ -654,18 +577,18 @@
 <li><p>Though we explicitly defined <span class="math notranslate nohighlight">\(Y\)</span> to be a function of <span class="math notranslate nohighlight">\(X\)</span> (<span class="math notranslate nohighlight">\(X\)</span> influences <span class="math notranslate nohighlight">\(Y\)</span>), we find no correlation between them in the long term.</p></li>
 <li><p>It’s hard to conclude the relationship between <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> (e.g. whether or not <span class="math notranslate nohighlight">\(X\)</span> influences <span class="math notranslate nohighlight">\(Y\)</span> or vice versa) based on the correlation plot and correlation value.</p></li>
 </ul>
-</div>
-<div class="section" id="ccm-algorithm">
-<h2>CCM Algorithm<a class="headerlink" href="#ccm-algorithm" title="Permalink to this headline">¶</a></h2>
-<ol class="simple">
+</section>
+<section id="ccm-algorithm">
+<h2>CCM Algorithm<a class="headerlink" href="#ccm-algorithm" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
 <li><p>Given two time series</p></li>
 </ol>
 <p><span class="math notranslate nohighlight">\(X = \{X(1), X(2), ..., X(L)\}\)</span> and <span class="math notranslate nohighlight">\(Y = \{Y(1), Y(2), ..., Y(L)\}\)</span> where <span class="math notranslate nohighlight">\(L\)</span> is time series length</p>
-<ol class="simple">
+<ol class="arabic simple" start="2">
 <li><p>Compute lagged-coordinate vectors where <span class="math notranslate nohighlight">\(E\)</span> is an “embedding” dimension. Search algorithms e.g. grid search can be used to identify what the best <span class="math notranslate nohighlight">\(E\)</span> value is. <span class="math notranslate nohighlight">\(\tau\)</span> is the lag step.</p></li>
 </ol>
 <p><span class="math notranslate nohighlight">\(\underline{x}(t) = &lt;X(t), X(t-\tau), X(t-2\tau), ..., X(t-(E-1)\tau)&gt;\)</span> for <span class="math notranslate nohighlight">\(t \in [1+(E-1)\tau, L]\)</span></p>
-<ol class="simple">
+<ol class="arabic simple" start="3">
 <li><p>Define the “shadow (attractor) manifold” <span class="math notranslate nohighlight">\(M_x = \{\underline{x}(t) \text{ for each } t \in [1+(E-1)\tau, L]\}\)</span></p></li>
 <li><p>At <span class="math notranslate nohighlight">\(t\)</span>, locate <span class="math notranslate nohighlight">\(\underline{x}(t)\)</span> in <span class="math notranslate nohighlight">\(M_x\)</span></p></li>
 <li><p>Find the <span class="math notranslate nohighlight">\(E+1\)</span> nearest neighbor vectors from selected vector <span class="math notranslate nohighlight">\(\underline{x}(t)\)</span>. Sugihara, et al. noted that <span class="math notranslate nohighlight">\(E+1\)</span> is the minimum number of points needed for an “embedding/simplex” with <span class="math notranslate nohighlight">\(E\)</span> dimensions. Intuitively, if you have a 2D matrix, you need 3 points (2 + 1) to “triangulate” a point</p></li>
@@ -679,14 +602,14 @@
 <li><p>If <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> are dynamically “coupled” i.e. one influences the other, a clump of points in <span class="math notranslate nohighlight">\(M_x\)</span> should correspond to a clump of points in <span class="math notranslate nohighlight">\(M_y\)</span>. And as <span class="math notranslate nohighlight">\(L\)</span> increases, we get a denser cluster of <span class="math notranslate nohighlight">\(E+1\)</span> points from <span class="math notranslate nohighlight">\(M_x\)</span> that correspond to a denser cluster of points in <span class="math notranslate nohighlight">\(M_y\)</span>. Given this, <span class="math notranslate nohighlight">\(\hat{Y} | M_x\)</span> intuitively should converge to <span class="math notranslate nohighlight">\(Y\)</span> as <span class="math notranslate nohighlight">\(L\)</span> increases, e.g. we get more data/samples. Hence, we can test for convergence of the nearest neighbors to test for correspondence between states on <span class="math notranslate nohighlight">\(M_x\)</span> and <span class="math notranslate nohighlight">\(M_y\)</span>.</p></li>
 <li><p>We then plot the correlation coefficients between <span class="math notranslate nohighlight">\(Y\)</span> and <span class="math notranslate nohighlight">\(\hat{Y} | M_x\)</span>. If there is significant correlation, this means we have enough information from <span class="math notranslate nohighlight">\(Y\)</span> that is stored in <span class="math notranslate nohighlight">\(X\)</span>. We say that <span class="math notranslate nohighlight">\(Y\)</span> influences <span class="math notranslate nohighlight">\(X\)</span>. It sounds counter intuitive but another way to think about it is: if <span class="math notranslate nohighlight">\(Y\)</span> influences <span class="math notranslate nohighlight">\(X\)</span> then information from <span class="math notranslate nohighlight">\(Y\)</span> gets stored in <span class="math notranslate nohighlight">\(X\)</span>. We can thus use <span class="math notranslate nohighlight">\(X\)</span> to predict <span class="math notranslate nohighlight">\(Y\)</span>. Same goes for <span class="math notranslate nohighlight">\(X\)</span> influencing <span class="math notranslate nohighlight">\(Y\)</span>.</p></li>
 </ol>
-<div class="section" id="defining-ccm-functions">
-<h3>Defining CCM Functions<a class="headerlink" href="#defining-ccm-functions" title="Permalink to this headline">¶</a></h3>
+<section id="defining-ccm-functions">
+<h3>Defining CCM Functions<a class="headerlink" href="#defining-ccm-functions" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Computing &quot;Causality&quot; (Correlation between True and Predictions)</span>
-<span class="k">class</span> <span class="nc">ccm</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">tau</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">E</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">L</span><span class="o">=</span><span class="mi">500</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">ccm</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">tau</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">E</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">L</span><span class="o">=</span><span class="mi">500</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        X: timeseries for variable X that could cause Y</span>
 <span class="sd">        Y: timeseries for variable Y that could be caused by X</span>
 <span class="sd">        tau: time lag</span>
@@ -846,9 +769,9 @@ def causality(self):
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="functions-for-visualizing">
-<h3>Functions for Visualizing<a class="headerlink" href="#functions-for-visualizing" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="functions-for-visualizing">
+<h3>Functions for Visualizing<a class="headerlink" href="#functions-for-visualizing" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">add_to</span> ccm
@@ -971,12 +894,12 @@ def plot_ccm_correls(self):
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="applying-ccm-to-our-sample-systems">
-<h2>Applying CCM to our Sample Systems<a class="headerlink" href="#applying-ccm-to-our-sample-systems" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="can-ccm-predict-causality-in-our-test-system">
-<h3>Can CCM predict causality in our test system?<a class="headerlink" href="#can-ccm-predict-causality-in-our-test-system" title="Permalink to this headline">¶</a></h3>
+</section>
+</section>
+<section id="applying-ccm-to-our-sample-systems">
+<h2>Applying CCM to our Sample Systems<a class="headerlink" href="#applying-ccm-to-our-sample-systems" title="Permalink to this heading">#</a></h2>
+<section id="can-ccm-predict-causality-in-our-test-system">
+<h3>Can CCM predict causality in our test system?<a class="headerlink" href="#can-ccm-predict-causality-in-our-test-system" title="Permalink to this heading">#</a></h3>
 <p>Remember our test system is:</p>
 <p><span class="math notranslate nohighlight">\(X(t+1)=X(t)[r_x-r_xX_t-\beta_{x,y}Y(t)]\)</span>
 <br><span class="math notranslate nohighlight">\(Y(t+1)=Y(t)[r_y-r_yY_t-\beta_{y,x}X(t)]\)</span></p>
@@ -1020,7 +943,7 @@ def plot_ccm_correls(self):
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ccm_sugihara_29_0.png" src="../_images/ccm_sugihara_29_0.png" />
+<img alt="../_images/8c5895f1dd56b3fa3d1e7e2d99b0d86cd707a6d7351a440e63ceb2eac23e48ee.png" src="../_images/8c5895f1dd56b3fa3d1e7e2d99b0d86cd707a6d7351a440e63ceb2eac23e48ee.png" />
 </div>
 </div>
 <p><strong>Discussion</strong></p>
@@ -1041,7 +964,7 @@ def plot_ccm_correls(self):
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ccm_sugihara_31_0.png" src="../_images/ccm_sugihara_31_0.png" />
+<img alt="../_images/ebdd56d51e19ef9c9885198c50036491c7f97debc7bf5ac4e1ec06311da4bf0c.png" src="../_images/ebdd56d51e19ef9c9885198c50036491c7f97debc7bf5ac4e1ec06311da4bf0c.png" />
 </div>
 </div>
 <p><strong>Discussion</strong></p>
@@ -1075,10 +998,10 @@ def plot_ccm_correls(self):
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f8ac124b4d0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7ff9a1bb3c10&gt;
 </pre></div>
 </div>
-<img alt="../_images/ccm_sugihara_33_1.png" src="../_images/ccm_sugihara_33_1.png" />
+<img alt="../_images/f02578ae79fb6be480322aed7771d5766ca9f25c5dc640223566a7df9e7f5f0a.png" src="../_images/f02578ae79fb6be480322aed7771d5766ca9f25c5dc640223566a7df9e7f5f0a.png" />
 </div>
 </div>
 <p><strong>Discussion</strong></p>
@@ -1088,9 +1011,9 @@ def plot_ccm_correls(self):
 <li><p>What can we conclude from this plot about the interactions between <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span>?</p></li>
 <li><p>Which variable has more influence on the other?</p></li>
 </ul>
-</div>
-<div class="section" id="how-betas-affect-causality-as-indicated-by-convergence">
-<h3>How Betas Affect Causality As Indicated By Convergence<a class="headerlink" href="#how-betas-affect-causality-as-indicated-by-convergence" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="how-betas-affect-causality-as-indicated-by-convergence">
+<h3>How Betas Affect Causality As Indicated By Convergence<a class="headerlink" href="#how-betas-affect-causality-as-indicated-by-convergence" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Checking convergence for various betas</span>
@@ -1157,7 +1080,7 @@ def plot_ccm_correls(self):
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ccm_sugihara_37_0.png" src="../_images/ccm_sugihara_37_0.png" />
+<img alt="../_images/bf96fc7a44b201185f888aac56bbde248e4baa5d06fc2b86bb15cdeb16030344.png" src="../_images/bf96fc7a44b201185f888aac56bbde248e4baa5d06fc2b86bb15cdeb16030344.png" />
 </div>
 </div>
 <p><strong>Discussion</strong></p>
@@ -1166,9 +1089,9 @@ def plot_ccm_correls(self):
 <li><p>Based on the plot, as <span class="math notranslate nohighlight">\(\beta_{y,x}\)</span> increases, what happens to our predicted <span class="math notranslate nohighlight">\(\hat{Y}|M_x\)</span> and <span class="math notranslate nohighlight">\(\hat{X}|M_y\)</span>?</p></li>
 <li><p>Do the results align with our intuition that higher <span class="math notranslate nohighlight">\(\beta_{y,x}\)</span> means higher effect of <span class="math notranslate nohighlight">\(X\)</span> on <span class="math notranslate nohighlight">\(Y\)</span>?</p></li>
 </ul>
-</div>
-<div class="section" id="what-if-asymmetrically-coupled-the-effect-is-only-in-one-direction">
-<h3>What if asymmetrically coupled (the effect is only in one direction)?<a class="headerlink" href="#what-if-asymmetrically-coupled-the-effect-is-only-in-one-direction" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="what-if-asymmetrically-coupled-the-effect-is-only-in-one-direction">
+<h3>What if asymmetrically coupled (the effect is only in one direction)?<a class="headerlink" href="#what-if-asymmetrically-coupled-the-effect-is-only-in-one-direction" title="Permalink to this heading">#</a></h3>
 <p>Let us define our system as</p>
 <p><span class="math notranslate nohighlight">\(X(t+1)=X(t)[3.7-3.7X_t-0Y(t)]\)</span>
 <br><span class="math notranslate nohighlight">\(Y(t+1)=Y(t)[3.7-3.7Y_t-0.32X(t)]\)</span></p>
@@ -1210,10 +1133,10 @@ def plot_ccm_correls(self):
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f8ac12a0c10&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7ff9b68dfb90&gt;
 </pre></div>
 </div>
-<img alt="../_images/ccm_sugihara_41_1.png" src="../_images/ccm_sugihara_41_1.png" />
+<img alt="../_images/f767c4e6a6a14afb3b92d495c9063f73e81f4d1da220d6dbee56731b31cae36a.png" src="../_images/f767c4e6a6a14afb3b92d495c9063f73e81f4d1da220d6dbee56731b31cae36a.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1232,7 +1155,7 @@ def plot_ccm_correls(self):
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ccm_sugihara_42_0.png" src="../_images/ccm_sugihara_42_0.png" />
+<img alt="../_images/0655e5ec698cdf80d80ed696f509e31c65c89f4ddc7fc3ceddefff92f86d757e.png" src="../_images/0655e5ec698cdf80d80ed696f509e31c65c89f4ddc7fc3ceddefff92f86d757e.png" />
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.24813484131913208, 1.6963889777954784e-15)
 </pre></div>
 </div>
@@ -1254,7 +1177,7 @@ def plot_ccm_correls(self):
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ccm_sugihara_43_0.png" src="../_images/ccm_sugihara_43_0.png" />
+<img alt="../_images/640c58dfd1af9661b6e090dd2cec092d279b393801cccd7d78d80f2312ec2017.png" src="../_images/640c58dfd1af9661b6e090dd2cec092d279b393801cccd7d78d80f2312ec2017.png" />
 </div>
 </div>
 <p><strong>Discussion</strong></p>
@@ -1273,7 +1196,7 @@ def plot_ccm_correls(self):
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ccm_sugihara_45_0.png" src="../_images/ccm_sugihara_45_0.png" />
+<img alt="../_images/b25e9ffc8756eefc3f296ad709c6d0ec9d9125b864211528ec47281c6ba188e9.png" src="../_images/b25e9ffc8756eefc3f296ad709c6d0ec9d9125b864211528ec47281c6ba188e9.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1305,12 +1228,10 @@ def plot_ccm_correls(self):
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>X-&gt;Y r 0.99 p value 0.0
+Y-&gt;X r 0.09 p value 0.0
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Y-&gt;X r 0.09 p value 0.0
-</pre></div>
-</div>
-<img alt="../_images/ccm_sugihara_46_2.png" src="../_images/ccm_sugihara_46_2.png" />
+<img alt="../_images/1e81ab8f59b3b09b770c2bcae6ed013b12fd31b8129737cd5e414f8905d11624.png" src="../_images/1e81ab8f59b3b09b770c2bcae6ed013b12fd31b8129737cd5e414f8905d11624.png" />
 </div>
 </div>
 <p><strong>Discussion</strong></p>
@@ -1318,10 +1239,10 @@ def plot_ccm_correls(self):
 <li><p>How do we interpret these charts in the context of determining causality using the CCM framework?</p></li>
 <li><p>Are the results here expected?</p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="effect-of-strong-forcing">
-<h2>Effect of “Strong Forcing”<a class="headerlink" href="#effect-of-strong-forcing" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="effect-of-strong-forcing">
+<h2>Effect of “Strong Forcing”<a class="headerlink" href="#effect-of-strong-forcing" title="Permalink to this heading">#</a></h2>
 <p>What happens to the result of CCM when <span class="math notranslate nohighlight">\(X\)</span> has very strong effects on <span class="math notranslate nohighlight">\(Y\)</span> yet <span class="math notranslate nohighlight">\(Y\)</span> has 0 effect on <span class="math notranslate nohighlight">\(X\)</span>?</p>
 <p><span class="math notranslate nohighlight">\(X(t+1)=X(t)[3.7-3.7X_t-0Y(t)]\)</span>
 <br><span class="math notranslate nohighlight">\(Y(t+1)=Y(t)[3.7-3.7Y_t- \beta_{yx} X(t)] \text{ where } \beta_{yx} \text{is large}\)</span></p>
@@ -1389,7 +1310,7 @@ def plot_ccm_correls(self):
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mpl_toolkits.mplot3d</span> <span class="kn">import</span> <span class="n">Axes3D</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mpl_toolkits.mplot3d</span><span class="w"> </span><span class="kn">import</span> <span class="n">Axes3D</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
 
@@ -1407,7 +1328,7 @@ def plot_ccm_correls(self):
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ccm_sugihara_51_0.png" src="../_images/ccm_sugihara_51_0.png" />
+<img alt="../_images/44ed7965ffb34c987afce538fc3d486060cd688c74a060fbe2adc9c15cfc1758.png" src="../_images/44ed7965ffb34c987afce538fc3d486060cd688c74a060fbe2adc9c15cfc1758.png" />
 </div>
 </div>
 <p><strong>Discussion</strong></p>
@@ -1416,13 +1337,13 @@ def plot_ccm_correls(self):
 <li><p>We find that despite <span class="math notranslate nohighlight">\(Y\)</span> having no influence on <span class="math notranslate nohighlight">\(X\)</span>, CCM gives a high cross mapping performance if the influence of <span class="math notranslate nohighlight">\(X\)</span> on <span class="math notranslate nohighlight">\(Y\)</span>, <span class="math notranslate nohighlight">\(\beta_{yx}\)</span> is very high. This is what we call “strong forcing.” An intuition here is if the effect of <span class="math notranslate nohighlight">\(X\)</span> on <span class="math notranslate nohighlight">\(Y\)</span> is too high, <span class="math notranslate nohighlight">\(Y\)</span> tends to look a lot likt <span class="math notranslate nohighlight">\(X\)</span> and thus <span class="math notranslate nohighlight">\(M_x\)</span> becomes easier to cross map to <span class="math notranslate nohighlight">\(M_y\)</span>, which shouldn’t be the case. We can thus be misled to think bidirectional causality exists when it doesn’t.</p></li>
 <li><p>What are the implications when using CCM to infer causality?</p></li>
 </ul>
-</div>
-<div class="section" id="application-in-real-world-systems">
-<h2>Application in Real World Systems<a class="headerlink" href="#application-in-real-world-systems" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="application-in-real-world-systems">
+<h2>Application in Real World Systems<a class="headerlink" href="#application-in-real-world-systems" title="Permalink to this heading">#</a></h2>
 <p>Here, we apply CCM on real world systems to infer relationships between variables.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">make_plots</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">dt_name</span><span class="p">,</span> <span class="n">val1_name</span><span class="p">,</span> <span class="n">val2_name</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">make_plots</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">dt_name</span><span class="p">,</span> <span class="n">val1_name</span><span class="p">,</span> <span class="n">val2_name</span><span class="p">):</span>
     <span class="c1"># drop nulls</span>
     <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="n">dt_name</span><span class="p">,</span> <span class="n">val1_name</span><span class="p">,</span> <span class="n">val2_name</span><span class="p">]]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
     
@@ -1441,8 +1362,8 @@ def plot_ccm_correls(self):
 </div>
 </div>
 </div>
-<div class="section" id="nicolas-cage-films-and-number-of-drowned-victims-in-the-us">
-<h3>Nicolas Cage Films and Number of Drowned Victims in the US<a class="headerlink" href="#nicolas-cage-films-and-number-of-drowned-victims-in-the-us" title="Permalink to this headline">¶</a></h3>
+<section id="nicolas-cage-films-and-number-of-drowned-victims-in-the-us">
+<h3>Nicolas Cage Films and Number of Drowned Victims in the US<a class="headerlink" href="#nicolas-cage-films-and-number-of-drowned-victims-in-the-us" title="Permalink to this heading">#</a></h3>
 <p>We check how much the number of drowned victims in the US affect the number of Nicolas Cage Films for the year and vice versa. Do we expect these two to be causally linked?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1453,7 +1374,7 @@ def plot_ccm_correls(self):
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ccm_sugihara_56_0.png" src="../_images/ccm_sugihara_56_0.png" />
+<img alt="../_images/01f244402752b307712953954baee355cdff3c39cc26299d504aaf18ca9eb2c4.png" src="../_images/01f244402752b307712953954baee355cdff3c39cc26299d504aaf18ca9eb2c4.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1496,17 +1417,17 @@ def plot_ccm_correls(self):
 Y-&gt;X r -0.11 p value 0.77
 </pre></div>
 </div>
-<img alt="../_images/ccm_sugihara_57_1.png" src="../_images/ccm_sugihara_57_1.png" />
+<img alt="../_images/daec5a30a21b81e5da66e32c9b2d138b1f7d21e47df4f6fb9b7f4218d137c7a4.png" src="../_images/daec5a30a21b81e5da66e32c9b2d138b1f7d21e47df4f6fb9b7f4218d137c7a4.png" />
 </div>
 </div>
 <p><strong>Discussion</strong></p>
 <p>Although for time period up to 7, it might look like there is convergence as shown by improvement in crossmapping correlation, proceeding further results in drop in convergence. We conclude that these two variables are not causally linked.</p>
-</div>
-<div class="section" id="dam-system">
-<h3>Dam System<a class="headerlink" href="#dam-system" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="dam-system">
+<h3>Dam System<a class="headerlink" href="#dam-system" title="Permalink to this heading">#</a></h3>
 <p>We then look at two dam systems in the Philippines: Angat Dam and Ipo Dam as well as rainfall and irrigation water flow rate (NIA).</p>
-<div class="section" id="angat-dam-vs-rain">
-<h4>Angat Dam vs Rain<a class="headerlink" href="#angat-dam-vs-rain" title="Permalink to this headline">¶</a></h4>
+<section id="angat-dam-vs-rain">
+<h4>Angat Dam vs Rain<a class="headerlink" href="#angat-dam-vs-rain" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Num Angat Dam Level vs NIA (what is NIA?)</span>
@@ -1516,7 +1437,7 @@ Y-&gt;X r -0.11 p value 0.77
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ccm_sugihara_61_0.png" src="../_images/ccm_sugihara_61_0.png" />
+<img alt="../_images/fcba090ceb3c49c82d1d28cb15142ac9b9f5599526714facefedc3d1fb4e6ca6.png" src="../_images/fcba090ceb3c49c82d1d28cb15142ac9b9f5599526714facefedc3d1fb4e6ca6.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1554,12 +1475,19 @@ Y-&gt;X r -0.11 p value 0.77
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>X-&gt;Y r 0.25 p value 0.0
+Y-&gt;X r 0.17 p value 0.0
+</pre></div>
+</div>
+<img alt="../_images/5e75587128ddcfbeb7ba7bc206a6838743466c5603147698ef4d3f7f2fac7746.png" src="../_images/5e75587128ddcfbeb7ba7bc206a6838743466c5603147698ef4d3f7f2fac7746.png" />
+</div>
 </div>
 <p><strong>Discussion</strong></p>
 <p>Rain’s effect on dam levels shows some convergence as we increase the time period <span class="math notranslate nohighlight">\(L\)</span>. However, convergence is not clear on the effect of dam level on rain.</p>
-</div>
-<div class="section" id="angat-dam-vs-nia">
-<h4>Angat Dam vs NIA<a class="headerlink" href="#angat-dam-vs-nia" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="angat-dam-vs-nia">
+<h4>Angat Dam vs NIA<a class="headerlink" href="#angat-dam-vs-nia" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Num Angat Dam Level vs NIA (what is NIA?)</span>
@@ -1569,7 +1497,7 @@ Y-&gt;X r -0.11 p value 0.77
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ccm_sugihara_65_0.png" src="../_images/ccm_sugihara_65_0.png" />
+<img alt="../_images/c374e7300addffef7ca5489cf216e2959cd74395e3326b07ef9a364e0bea61a8.png" src="../_images/c374e7300addffef7ca5489cf216e2959cd74395e3326b07ef9a364e0bea61a8.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1612,14 +1540,14 @@ Y-&gt;X r -0.11 p value 0.77
 Y-&gt;X r 0.65 p value 0.0
 </pre></div>
 </div>
-<img alt="../_images/ccm_sugihara_66_1.png" src="../_images/ccm_sugihara_66_1.png" />
+<img alt="../_images/9b6db67d34df8e2fb0ff077e071750d81d077fae9561cc51da4816089cb14fe9.png" src="../_images/9b6db67d34df8e2fb0ff077e071750d81d077fae9561cc51da4816089cb14fe9.png" />
 </div>
 </div>
 <p><strong>Discussion</strong></p>
 <p>Convergence is cleaner for the effect of irrigation water flow on Dam level. However there is still a rather noisy convergence for the effect of dam level on irrigation water flow.</p>
-</div>
-<div class="section" id="ipo-dam-vs-rain">
-<h4>Ipo Dam vs Rain<a class="headerlink" href="#ipo-dam-vs-rain" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="ipo-dam-vs-rain">
+<h4>Ipo Dam vs Rain<a class="headerlink" href="#ipo-dam-vs-rain" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Num Ipo Dam Level vs NIA (what is NIA?)</span>
@@ -1629,7 +1557,7 @@ Y-&gt;X r 0.65 p value 0.0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ccm_sugihara_69_0.png" src="../_images/ccm_sugihara_69_0.png" />
+<img alt="../_images/0aa7dd3e2c7952df058ade15ce22515fa621dcfd2fc2e1300cce07d311b0c8d2.png" src="../_images/0aa7dd3e2c7952df058ade15ce22515fa621dcfd2fc2e1300cce07d311b0c8d2.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1672,14 +1600,14 @@ Y-&gt;X r 0.65 p value 0.0
 Y-&gt;X r 0.05 p value 0.0
 </pre></div>
 </div>
-<img alt="../_images/ccm_sugihara_70_1.png" src="../_images/ccm_sugihara_70_1.png" />
+<img alt="../_images/81a46830f137a51bcc3b3f1de4793bb094929767277f21e18e578411599f6e9f.png" src="../_images/81a46830f137a51bcc3b3f1de4793bb094929767277f21e18e578411599f6e9f.png" />
 </div>
 </div>
 <p><strong>Discussion</strong></p>
 <p>Convergence is clear for the effect of rain on dam levels. Meanwhile there is no convergence for the effect of dam levels on rain.</p>
-</div>
-<div class="section" id="ipo-dam-vs-nia">
-<h4>Ipo Dam vs NIA<a class="headerlink" href="#ipo-dam-vs-nia" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="ipo-dam-vs-nia">
+<h4>Ipo Dam vs NIA<a class="headerlink" href="#ipo-dam-vs-nia" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Num Ipo Dam Level vs NIA (what is NIA?)</span>
@@ -1689,7 +1617,7 @@ Y-&gt;X r 0.05 p value 0.0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ccm_sugihara_73_0.png" src="../_images/ccm_sugihara_73_0.png" />
+<img alt="../_images/f03c653b096ce87cec5ffaa4899a57e137617001d142b66dbfa748577a0ff350.png" src="../_images/f03c653b096ce87cec5ffaa4899a57e137617001d142b66dbfa748577a0ff350.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1732,14 +1660,14 @@ Y-&gt;X r 0.05 p value 0.0
 Y-&gt;X r 0.21 p value 0.0
 </pre></div>
 </div>
-<img alt="../_images/ccm_sugihara_74_1.png" src="../_images/ccm_sugihara_74_1.png" />
+<img alt="../_images/66543fc8ea0e906cf2236715227ed69be1d7b36eb29e08fe792ece1b89ab16b3.png" src="../_images/66543fc8ea0e906cf2236715227ed69be1d7b36eb29e08fe792ece1b89ab16b3.png" />
 </div>
 </div>
 <p><strong>Discussion</strong></p>
 <p>Convergence is clear for the effect of irrigation water flow on dam levels but it is not clear for the effect of dam levels on irrigation water flow.</p>
-</div>
-<div class="section" id="ipo-dam-vs-angat-dam">
-<h4>Ipo Dam vs Angat Dam<a class="headerlink" href="#ipo-dam-vs-angat-dam" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="ipo-dam-vs-angat-dam">
+<h4>Ipo Dam vs Angat Dam<a class="headerlink" href="#ipo-dam-vs-angat-dam" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Num Ipo Dam Level vs Angat Dam Level</span>
@@ -1753,7 +1681,7 @@ Y-&gt;X r 0.21 p value 0.0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ccm_sugihara_77_0.png" src="../_images/ccm_sugihara_77_0.png" />
+<img alt="../_images/4da7fe10a25e8a5b7b50d7f4ae61506c82fb40c8b21a127d641dea9f113a2367.png" src="../_images/4da7fe10a25e8a5b7b50d7f4ae61506c82fb40c8b21a127d641dea9f113a2367.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1796,20 +1724,20 @@ Y-&gt;X r 0.21 p value 0.0
 Y-&gt;X r 0.2 p value 0.0
 </pre></div>
 </div>
-<img alt="../_images/ccm_sugihara_78_1.png" src="../_images/ccm_sugihara_78_1.png" />
+<img alt="../_images/f1425b3d301ccddd76fb0baea3521b605d14db695240a739d413bead2b9bd6f0.png" src="../_images/f1425b3d301ccddd76fb0baea3521b605d14db695240a739d413bead2b9bd6f0.png" />
 </div>
 </div>
 <p><strong>Discussion</strong></p>
 <p>The effect of Angat dam level is stronger on Ipo than the reverse. Also note that convergence is not clear for the effect of Ipo dam level on Angat dam level.</p>
-</div>
-</div>
-<div class="section" id="dam-system-inferred-causal-relationships">
-<h3>Dam System Inferred Causal Relationships<a class="headerlink" href="#dam-system-inferred-causal-relationships" title="Permalink to this headline">¶</a></h3>
+</section>
+</section>
+<section id="dam-system-inferred-causal-relationships">
+<h3>Dam System Inferred Causal Relationships<a class="headerlink" href="#dam-system-inferred-causal-relationships" title="Permalink to this heading">#</a></h3>
 <p>Based on the results above, we can infer a network of causal relationships. Relationships with unclear convergence are shown in broken lines while relationships with clear convergence are shown in solid lines.
 <a class="reference internal" href="../_images/dam_inferred_causality.png"><img alt="../_images/dam_inferred_causality.png" src="../_images/dam_inferred_causality.png" style="width: 400px;" /></a></p>
-</div>
-<div class="section" id="jena-climate-data">
-<h3>Jena climate data<a class="headerlink" href="#jena-climate-data" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="jena-climate-data">
+<h3>Jena climate data<a class="headerlink" href="#jena-climate-data" title="Permalink to this heading">#</a></h3>
 <p>Here, we look at at some climate data taken from the Max Planck Institute for Biogeochemistry in Jena, Germany from 2009 to 2016</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1820,7 +1748,7 @@ Y-&gt;X r 0.2 p value 0.0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ccm_sugihara_82_0.png" src="../_images/ccm_sugihara_82_0.png" />
+<img alt="../_images/dbf7fdf4277b3283875ef81a538ea3386a99a90a19c3e5cfee6765b07b3911a6.png" src="../_images/dbf7fdf4277b3283875ef81a538ea3386a99a90a19c3e5cfee6765b07b3911a6.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1860,17 +1788,17 @@ Y-&gt;X r 0.2 p value 0.0
 Y-&gt;X r 0.52 p value 0.0
 </pre></div>
 </div>
-<img alt="../_images/ccm_sugihara_83_1.png" src="../_images/ccm_sugihara_83_1.png" />
+<img alt="../_images/1714b598a9cc55e5b7c1a7a97d3802473124ded2378faead07089a58641574e7.png" src="../_images/1714b598a9cc55e5b7c1a7a97d3802473124ded2378faead07089a58641574e7.png" />
 </div>
 </div>
 <p><strong>Discussion</strong>
 It seems there is bidirectional (assuming no strong forcing) relationship between pressure and temperature with pressure having more effect on temperature.</p>
-</div>
-<div class="section" id="climate-change">
-<h3>Climate change<a class="headerlink" href="#climate-change" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="climate-change">
+<h3>Climate change<a class="headerlink" href="#climate-change" title="Permalink to this heading">#</a></h3>
 <p>Here, we look at climate data taken from climate.nasa.gov.</p>
-<div class="section" id="co2-emissions-global-temperature-and-arctic-ice-area-non-ecological">
-<h4>CO2 emissions, global temperature, and arctic ice area (Non-ecological)<a class="headerlink" href="#co2-emissions-global-temperature-and-arctic-ice-area-non-ecological" title="Permalink to this headline">¶</a></h4>
+<section id="co2-emissions-global-temperature-and-arctic-ice-area-non-ecological">
+<h4>CO2 emissions, global temperature, and arctic ice area (Non-ecological)<a class="headerlink" href="#co2-emissions-global-temperature-and-arctic-ice-area-non-ecological" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/co2_temp - combined.csv&#39;</span><span class="p">)</span>
@@ -1879,7 +1807,7 @@ It seems there is bidirectional (assuming no strong forcing) relationship betwee
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ccm_sugihara_87_0.png" src="../_images/ccm_sugihara_87_0.png" />
+<img alt="../_images/b2690f6ada07ba2afe89541d62a3d23ec2eb620b3d4d96a3ac2f2005cf3f6db7.png" src="../_images/b2690f6ada07ba2afe89541d62a3d23ec2eb620b3d4d96a3ac2f2005cf3f6db7.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1919,7 +1847,7 @@ It seems there is bidirectional (assuming no strong forcing) relationship betwee
 Y-&gt;X r 0.95 p value 0.0
 </pre></div>
 </div>
-<img alt="../_images/ccm_sugihara_88_1.png" src="../_images/ccm_sugihara_88_1.png" />
+<img alt="../_images/66bdabd529a8a2aba680bcb68d33a83a61fded5f919a65531f9f2d191436089c.png" src="../_images/66bdabd529a8a2aba680bcb68d33a83a61fded5f919a65531f9f2d191436089c.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1930,7 +1858,7 @@ Y-&gt;X r 0.95 p value 0.0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ccm_sugihara_89_0.png" src="../_images/ccm_sugihara_89_0.png" />
+<img alt="../_images/0daf86c925e845e97e8ac2a8fdce09e234b8be76e80f7a4b4529ce9711596f57.png" src="../_images/0daf86c925e845e97e8ac2a8fdce09e234b8be76e80f7a4b4529ce9711596f57.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1970,7 +1898,7 @@ Y-&gt;X r 0.95 p value 0.0
 Y-&gt;X r 0.8 p value 0.0
 </pre></div>
 </div>
-<img alt="../_images/ccm_sugihara_90_1.png" src="../_images/ccm_sugihara_90_1.png" />
+<img alt="../_images/26310c3c4bc61dee5537656078a5d5db6b1fc1e6263b0541627ca27508563c88.png" src="../_images/26310c3c4bc61dee5537656078a5d5db6b1fc1e6263b0541627ca27508563c88.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1981,7 +1909,7 @@ Y-&gt;X r 0.8 p value 0.0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ccm_sugihara_91_0.png" src="../_images/ccm_sugihara_91_0.png" />
+<img alt="../_images/d43b307e62ae9b687525b678797b81833d5244d1a0c7ee6c8fffd94b9e832f41.png" src="../_images/d43b307e62ae9b687525b678797b81833d5244d1a0c7ee6c8fffd94b9e832f41.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2021,7 +1949,7 @@ Y-&gt;X r 0.8 p value 0.0
 Y-&gt;X r 0.69 p value 0.0
 </pre></div>
 </div>
-<img alt="../_images/ccm_sugihara_92_1.png" src="../_images/ccm_sugihara_92_1.png" />
+<img alt="../_images/c9f5a23f561d9ee505fd2621dc07ba968c6d46bf5ae8d1e8d5185e84aafe8f3d.png" src="../_images/c9f5a23f561d9ee505fd2621dc07ba968c6d46bf5ae8d1e8d5185e84aafe8f3d.png" />
 </div>
 </div>
 <p><strong>Discussion</strong></p>
@@ -2030,10 +1958,10 @@ Y-&gt;X r 0.69 p value 0.0
 <li><p>How do we interpret the plots above? Did we meet the requirement of convergent cross mapping (convergence and cross mapping) to say there’s causality between each pair of variables?</p></li>
 <li><p>How do we relate the concept of “strong forcing” on how we interpret the results?</p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="inferred-climate-system-causal-relationships">
-<h3>Inferred Climate System Causal Relationships<a class="headerlink" href="#inferred-climate-system-causal-relationships" title="Permalink to this headline">¶</a></h3>
+</section>
+</section>
+<section id="inferred-climate-system-causal-relationships">
+<h3>Inferred Climate System Causal Relationships<a class="headerlink" href="#inferred-climate-system-causal-relationships" title="Permalink to this heading">#</a></h3>
 <a class="reference internal image-reference" href="../_images/climate_causality.png"><img alt="../_images/climate_causality.png" src="../_images/climate_causality.png" style="width: 400px;" /></a>
 <p>Based on the results above, we can infer a network of causal relationships. There seems to be a strong feedback loops between all three elements in the system. Upon checking past researches on the topic, we find that there are papers that support the seemingly unintuitive interactions in the inferred causal network:</p>
 <ul class="simple">
@@ -2042,18 +1970,18 @@ Y-&gt;X r 0.69 p value 0.0
 <li><p><a class="reference external" href="https://iopscience.iop.org/article/10.1088/0022-3727/45/44/445302">Carbon dioxide enhances fragility of ice crystals</a></p></li>
 <li><p><a class="reference external" href="https://www.nature.com/news/how-carbon-dioxide-melted-the-world-1.10393">How carbon dioxide melted the world</a></p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="limitation">
-<h2>Limitation<a class="headerlink" href="#limitation" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="limitation">
+<h2>Limitation<a class="headerlink" href="#limitation" title="Permalink to this heading">#</a></h2>
 <p>We have shown how CCM can be a powerful tool for quantifying causalities between variables by using just time series data. However, the CCM has a limitation that we need to acknowledge: when “strong forcing” exists between two variables, bidirectional convergent cross mapping may still happen even with unidirectional causality. We must rule out strong forcing before we can explore if two variables have bidirectional causality.</p>
-</div>
-<div class="section" id="summary">
-<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this heading">#</a></h2>
 <p>In this chapter we discussed the theory and algorithm behind Convergent Cross Mapping methodology to infer causality between variables using time series data. We then applied it on simulated and real world data. In the next chapter we will discuss techniques for finding pattens in time series data namely cross correlation, Fourier transform, and Wavelet transform.</p>
-</div>
-<div class="section" id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
 <p><strong>Main references</strong></p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://science.sciencemag.org/content/338/6106/496">Sugihara, G. et al., 2012. Detecting Causality in Complex Ecosystems. Science, 338(6106), pp.496-500.</a></p></li>
@@ -2076,10 +2004,10 @@ A test of Convergent Cross-Mapping. arXiv</a></p></li>
 <li><p><a class="reference external" href="https://github.com/myazdani/spurious-correlation-studies/tree/master/data">Nicolas Cage Movies &amp; Drownings Stats</a></p></li>
 <li><p><a class="reference external" href="https://climate.nasa.gov/vital-signs/carbon-dioxide/">Climate data</a></p></li>
 </ul>
+</section>
 <div class="toctree-wrapper compound">
 </div>
-</div>
-</div>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -2093,7 +2021,7 @@ A test of Convergent Cross-Mapping. arXiv</a></p></li>
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./06_ConvergentCrossMappingandSugiharaCausality"
         },
         predefinedOutput: true
@@ -2101,38 +2029,155 @@ A test of Convergent Cross-Mapping. arXiv</a></p></li>
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-        </div>
-    </div>
-    
-    
-    <div class='prev-next-bottom'>
-        
-    <a class='left-prev' id="prev-link" href="../05_SimplexandSmapProjections/05_Empirical%20Dynamic%20Modelling%20%28Simplex%20and%20SMap_Projections%29.html" title="previous page">Chapter 5 : Dynamical Forecasting Methods (Simplex and SMap Projections)</a>
-    <a class='right-next' id="next-link" href="using_causal_ccm_package.html" title="next page">Applying CCM Using causal-ccm package</a>
 
-    </div>
-    <footer class="footer mt-5 mt-md-0">
-    <div class="container">
-      <p>
-        
-          By students of PhD in Data Science Batch 2023 at the Asian Institute of Management<br/>
-        
-            &copy; Copyright 2020.<br/>
-      </p>
-    </div>
-  </footer>
-</main>
-
-
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../05_SimplexandSmapProjections/05_Empirical%20Dynamic%20Modelling%20%28Simplex%20and%20SMap_Projections%29.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Chapter 5 : Dynamical Forecasting Methods (Simplex and SMap Projections)</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="using_causal_ccm_package.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Applying CCM Using causal-ccm package</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#causal-ccm-package">causal-ccm Package</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#importance-of-understanding-causality">Importance of Understanding Causality</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#limitations-of-granger-causality">Limitations of Granger Causality</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ccm-addresses-limits-of-granger-causality">CCM addresses limits of Granger causality</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#related-concepts">Related Concepts</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deterministic-dynamical-systems">Deterministic Dynamical Systems</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attractors">Attractors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#takens-embedding-theorem-and-shadow-manifolds">Takens’ Embedding Theorem and Shadow Manifolds</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview-of-ccm">Overview of CCM</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-mapping">Cross Mapping</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convergence">Convergence</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-our-sample-system">Defining our Sample System</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ccm-algorithm">CCM Algorithm</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-ccm-functions">Defining CCM Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#functions-for-visualizing">Functions for Visualizing</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#applying-ccm-to-our-sample-systems">Applying CCM to our Sample Systems</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#can-ccm-predict-causality-in-our-test-system">Can CCM predict causality in our test system?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-betas-affect-causality-as-indicated-by-convergence">How Betas Affect Causality As Indicated By Convergence</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-if-asymmetrically-coupled-the-effect-is-only-in-one-direction">What if asymmetrically coupled (the effect is only in one direction)?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#effect-of-strong-forcing">Effect of “Strong Forcing”</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#application-in-real-world-systems">Application in Real World Systems</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nicolas-cage-films-and-number-of-drowned-victims-in-the-us">Nicolas Cage Films and Number of Drowned Victims in the US</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dam-system">Dam System</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#angat-dam-vs-rain">Angat Dam vs Rain</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#angat-dam-vs-nia">Angat Dam vs NIA</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ipo-dam-vs-rain">Ipo Dam vs Rain</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ipo-dam-vs-nia">Ipo Dam vs NIA</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ipo-dam-vs-angat-dam">Ipo Dam vs Angat Dam</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dam-system-inferred-causal-relationships">Dam System Inferred Causal Relationships</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jena-climate-data">Jena climate data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#climate-change">Climate change</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#co2-emissions-global-temperature-and-arctic-ice-area-non-ecological">CO2 emissions, global temperature, and arctic ice area (Non-ecological)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inferred-climate-system-causal-relationships">Inferred Climate System Causal Relationships</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limitation">Limitation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Trần Vũ Quang Huy - TLU
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
     </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    
-  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
-
-
-    
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

@@ -1,570 +1,449 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" data-content_root="" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chapter 3: Vector Autoregressive Methods &#8212; Time Series Analysis Handbook</title>
-    
-  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    
-  <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+    <title>Chapter 3: Vector Autoregressive Methods &#8212; Bản dịch Time Series Analysis Handbook</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    
-      
-  <link rel="stylesheet"
-    href="../_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    
-  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script >
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '03_VectorAutoregressiveModels/03_VectorAutoregressiveMethods';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Chapter 4: Granger Causality Test" href="../04_GrangerCausality/04_GrangerCausality.html" />
     <link rel="prev" title="Chapter 2: Linear, Trend, and Momentum Forecasting" href="../02_LinearForecastingTrendandMomentumForecasting/02_LinearTrendandMomentumForecasting.html" />
-
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
-
-
-
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    <div class="container-xl">
-      <div class="row">
-          
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
     
-        <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="../index.html">
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../Preface/Preface.html">
   
   
-  <h1 class="site-logo" id="site-title">Time Series Analysis Handbook</h1>
   
+  
+  
+  
+    <p class="title logo__title">Bản dịch Time Series Analysis Handbook</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../Preface/Preface.html">
+                    Preface: Introduction to Time Series Analysis
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../00_Introduction/00_Introduction.html">Chương 0: Phân tích Chuỗi Thời gian Nâng cao</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_AutoRegressiveIntegratedMovingAverage/01_AutoRegressiveIntegratedMovingAverage.html">Chương 1: Mô hình Trung bình động tích hợp tự hồi quy (AutoRegressive Integrated Moving Average - ARIMA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_LinearForecastingTrendandMomentumForecasting/02_LinearTrendandMomentumForecasting.html">Chapter 2: Linear, Trend, and Momentum Forecasting</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Chapter 3: Vector Autoregressive Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_GrangerCausality/04_GrangerCausality.html">Chapter 4: Granger Causality Test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_SimplexandSmapProjections/05_Empirical%20Dynamic%20Modelling%20%28Simplex%20and%20SMap_Projections%29.html">Chapter 5 : Dynamical Forecasting Methods (Simplex and SMap Projections)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../06_ConvergentCrossMappingandSugiharaCausality/ccm_sugihara.html">Chapter 6: Convergent Cross Mapping</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../06_ConvergentCrossMappingandSugiharaCausality/using_causal_ccm_package.html">Applying CCM Using causal-ccm package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../07_CrosscorrelationsFourierTransformandWaveletTransform/07_CrosscorrelationsFourierTransformandWaveletTransform.html">Chapter 7: Cross-Correlations, Fourier Transform, and Wavelet Transform</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../08_WinningestMethods/lightgbm_m5_forecasting.html">Chapter 8: Winningest Methods in Time Series Forecasting</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../08_WinningestMethods/lightgbm_m5_tuning.html">Hyperparameter Tuning (Supplementary Notebook)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../08_WinningestMethods/lightgbm_jena_forecasting.html">Temperature Forecasting (Supplementary Notebook)</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/03_VectorAutoregressiveModels/03_VectorAutoregressiveMethods.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
 </a>
-</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <ul class="nav sidenav_l1">
- <li class="toctree-l1">
-  <a class="reference internal" href="../Preface/Preface.html">
-   Preface: Introduction to Time Series Analysis
-  </a>
- </li>
-</ul>
-<ul class="current nav sidenav_l1">
- <li class="toctree-l1">
-  <a class="reference internal" href="../00_Introduction/00_Introduction.html">
-   Chapter 0: Advanced Time Series Analysis
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../01_AutoRegressiveIntegratedMovingAverage/01_AutoRegressiveIntegratedMovingAverage.html">
-   Chapter 1: AutoRegressive Integrated Moving Average (ARIMA)
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../02_LinearForecastingTrendandMomentumForecasting/02_LinearTrendandMomentumForecasting.html">
-   Chapter 2: Linear, Trend, and Momentum Forecasting
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Chapter 3: Vector Autoregressive Methods
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../04_GrangerCausality/04_GrangerCausality.html">
-   Chapter 4: Granger Causality Test
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../05_SimplexandSmapProjections/05_Empirical%20Dynamic%20Modelling%20%28Simplex%20and%20SMap_Projections%29.html">
-   Chapter 5 : Dynamical Forecasting Methods (Simplex and SMap Projections)
-  </a>
- </li>
- <li class="toctree-l1 collapsible-parent">
-  <a class="reference internal" href="../06_ConvergentCrossMappingandSugiharaCausality/ccm_sugihara.html">
-   Chapter 6: Convergent Cross Mapping
-  </a>
-  <ul class="collapse-ul">
-   <li class="toctree-l2">
-    <a class="reference internal" href="../06_ConvergentCrossMappingandSugiharaCausality/using_causal_ccm_package.html">
-     Applying CCM Using causal-ccm package
-    </a>
-   </li>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../07_CrosscorrelationsFourierTransformandWaveletTransform/07_CrosscorrelationsFourierTransformandWaveletTransform.html">
-   Chapter 7: Cross-Correlations, Fourier Transform, and Wavelet Transform
-  </a>
- </li>
- <li class="toctree-l1 collapsible-parent">
-  <a class="reference internal" href="../08_WinningestMethods/lightgbm_m5_forecasting.html">
-   Chapter 8: Winningest Methods in Time Series Forecasting
-  </a>
-  <ul class="collapse-ul">
-   <li class="toctree-l2">
-    <a class="reference internal" href="../08_WinningestMethods/lightgbm_m5_tuning.html">
-     Hyperparameter Tuning (Supplementary Notebook)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../08_WinningestMethods/lightgbm_jena_forecasting.html">
-     Temperature Forecasting (Supplementary Notebook)
-    </a>
-   </li>
-  </ul>
-  <i class="fas fa-chevron-down">
-  </i>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../data/README.html">
-   Datasets
-  </a>
- </li>
-</ul>
-
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
 </div>
 
 
-          
 
 
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
     </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/03_VectorAutoregressiveModels/03_VectorAutoregressiveMethods.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
+  
 </div>
-
-        <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/phdinds-aim/time_series_handbook"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/phdinds-aim/time_series_handbook/issues/new?title=Issue%20on%20page%20%2F03_VectorAutoregressiveModels/03_VectorAutoregressiveMethods.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        
-    </div>
 </div>
+              
+              
 
-
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
-
-        <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/phdinds-aim/time_series_handbook/main?urlpath=tree/03_VectorAutoregressiveModels/03_VectorAutoregressiveMethods.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        
-    </div>
-</div>
-
-    </div>
-
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Chapter 3: Vector Autoregressive Methods</h1>
     <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
-        </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#multivariate-time-series-model">
-   Multivariate Time Series Model
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#definition-univariate-vs-multivariate-time-series">
-     Definition: Univariate vs Multivariate Time Series
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#example-1-multivariate-time-series">
-     Example 1: Multivariate Time Series
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#a-air-quality-data-from-uci">
-       A. Air Quality Data from UCI
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#b-global-health-from-the-world-bank">
-       B. Global Health from The World Bank
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#c-us-treasury-rates">
-       C. US Treasury Rates
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#d-jena-climate-data">
-       D. Jena Climate Data
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#foundations">
-     Foundations
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#weak-stationarity-of-multivariate-time-series">
-       Weak Stationarity of Multivariate Time Series
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#obtaining-cross-correlation-matrix-from-cross-covariance-matrix">
-       Obtaining Cross-Correlation Matrix from Cross-Covariance Matrix
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#vector-autoregressive-var-models">
-   Vector Autoregressive (VAR) Models
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#var-1-model">
-     VAR(1) Model
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#structural-and-reduced-forms-of-the-var-model">
-       Structural and Reduced Forms of the VAR model
-      </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h5 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#structural-var-var-in-primitive-form">
-         Structural VAR (VAR in primitive form)
-        </a>
-       </li>
-       <li class="toc-h5 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#reduced-form-var-var-in-standard-form">
-         Reduced-form VAR (VAR in standard form)
-        </a>
-       </li>
-      </ul>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#vma-infinite-representation-and-stationarity">
-       VMA infinite representation and Stationarity
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#stationarity-of-the-var-1-model">
-       Stationarity of the VAR(1) model
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#var-p-model">
-     VAR(p) Model
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#properties">
-       Properties
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#stationarity-of-var-p-model">
-       Stationarity of VAR(p) model
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#specification-of-a-var-model-choosing-the-order-p">
-     Specification of a VAR model: Choosing the order
-     <em>
-      p
-     </em>
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#building-a-var-model">
-   Building a VAR model
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#example-2-forecasting-air-quality-data-co-no2-and-rh">
-     Example 2: Forecasting Air Quality Data (CO, NO2 and RH)
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#check-stationarity">
-       1. Check stationarity
-      </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h5 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#kwiatkowskiphillipsschmidtshin-kpss-test">
-         Kwiatkowski–Phillips–Schmidt–Shin (KPSS) test
-        </a>
-       </li>
-       <li class="toc-h5 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#augmented-dickey-fuller-adf-test">
-         Augmented Dickey-Fuller (ADF) test
-        </a>
-       </li>
-      </ul>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#split-data-into-train-and-test-sets">
-       2. Split data into train and test sets
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#select-order-p">
-       3. Select order
-       <em>
-        p
-       </em>
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#fit-var-model-with-chosen-order">
-       3. Fit VAR model with chosen order
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#get-forecast">
-       4. Get forecast
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#performance-evaluation-comparison-with-arima-model">
-       Performance Evaluation: Comparison with ARIMA model
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#structural-var-analysis">
-   Structural VAR Analysis
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#impulse-response-function-irf">
-     Impulse Response Function (IRF)
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#irf-in-the-var-system-for-air-quality">
-       IRF in the VAR system for Air Quality
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#forecast-error-variance-decomposition-fevd">
-     Forecast Error Variance Decomposition (FEVD)
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#example-3-forecasting-the-jena-climate-data">
-     Example 3: Forecasting the Jena climate data
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#load-dataset">
-       Load dataset
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#check-stationarity-of-each-variable-using-adf-test">
-       Check stationarity of each variable using ADF test
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id1">
-       Select order p
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#train-var-model-using-the-training-and-validation-data">
-       Train VAR model using the training and validation data
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#forecast-24-hour-weather-measurements-and-evaluate-performance-on-test-set">
-       Forecast 24-hour weather measurements and evaluate performance on test set
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#forecast-24-hours-beyond-test-set">
-       Forecast 24 hours beyond test set
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#summary">
-   Summary
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#preview-to-the-next-chapter">
-   Preview to the Next Chapter
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#references">
-   References
-  </a>
- </li>
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multivariate-time-series-model">Multivariate Time Series Model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definition-univariate-vs-multivariate-time-series">Definition: Univariate vs Multivariate Time Series</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1-multivariate-time-series">Example 1: Multivariate Time Series</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-air-quality-data-from-uci">A. Air Quality Data from UCI</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#b-global-health-from-the-world-bank">B. Global Health from The World Bank</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c-us-treasury-rates">C. US Treasury Rates</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#d-jena-climate-data">D. Jena Climate Data</a></li>
 </ul>
-
-        </nav>
-        
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#foundations">Foundations</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#weak-stationarity-of-multivariate-time-series">Weak Stationarity of Multivariate Time Series</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#obtaining-cross-correlation-matrix-from-cross-covariance-matrix">Obtaining Cross-Correlation Matrix from Cross-Covariance Matrix</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vector-autoregressive-var-models">Vector Autoregressive (VAR) Models</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#var-1-model">VAR(1) Model</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#structural-and-reduced-forms-of-the-var-model">Structural and Reduced Forms of the VAR model</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#structural-var-var-in-primitive-form">Structural VAR (VAR in primitive form)</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#reduced-form-var-var-in-standard-form">Reduced-form VAR (VAR in standard form)</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#vma-infinite-representation-and-stationarity">VMA infinite representation and Stationarity</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#stationarity-of-the-var-1-model">Stationarity of the VAR(1) model</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#var-p-model">VAR(p) Model</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#properties">Properties</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#stationarity-of-var-p-model">Stationarity of VAR(p) model</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#specification-of-a-var-model-choosing-the-order-p">Specification of a VAR model: Choosing the order <em>p</em></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-a-var-model">Building a VAR model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-forecasting-air-quality-data-co-no2-and-rh">Example 2: Forecasting Air Quality Data (CO, NO2 and RH)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#check-stationarity">1. Check stationarity</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#kwiatkowskiphillipsschmidtshin-kpss-test">Kwiatkowski–Phillips–Schmidt–Shin (KPSS) test</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#augmented-dickey-fuller-adf-test">Augmented Dickey-Fuller (ADF) test</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#split-data-into-train-and-test-sets">2. Split data into train and test sets</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#select-order-p">3. Select order <em>p</em></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#fit-var-model-with-chosen-order">3. Fit VAR model with chosen order</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#get-forecast">4. Get forecast</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-evaluation-comparison-with-arima-model">Performance Evaluation: Comparison with ARIMA model</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#structural-var-analysis">Structural VAR Analysis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#impulse-response-function-irf">Impulse Response Function (IRF)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#irf-in-the-var-system-for-air-quality">IRF in the VAR system for Air Quality</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#forecast-error-variance-decomposition-fevd">Forecast Error Variance Decomposition (FEVD)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-3-forecasting-the-jena-climate-data">Example 3: Forecasting the Jena climate data</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#load-dataset">Load dataset</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#check-stationarity-of-each-variable-using-adf-test">Check stationarity of each variable using ADF test</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Select order p</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#train-var-model-using-the-training-and-validation-data">Train VAR model using the training and validation data</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#forecast-24-hour-weather-measurements-and-evaluate-performance-on-test-set">Forecast 24-hour weather measurements and evaluate performance on test set</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#forecast-24-hours-beyond-test-set">Forecast 24 hours beyond test set</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preview-to-the-next-chapter">Preview to the Next Chapter</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+            </nav>
+        </div>
     </div>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
-              <div>
+
+              
                 
-  <div class="section" id="chapter-3-vector-autoregressive-methods">
-<h1>Chapter 3: Vector Autoregressive Methods<a class="headerlink" href="#chapter-3-vector-autoregressive-methods" title="Permalink to this headline">¶</a></h1>
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="chapter-3-vector-autoregressive-methods">
+<h1>Chapter 3: Vector Autoregressive Methods<a class="headerlink" href="#chapter-3-vector-autoregressive-methods" title="Permalink to this heading">#</a></h1>
 <p>Prepared by: Maria Eloisa Ventura</p>
 <p>Previously, we have introduced the classical approaches in forecasting single/univariate time series like the
 ARIMA (autoregressive integrated moving-average) model and the simple linear regression model. We learned that stationarity is a condition that is necessary when using ARIMA while this need not be imposed when using the linear regression model. In this notebook, we extend the forecasting problem to a more generalized framework where we deal with <strong>multivariate time series</strong>–time series which has more than one time-dependent variable. More specifically, we introduce <strong>vector autoregressive (VAR)</strong> models and show how they can be used in forecasting mutivariate time series.</p>
-<div class="section" id="multivariate-time-series-model">
-<h2>Multivariate Time Series Model<a class="headerlink" href="#multivariate-time-series-model" title="Permalink to this headline">¶</a></h2>
+<section id="multivariate-time-series-model">
+<h2>Multivariate Time Series Model<a class="headerlink" href="#multivariate-time-series-model" title="Permalink to this heading">#</a></h2>
 <p>As shown in the previous chapters, one of the main advantages of using simple univariate methods (e.g., ARIMA) is the ability to forecast future values of one variable by only using past values of itself. However, we know that most if not all of the variables that we observe are actually dependent on other variables. Most of the time, the information that we gather is limited by our capacity to measure the variables of interest. For example, if we want to study weather in a particular city, we could measure temperature, humidity and precipitation over time. But if we only have a thermometer, then we’ll only be able to collect data for temperature, effectively reducing our dataset to a univariate time series.</p>
 <p>Now, in cases where we have multiple time series (longitudinal measurements of more than one variable), we can actually use multivariate time series models to understand the relationships of the different variables over time.
 By utilizing the additional information available from related series, these models can often provide better forecasts than the univariate time series models.</p>
 <p>In this section, we cover the foundational information needed to understand Vector Autoregressive Models, a class of multivariate time series models, by using a framework similar to univariate time series laid out in the previous chapters, and extending it to the multivariate case.</p>
-<div class="section" id="definition-univariate-vs-multivariate-time-series">
-<h3>Definition: Univariate vs Multivariate Time Series<a class="headerlink" href="#definition-univariate-vs-multivariate-time-series" title="Permalink to this headline">¶</a></h3>
+<section id="definition-univariate-vs-multivariate-time-series">
+<h3>Definition: Univariate vs Multivariate Time Series<a class="headerlink" href="#definition-univariate-vs-multivariate-time-series" title="Permalink to this heading">#</a></h3>
 <p>Time series can either be univariate or multivariate. The term <strong>univariate time series</strong> consists of single observations recorded sequentially over equal time increments. When dealing with a univariate time series model (e.g., ARIMA), we usually refer to a model that contains lag values of itself as the independent variable.</p>
 <p>On the other hand, a <strong>multivariate time series</strong> has more than one time-dependent variable. For a multivariate process, several related time series are observed simultaneously over time. As an extension of the univariate case, the multivariate time series model involves two or more input variables, and leverages the interrelationship among the different time series variables.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">statsmodels.tsa</span> <span class="k">as</span> <span class="nn">tsa</span>
-<span class="kn">from</span> <span class="nn">statsmodels.tsa.vector_ar.var_model</span> <span class="kn">import</span> <span class="n">VAR</span><span class="p">,</span> <span class="n">FEVD</span>
-<span class="kn">from</span> <span class="nn">statsmodels.tsa.arima_model</span> <span class="kn">import</span> <span class="n">ARIMA</span>
-<span class="kn">from</span> <span class="nn">statsmodels.tsa.stattools</span> <span class="kn">import</span> <span class="n">acf</span><span class="p">,</span> <span class="n">adfuller</span><span class="p">,</span> <span class="n">ccf</span><span class="p">,</span> <span class="n">ccovf</span><span class="p">,</span> <span class="n">kpss</span>
-<span class="kn">from</span> <span class="nn">statsmodels.graphics.tsaplots</span> <span class="kn">import</span> <span class="n">plot_acf</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">mvts_utils</span> <span class="k">as</span> <span class="nn">utils</span>
-<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-<span class="kn">import</span> <span class="nn">warnings</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">statsmodels.tsa</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">tsa</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">statsmodels.tsa.vector_ar.var_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">VAR</span><span class="p">,</span> <span class="n">FEVD</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">statsmodels.tsa.arima_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">ARIMA</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">statsmodels.tsa.stattools</span><span class="w"> </span><span class="kn">import</span> <span class="n">acf</span><span class="p">,</span> <span class="n">adfuller</span><span class="p">,</span> <span class="n">ccf</span><span class="p">,</span> <span class="n">ccovf</span><span class="p">,</span> <span class="n">kpss</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">statsmodels.graphics.tsaplots</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_acf</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">mvts_utils</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">utils</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
 <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.max_rows&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
 <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.max_columns&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
@@ -575,12 +454,12 @@ By utilizing the additional information available from related series, these mod
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="example-1-multivariate-time-series">
-<h3>Example 1: Multivariate Time Series<a class="headerlink" href="#example-1-multivariate-time-series" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="a-air-quality-data-from-uci">
-<h4>A. Air Quality Data from UCI<a class="headerlink" href="#a-air-quality-data-from-uci" title="Permalink to this headline">¶</a></h4>
-<p>The dataset contains hourly averaged measurements obtained from an Air Quality Chemical Multisensor Device which was located on the field of a polluted area at an Italian city. The dataset can be downloaded <strong><a class="reference external" href="https://archive.ics.uci.edu/ml/datasets/Air+Quality">here</a></strong>.</p>
+</section>
+<section id="example-1-multivariate-time-series">
+<h3>Example 1: Multivariate Time Series<a class="headerlink" href="#example-1-multivariate-time-series" title="Permalink to this heading">#</a></h3>
+<section id="a-air-quality-data-from-uci">
+<h4>A. Air Quality Data from UCI<a class="headerlink" href="#a-air-quality-data-from-uci" title="Permalink to this heading">#</a></h4>
+<p>The dataset contains hourly averaged measurements obtained from an Air Quality Chemical Multisensor Device which was located on the field of a polluted area at an Italian city. The dataset can be downloaded <strong><a class="reference external" href="https://archive.ics.uci.edu/ml/datasets/Air+Quality#">here</a></strong>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">aq_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s2">&quot;../data/AirQualityUCI/AirQualityUCI.xlsx&quot;</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[[</span><span class="s1">&#39;Date&#39;</span><span class="p">,</span> <span class="s1">&#39;Time&#39;</span><span class="p">]])</span>\
@@ -621,13 +500,9 @@ By utilizing the additional information available from related series, these mod
       <th>T</th>
       <th>RH</th>
       <th>AH</th>
-      <th>Unnamed: 15</th>
-      <th>Unnamed: 16</th>
     </tr>
     <tr>
       <th>Date_Time</th>
-      <th></th>
-      <th></th>
       <th></th>
       <th></th>
       <th></th>
@@ -645,7 +520,7 @@ By utilizing the additional information available from related series, these mod
   </thead>
   <tbody>
     <tr>
-      <th>2004-03-10 00:00:00 18:00:00</th>
+      <th>2004-03-10 18:00:00</th>
       <td>2.6</td>
       <td>1360.00</td>
       <td>150.0</td>
@@ -659,11 +534,9 @@ By utilizing the additional information available from related series, these mod
       <td>13.6</td>
       <td>48.875001</td>
       <td>0.757754</td>
-      <td>NaN</td>
-      <td>NaN</td>
     </tr>
     <tr>
-      <th>2004-03-10 00:00:00 19:00:00</th>
+      <th>2004-03-10 19:00:00</th>
       <td>2.0</td>
       <td>1292.25</td>
       <td>112.0</td>
@@ -677,8 +550,6 @@ By utilizing the additional information available from related series, these mod
       <td>13.3</td>
       <td>47.700000</td>
       <td>0.725487</td>
-      <td>NaN</td>
-      <td>NaN</td>
     </tr>
   </tbody>
 </table>
@@ -698,12 +569,12 @@ By utilizing the additional information available from related series, these mod
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/03_VectorAutoregressiveMethods_10_0.png" src="../_images/03_VectorAutoregressiveMethods_10_0.png" />
+<img alt="../_images/050e71c21431e46f47e251ad8049c5a8d6b7c3c51abd4fdbf6f509ef44913bb8.png" src="../_images/050e71c21431e46f47e251ad8049c5a8d6b7c3c51abd4fdbf6f509ef44913bb8.png" />
 </div>
 </div>
-</div>
-<div class="section" id="b-global-health-from-the-world-bank">
-<h4>B. Global Health from The World Bank<a class="headerlink" href="#b-global-health-from-the-world-bank" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="b-global-health-from-the-world-bank">
+<h4>B. Global Health from The World Bank<a class="headerlink" href="#b-global-health-from-the-world-bank" title="Permalink to this heading">#</a></h4>
 <p>This dataset combines key health statistics from a variety of sources to provide a look at global health and population trends. It includes information on nutrition, reproductive health, education, immunization, and diseases from over 200 countries. The dataset can be downloaded <strong><a class="reference external" href="https://console.cloud.google.com/marketplace/product/the-world-bank/global-health?filter=solution-type:dataset&amp;filter=category:health&amp;id=f3c38e10-2c45-43c8-8a12-8d749ba987ee">here</a></strong>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -783,12 +654,12 @@ By utilizing the additional information available from related series, these mod
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/03_VectorAutoregressiveMethods_13_0.png" src="../_images/03_VectorAutoregressiveMethods_13_0.png" />
+<img alt="../_images/c1c6e02db818198eefb5b021e6a0365be038a1523083a8402fd54eb42e308697.png" src="../_images/c1c6e02db818198eefb5b021e6a0365be038a1523083a8402fd54eb42e308697.png" />
 </div>
 </div>
-</div>
-<div class="section" id="c-us-treasury-rates">
-<h4>C. US Treasury Rates<a class="headerlink" href="#c-us-treasury-rates" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="c-us-treasury-rates">
+<h4>C. US Treasury Rates<a class="headerlink" href="#c-us-treasury-rates" title="Permalink to this heading">#</a></h4>
 <p>January, 1982 – December, 2016  (Weekly)
 https://essentialoftimeseries.com/data/
 This sample dataset contains weekly data of US Treasury rates from January 1982 to December 2016. The dataset can be downloaded <strong><a class="reference external" href="https://essentialoftimeseries.com/data/">here</a></strong>.</p>
@@ -948,12 +819,12 @@ This sample dataset contains weekly data of US Treasury rates from January 1982 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/03_VectorAutoregressiveMethods_16_0.png" src="../_images/03_VectorAutoregressiveMethods_16_0.png" />
+<img alt="../_images/34a9b8fa7b516c6b559d801128f2b119d60e54414041523fe3791b573307c0d6.png" src="../_images/34a9b8fa7b516c6b559d801128f2b119d60e54414041523fe3791b573307c0d6.png" />
 </div>
 </div>
-</div>
-<div class="section" id="d-jena-climate-data">
-<h4>D. Jena Climate Data<a class="headerlink" href="#d-jena-climate-data" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="d-jena-climate-data">
+<h4>D. Jena Climate Data<a class="headerlink" href="#d-jena-climate-data" title="Permalink to this heading">#</a></h4>
 <p>Time series dataset recorded at the Weather Station at the Max Planck Institute for Biogeochemistry in Jena, Germany from 2009 to 2016. It contains 14 different quantities (e.g., air temperature, atmospheric pressure, humidity, wind direction, and so on) were recorded every 10 minutes. You can download the data <strong><a class="reference external" href="https://www.kaggle.com/stytch16/jena-climate-2009-2016">here</a></strong>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -964,6 +835,113 @@ This sample dataset contains weekly data of US Treasury rates from January 1982 
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>p (mbar)</th>
+      <th>T (degC)</th>
+      <th>Tpot (K)</th>
+      <th>Tdew (degC)</th>
+      <th>rh (%)</th>
+      <th>VPmax (mbar)</th>
+      <th>VPact (mbar)</th>
+      <th>VPdef (mbar)</th>
+      <th>sh (g/kg)</th>
+      <th>H2OC (mmol/mol)</th>
+      <th>rho (g/m**3)</th>
+      <th>wv (m/s)</th>
+      <th>max. wv (m/s)</th>
+      <th>wd (deg)</th>
+    </tr>
+    <tr>
+      <th>Date Time</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2009-01-01 00:10:00</th>
+      <td>996.52</td>
+      <td>-8.02</td>
+      <td>265.40</td>
+      <td>-8.90</td>
+      <td>93.3</td>
+      <td>3.33</td>
+      <td>3.11</td>
+      <td>0.22</td>
+      <td>1.94</td>
+      <td>3.12</td>
+      <td>1307.75</td>
+      <td>1.03</td>
+      <td>1.75</td>
+      <td>152.3</td>
+    </tr>
+    <tr>
+      <th>2009-01-01 00:20:00</th>
+      <td>996.57</td>
+      <td>-8.41</td>
+      <td>265.01</td>
+      <td>-9.28</td>
+      <td>93.4</td>
+      <td>3.23</td>
+      <td>3.02</td>
+      <td>0.21</td>
+      <td>1.89</td>
+      <td>3.03</td>
+      <td>1309.80</td>
+      <td>0.72</td>
+      <td>1.50</td>
+      <td>136.1</td>
+    </tr>
+    <tr>
+      <th>2009-01-01 00:30:00</th>
+      <td>996.53</td>
+      <td>-8.51</td>
+      <td>264.91</td>
+      <td>-9.31</td>
+      <td>93.9</td>
+      <td>3.21</td>
+      <td>3.01</td>
+      <td>0.20</td>
+      <td>1.88</td>
+      <td>3.02</td>
+      <td>1310.24</td>
+      <td>0.19</td>
+      <td>0.63</td>
+      <td>171.6</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -976,19 +954,19 @@ This sample dataset contains weekly data of US Treasury rates from January 1982 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/03_VectorAutoregressiveMethods_19_0.png" src="../_images/03_VectorAutoregressiveMethods_19_0.png" />
+<img alt="../_images/1ad97242c283c8f17dd127d98c514e88a8aa40d82d489ac314456f60ccc391cb.png" src="../_images/1ad97242c283c8f17dd127d98c514e88a8aa40d82d489ac314456f60ccc391cb.png" />
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="foundations">
-<h3>Foundations<a class="headerlink" href="#foundations" title="Permalink to this headline">¶</a></h3>
+</section>
+</section>
+<section id="foundations">
+<h3>Foundations<a class="headerlink" href="#foundations" title="Permalink to this heading">#</a></h3>
 <p>Before we discuss VARs, we outline some fundamental concepts below that we will need to understand the model.</p>
-<div class="section" id="weak-stationarity-of-multivariate-time-series">
-<h4>Weak Stationarity of Multivariate Time Series<a class="headerlink" href="#weak-stationarity-of-multivariate-time-series" title="Permalink to this headline">¶</a></h4>
+<section id="weak-stationarity-of-multivariate-time-series">
+<h4>Weak Stationarity of Multivariate Time Series<a class="headerlink" href="#weak-stationarity-of-multivariate-time-series" title="Permalink to this heading">#</a></h4>
 <p>As in the univariate case, one of the requirements that we need to satisfy before we can apply VAR models is stationarity–in particular, weak stationarity. Both in the univariate and multivariate case, the first two moments of the time series are time-invariant. More formally, we describe weak stationarity below.</p>
 <p>Consider a <span class="math notranslate nohighlight">\(N\)</span>-dimensional time series, <span class="math notranslate nohighlight">\(\mathbf{y}_t = \left[y_{1,t}, y_{2,t}, ..., y_{N,t}\right]^\prime\)</span>. This is said to be weakly stationary if the first two moments are finite and constant through time, that is,</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p><span class="math notranslate nohighlight">\(E\left[\mathbf{y}_t\right] = \boldsymbol{\mu}\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(E\left[(\mathbf{y}_t-\boldsymbol{\mu})(\mathbf{y}_t-\boldsymbol{\mu})^\prime\right] \equiv \boldsymbol\Gamma_0 &lt; \infty\)</span> for all <span class="math notranslate nohighlight">\(t\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(E\left[(\mathbf{y}_t-\boldsymbol{\mu})(\mathbf{y}_{t-h}-\boldsymbol{\mu})^\prime\right] \equiv \boldsymbol\Gamma_h\)</span> for all <span class="math notranslate nohighlight">\(t\)</span> and <span class="math notranslate nohighlight">\(h\)</span></p></li>
@@ -999,9 +977,9 @@ This sample dataset contains weekly data of US Treasury rates from January 1982 
 <li><p><span class="math notranslate nohighlight">\(\boldsymbol\Gamma_0\)</span> is the <span class="math notranslate nohighlight">\(N\times N\)</span> covariance matrix where the <span class="math notranslate nohighlight">\(i\)</span>th diagonal element is the variance of <span class="math notranslate nohighlight">\(y_{i,t}\)</span>, and the <span class="math notranslate nohighlight">\((i, j)\)</span>th element is the covariance between <span class="math notranslate nohighlight">\(y_{i,t}\)</span> and <span class="math notranslate nohighlight">\({y_{j,t}}\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(\boldsymbol\Gamma_h\)</span> is the cross-covariance matrix at lag <span class="math notranslate nohighlight">\(h\)</span></p></li>
 </ul>
-</div>
-<div class="section" id="obtaining-cross-correlation-matrix-from-cross-covariance-matrix">
-<h4>Obtaining Cross-Correlation Matrix from Cross-Covariance Matrix<a class="headerlink" href="#obtaining-cross-correlation-matrix-from-cross-covariance-matrix" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="obtaining-cross-correlation-matrix-from-cross-covariance-matrix">
+<h4>Obtaining Cross-Correlation Matrix from Cross-Covariance Matrix<a class="headerlink" href="#obtaining-cross-correlation-matrix-from-cross-covariance-matrix" title="Permalink to this heading">#</a></h4>
 <p>When dealing with a multivariate time series, we can examine the predictability of one variable on another by looking at the relationship between them using the cross-covariance function (CCVF) and cross-correlation function (CCF). To do this, we begin by defining the cross-covariance between two variables, then we estimate the cross-correlation between one variable and another variable that is time-shifted. This informs us whether one time series may be related to the past lags of the other. In other words, CCF is used for identifying lags of one variable that might be useful as a predictor of the other variable.</p>
 <p><strong>At lag 0</strong>:</p>
 <p>Let <span class="math notranslate nohighlight">\(\mathbf\Gamma_0\)</span> be the covariance matrix at lag 0, <span class="math notranslate nohighlight">\(\mathbf D\)</span> be a <span class="math notranslate nohighlight">\(N\times N\)</span> diagonal matrix containing the standard deviations of <span class="math notranslate nohighlight">\(y_{i,t}\)</span> for <span class="math notranslate nohighlight">\(i=1, ..., N\)</span>. The correlation matrix of <span class="math notranslate nohighlight">\(\mathbf{y}_t\)</span> is defined as</p>
@@ -1018,46 +996,47 @@ This sample dataset contains weekly data of US Treasury rates from January 1982 
 <div class="math notranslate nohighlight">
 \[\rho_{i,j}(h) = \dfrac{Cov\left[y_{i,t}, y_{j,t-h} \right]}{\sigma_{i,t} \sigma_{j,t}}\]</div>
 <p><strong>What do we get from this?</strong></p>
-<table class="colwidths-auto table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
-<tr class="row-odd"><th class="text-align:left head"><p>Correlation Coefficient</p></th>
-<th class="text-align:left head"><p>Interpretation</p></th>
+<tr class="row-odd"><th class="head text-left"><p>Correlation Coefficient</p></th>
+<th class="head text-left"><p>Interpretation</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td class="text-align:left"><p><span class="math notranslate nohighlight">\(\rho_{i,j}(0)\neq0\)</span></p></td>
-<td class="text-align:left"><p><span class="math notranslate nohighlight">\(y_{i,t}\)</span> and <span class="math notranslate nohighlight">\(y_{j,t}\)</span> are <em>contemporaneously linearly correlated</em></p></td>
+<tr class="row-even"><td class="text-left"><p><span class="math notranslate nohighlight">\(\rho_{i,j}(0)\neq0\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(y_{i,t}\)</span> and <span class="math notranslate nohighlight">\(y_{j,t}\)</span> are <em>contemporaneously linearly correlated</em></p></td>
 </tr>
-<tr class="row-odd"><td class="text-align:left"><p><span class="math notranslate nohighlight">\(\rho_{i,j}(h)=\rho_{j,i}(h)=0\)</span> for all <span class="math notranslate nohighlight">\(h\geq0\)</span></p></td>
-<td class="text-align:left"><p><span class="math notranslate nohighlight">\(y_{i,t}\)</span> and <span class="math notranslate nohighlight">\(y_{j,t}\)</span> share <em>no linear relationship</em></p></td>
+<tr class="row-odd"><td class="text-left"><p><span class="math notranslate nohighlight">\(\rho_{i,j}(h)=\rho_{j,i}(h)=0\)</span> for all <span class="math notranslate nohighlight">\(h\geq0\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(y_{i,t}\)</span> and <span class="math notranslate nohighlight">\(y_{j,t}\)</span> share <em>no linear relationship</em></p></td>
 </tr>
-<tr class="row-even"><td class="text-align:left"><p><span class="math notranslate nohighlight">\(\rho_{i,j}(h)=0\)</span> and <span class="math notranslate nohighlight">\(\rho_{j,i}(h)=0\)</span> for all <span class="math notranslate nohighlight">\(h&gt;0\)</span></p></td>
-<td class="text-align:left"><p><span class="math notranslate nohighlight">\(y_{i,t}\)</span> and <span class="math notranslate nohighlight">\(y_{j,t}\)</span> are said to be linearly <em>uncoupled</em></p></td>
+<tr class="row-even"><td class="text-left"><p><span class="math notranslate nohighlight">\(\rho_{i,j}(h)=0\)</span> and <span class="math notranslate nohighlight">\(\rho_{j,i}(h)=0\)</span> for all <span class="math notranslate nohighlight">\(h&gt;0\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(y_{i,t}\)</span> and <span class="math notranslate nohighlight">\(y_{j,t}\)</span> are said to be linearly <em>uncoupled</em></p></td>
 </tr>
-<tr class="row-odd"><td class="text-align:left"><p><span class="math notranslate nohighlight">\(\rho_{i,j}(h)=0\)</span> for all <span class="math notranslate nohighlight">\(h&gt;0\)</span>, but <span class="math notranslate nohighlight">\(\rho_{j,i}(q)\neq0\)</span> for at least some <span class="math notranslate nohighlight">\(q&gt;0\)</span></p></td>
-<td class="text-align:left"><p>There is a <em>unidirectional (linear) relationship</em> between <span class="math notranslate nohighlight">\(y_{i,t}\)</span> and <span class="math notranslate nohighlight">\(y_{j,t}\)</span>, where <span class="math notranslate nohighlight">\(y_{i,t}\)</span> does not depend on <span class="math notranslate nohighlight">\(y_{j,t}\)</span>, but <span class="math notranslate nohighlight">\(y_{j,t}\)</span> depends on (some) lagged values of <span class="math notranslate nohighlight">\(y_{i,t}\)</span></p></td>
+<tr class="row-odd"><td class="text-left"><p><span class="math notranslate nohighlight">\(\rho_{i,j}(h)=0\)</span> for all <span class="math notranslate nohighlight">\(h&gt;0\)</span>, but <span class="math notranslate nohighlight">\(\rho_{j,i}(q)\neq0\)</span> for at least some <span class="math notranslate nohighlight">\(q&gt;0\)</span></p></td>
+<td class="text-left"><p>There is a <em>unidirectional (linear) relationship</em> between <span class="math notranslate nohighlight">\(y_{i,t}\)</span> and <span class="math notranslate nohighlight">\(y_{j,t}\)</span>, where <span class="math notranslate nohighlight">\(y_{i,t}\)</span> does not depend on <span class="math notranslate nohighlight">\(y_{j,t}\)</span>, but <span class="math notranslate nohighlight">\(y_{j,t}\)</span> depends on (some) lagged values of <span class="math notranslate nohighlight">\(y_{i,t}\)</span></p></td>
 </tr>
-<tr class="row-even"><td class="text-align:left"><p><span class="math notranslate nohighlight">\(\rho_{i,j}(h)\neq0\)</span> for at least some <span class="math notranslate nohighlight">\(h&gt;0\)</span> and <span class="math notranslate nohighlight">\(\rho_{j,i}(q)\neq0\)</span> for at least some <span class="math notranslate nohighlight">\(q&gt;0\)</span></p></td>
-<td class="text-align:left"><p>There is a <em>bi-directional (feedback) linear relationship</em> between <span class="math notranslate nohighlight">\(y_{i,t}\)</span> and <span class="math notranslate nohighlight">\(y_{j,t}\)</span></p></td>
+<tr class="row-even"><td class="text-left"><p><span class="math notranslate nohighlight">\(\rho_{i,j}(h)\neq0\)</span> for at least some <span class="math notranslate nohighlight">\(h&gt;0\)</span> and <span class="math notranslate nohighlight">\(\rho_{j,i}(q)\neq0\)</span> for at least some <span class="math notranslate nohighlight">\(q&gt;0\)</span></p></td>
+<td class="text-left"><p>There is a <em>bi-directional (feedback) linear relationship</em> between <span class="math notranslate nohighlight">\(y_{i,t}\)</span> and <span class="math notranslate nohighlight">\(y_{j,t}\)</span></p></td>
 </tr>
 </tbody>
 </table>
 </div>
-</div>
-</div>
-<div class="section" id="vector-autoregressive-var-models">
-<h2>Vector Autoregressive (VAR) Models<a class="headerlink" href="#vector-autoregressive-var-models" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+</section>
+<section id="vector-autoregressive-var-models">
+<h2>Vector Autoregressive (VAR) Models<a class="headerlink" href="#vector-autoregressive-var-models" title="Permalink to this heading">#</a></h2>
 <p>The vector autoregressive (VAR) model is one of the most successful models for analysis of multivariate time series. It has been demonstrated to be successful in describing relationships and forecasting economic and financial time series, and providing more accurate forecasts than the univariate time series models and theory-based simultaneous equations models.</p>
 <p>The structure of the VAR model is just the <strong>generalization of the univariate AR</strong> model. It is a system regression model that treats all the variables as endogenous, and allows each of the variables to depend on <span class="math notranslate nohighlight">\(p\)</span> lagged values of itself and of all the other variables in the system.</p>
 <p>A VAR model of order <span class="math notranslate nohighlight">\(p\)</span> can be represented as</p>
 <div class="math notranslate nohighlight">
 \[\mathbf y_t=\mathbf a_0 + \mathbf A_1 \mathbf y_{t-1} + \mathbf A_2 \mathbf y_{t-2} + ... + \mathbf A_p \mathbf y_{t-p} + \mathbf u_t = \mathbf a_0  + \sum_{j=1}^{p} \mathbf A_j \mathbf y_{t-j} + \mathbf u_t\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf y_t\)</span> is a <span class="math notranslate nohighlight">\(N\times 1\)</span> vector containing <span class="math notranslate nohighlight">\(N\)</span> endogenous variables, <span class="math notranslate nohighlight">\(\mathbf a_0\)</span> is a <span class="math notranslate nohighlight">\(N\times 1\)</span> vector of constants, <span class="math notranslate nohighlight">\(\mathbf A_1, \mathbf A_2, ..., \mathbf A_p\)</span> are the <span class="math notranslate nohighlight">\(p\)</span> <span class="math notranslate nohighlight">\(N\times N\)</span> matrices of autoregressive coefficients, and <span class="math notranslate nohighlight">\(\mathbf u_t\)</span> is a <span class="math notranslate nohighlight">\(N\times 1\)</span> vector of white noise disturbances.</p>
-<div class="section" id="var-1-model">
-<h3>VAR(1) Model<a class="headerlink" href="#var-1-model" title="Permalink to this headline">¶</a></h3>
+<section id="var-1-model">
+<h3>VAR(1) Model<a class="headerlink" href="#var-1-model" title="Permalink to this heading">#</a></h3>
 <p>To illustrate, let’s consider the simplest VAR model where we have <span class="math notranslate nohighlight">\(p=1\)</span>.</p>
-<div class="section" id="structural-and-reduced-forms-of-the-var-model">
-<h4>Structural and Reduced Forms of the VAR model<a class="headerlink" href="#structural-and-reduced-forms-of-the-var-model" title="Permalink to this headline">¶</a></h4>
+<section id="structural-and-reduced-forms-of-the-var-model">
+<h4>Structural and Reduced Forms of the VAR model<a class="headerlink" href="#structural-and-reduced-forms-of-the-var-model" title="Permalink to this heading">#</a></h4>
 <p>Consider the following bivariate system</p>
 <div class="math notranslate nohighlight">
 \[ y_{1,t} = b_{1,0} - b_{1,2}y_{2,t} +  \varphi_{1,1}y_{1,t-1} + \varphi_{1,2}y_{2,t-1} + \varepsilon_{1,t}\]</div>
@@ -1071,8 +1050,8 @@ This sample dataset contains weekly data of US Treasury rates from January 1982 
 <p>then</p>
 <div class="math notranslate nohighlight">
 \[\mathbf B \mathbf y_t = \mathbf Q_0 + \mathbf Q_1 \mathbf y_{t-1} + \boldsymbol\varepsilon_t\]</div>
-<div class="section" id="structural-var-var-in-primitive-form">
-<h5>Structural VAR (VAR in primitive form)<a class="headerlink" href="#structural-var-var-in-primitive-form" title="Permalink to this headline">¶</a></h5>
+<section id="structural-var-var-in-primitive-form">
+<h5>Structural VAR (VAR in primitive form)<a class="headerlink" href="#structural-var-var-in-primitive-form" title="Permalink to this heading">#</a></h5>
 <ul class="simple">
 <li><p>Described by equation above</p></li>
 <li><p>Captures contemporaneous feedback effects (<span class="math notranslate nohighlight">\(b_{1,2}, b_{2,1}\)</span>)</p></li>
@@ -1091,18 +1070,18 @@ This sample dataset contains weekly data of US Treasury rates from January 1982 
 \[ y_{1,t} = a_{1,0} + a_{1,1}y_{1,t-1} + a_{1,2}y_{2,t-1} + u_{1,t}\]</div>
 <div class="math notranslate nohighlight">
 \[ y_{2,t} = a_{2,0} + a_{2,1}y_{1,t-1} + a_{2,2}y_{2,t-1} + u_{2,t}\]</div>
-</div>
-<div class="section" id="reduced-form-var-var-in-standard-form">
-<h5>Reduced-form VAR (VAR in standard form)<a class="headerlink" href="#reduced-form-var-var-in-standard-form" title="Permalink to this headline">¶</a></h5>
+</section>
+<section id="reduced-form-var-var-in-standard-form">
+<h5>Reduced-form VAR (VAR in standard form)<a class="headerlink" href="#reduced-form-var-var-in-standard-form" title="Permalink to this heading">#</a></h5>
 <ul class="simple">
 <li><p>Described by equation above</p></li>
 <li><p>Only dependent on lagged endogenous variables (no contemporaneous feedback)</p></li>
 <li><p>Can be estimated using ordinary least squares (OLS)</p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="vma-infinite-representation-and-stationarity">
-<h4>VMA infinite representation and Stationarity<a class="headerlink" href="#vma-infinite-representation-and-stationarity" title="Permalink to this headline">¶</a></h4>
+</section>
+</section>
+<section id="vma-infinite-representation-and-stationarity">
+<h4>VMA infinite representation and Stationarity<a class="headerlink" href="#vma-infinite-representation-and-stationarity" title="Permalink to this heading">#</a></h4>
 <p>Consider the reduced form, standard VAR(1) model</p>
 <div class="math notranslate nohighlight">
 \[\mathbf y_t = \mathbf a_0 + \mathbf A_1 \mathbf y_{t-1} + \mathbf u_t\]</div>
@@ -1121,18 +1100,18 @@ This sample dataset contains weekly data of US Treasury rates from January 1982 
 <p>Letting <span class="math notranslate nohighlight">\(\boldsymbol\Theta_i\equiv A_1^i\)</span>, we get the <strong>VMA infinite representation</strong></p>
 <div class="math notranslate nohighlight">
 \[\mathbf y_{t} = \boldsymbol\mu + \sum_{i=1}^{\infty} \boldsymbol\Theta_i  \mathbf u_{t-i} + \mathbf u_t\]</div>
-</div>
-<div class="section" id="stationarity-of-the-var-1-model">
-<h4>Stationarity of the VAR(1) model<a class="headerlink" href="#stationarity-of-the-var-1-model" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="stationarity-of-the-var-1-model">
+<h4>Stationarity of the VAR(1) model<a class="headerlink" href="#stationarity-of-the-var-1-model" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
 <li><p>All the N eigenvalues of the matrix <span class="math notranslate nohighlight">\(A_1\)</span> must be less than 1 in modulus, to avoid that the coefficient matrix <span class="math notranslate nohighlight">\(A_1^j\)</span> from either exploding or converging to a nonzero matrix as <span class="math notranslate nohighlight">\(j\)</span> goes to infinity.</p></li>
 <li><p>Provided that the covariance matrix of <span class="math notranslate nohighlight">\(u_t\)</span> exists, the requirement that all the eigenvalues of <span class="math notranslate nohighlight">\(A_1\)</span> are less than one in modulus is a necessary and sufficient condition for <span class="math notranslate nohighlight">\(y_t\)</span> to be stable, and thus, stationary.</p></li>
 <li><p>All roots of <span class="math notranslate nohighlight">\(det\left(\mathbf I_N - \mathbf A_1 z\right)=0\)</span> must lie outside the unit circle.</p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="var-p-model">
-<h3>VAR(p) Model<a class="headerlink" href="#var-p-model" title="Permalink to this headline">¶</a></h3>
+</section>
+</section>
+<section id="var-p-model">
+<h3>VAR(p) Model<a class="headerlink" href="#var-p-model" title="Permalink to this heading">#</a></h3>
 <p>Consider the VAR(p) model described by</p>
 <div class="math notranslate nohighlight">
 \[\mathbf y_t=\mathbf a_0 + \mathbf A_1 \mathbf y_{t-1} + \mathbf A_2 \mathbf y_{t-2} + ... + \mathbf A_p \mathbf y_{t-p} + \mathbf u_t = \mathbf a_0  + \sum_{j=1}^{p} \mathbf A_j \mathbf y_{t-j} + \mathbf u_t\]</div>
@@ -1145,24 +1124,24 @@ This sample dataset contains weekly data of US Treasury rates from January 1982 
 <p>Defining <span class="math notranslate nohighlight">\(\tilde{\mathbf y}_t=\mathbf y_t -\boldsymbol\mu\)</span>, we have</p>
 <div class="math notranslate nohighlight">
 \[\tilde{\mathbf y}_t =  \mathbf A_1 \tilde{\mathbf y}_{t-1} + \mathbf A_2 \tilde{\mathbf y}_{t-2} + ... + \mathbf A_p \tilde{\mathbf y}_{t-p} + \mathbf u_t\]</div>
-<div class="section" id="properties">
-<h4>Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h4>
+<section id="properties">
+<h4>Properties<a class="headerlink" href="#properties" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(Cov[\mathbf y_t, \mathbf u_t] = \Sigma_u\)</span>, the covariance matrix of <span class="math notranslate nohighlight">\(\mathbf u_t\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(Cov[\mathbf y_{t-h}, \mathbf u_t] = \mathbf 0\)</span> for any <span class="math notranslate nohighlight">\(h&gt;0\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(\boldsymbol\Gamma_h = \mathbf A_1 \boldsymbol\Gamma_{h-1} +...+\mathbf A_p \boldsymbol\Gamma_{h-p}\)</span> for <span class="math notranslate nohighlight">\(h&gt;0\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(\boldsymbol\rho_h = \boldsymbol \Psi_1 \boldsymbol\Gamma_{h-1} +...+\boldsymbol \Psi_p \boldsymbol\Gamma_{h-p}\)</span> for <span class="math notranslate nohighlight">\(h&gt;0\)</span>, where <span class="math notranslate nohighlight">\(\boldsymbol \Psi_i = \mathbf D^{-1/2}\mathbf A_i D^{-1/2}\)</span></p></li>
 </ul>
-</div>
-<div class="section" id="stationarity-of-var-p-model">
-<h4>Stationarity of VAR(p) model<a class="headerlink" href="#stationarity-of-var-p-model" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="stationarity-of-var-p-model">
+<h4>Stationarity of VAR(p) model<a class="headerlink" href="#stationarity-of-var-p-model" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
 <li><p>All roots of <span class="math notranslate nohighlight">\(det\left(\mathbf I_N - \mathbf A_1 z - ...-  \mathbf A_p z^p\right)=0\)</span> must lie outside the unit circle.</p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="specification-of-a-var-model-choosing-the-order-p">
-<h3>Specification of a VAR model: Choosing the order <em>p</em><a class="headerlink" href="#specification-of-a-var-model-choosing-the-order-p" title="Permalink to this headline">¶</a></h3>
+</section>
+</section>
+<section id="specification-of-a-var-model-choosing-the-order-p">
+<h3>Specification of a VAR model: Choosing the order <em>p</em><a class="headerlink" href="#specification-of-a-var-model-choosing-the-order-p" title="Permalink to this heading">#</a></h3>
 <p>Fitting a VAR model involves the selection of a single parameter: the model order or lag length <span class="math notranslate nohighlight">\(p\)</span>. The most common approach in selecting the best model is choosing the <span class="math notranslate nohighlight">\(p\)</span> that minimizes one or more information criteria evaluated over a range of model orders. The criterion consists of two terms: the first one characterizes the entropy rate or prediction error, and second one characterizes the number of freely estimated parameters in the model. Minimizing both terms will allow us to identify a model that accurately models the data while preventing overfitting (due to too many parameters).</p>
 <p>Some of the commonly used information criteria include: Akaike Information Criterion (AIC), Schwarz’s Bayesian Information Criterion (BIC), Hannan-Quinn Criterion (HQ), and Akaike’s Final Prediction Error Criterion (FPE). The equation for each are shown below.</p>
 <p><em>Akaike’s information criterion</em></p>
@@ -1182,12 +1161,12 @@ This sample dataset contains weekly data of US Treasury rates from January 1982 
 <p>where <span class="math notranslate nohighlight">\(M\)</span> stands for multivariate, <span class="math notranslate nohighlight">\(\tilde{\boldsymbol\Sigma}_u\)</span> is the estimated covariance matrix of the residuals, <span class="math notranslate nohighlight">\(T\)</span> is the number of observations in the sample, and <span class="math notranslate nohighlight">\(k\)</span> is the total number of equations in the VAR(<span class="math notranslate nohighlight">\(p\)</span>) (i.e. <span class="math notranslate nohighlight">\(N^2p + N\)</span> where <span class="math notranslate nohighlight">\(N\)</span> is the number of equations and <span class="math notranslate nohighlight">\(p\)</span> is the number of lags).</p>
 <p>Among the metrics above, AIC and BIC are the most widely used criteria, but BIC penalizes higher orders more. For moderate and large sample sizes, AIC and FPE are essentially equivalent, but FPE may outperform AIC for small sample sizes. HQ also penalizes higher order models more heavily than AIC, but less than BIC. However, under small sample conditions, AIC/FPE may outperform BIC and/or HQ in selecting true model order.</p>
 <p>There are cases when AIC and FPE show no clear minimum over a range or model orders or lag lengths. In this case, there may be a clear “elbow” when we plot the values over model order. This may indicate a suitable model order.</p>
-</div>
-</div>
-<div class="section" id="building-a-var-model">
-<h2>Building a VAR model<a class="headerlink" href="#building-a-var-model" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="building-a-var-model">
+<h2>Building a VAR model<a class="headerlink" href="#building-a-var-model" title="Permalink to this heading">#</a></h2>
 <p>In this section, we show how we can use the VAR model to forecast the air quality data. The following steps are shown below:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Check for stationarity.</p></li>
 <li><p>Split data into train and test sets.</p></li>
 <li><p>Select the VAR order <em>p</em> that gives.</p></li>
@@ -1195,8 +1174,8 @@ This sample dataset contains weekly data of US Treasury rates from January 1982 
 <li><p>Generate forecast.</p></li>
 <li><p>Evaluate model performance.</p></li>
 </ol>
-<div class="section" id="example-2-forecasting-air-quality-data-co-no2-and-rh">
-<h3>Example 2: Forecasting Air Quality Data (CO, NO2 and RH)<a class="headerlink" href="#example-2-forecasting-air-quality-data-co-no2-and-rh" title="Permalink to this headline">¶</a></h3>
+<section id="example-2-forecasting-air-quality-data-co-no2-and-rh">
+<h3>Example 2: Forecasting Air Quality Data (CO, NO2 and RH)<a class="headerlink" href="#example-2-forecasting-air-quality-data-co-no2-and-rh" title="Permalink to this heading">#</a></h3>
 <p>For illustration, we consider the carbon monoxide, nitrous dioxide  and relative humidity time series from the Air Quality Dataset from 1 October 2014.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1211,7 +1190,7 @@ This sample dataset contains weekly data of US Treasury rates from January 1982 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/03_VectorAutoregressiveMethods_47_0.png" src="../_images/03_VectorAutoregressiveMethods_47_0.png" />
+<img alt="../_images/00a4747dd6bf2e7cca97f32229bd98fb73a209065b3b37414fff5666dbaa9c10.png" src="../_images/00a4747dd6bf2e7cca97f32229bd98fb73a209065b3b37414fff5666dbaa9c10.png" />
 </div>
 </div>
 <p><strong>Quick inspection before we proceed with modeling…</strong></p>
@@ -1238,7 +1217,7 @@ This sample dataset contains weekly data of US Treasury rates from January 1982 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/03_VectorAutoregressiveMethods_50_0.png" src="../_images/03_VectorAutoregressiveMethods_50_0.png" />
+<img alt="../_images/e663dd4d791cff8a8216acb416b2238db5d8505f51294850632ca603cb22b085.png" src="../_images/e663dd4d791cff8a8216acb416b2238db5d8505f51294850632ca603cb22b085.png" />
 </div>
 </div>
 <p><em>CO and RH</em></p>
@@ -1262,7 +1241,7 @@ This sample dataset contains weekly data of US Treasury rates from January 1982 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/03_VectorAutoregressiveMethods_52_0.png" src="../_images/03_VectorAutoregressiveMethods_52_0.png" />
+<img alt="../_images/a0f4949436e8b2967cd6642d84d18c40ce2a6ebeb81d729160d08380188482f4.png" src="../_images/a0f4949436e8b2967cd6642d84d18c40ce2a6ebeb81d729160d08380188482f4.png" />
 </div>
 </div>
 <p><em>RH and NO2</em></p>
@@ -1286,7 +1265,7 @@ This sample dataset contains weekly data of US Treasury rates from January 1982 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/03_VectorAutoregressiveMethods_54_0.png" src="../_images/03_VectorAutoregressiveMethods_54_0.png" />
+<img alt="../_images/4746784f415d3ac70770b12df63b0dfc92705d10e32d54057a3d743d872e96fb.png" src="../_images/4746784f415d3ac70770b12df63b0dfc92705d10e32d54057a3d743d872e96fb.png" />
 </div>
 </div>
 <p><strong>Observation/s</strong>:</p>
@@ -1297,11 +1276,11 @@ This sample dataset contains weekly data of US Treasury rates from January 1982 
 <li><p>RH and some lagged values of CO and NO2</p></li>
 </ul>
 <p>This shows that we can benefit from the multivariate approach, so we proceed with building the VAR model.</p>
-<div class="section" id="check-stationarity">
-<h4>1. Check stationarity<a class="headerlink" href="#check-stationarity" title="Permalink to this headline">¶</a></h4>
+<section id="check-stationarity">
+<h4>1. Check stationarity<a class="headerlink" href="#check-stationarity" title="Permalink to this heading">#</a></h4>
 <p>To check for stationarity, we use the Kwiatkowski–Phillips–Schmidt–Shin (KPSS) test and the Augmented Dickey-Fuller (ADF) test. For the data to be suitable for VAR modelling, we need each of the variables in the multivariate time series to be stationary. In both tests, we need the test statistic to be less than the critical values to say that a time series (a variable) to be stationary.</p>
-<div class="section" id="kwiatkowskiphillipsschmidtshin-kpss-test">
-<h5>Kwiatkowski–Phillips–Schmidt–Shin (KPSS) test<a class="headerlink" href="#kwiatkowskiphillipsschmidtshin-kpss-test" title="Permalink to this headline">¶</a></h5>
+<section id="kwiatkowskiphillipsschmidtshin-kpss-test">
+<h5>Kwiatkowski–Phillips–Schmidt–Shin (KPSS) test<a class="headerlink" href="#kwiatkowskiphillipsschmidtshin-kpss-test" title="Permalink to this heading">#</a></h5>
 <p>Recall: Null hypothesis is that an observable time series is stationary around a deterministic trend (i.e. trend-stationary) against the alternative of a unit root.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1393,9 +1372,9 @@ This sample dataset contains weekly data of US Treasury rates from January 1982 
 </div>
 <p><strong>Observation/s</strong>:</p>
 <p>From the KPSS test, CO and RH are stationary.</p>
-</div>
-<div class="section" id="augmented-dickey-fuller-adf-test">
-<h5>Augmented Dickey-Fuller (ADF) test<a class="headerlink" href="#augmented-dickey-fuller-adf-test" title="Permalink to this headline">¶</a></h5>
+</section>
+<section id="augmented-dickey-fuller-adf-test">
+<h5>Augmented Dickey-Fuller (ADF) test<a class="headerlink" href="#augmented-dickey-fuller-adf-test" title="Permalink to this heading">#</a></h5>
 <p>Recall: Null hypothesis is that a unit root is present in a time series sample against the alternative that the time series is stationary.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1479,10 +1458,10 @@ This sample dataset contains weekly data of US Treasury rates from January 1982 
 </div>
 <p><strong>Observation/s</strong>:</p>
 <p>From the ADF test, CO, NO2 and RH are stationary.</p>
-</div>
-</div>
-<div class="section" id="split-data-into-train-and-test-sets">
-<h4>2. Split data into train and test sets<a class="headerlink" href="#split-data-into-train-and-test-sets" title="Permalink to this headline">¶</a></h4>
+</section>
+</section>
+<section id="split-data-into-train-and-test-sets">
+<h4>2. Split data into train and test sets<a class="headerlink" href="#split-data-into-train-and-test-sets" title="Permalink to this heading">#</a></h4>
 <p>We use the dataset from 01 October 2014 to predict the last 24 points (24 hrs/1 day) in the dataset.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1512,12 +1491,12 @@ This sample dataset contains weekly data of US Treasury rates from January 1982 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/03_VectorAutoregressiveMethods_68_0.png" src="../_images/03_VectorAutoregressiveMethods_68_0.png" />
+<img alt="../_images/683c2d663163dad9fbca7778a030fde67505c90ad4d441a43976265c1beddcbd.png" src="../_images/683c2d663163dad9fbca7778a030fde67505c90ad4d441a43976265c1beddcbd.png" />
 </div>
 </div>
-</div>
-<div class="section" id="select-order-p">
-<h4>3. Select order <em>p</em><a class="headerlink" href="#select-order-p" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="select-order-p">
+<h4>3. Select order <em>p</em><a class="headerlink" href="#select-order-p" title="Permalink to this heading">#</a></h4>
 <p>We compute the different multivariate information criteria (AIC, BIC, HQIC), and FPE. We pick the set of order parameters that correspond to the lowest values.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1542,14 +1521,14 @@ This sample dataset contains weekly data of US Treasury rates from January 1982 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/03_VectorAutoregressiveMethods_71_0.png" src="../_images/03_VectorAutoregressiveMethods_71_0.png" />
+<img alt="../_images/44b467ec82542518d90f41ce7a3f23559f08ff117a190bfe94ad82e280c7881d.png" src="../_images/44b467ec82542518d90f41ce7a3f23559f08ff117a190bfe94ad82e280c7881d.png" />
 </div>
 </div>
 <p><strong>Observation/s</strong>:</p>
 <p>We find BIC and HQIC to be lowest at <span class="math notranslate nohighlight">\(p=26\)</span>, and we also observe an elbow in the plots for AIC, and FPE, so we choose the number of lags to be 26.</p>
-</div>
-<div class="section" id="fit-var-model-with-chosen-order">
-<h4>3. Fit VAR model with chosen order<a class="headerlink" href="#fit-var-model-with-chosen-order" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="fit-var-model-with-chosen-order">
+<h4>3. Fit VAR model with chosen order<a class="headerlink" href="#fit-var-model-with-chosen-order" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
@@ -1839,9 +1818,9 @@ RH         0.150771  0.078143  1.000000
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="get-forecast">
-<h4>4. Get forecast<a class="headerlink" href="#get-forecast" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="get-forecast">
+<h4>4. Get forecast<a class="headerlink" href="#get-forecast" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">forecast_var</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">var_model</span><span class="o">.</span><span class="n">forecast</span><span class="p">(</span><span class="n">train_df</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> 
@@ -1866,14 +1845,14 @@ RH         0.150771  0.078143  1.000000
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/03_VectorAutoregressiveMethods_77_0.png" src="../_images/03_VectorAutoregressiveMethods_77_0.png" />
-<img alt="../_images/03_VectorAutoregressiveMethods_77_1.png" src="../_images/03_VectorAutoregressiveMethods_77_1.png" />
-<img alt="../_images/03_VectorAutoregressiveMethods_77_2.png" src="../_images/03_VectorAutoregressiveMethods_77_2.png" />
+<img alt="../_images/290402741f746bf7b41673f89bc40ab994324508eb97a40a4b1fd2c765d17fce.png" src="../_images/290402741f746bf7b41673f89bc40ab994324508eb97a40a4b1fd2c765d17fce.png" />
+<img alt="../_images/133e8fe741f3e675d19c0193aab27f2f2f4b39364467cc02652086a33812a913.png" src="../_images/133e8fe741f3e675d19c0193aab27f2f2f4b39364467cc02652086a33812a913.png" />
+<img alt="../_images/bc0422bd93a4e88bc82d170f64ccfd30dc9f7309d47dd175b11e38152b4895cf.png" src="../_images/bc0422bd93a4e88bc82d170f64ccfd30dc9f7309d47dd175b11e38152b4895cf.png" />
 </div>
 </div>
-</div>
-<div class="section" id="performance-evaluation-comparison-with-arima-model">
-<h4>Performance Evaluation: Comparison with ARIMA model<a class="headerlink" href="#performance-evaluation-comparison-with-arima-model" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="performance-evaluation-comparison-with-arima-model">
+<h4>Performance Evaluation: Comparison with ARIMA model<a class="headerlink" href="#performance-evaluation-comparison-with-arima-model" title="Permalink to this heading">#</a></h4>
 <p>When using ARIMA, we treat each variable as a univariate time series, and we perform the forecasting for each variable: 1 for CO, 1 for NO2, and 1 for RH</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1982,9 +1961,9 @@ Wall time: 1.48 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/03_VectorAutoregressiveMethods_82_0.png" src="../_images/03_VectorAutoregressiveMethods_82_0.png" />
-<img alt="../_images/03_VectorAutoregressiveMethods_82_1.png" src="../_images/03_VectorAutoregressiveMethods_82_1.png" />
-<img alt="../_images/03_VectorAutoregressiveMethods_82_2.png" src="../_images/03_VectorAutoregressiveMethods_82_2.png" />
+<img alt="../_images/cbc44e046acc3fecaddfeef37596c052720d644aa0454dfd878dd6901cbcb23f.png" src="../_images/cbc44e046acc3fecaddfeef37596c052720d644aa0454dfd878dd6901cbcb23f.png" />
+<img alt="../_images/acd6c2e6a36fb41f4513777d4def6766adb0f3004e2958c539ad5f5c9a14eddf.png" src="../_images/acd6c2e6a36fb41f4513777d4def6766adb0f3004e2958c539ad5f5c9a14eddf.png" />
+<img alt="../_images/2b072182fb7f5ed2c5fe27cb0a4e95a74c62af458d0b6834c852681a90507af3.png" src="../_images/2b072182fb7f5ed2c5fe27cb0a4e95a74c62af458d0b6834c852681a90507af3.png" />
 </div>
 </div>
 <p><strong>Performance Metrics</strong></p>
@@ -2061,21 +2040,21 @@ Wall time: 1.48 s
 <li><p>MAPE: VAR forecasts have lower errors for all variables (CO, NO2 and RH).</p></li>
 <li><p>Training time is significantly reduced when using VAR compared to ARIMA (&lt;0.1s run time for VAR while ~20s for ARIMA)</p></li>
 </ul>
-</div>
-</div>
-</div>
-<div class="section" id="structural-var-analysis">
-<h2>Structural VAR Analysis<a class="headerlink" href="#structural-var-analysis" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+</section>
+<section id="structural-var-analysis">
+<h2>Structural VAR Analysis<a class="headerlink" href="#structural-var-analysis" title="Permalink to this heading">#</a></h2>
 <p>In addition to forecasting, VAR models are also used for structural inference and policy analysis. In macroeconomics, this structural analysis has been extensively employed to investigate the transmission mechanisms of macroeconomic shocks (e.g., monetary shocks, financial shocks) and test economic theories. There are particular assumptions imposed about the causal structure of the dataset, and the resulting causal impacts of unexpected shocks (also called innovations or perturbations) to a specific variable on the different variables in the model are summarized. In this section, we cover two of the common methods in summarizing the effects of these causal impacts: (1) impulse response functions, and (2): forecast error variance decompositions.</p>
-<div class="section" id="impulse-response-function-irf">
-<h3>Impulse Response Function (IRF)<a class="headerlink" href="#impulse-response-function-irf" title="Permalink to this headline">¶</a></h3>
+<section id="impulse-response-function-irf">
+<h3>Impulse Response Function (IRF)<a class="headerlink" href="#impulse-response-function-irf" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Coefficients of the VAR models are often difficult to interpret so practitioners often estimate the impulse response function.</p></li>
 <li><p>IRFs trace out the time path of the effects of an exogenous shock to one (or more) of the endogenous variables on some or all of the other variables in a VAR system.</p></li>
 <li><p>IRF traces out the response of the dependent variable of the VAR system to shocks (also called innovations or impulses) in the error terms.</p></li>
 </ul>
-<div class="section" id="irf-in-the-var-system-for-air-quality">
-<h4>IRF in the VAR system for Air Quality<a class="headerlink" href="#irf-in-the-var-system-for-air-quality" title="Permalink to this headline">¶</a></h4>
+<section id="irf-in-the-var-system-for-air-quality">
+<h4>IRF in the VAR system for Air Quality<a class="headerlink" href="#irf-in-the-var-system-for-air-quality" title="Permalink to this heading">#</a></h4>
 <p>Let <span class="math notranslate nohighlight">\(y_{1,t}\)</span>, <span class="math notranslate nohighlight">\(y_{2,t}\)</span> and <span class="math notranslate nohighlight">\(y_{3,t}\)</span> be the time series corresponding to CO signal, NO2 signal, and RH signal, respectively. Consider the moving average representation of the system shown below:</p>
 <p>Let
 <img alt="../_images/irf_eq.png" src="../_images/irf_eq.png" /></p>
@@ -2103,7 +2082,7 @@ Wall time: 1.48 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/03_VectorAutoregressiveMethods_91_0.png" src="../_images/03_VectorAutoregressiveMethods_91_0.png" />
+<img alt="../_images/2c4b8ff0c53b794709eaa4de2ea993e6c4bf49ef01e4297319ecf27ad8c5a7c7.png" src="../_images/2c4b8ff0c53b794709eaa4de2ea993e6c4bf49ef01e4297319ecf27ad8c5a7c7.png" />
 </div>
 </div>
 <p><strong>Observation/s:</strong></p>
@@ -2122,10 +2101,10 @@ Wall time: 1.48 s
 <li><p>RH <span class="math notranslate nohighlight">\(\rightarrow\)</span> CO: A shock in RH only causes a small effect in the values of CO.</p></li>
 <li><p>RH <span class="math notranslate nohighlight">\(\rightarrow\)</span> NO2: A shock in the value of RH has a largest effect in NO2 after 1 hour and this effect decays over time. The value of the IRF reaches zero after 6 hours.</p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="forecast-error-variance-decomposition-fevd">
-<h3>Forecast Error Variance Decomposition (FEVD)<a class="headerlink" href="#forecast-error-variance-decomposition-fevd" title="Permalink to this headline">¶</a></h3>
+</section>
+</section>
+<section id="forecast-error-variance-decomposition-fevd">
+<h3>Forecast Error Variance Decomposition (FEVD)<a class="headerlink" href="#forecast-error-variance-decomposition-fevd" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>FEVD indicates the amount of information each variable contributes to the other variables in the autoregression</p></li>
 <li><p>While impulse response functions trace the effects of a shock to one endogenous variable on to the other variables in the VAR, variance decomposition separates the variation in an endogenous variable into the component shocks to the VAR.</p></li>
@@ -2140,7 +2119,7 @@ Wall time: 1.48 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/03_VectorAutoregressiveMethods_94_0.png" src="../_images/03_VectorAutoregressiveMethods_94_0.png" />
+<img alt="../_images/989ea9377365c918d7509ec36ff36a059356820b6380614c7492a68aa0744c1d.png" src="../_images/989ea9377365c918d7509ec36ff36a059356820b6380614c7492a68aa0744c1d.png" />
 </div>
 </div>
 <p><strong>Observation/s:</strong></p>
@@ -2149,12 +2128,12 @@ Wall time: 1.48 s
 <li><p>For NO2, the variance is mostly explained by exogenous shocks to NO2 and CO.</p></li>
 <li><p>For RH, the variance is mostly explained by exogenous shocks to RH. Over time, the contribution of the exogenous shocks to CO increases.</p></li>
 </ul>
-</div>
-<div class="section" id="example-3-forecasting-the-jena-climate-data">
-<h3>Example 3: Forecasting the Jena climate data<a class="headerlink" href="#example-3-forecasting-the-jena-climate-data" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="example-3-forecasting-the-jena-climate-data">
+<h3>Example 3: Forecasting the Jena climate data<a class="headerlink" href="#example-3-forecasting-the-jena-climate-data" title="Permalink to this heading">#</a></h3>
 <p>We try to forecast the Jena climate data using the method outlined above. We will train the VAR model using hourly weather measurements from January 1, 2019 (00:10) up to December 29, 2014 (18:10). The performance of the model will be evaluated on the test set which contains data from December 29, 2014 (19:10) to December 31, 2014 (23:20) which is equivalent to 17,523 data points for each of the variables.</p>
-<div class="section" id="load-dataset">
-<h4>Load dataset<a class="headerlink" href="#load-dataset" title="Permalink to this headline">¶</a></h4>
+<section id="load-dataset">
+<h4>Load dataset<a class="headerlink" href="#load-dataset" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/train_series_datetime.csv&#39;</span><span class="p">,</span><span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Date Time&#39;</span><span class="p">)</span>
@@ -2174,9 +2153,9 @@ Wall time: 1.48 s
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="check-stationarity-of-each-variable-using-adf-test">
-<h4>Check stationarity of each variable using ADF test<a class="headerlink" href="#check-stationarity-of-each-variable-using-adf-test" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="check-stationarity-of-each-variable-using-adf-test">
+<h4>Check stationarity of each variable using ADF test<a class="headerlink" href="#check-stationarity-of-each-variable-using-adf-test" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
@@ -2358,9 +2337,9 @@ dtype: bool
 </div>
 <p><strong>Observation/s</strong>:</p>
 <p>From the values above, all the components of the Jena climate data are stationary, so we’ll use all the variables in our VAR model.</p>
-</div>
-<div class="section" id="id1">
-<h4>Select order p<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="id1">
+<h4>Select order p<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
@@ -2389,7 +2368,7 @@ dtype: bool
 Wall time: 1min
 </pre></div>
 </div>
-<img alt="../_images/03_VectorAutoregressiveMethods_106_1.png" src="../_images/03_VectorAutoregressiveMethods_106_1.png" />
+<img alt="../_images/efbc8ca4931c0b4f7fa42fa1ef503b410195d905062c65f5f79ad3005beb569e.png" src="../_images/efbc8ca4931c0b4f7fa42fa1ef503b410195d905062c65f5f79ad3005beb569e.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2426,9 +2405,9 @@ dtype: int64
 </div>
 <p><strong>Observation/s</strong>:</p>
 <p>The model order that resulted to the minimum value varies for each information criteria, showing no clear minimum. We see an elbow at <span class="math notranslate nohighlight">\(p=5\)</span>, but if we look at AIC and HQIC we’re observing another elbow/local minimum at <span class="math notranslate nohighlight">\(p=26\)</span>. So, we choose <span class="math notranslate nohighlight">\(p=26\)</span> as our lag length.</p>
-</div>
-<div class="section" id="train-var-model-using-the-training-and-validation-data">
-<h4>Train VAR model using the training and validation data<a class="headerlink" href="#train-var-model-using-the-training-and-validation-data" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="train-var-model-using-the-training-and-validation-data">
+<h4>Train VAR model using the training and validation data<a class="headerlink" href="#train-var-model-using-the-training-and-validation-data" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
@@ -2451,9 +2430,9 @@ Wall time: 631 ms
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="forecast-24-hour-weather-measurements-and-evaluate-performance-on-test-set">
-<h4>Forecast 24-hour weather measurements and evaluate performance on test set<a class="headerlink" href="#forecast-24-hour-weather-measurements-and-evaluate-performance-on-test-set" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="forecast-24-hour-weather-measurements-and-evaluate-performance-on-test-set">
+<h4>Forecast 24-hour weather measurements and evaluate performance on test set<a class="headerlink" href="#forecast-24-hour-weather-measurements-and-evaluate-performance-on-test-set" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">forecasts_df</span> <span class="o">=</span> <span class="p">[]</span>
@@ -2483,20 +2462,20 @@ Wall time: 631 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/03_VectorAutoregressiveMethods_115_0.png" src="../_images/03_VectorAutoregressiveMethods_115_0.png" />
-<img alt="../_images/03_VectorAutoregressiveMethods_115_1.png" src="../_images/03_VectorAutoregressiveMethods_115_1.png" />
-<img alt="../_images/03_VectorAutoregressiveMethods_115_2.png" src="../_images/03_VectorAutoregressiveMethods_115_2.png" />
-<img alt="../_images/03_VectorAutoregressiveMethods_115_3.png" src="../_images/03_VectorAutoregressiveMethods_115_3.png" />
-<img alt="../_images/03_VectorAutoregressiveMethods_115_4.png" src="../_images/03_VectorAutoregressiveMethods_115_4.png" />
-<img alt="../_images/03_VectorAutoregressiveMethods_115_5.png" src="../_images/03_VectorAutoregressiveMethods_115_5.png" />
-<img alt="../_images/03_VectorAutoregressiveMethods_115_6.png" src="../_images/03_VectorAutoregressiveMethods_115_6.png" />
-<img alt="../_images/03_VectorAutoregressiveMethods_115_7.png" src="../_images/03_VectorAutoregressiveMethods_115_7.png" />
-<img alt="../_images/03_VectorAutoregressiveMethods_115_8.png" src="../_images/03_VectorAutoregressiveMethods_115_8.png" />
-<img alt="../_images/03_VectorAutoregressiveMethods_115_9.png" src="../_images/03_VectorAutoregressiveMethods_115_9.png" />
-<img alt="../_images/03_VectorAutoregressiveMethods_115_10.png" src="../_images/03_VectorAutoregressiveMethods_115_10.png" />
-<img alt="../_images/03_VectorAutoregressiveMethods_115_11.png" src="../_images/03_VectorAutoregressiveMethods_115_11.png" />
-<img alt="../_images/03_VectorAutoregressiveMethods_115_12.png" src="../_images/03_VectorAutoregressiveMethods_115_12.png" />
-<img alt="../_images/03_VectorAutoregressiveMethods_115_13.png" src="../_images/03_VectorAutoregressiveMethods_115_13.png" />
+<img alt="../_images/f46114c1f57dbfcf1838cba0ea43a1f232c0deb9c3fd5c2cd481f5b33a41b245.png" src="../_images/f46114c1f57dbfcf1838cba0ea43a1f232c0deb9c3fd5c2cd481f5b33a41b245.png" />
+<img alt="../_images/0849c4261ba57943c743f383f54595c110beb96d5c02146f104b7e1532e81875.png" src="../_images/0849c4261ba57943c743f383f54595c110beb96d5c02146f104b7e1532e81875.png" />
+<img alt="../_images/c0d1266b44209645c737f07fbe8a7f0448f3473cd3f797b1e90fd338c8183c93.png" src="../_images/c0d1266b44209645c737f07fbe8a7f0448f3473cd3f797b1e90fd338c8183c93.png" />
+<img alt="../_images/8aeab87dff409e39ce7e0ae81811bc53f7e2cf2640dd526cb0ef8c346d9d10f8.png" src="../_images/8aeab87dff409e39ce7e0ae81811bc53f7e2cf2640dd526cb0ef8c346d9d10f8.png" />
+<img alt="../_images/2a9fe33faf78f648d27f8bfaf325649d42a0ec3a679d12d1bbf7cca3a5719929.png" src="../_images/2a9fe33faf78f648d27f8bfaf325649d42a0ec3a679d12d1bbf7cca3a5719929.png" />
+<img alt="../_images/da0d11e4d31f1cfb9d5c01e2171cec4f74dcadfb5218a6a8c2d07518568aca22.png" src="../_images/da0d11e4d31f1cfb9d5c01e2171cec4f74dcadfb5218a6a8c2d07518568aca22.png" />
+<img alt="../_images/716f2a09ec92e466b6c46210d227a2ecd0707ddfa75a0ab13a9c9710b8434d31.png" src="../_images/716f2a09ec92e466b6c46210d227a2ecd0707ddfa75a0ab13a9c9710b8434d31.png" />
+<img alt="../_images/1881eb7f18205db0206f2de05a128f2eed4089fef347b39a13d3d7e80e820999.png" src="../_images/1881eb7f18205db0206f2de05a128f2eed4089fef347b39a13d3d7e80e820999.png" />
+<img alt="../_images/92f912ad3e77c307ff0a55a24fde4e435c00282ed0decaafef9a1344d379209c.png" src="../_images/92f912ad3e77c307ff0a55a24fde4e435c00282ed0decaafef9a1344d379209c.png" />
+<img alt="../_images/5a0d53063abfdbf6818eff7eff90a245ddabad23b9b2c956c027a3a126472452.png" src="../_images/5a0d53063abfdbf6818eff7eff90a245ddabad23b9b2c956c027a3a126472452.png" />
+<img alt="../_images/e070449c192e5d2147d4351524388ad2afdeb09a885d0f2474534a770510a681.png" src="../_images/e070449c192e5d2147d4351524388ad2afdeb09a885d0f2474534a770510a681.png" />
+<img alt="../_images/cc94bb9c972482cfe127037ceb891a58a30601f80589a8ad20319db5bbd4e731.png" src="../_images/cc94bb9c972482cfe127037ceb891a58a30601f80589a8ad20319db5bbd4e731.png" />
+<img alt="../_images/8e6ca09cc08e4d1f4df5196577fcbce1a50071d6ee516bb24f62d9e946bab502.png" src="../_images/8e6ca09cc08e4d1f4df5196577fcbce1a50071d6ee516bb24f62d9e946bab502.png" />
+<img alt="../_images/c0e2fc7683d4bbe3d24d18a93f71ccc01ac23b79d634b2b14b2061e0646f1ed1.png" src="../_images/c0e2fc7683d4bbe3d24d18a93f71ccc01ac23b79d634b2b14b2061e0646f1ed1.png" />
 </div>
 </div>
 <p><em><strong>Evaluate forecasts</strong></em></p>
@@ -2604,9 +2583,9 @@ Wall time: 631 ms
 </div>
 </div>
 <p><strong>Observation/s</strong>: The VAR(26) model outperformed the <a class="reference internal" href="../08_WinningestMethods/lightgbm_jena_forecasting.html"><span class="doc std std-doc">naive (MAE= 3.18), seasonal naive (MAE= 2.61)</span></a> and <a class="reference internal" href="../01_AutoRegressiveIntegratedMovingAverage/01_AutoRegressiveIntegratedMovingAverage.html"><span class="doc std std-doc">ARIMA (MAE= 3.19)</span></a> models.</p>
-</div>
-<div class="section" id="forecast-24-hours-beyond-test-set">
-<h4>Forecast 24 hours beyond test set<a class="headerlink" href="#forecast-24-hours-beyond-test-set" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="forecast-24-hours-beyond-test-set">
+<h4>Forecast 24 hours beyond test set<a class="headerlink" href="#forecast-24-hours-beyond-test-set" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">all_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">train_df</span><span class="p">,</span> <span class="n">val_df</span><span class="p">,</span> <span class="n">test_df</span><span class="p">])</span>
@@ -2647,48 +2626,48 @@ Wall time: 631 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/03_VectorAutoregressiveMethods_125_0.png" src="../_images/03_VectorAutoregressiveMethods_125_0.png" />
-<img alt="../_images/03_VectorAutoregressiveMethods_125_1.png" src="../_images/03_VectorAutoregressiveMethods_125_1.png" />
-<img alt="../_images/03_VectorAutoregressiveMethods_125_2.png" src="../_images/03_VectorAutoregressiveMethods_125_2.png" />
-<img alt="../_images/03_VectorAutoregressiveMethods_125_3.png" src="../_images/03_VectorAutoregressiveMethods_125_3.png" />
-<img alt="../_images/03_VectorAutoregressiveMethods_125_4.png" src="../_images/03_VectorAutoregressiveMethods_125_4.png" />
-<img alt="../_images/03_VectorAutoregressiveMethods_125_5.png" src="../_images/03_VectorAutoregressiveMethods_125_5.png" />
-<img alt="../_images/03_VectorAutoregressiveMethods_125_6.png" src="../_images/03_VectorAutoregressiveMethods_125_6.png" />
-<img alt="../_images/03_VectorAutoregressiveMethods_125_7.png" src="../_images/03_VectorAutoregressiveMethods_125_7.png" />
-<img alt="../_images/03_VectorAutoregressiveMethods_125_8.png" src="../_images/03_VectorAutoregressiveMethods_125_8.png" />
-<img alt="../_images/03_VectorAutoregressiveMethods_125_9.png" src="../_images/03_VectorAutoregressiveMethods_125_9.png" />
-<img alt="../_images/03_VectorAutoregressiveMethods_125_10.png" src="../_images/03_VectorAutoregressiveMethods_125_10.png" />
-<img alt="../_images/03_VectorAutoregressiveMethods_125_11.png" src="../_images/03_VectorAutoregressiveMethods_125_11.png" />
-<img alt="../_images/03_VectorAutoregressiveMethods_125_12.png" src="../_images/03_VectorAutoregressiveMethods_125_12.png" />
-<img alt="../_images/03_VectorAutoregressiveMethods_125_13.png" src="../_images/03_VectorAutoregressiveMethods_125_13.png" />
+<img alt="../_images/d98cb3e525f41b28fd7eca4b56e71a861cf32e52ce2a8487307de717e6674edc.png" src="../_images/d98cb3e525f41b28fd7eca4b56e71a861cf32e52ce2a8487307de717e6674edc.png" />
+<img alt="../_images/b776761fb903cdf05084d76b415335dbb2798a245e62b0dc4c86f771dc3c7fc2.png" src="../_images/b776761fb903cdf05084d76b415335dbb2798a245e62b0dc4c86f771dc3c7fc2.png" />
+<img alt="../_images/536816f9fb3310476dc67c85451ba2c6fe7947e6dafdd94597991946d8851879.png" src="../_images/536816f9fb3310476dc67c85451ba2c6fe7947e6dafdd94597991946d8851879.png" />
+<img alt="../_images/f5f89fbbde608d40041684651ce1c8d5c4bd72e83e60720d56dd0902af12abe3.png" src="../_images/f5f89fbbde608d40041684651ce1c8d5c4bd72e83e60720d56dd0902af12abe3.png" />
+<img alt="../_images/2e74cd01092df5a3b692a6e6f8662d7e6f87507ef378290365a86746910e8142.png" src="../_images/2e74cd01092df5a3b692a6e6f8662d7e6f87507ef378290365a86746910e8142.png" />
+<img alt="../_images/edc4743b4f6d558de9369a1042ea02f7f898442f16cec4c3a68e8d7848f97dfa.png" src="../_images/edc4743b4f6d558de9369a1042ea02f7f898442f16cec4c3a68e8d7848f97dfa.png" />
+<img alt="../_images/93fad15655c5f6c5101f02fde4319091287100b02f2252e89b7c0213b38e4d86.png" src="../_images/93fad15655c5f6c5101f02fde4319091287100b02f2252e89b7c0213b38e4d86.png" />
+<img alt="../_images/92699457f13adc6b06ea5e6519450024dd0e7cc7a0db480e15c3247dea8bdbba.png" src="../_images/92699457f13adc6b06ea5e6519450024dd0e7cc7a0db480e15c3247dea8bdbba.png" />
+<img alt="../_images/ce7a25d39e77bbbd39e38a0e0cf5d59cda9e8fe949e9e2c9f4a2a17fd7f4a147.png" src="../_images/ce7a25d39e77bbbd39e38a0e0cf5d59cda9e8fe949e9e2c9f4a2a17fd7f4a147.png" />
+<img alt="../_images/d568618ac0f1430d0207f2262b947a25be0d410caf2b8575b0511a9edb1340c6.png" src="../_images/d568618ac0f1430d0207f2262b947a25be0d410caf2b8575b0511a9edb1340c6.png" />
+<img alt="../_images/b15c5f8fba857b98e885fc9a6656626f959c67b190d627bfb203deed4b1b3345.png" src="../_images/b15c5f8fba857b98e885fc9a6656626f959c67b190d627bfb203deed4b1b3345.png" />
+<img alt="../_images/4a18879f8808a07946befcddde0158687bd4a71a88dc7da0979d35555b2210b9.png" src="../_images/4a18879f8808a07946befcddde0158687bd4a71a88dc7da0979d35555b2210b9.png" />
+<img alt="../_images/5fddb6c38802ca4f3785f111893248021aab77ee12af19e502d42049054b4a3f.png" src="../_images/5fddb6c38802ca4f3785f111893248021aab77ee12af19e502d42049054b4a3f.png" />
+<img alt="../_images/50862604aebdd99bd1d0a101780c2fe5751359fea51bbe3753dcfb2980747967.png" src="../_images/50862604aebdd99bd1d0a101780c2fe5751359fea51bbe3753dcfb2980747967.png" />
 </div>
 </div>
-</div>
-</div>
-</div>
-<div class="section" id="summary">
-<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+</section>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>VAR methods are useful when dealing with multivariate time series, as they allow us to use the relationship between the different variable to forecast.</p></li>
 <li><p>These models allow us to forecast the different variables simultaneously, with the added benefit of easy (only 1 hyperparameter) and fast training.</p></li>
 <li><p>Using the fitted VAR model, we can also explain the relationship between variables, and how the perturbation in one variable affects the others by getting the impulse response functions and the variance decomposition of the forecasts.</p></li>
 <li><p>However, the application of these models is limited due to the stationarity requirement for ALL the variables in the multivariate time series. This method won’t work well if there is at least one variable that’s non-stationary. When dealing with non-stationary multivariate time series, one can explore the use of vector error correction models (VECM).</p></li>
 </ul>
-</div>
-<div class="section" id="preview-to-the-next-chapter">
-<h2>Preview to the Next Chapter<a class="headerlink" href="#preview-to-the-next-chapter" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="preview-to-the-next-chapter">
+<h2>Preview to the Next Chapter<a class="headerlink" href="#preview-to-the-next-chapter" title="Permalink to this heading">#</a></h2>
 <p>In the next chapter, we further extend the use of VAR models to explain the relationships between variables in a multivariate time series using <strong>Granger causality</strong>, which is one of the most common ways to describe causal mechanisms in time series data.</p>
-</div>
-<div class="section" id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
 <p><strong>Main references</strong></p>
 <ul class="simple">
 <li><p>Lütkepohl, H. (2005). New introduction to multiple time series analysis. Berlin: Springer.</p></li>
 <li><p>Kilian, L., &amp; Lütkepohl, H. (2018). Structural vector autoregressive analysis. Cambridge: Cambridge University Press.</p></li>
 </ul>
-<p><strong>Supplementary references</strong> are listed <span class="xref myst">here</span>.</p>
-</div>
-</div>
+<p><strong>Supplementary references</strong> are listed <a class="reference download internal" download="" href="../_downloads/14cb39e27355f98360ffeac63b930a8a/VARreferences.txt"><span class="xref download myst">here</span></a>.</p>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -2702,7 +2681,7 @@ Wall time: 631 ms
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./03_VectorAutoregressiveModels"
         },
         predefinedOutput: true
@@ -2710,38 +2689,173 @@ Wall time: 631 ms
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-        </div>
-    </div>
-    
-    
-    <div class='prev-next-bottom'>
-        
-    <a class='left-prev' id="prev-link" href="../02_LinearForecastingTrendandMomentumForecasting/02_LinearTrendandMomentumForecasting.html" title="previous page">Chapter 2: Linear, Trend, and Momentum Forecasting</a>
-    <a class='right-next' id="next-link" href="../04_GrangerCausality/04_GrangerCausality.html" title="next page">Chapter 4: Granger Causality Test</a>
 
-    </div>
-    <footer class="footer mt-5 mt-md-0">
-    <div class="container">
-      <p>
-        
-          By students of PhD in Data Science Batch 2023 at the Asian Institute of Management<br/>
-        
-            &copy; Copyright 2020.<br/>
-      </p>
-    </div>
-  </footer>
-</main>
-
-
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../02_LinearForecastingTrendandMomentumForecasting/02_LinearTrendandMomentumForecasting.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Chapter 2: Linear, Trend, and Momentum Forecasting</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="../04_GrangerCausality/04_GrangerCausality.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Chapter 4: Granger Causality Test</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multivariate-time-series-model">Multivariate Time Series Model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definition-univariate-vs-multivariate-time-series">Definition: Univariate vs Multivariate Time Series</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1-multivariate-time-series">Example 1: Multivariate Time Series</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-air-quality-data-from-uci">A. Air Quality Data from UCI</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#b-global-health-from-the-world-bank">B. Global Health from The World Bank</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c-us-treasury-rates">C. US Treasury Rates</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#d-jena-climate-data">D. Jena Climate Data</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#foundations">Foundations</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#weak-stationarity-of-multivariate-time-series">Weak Stationarity of Multivariate Time Series</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#obtaining-cross-correlation-matrix-from-cross-covariance-matrix">Obtaining Cross-Correlation Matrix from Cross-Covariance Matrix</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vector-autoregressive-var-models">Vector Autoregressive (VAR) Models</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#var-1-model">VAR(1) Model</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#structural-and-reduced-forms-of-the-var-model">Structural and Reduced Forms of the VAR model</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#structural-var-var-in-primitive-form">Structural VAR (VAR in primitive form)</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#reduced-form-var-var-in-standard-form">Reduced-form VAR (VAR in standard form)</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#vma-infinite-representation-and-stationarity">VMA infinite representation and Stationarity</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#stationarity-of-the-var-1-model">Stationarity of the VAR(1) model</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#var-p-model">VAR(p) Model</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#properties">Properties</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#stationarity-of-var-p-model">Stationarity of VAR(p) model</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#specification-of-a-var-model-choosing-the-order-p">Specification of a VAR model: Choosing the order <em>p</em></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-a-var-model">Building a VAR model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-forecasting-air-quality-data-co-no2-and-rh">Example 2: Forecasting Air Quality Data (CO, NO2 and RH)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#check-stationarity">1. Check stationarity</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#kwiatkowskiphillipsschmidtshin-kpss-test">Kwiatkowski–Phillips–Schmidt–Shin (KPSS) test</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#augmented-dickey-fuller-adf-test">Augmented Dickey-Fuller (ADF) test</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#split-data-into-train-and-test-sets">2. Split data into train and test sets</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#select-order-p">3. Select order <em>p</em></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#fit-var-model-with-chosen-order">3. Fit VAR model with chosen order</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#get-forecast">4. Get forecast</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-evaluation-comparison-with-arima-model">Performance Evaluation: Comparison with ARIMA model</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#structural-var-analysis">Structural VAR Analysis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#impulse-response-function-irf">Impulse Response Function (IRF)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#irf-in-the-var-system-for-air-quality">IRF in the VAR system for Air Quality</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#forecast-error-variance-decomposition-fevd">Forecast Error Variance Decomposition (FEVD)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-3-forecasting-the-jena-climate-data">Example 3: Forecasting the Jena climate data</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#load-dataset">Load dataset</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#check-stationarity-of-each-variable-using-adf-test">Check stationarity of each variable using ADF test</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Select order p</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#train-var-model-using-the-training-and-validation-data">Train VAR model using the training and validation data</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#forecast-24-hour-weather-measurements-and-evaluate-performance-on-test-set">Forecast 24-hour weather measurements and evaluate performance on test set</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#forecast-24-hours-beyond-test-set">Forecast 24 hours beyond test set</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preview-to-the-next-chapter">Preview to the Next Chapter</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Trần Vũ Quang Huy - TLU
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
     </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    
-  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
-
-
-    
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>
