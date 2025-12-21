@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Chapter 2: Linear, Trend, and Momentum Forecasting &#8212; Bản dịch Time Series Analysis Handbook</title>
+    <title>Chương 2: Dự báo Tuyến tính, Xu hướng và Động lượng &#8212; Bản dịch Time Series Analysis Handbook</title>
   
   
   
@@ -67,8 +67,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = '02_LinearForecastingTrendandMomentumForecasting/02_LinearTrendandMomentumForecasting';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Chapter 3: Vector Autoregressive Methods" href="../03_VectorAutoregressiveModels/03_VectorAutoregressiveMethods.html" />
-    <link rel="prev" title="Chương 1: Mô hình Trung bình động tích hợp tự hồi quy (AutoRegressive Integrated Moving Average - ARIMA)" href="../01_AutoRegressiveIntegratedMovingAverage/01_AutoRegressiveIntegratedMovingAverage.html" />
+    <link rel="next" title="Chương 3: Các phương pháp Vectơ tự hồi quy (Vector Autoregressive Methods)" href="../03_VectorAutoregressiveModels/03_VectorAutoregressiveMethods.html" />
+    <link rel="prev" title="Chương 1: Trung bình trượt tích hợp tự hồi quy (ARIMA)" href="../01_AutoRegressiveIntegratedMovingAverage/01_AutoRegressiveIntegratedMovingAverage.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -171,9 +171,9 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../00_Introduction/00_Introduction.html">Chương 0: Phân tích Chuỗi Thời gian Nâng cao</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../01_AutoRegressiveIntegratedMovingAverage/01_AutoRegressiveIntegratedMovingAverage.html">Chương 1: Mô hình Trung bình động tích hợp tự hồi quy (AutoRegressive Integrated Moving Average - ARIMA)</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Chapter 2: Linear, Trend, and Momentum Forecasting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../03_VectorAutoregressiveModels/03_VectorAutoregressiveMethods.html">Chapter 3: Vector Autoregressive Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_AutoRegressiveIntegratedMovingAverage/01_AutoRegressiveIntegratedMovingAverage.html">Chương 1: Trung bình trượt tích hợp tự hồi quy (ARIMA)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Chương 2: Dự báo Tuyến tính, Xu hướng và Động lượng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_VectorAutoregressiveModels/03_VectorAutoregressiveMethods.html">Chương 3: Các phương pháp Vectơ tự hồi quy (Vector Autoregressive Methods)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../04_GrangerCausality/04_GrangerCausality.html">Chapter 4: Granger Causality Test</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../05_SimplexandSmapProjections/05_Empirical%20Dynamic%20Modelling%20%28Simplex%20and%20SMap_Projections%29.html">Chapter 5 : Dynamical Forecasting Methods (Simplex and SMap Projections)</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../06_ConvergentCrossMappingandSugiharaCausality/ccm_sugihara.html">Chapter 6: Convergent Cross Mapping</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -324,7 +324,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Chapter 2: Linear, Trend, and Momentum Forecasting</h1>
+    <h1>Chương 2: Dự báo Tuyến tính, Xu hướng và Động lượng</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -334,56 +334,56 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-use-this-notebook">How to Use This Notebook</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-regression-lr-forecasting">Linear Regression (LR) Forecasting</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gauss-markov-assumptions">Gauss Markov Assumptions</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1-univariate-lr-in-stock-price-of-netflix">Example 1: Univariate LR in Stock Price of Netflix</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-for-stationarity">Testing for Stationarity</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-for-autocorrelation">Testing for Autocorrelation</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-with-model-where-x-x-t-1">Compare with model where <span class="math notranslate nohighlight">\(X=X_{t-1}\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cach-su-dung-so-tay-nay">Cách sử dụng Sổ tay này</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#du-bao-bang-hoi-quy-tuyen-tinh-lr">Dự báo bằng Hồi quy Tuyến tính (LR)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cac-gia-dinh-gauss-markov">Các giả định Gauss Markov</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vi-du-1-hoi-quy-tuyen-tinh-don-bien-cho-gia-co-phieu-netflix">Ví dụ 1: Hồi quy tuyến tính đơn biến cho giá cổ phiếu Netflix</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#kiem-tra-tinh-dung">Kiểm tra tính dừng</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#kiem-tra-tu-tuong-quan">Kiểm tra Tự tương quan</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#so-sanh-voi-mo-hinh-trong-do-x-x-t-1">So sánh với mô hình trong đó <span class="math notranslate nohighlight">\(X=X_{t-1}\)</span></a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-univariate-forecasting-using-jena-climate-data">Example 2. Univariate Forecasting using Jena Climate Data</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#simultaneous-prediction-of-temperature-in-the-next-24-hours">Simultaneous prediction of temperature in the next 24 hours</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vi-du-2-du-bao-don-bien-su-dung-du-lieu-khi-hau-jena">Ví dụ 2. Dự báo đơn biến sử dụng Dữ liệu Khí hậu Jena</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#du-bao-dong-thoi-nhiet-do-trong-24-gio-toi">Dự báo đồng thời nhiệt độ trong 24 giờ tới</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-3-multivariate-linear-regression-and-regularization-techniques">Example 3: Multivariate Linear Regression and Regularization Techniques</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretation-of-coefficients">Interpretation of coefficients:</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretation-of-metrics">Interpretation of metrics:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vi-du-3-hoi-quy-tuyen-tinh-da-bien-va-cac-ky-thuat-dieu-chuan-regularization">Ví dụ 3: Hồi quy tuyến tính đa biến và các kỹ thuật điều chuẩn (Regularization)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#giai-thich-cac-he-so">Giải thích các hệ số:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#giai-thich-cac-chi-so">Giải thích các chỉ số:</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#l1-lasso-and-l2-ridge-regularization-for-multi-variate-linear-regression">L1 (Lasso) and L2 (Ridge) regularization for multi-variate linear regression</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lasso-regularization">Lasso Regularization</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ridge-regularization">Ridge Regularization</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#l1-regularization">L1 Regularization</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#l2-regularization">L2 Regularization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dieu-chuan-l1-lasso-va-l2-ridge-cho-hoi-quy-tuyen-tinh-da-bien">Điều chuẩn L1 (Lasso) và L2 (Ridge) cho hồi quy tuyến tính đa biến</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dieu-chuan-lasso-lasso-regularization">Điều chuẩn Lasso (Lasso Regularization)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dieu-chuan-ridge-ridge-regularization">Điều chuẩn Ridge (Ridge Regularization)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#l1-dieu-chuan">L1 Điều chuẩn</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#l2-dieu-chuan">L2 Điều chuẩn</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-4-multi-variate-linear-regression-on-jena-climate-data">Example 4: Multi-variate Linear Regression on Jena Climate Data</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">L1 Regularization</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">L2 Regularization</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#simultaneous-prediction-of-the-temperature-for-the-next-24-hours">Simultaneous prediction of the temperature for the next 24 hours</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#momentum-and-trend-forecasting">Momentum and Trend Forecasting</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#moving-average-ma">Moving Average MA</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-5-extracting-the-trend-in-climate-data-using-ma">Example 5: Extracting the Trend in Climate Data Using MA</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#momentum-strategies">Momentum Strategies</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-apply-momentum-strategy">How to apply momentum strategy:</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-6-momentum-trading-strategy-using-two-ma-s">Example 6: Momentum Trading Strategy Using Two MA’s</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-7-momentum-trading-strategy-using-macd">Example 7: Momentum Trading Strategy Using MACD</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#macd-indicators">MACD Indicators</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vi-du-4-hoi-quy-tuyen-tinh-da-bien-tren-du-lieu-khi-hau-jena">Ví dụ 4: Hồi quy tuyến tính đa biến trên Dữ liệu Khí hậu Jena</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">L1 Điều chuẩn</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">L2 Điều chuẩn</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Dự báo đồng thời nhiệt độ trong 24 giờ tới</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preview-to-the-next-chapter">Preview to the next chapter…</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#du-bao-dong-luong-va-xu-huong">Dự báo Động lượng và Xu hướng</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#duong-trung-binh-dong-moving-average-ma">Đường trung bình động (Moving Average - MA)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vi-du-5-trich-xuat-xu-huong-trong-du-lieu-khi-hau-bang-ma">Ví dụ 5: Trích xuất xu hướng trong Dữ liệu Khí hậu bằng MA</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chien-luoc-dong-luong-momentum-strategies">Chiến lược Động lượng (Momentum Strategies)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cach-ap-dung-chien-luoc-dong-luong">Cách áp dụng chiến lược động lượng:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vi-du-6-chien-luoc-giao-dich-dong-luong-su-dung-hai-duong-ma">Ví dụ 6: Chiến lược giao dịch Động lượng sử dụng hai đường MA</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vi-du-7-chien-luoc-giao-dich-dong-luong-su-dung-macd">Ví dụ 7: Chiến lược giao dịch Động lượng sử dụng MACD</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cac-chi-bao-macd">Các chỉ báo MACD</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tom-tat">Tóm tắt</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#xem-truoc-chuong-tiep-theo">Xem trước chương tiếp theo…</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tai-lieu-tham-khao">Tài liệu tham khảo</a></li>
 </ul>
             </nav>
         </div>
@@ -395,46 +395,46 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="chapter-2-linear-trend-and-momentum-forecasting">
-<h1>Chapter 2: Linear, Trend, and Momentum Forecasting<a class="headerlink" href="#chapter-2-linear-trend-and-momentum-forecasting" title="Permalink to this heading">#</a></h1>
-<p>Prepared by: Marissa P. Liponhay and Maria Eloisa M. Ventura</p>
-<p>In this chapter we introduce basic tools on forecasting, which utilize simple algebraic formula. In the previous chapter, ARIMA was discussed where the future values of a time series are forecasted using its past or lagged values. It was shown that ARIMA can only be applied after removing the trend and seasonality of the data. We note however that for some forecasting tools, the trend is relevant and is part of the formula for prediction. In this work, forecasting will be demonstrated while making use of the relationships and trends in the data.</p>
-<p>In the first half of this notebook, we demonstrate forecasting by fitting time series data with linear regression. For the second half, we demonstrate that by using the trends of the time series data such as moving averages, we can predict the possible future direction of the trend using momentum forecasting.</p>
-<p>Lastly, it is important to note that the concept of moving average (MA) in ARIMA is not the same in this chapter since the moving average that will be discussed is just the classical definition of MA.</p>
-<section id="how-to-use-this-notebook">
-<h2>How to Use This Notebook<a class="headerlink" href="#how-to-use-this-notebook" title="Permalink to this heading">#</a></h2>
-<p>This chapter is divided into two parts mainly about: (a) linear regression and (b) trend and momentum forecasting  using moving averages. In each section, the theory is discussed followed by examples that are implemented in Python 3. The chapter outline can be seen in the <strong><span class="xref myst">readme</span></strong> file for this chapter.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="chuong-2-du-bao-tuyen-tinh-xu-huong-va-dong-luong">
+<h1>Chương 2: Dự báo Tuyến tính, Xu hướng và Động lượng<a class="headerlink" href="#chuong-2-du-bao-tuyen-tinh-xu-huong-va-dong-luong" title="Permalink to this heading">#</a></h1>
+<p>Được viết bởi: Marissa P. Liponhay and Maria Eloisa M. Ventura</p>
+<p>Trong chương này, chúng tôi giới thiệu các công cụ cơ bản về dự báo, những công cụ sử dụng công thức đại số đơn giản. Ở chương trước, chúng ta đã thảo luận về ARIMA, nơi các giá trị tương lai của một chuỗi thời gian được dự báo bằng cách sử dụng các giá trị quá khứ hoặc giá trị trễ của nó. Chúng ta đã thấy rằng ARIMA chỉ có thể được áp dụng sau khi đã loại bỏ xu hướng và tính thời vụ của dữ liệu. Tuy nhiên, chúng tôi lưu ý rằng đối với một số công cụ dự báo, xu hướng là yếu tố có liên quan và là một phần của công thức dự đoán. Trong phần này, việc dự báo sẽ được trình diễn trong khi tận dụng các mối quan hệ và xu hướng trong dữ liệu.</p>
+<p>Trong nửa đầu của sổ tay này, chúng tôi trình diễn việc dự báo bằng cách khớp dữ liệu chuỗi thời gian với hồi quy tuyến tính. Đối với nửa sau, chúng tôi chứng minh rằng bằng cách sử dụng các xu hướng của dữ liệu chuỗi thời gian như trung bình trượt, chúng ta có thể dự đoán hướng đi tương lai có thể có của xu hướng bằng cách sử dụng dự báo động lượng.</p>
+<p>Cuối cùng, một điều quan trọng cần lưu ý là khái niệm trung bình trượt (MA) trong ARIMA không giống với khái niệm trong chương này, vì trung bình trượt sẽ được thảo luận ở đây chỉ là định nghĩa cổ điển của MA.</p>
+<section id="cach-su-dung-so-tay-nay">
+<h2>Cách sử dụng Sổ tay này<a class="headerlink" href="#cach-su-dung-so-tay-nay" title="Permalink to this heading">#</a></h2>
+<p>Chương này được chia thành hai phần chính về: (a) hồi quy tuyến tính và (b) dự báo xu hướng và động lượng bằng cách sử dụng trung bình trượt. Trong mỗi phần, lý thuyết được thảo luận trước, sau đó là các ví dụ được triển khai bằng Python 3. Đề cương chương có thể được xem trong tệp <strong><span class="xref myst">readme</span></strong> của chương này.</p>
 </section>
-<section id="linear-regression-lr-forecasting">
-<h2>Linear Regression (LR) Forecasting<a class="headerlink" href="#linear-regression-lr-forecasting" title="Permalink to this heading">#</a></h2>
-<p>Linear regression forecasting is used when forecasting a time series y, with the assumption that it has a linear relationship with another time series x.</p>
-<p>The basic equation in doing linear regression is:
+<section id="du-bao-bang-hoi-quy-tuyen-tinh-lr">
+<h2>Dự báo bằng Hồi quy Tuyến tính (LR)<a class="headerlink" href="#du-bao-bang-hoi-quy-tuyen-tinh-lr" title="Permalink to this heading">#</a></h2>
+<p>Dự báo bằng hồi quy tuyến tính được sử dụng khi dự báo một chuỗi thời gian y, với giả định rằng nó có mối quan hệ tuyến tính với một chuỗi thời gian x khác.</p>
+<p>Phương trình cơ bản khi thực hiện hồi quy tuyến tính là:
 <span class="math notranslate nohighlight">\(y= mx + b \)</span></p>
-<p>where <span class="math notranslate nohighlight">\(m\)</span> is the slope of the linear fit and <span class="math notranslate nohighlight">\(b\)</span> is the <span class="math notranslate nohighlight">\(y\)</span> intercept which represents error in the fit. Usually in forecasting, <span class="math notranslate nohighlight">\(y\)</span> is replaced by <span class="math notranslate nohighlight">\(\hat{y}\)</span> to symbolize the forecasted value.</p>
-<p>Given a data set, one can easily compute for the slope of the data manually or automatically using excel built-in trendline functions. To manually calculate <span class="math notranslate nohighlight">\(m\)</span>, the following equation is used:</p>
+<p>Trong đó <span class="math notranslate nohighlight">\(m\)</span> à hệ số góc (độ dốc) của đường thẳng khớp và <span class="math notranslate nohighlight">\(b\)</span> là điểm giao cắt với trục <span class="math notranslate nohighlight">\(y\)</span> , đại diện cho sai số trong việc khớp dữ liệu. Thông thường trong dự báo, <span class="math notranslate nohighlight">\(y\)</span> được thay thế bằng <span class="math notranslate nohighlight">\(\hat{y}\)</span> để tượng trưng cho giá trị dự báo.</p>
+<p>Dựa trên một tập dữ liệu, người ta có thể dễ dàng tính toán hệ số góc của dữ liệu theo cách thủ công hoặc tự động bằng các hàm đường xu hướng (trendline) tích hợp sẵn trong Excel. Để tính toán <span class="math notranslate nohighlight">\(m\)</span> thủ công, phương trình sau đây được sử dụng:</p>
 <p><span class="math notranslate nohighlight">\(m = {\frac{\sum\limits _{i=1} ^{n}(x_{i}-\bar{x})(y_{i}-\bar{y})}{\sum\limits _{i=1} ^{n}(x_{i}-\bar{x})^2}}\)</span></p>
-<p>To automatically calculate it in excel, one only needs to place a linear ‘trendline’ into the scatter plot of the data.</p>
-<p>This method is called the Ordinary least squares (OLS). A more general equation of LR using OLS is given as:</p>
+<p>Để tính toán tự động trong Excel, người ta chỉ cần đặt một ‘đường xu hướng’ tuyến tính vào biểu đồ phân tán của dữ liệu.</p>
+<p>Phương pháp này được gọi là Bình phương tối thiểu thông thường (OLS). Một phương trình tổng quát hơn của hồi quy tuyến tính sử dụng OLS được cho là:</p>
 <p><span class="math notranslate nohighlight">\(y= mx + b + \mu_{i}\)</span></p>
-<p>where <span class="math notranslate nohighlight">\(\mu_{i}\)</span> represent the outliers or the terms that cannot fit into the regression line.</p>
-<p>OLS quantifies the  evaluation of different regression lines. Using OLS, the regression line that minimizes the sum of the squares of the differences between the observed dependent variable and the predicted dependent variable is chosen as the best fit.</p>
-<p>But what if there are outliers causing the best regression by OLS do not really fit the data? This leads us to check when OLS can be applied to a data set. The following are the assumptions that are necessarily met before we can apply OLS.</p>
-<section id="gauss-markov-assumptions">
-<h3>Gauss Markov Assumptions<a class="headerlink" href="#gauss-markov-assumptions" title="Permalink to this heading">#</a></h3>
-<p>The following assumptions for sampled data (from a population) should be met so that the parameters calculated using OLS indeed represent the best unbiased estimator of the population parameters.</p>
+<p>Trong đó <span class="math notranslate nohighlight">\(\mu_{i}\)</span> đại diện cho các giá trị ngoại lai hoặc các số hạng không thể khớp vào đường hồi quy.</p>
+<p>OLS định lượng việc đánh giá các đường hồi quy khác nhau. Sử dụng OLS, đường hồi quy nào tối thiểu hóa tổng bình phương của sự chênh lệch giữa biến phụ thuộc quan sát được và biến phụ thuộc dự đoán sẽ được chọn là đường khớp nhất.</p>
+<p>Nhưng điều gì sẽ xảy ra nếu có các giá trị ngoại lai khiến cho đường hồi quy tốt nhất bởi OLS không thực sự khớp với dữ liệu? Điều này dẫn chúng ta đến việc kiểm tra xem khi nào OLS có thể được áp dụng cho một tập dữ liệu. Sau đây là các giả định cần thiết phải được đáp ứng trước khi chúng ta có thể áp dụng OLS.</p>
+<section id="cac-gia-dinh-gauss-markov">
+<h3>Các giả định Gauss Markov<a class="headerlink" href="#cac-gia-dinh-gauss-markov" title="Permalink to this heading">#</a></h3>
+<p>Các giả định sau đây đối với dữ liệu mẫu (từ một quần thể) cần phải được đáp ứng để các tham số được tính toán bằng OLS thực sự đại diện cho ước lượng không chệch tốt nhất của các tham số quần thể.</p>
 <ol class="arabic simple">
-<li><p>Linearity in parameters. This assumption requires that parameter <span class="math notranslate nohighlight">\(m\)</span> is linear. (Independent variable is not required to be linear).</p></li>
-<li><p>Both the independent and dependent variables <span class="math notranslate nohighlight">\((x,y)\)</span> are random variables. This will result to zero autocorrelation of outlier or the residual term.</p></li>
-<li><p>For multivariate regression method,there should be no perfect collinearity between multiple independent variables. To test for the presence of collinearity, <span class="math notranslate nohighlight">\(R^{2}\)</span> is good.</p></li>
-<li><p>The outlier aka residual term <span class="math notranslate nohighlight">\(\mu\)</span> is endogenous, such that <span class="math notranslate nohighlight">\(cov(\mu_{i}, x_{i})=0\)</span>=0.</p></li>
-<li><p>Homoscedasticity in residual term <span class="math notranslate nohighlight">\(\mu_{i}\)</span>, in other words, the variance of <span class="math notranslate nohighlight">\(\mu_i\)</span> is independent of <span class="math notranslate nohighlight">\(x_i\)</span>.</p></li>
-<li><p>The residual term <span class="math notranslate nohighlight">\(\mu_{i}\)</span> have zero autocorrelation, i.e., <span class="math notranslate nohighlight">\(cov(\mu_{i}, \mu_{j})=0\)</span>.</p></li>
+<li><p>Tính tuyến tính trong các tham số: Giả định này yêu cầu tham số <span class="math notranslate nohighlight">\(m\)</span> phải là tuyến tính. (Biến độc lập không bắt buộc phải tuyến tính).</p></li>
+<li><p>Cả biến độc lập và biến phụ thuộc <span class="math notranslate nohighlight">\((x,y)\)</span> đều là các biến ngẫu nhiên: Điều này sẽ dẫn đến việc số hạng ngoại lai hoặc số hạng phần dư có tự tương quan bằng không.</p></li>
+<li><p>Đối với phương pháp hồi quy đa biến, không nên có hiện tượng đa cộng tuyến hoàn hảo giữa các biến độc lập. Để kiểm tra sự hiện diện của đa cộng tuyến, <span class="math notranslate nohighlight">\(R^{2}\)</span> là một chỉ số tốt.</p></li>
+<li><p>Số hạng ngoại lai (còn gọi là số hạng phần dư) <span class="math notranslate nohighlight">\(\mu\)</span> là nội sinh, sao cho <span class="math notranslate nohighlight">\(cov(\mu_{i}, x_{i})=0\)</span>.</p></li>
+<li><p>Tính đồng nhất của phương sai (Homoscedasticity) trong số hạng phần dư <span class="math notranslate nohighlight">\(\mu_{i}\)</span>, nói cách khác, phương sai của <span class="math notranslate nohighlight">\(\mu_{i}\)</span> độc lập với <span class="math notranslate nohighlight">\(x_{i}\)</span>.</p></li>
+<li><p>Số hạng phần dư <span class="math notranslate nohighlight">\(\mu_{i}\)</span> không có tự tương quan, nghĩa là <span class="math notranslate nohighlight">\(cov(\mu_{i}, \mu_{j})=0\)</span>.</p></li>
 </ol>
-<p>Using OLS for time series data, the samples are drawn from the same process, and we can no longer assume that the independent variable <span class="math notranslate nohighlight">\(x\)</span> is random variable. In this case, the assumptions (4-6) should be strictly met by all <span class="math notranslate nohighlight">\(x\)</span> at all points.</p>
+<p>Sử dụng OLS cho dữ liệu chuỗi thời gian, các mẫu được rút ra từ cùng một quá trình, và chúng ta không còn có thể giả định rằng biến độc lập <span class="math notranslate nohighlight">\(x\)</span> là biến ngẫu nhiên. Trong trường hợp này, các giả định (4-6) phải được đáp ứng nghiêm ngặt bởi tất cả <span class="math notranslate nohighlight">\(x\)</span> tại mọi thời điểm.</p>
 </section>
-<section id="example-1-univariate-lr-in-stock-price-of-netflix">
-<h3>Example 1: Univariate LR in Stock Price of Netflix<a class="headerlink" href="#example-1-univariate-lr-in-stock-price-of-netflix" title="Permalink to this heading">#</a></h3>
-<p>Linear regression is one of the most successful tools used in technical analysis of prices and is widely available as a charting tool. For the sake of demonstration, we will use the historical data of Netflix downloaded from Yahoo.</p>
+<section id="vi-du-1-hoi-quy-tuyen-tinh-don-bien-cho-gia-co-phieu-netflix">
+<h3>Ví dụ 1: Hồi quy tuyến tính đơn biến cho giá cổ phiếu Netflix<a class="headerlink" href="#vi-du-1-hoi-quy-tuyen-tinh-don-bien-cho-gia-co-phieu-netflix" title="Permalink to this heading">#</a></h3>
+<p>Hồi quy tuyến tính là một trong những công cụ thành công nhất được sử dụng trong phân tích kỹ thuật về giá và được cung cấp rộng rãi như một công cụ lập biểu đồ. Để phục vụ mục đích minh họa, chúng ta sẽ sử dụng dữ liệu lịch sử của Netflix được tải xuống từ Yahoo.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
@@ -473,22 +473,22 @@ document.write(`
 <img alt="../_images/5b24bde99f14423334e0cf74b3ce7620795fdfade664f6b73575643d0993f90f.png" src="../_images/5b24bde99f14423334e0cf74b3ce7620795fdfade664f6b73575643d0993f90f.png" />
 </div>
 </div>
-<section id="testing-for-stationarity">
-<h4>Testing for Stationarity<a class="headerlink" href="#testing-for-stationarity" title="Permalink to this heading">#</a></h4>
-<p>We have learned from the previous chapter that one of the first steps to do when doing time series forecasting is to check the stationarity of the data, especially when there is a prominent trend. In this notebook, we will use the most widely used statistical test called the Augmented Dickey-Fuller, a unit root test. Note that a unit root test determines how strongly a time series is defined by a trend. The test uses an autoregressive model and optimizes an information criterion across different lag values. Recall that:</p>
-<p>Null Hypothesis (H0):</p>
+<section id="kiem-tra-tinh-dung">
+<h4>Kiểm tra tính dừng<a class="headerlink" href="#kiem-tra-tinh-dung" title="Permalink to this heading">#</a></h4>
+<p>Chúng ta đã học từ chương trước rằng một trong những bước đầu tiên cần làm khi thực hiện dự báo chuỗi thời gian là kiểm tra tính dừng của dữ liệu, đặc biệt là khi có một xu hướng nổi bật. Trong sổ tay này, chúng ta sẽ sử dụng kiểm định thống kê phổ biến nhất được gọi là Kiểm định Augmented Dickey-Fuller (ADF), một loại kiểm định nghiệm đơn vị (unit root test). Lưu ý rằng kiểm định nghiệm đơn vị xác định mức độ mạnh mẽ của một xu hướng trong việc định hình chuỗi thời gian. Kiểm định này sử dụng một mô hình tự hồi quy và tối ưu hóa tiêu chuẩn thông tin qua các giá trị độ trễ khác nhau. Hãy nhớ lại rằng:</p>
+<p>Giả thuyết không (H0):</p>
 <ul class="simple">
-<li><p>The time series has a unit root and is non-stationary. It is time dependent.</p></li>
+<li><p>Chuỗi thời gian có nghiệm đơn vị và không dừng. Nó phụ thuộc vào thời gian.</p></li>
 </ul>
-<p>Alternate Hypothesis (H1):</p>
+<p>Giả thuyết đối (H1):</p>
 <ul class="simple">
-<li><p>The time series does not have a unit root and is stationary. It is not time-dependent.</p></li>
+<li><p>Chuỗi thời gian không có nghiệm đơn vị và có tính dừng. Nó không phụ thuộc vào thời gian.</p></li>
 </ul>
-<p>Finally, the result of the test can be interpreted using the ADF Statistic, i.e., the ADF statistic should be lesser than the critical values for the data to be considered stationary.</p>
-<p>In some references, they use p-value from the test. A p-value below a threshold (such as 5% or 1%) implies a stationary time series, otherwise the data is non-stationary.</p>
-<p>p-value &lt;= 0.05: The time series is stationary.</p>
-<p>p-value &gt; 0.05: The time series is non-stationary.</p>
-<p>In other references, they simply compare the ADF statistic to the critical values, such that if it is greater than the critical values, the time series is said to be non-stationary.</p>
+<p>Cuối cùng, kết quả của kiểm định có thể được diễn giải bằng Thống kê ADF, cụ thể là: giá trị thống kê ADF phải nhỏ hơn các giá trị tới hạn (critical values) để dữ liệu được coi là dừng.</p>
+<p>Trong một số tài liệu tham khảo, người ta sử dụng giá trị <span class="math notranslate nohighlight">\(p\)</span> (p-value) từ kiểm định. Giá trị <span class="math notranslate nohighlight">\(p\)</span> dưới một ngưỡng (chẳng hạn như 5% hoặc 1%) ngụ ý chuỗi thời gian có tính dừng, nếu không thì dữ liệu là không dừng.</p>
+<p>p-value &lt;= 0.05: Chuỗi thời gian có tính dừng.</p>
+<p>p-value &gt; 0.05: Chuỗi thời gian không dừng.</p>
+<p>Trong các tài liệu khác, họ chỉ đơn giản so sánh thống kê ADF với các giá trị tới hạn; nếu thống kê này lớn hơn các giá trị tới hạn, chuỗi thời gian được cho là không dừng.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">statsmodels.tsa.stattools</span><span class="w"> </span><span class="kn">import</span> <span class="n">adfuller</span>
@@ -514,11 +514,11 @@ Critical Values:
 </div>
 </div>
 </div>
-<p>Based on the results, the time series in non-stationary at all significance levels (1%,…) as the ADF statistic is greater the the critical values.</p>
+<p>Dựa trên kết quả, chuỗi thời gian là không dừng ở tất cả các mức ý nghĩa (1%,…) vì thống kê ADF lớn hơn các giá trị tới hạn.</p>
 </section>
-<section id="testing-for-autocorrelation">
-<h4>Testing for Autocorrelation<a class="headerlink" href="#testing-for-autocorrelation" title="Permalink to this heading">#</a></h4>
-<p>The autocorrelation coefficient measures the strength of the relationship between the data and its lag. The first coefficient measures the relationship between <span class="math notranslate nohighlight">\(y_{t}\)</span> to <span class="math notranslate nohighlight">\(y_{t-1}\)</span>, while the second coefficient measures the relationship between <span class="math notranslate nohighlight">\(y_{t}\)</span> to <span class="math notranslate nohighlight">\(y_{t-2}\)</span>, and so on.</p>
+<section id="kiem-tra-tu-tuong-quan">
+<h4>Kiểm tra Tự tương quan<a class="headerlink" href="#kiem-tra-tu-tuong-quan" title="Permalink to this heading">#</a></h4>
+<p>Hệ số tự tương quan đo lường mức độ mạnh yếu của mối quan hệ giữa dữ liệu và các giá trị trễ của chính nó. Hệ số thứ nhất đo lường mối quan hệ giữa <span class="math notranslate nohighlight">\(y_{t}\)</span> và <span class="math notranslate nohighlight">\(y_{t-1}\)</span>, trong khi hệ số thứ hai đo lường mối quan hệ giữa <span class="math notranslate nohighlight">\(y_{t}\)</span> và <span class="math notranslate nohighlight">\(y_{t-2}\)</span>, và cứ tiếp tục như vậy.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># testing autocorrelation using pandas tools.</span>
@@ -532,7 +532,7 @@ Critical Values:
 <img alt="../_images/240abbbc31cb56d540bd325b361988594099cbfc3bcfc2d3c75a86a7f5545a2b.png" src="../_images/240abbbc31cb56d540bd325b361988594099cbfc3bcfc2d3c75a86a7f5545a2b.png" />
 </div>
 </div>
-<p>Another way to visualize the autocorrellation using pandas tools with respect to lag is shown below.</p>
+<p>Một cách khác để trực quan hóa sự tự tương quan theo độ trễ bằng cách sử dụng các công cụ của thư viện pandas được trình bày dưới đây.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
@@ -547,10 +547,10 @@ Critical Values:
 <img alt="../_images/72d83500dd5cc7b4395877a43158b0fa1a1cbaf0322d5d8311f7ea365c4c56b8.png" src="../_images/72d83500dd5cc7b4395877a43158b0fa1a1cbaf0322d5d8311f7ea365c4c56b8.png" />
 </div>
 </div>
-<p>One can better imagine the concept of lagged autocorrelation if we make the lagged data as a moving version of the original data and look at the overlap (in this case, their autocorrelation). If the trends of the original are both goin up or down as the lagged data is moved, the correlation is positive, otherwise negative.</p>
-<p>Referring back to the autocorrelation plot vs lag, the plot shows that as the lag increases, the trend decreases. The strong relationship of the data with the first 100 lags shows that <span class="math notranslate nohighlight">\(y\)</span> is not purely random as stated in the Gauss-Markov assumption. At lag of approximately equal to 120 days, the autocorrelation is zero and starts to be negative. This is because the trend of the lagged data becomes negative in contrast to the positive trend of the data.</p>
-<p>Here we see that after approximately <span class="math notranslate nohighlight">\(y_{t-320}\)</span>, the autocorrelation is zero. This is mainly because the overlap of the lagged data and the original data is minimal as less and less data are overlapped.</p>
-<p>Now assuming that 4-6 are met, we will now apply linear regression to the price of NFLX to predict the prices for the next month on a daily basis.</p>
+<p>Người ta có thể hình dung rõ hơn về khái niệm tự tương quan trễ nếu chúng ta coi dữ liệu trễ như một phiên bản dịch chuyển của dữ liệu gốc và quan sát sự trùng khớp (trong trường hợp này là sự tự tương quan của chúng). Nếu các xu hướng của dữ liệu gốc đều đi lên hoặc đi xuống khi dữ liệu trễ được dịch chuyển, thì tương quan là dương, ngược lại là âm.</p>
+<p>Quay lại với biểu đồ tự tương quan theo độ trễ, biểu đồ cho thấy khi độ trễ tăng lên, xu hướng sẽ giảm xuống. Mối quan hệ mạnh mẽ của dữ liệu với 100 độ trễ đầu tiên cho thấy <span class="math notranslate nohighlight">\(y\)</span> không hoàn toàn ngẫu nhiên như đã nêu trong giả định Gauss-Markov. Tại độ trễ xấp xỉ 120 ngày, sự tự tương quan bằng không và bắt đầu chuyển sang giá trị âm. Điều này là do xu hướng của dữ liệu trễ trở nên tiêu cực, trái ngược với xu hướng tích cực của dữ liệu gốc.</p>
+<p>Ở đây chúng ta thấy rằng sau khoảng <span class="math notranslate nohighlight">\(y_{t-320}\)</span>, sự tự tương quan bằng không. Điều này chủ yếu là do phần chồng lấp giữa dữ liệu trễ và dữ liệu gốc là tối thiểu khi ngày càng ít dữ liệu được chồng khớp với nhau.</p>
+<p>Bây giờ, giả sử rằng các giả định từ 4 đến 6 đã được đáp ứng, chúng ta sẽ áp dụng hồi quy tuyến tính cho giá của cổ phiếu NFLX để dự báo giá hàng ngày cho tháng tiếp theo.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let us create another variable to manipulate rather than using the original data </span>
@@ -646,7 +646,7 @@ Critical Values:
 </div>
 </div>
 </div>
-<p>Now the data is ready for linear regression training and fitting using sklearn.</p>
+<p>Bây giờ dữ liệu đã sẵn sàng để huấn luyện và khớp mô hình hồi quy tuyến tính bằng cách sử dụng thư viện sklearn.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lr</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
@@ -760,7 +760,7 @@ lr confidence:  0.720499481096278
 <img alt="../_images/eca11596ca710a1a8f210374e1066a123b61a2b5f58afa3dd06e6a72b6dd7582.png" src="../_images/eca11596ca710a1a8f210374e1066a123b61a2b5f58afa3dd06e6a72b6dd7582.png" />
 </div>
 </div>
-<p>Now, we try to plot the predicted values over the original time series.</p>
+<p>Bây giờ, chúng ta thử vẽ biểu đồ các giá trị dự báo đè lên chuỗi thời gian gốc.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">15</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
@@ -804,9 +804,9 @@ The mean absolute error, MAE is:  6.973973107834884
 </div>
 </div>
 </section>
-<section id="compare-with-model-where-x-x-t-1">
-<h4>Compare with model where <span class="math notranslate nohighlight">\(X=X_{t-1}\)</span><a class="headerlink" href="#compare-with-model-where-x-x-t-1" title="Permalink to this heading">#</a></h4>
-<p>Here, we check the R^2 value with respect to the lagged series.</p>
+<section id="so-sanh-voi-mo-hinh-trong-do-x-x-t-1">
+<h4>So sánh với mô hình trong đó <span class="math notranslate nohighlight">\(X=X_{t-1}\)</span><a class="headerlink" href="#so-sanh-voi-mo-hinh-trong-do-x-x-t-1" title="Permalink to this heading">#</a></h4>
+<p>Tại đây, chúng ta kiểm tra giá trị <span class="math notranslate nohighlight">\(R^2\)</span> đối với chuỗi trễ.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r2_score</span><span class="p">(</span><span class="n">price</span><span class="o">.</span><span class="n">Close</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">price</span><span class="o">.</span><span class="n">Close</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
@@ -839,7 +839,7 @@ The mean absolute error, MAE is:  6.973973107834884
 </div>
 </div>
 </div>
-<p>Now we check the relationship between the test data and the prediction, we see that there is a perfect linear relationship as seen below.</p>
+<p>Bây giờ chúng ta kiểm tra mối quan hệ giữa dữ liệu kiểm tra và giá trị dự báo, chúng ta thấy rằng có một mối quan hệ tuyến tính hoàn hảo như được hiển thị bên dưới.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">scipy</span>
@@ -865,9 +865,9 @@ The mean absolute error, MAE is:  6.973973107834884
 </div>
 </section>
 </section>
-<section id="example-2-univariate-forecasting-using-jena-climate-data">
-<h3>Example 2. Univariate Forecasting using Jena Climate Data<a class="headerlink" href="#example-2-univariate-forecasting-using-jena-climate-data" title="Permalink to this heading">#</a></h3>
-<p>We will use the temperature values of the data in this part of the chapter to see if we can forecast the next 24hr temperature values. For this book, the data has been divided into training_series, validation_series, and test_series as described in the preface. In this chapter, I do not need perform any validation procedure, thus I will combine the training and validation series and it will serve as my raw data. We will then follow the steps outlined in Example 1 and see the average MAE of the prediction using linear regression.</p>
+<section id="vi-du-2-du-bao-don-bien-su-dung-du-lieu-khi-hau-jena">
+<h3>Ví dụ 2. Dự báo đơn biến sử dụng Dữ liệu Khí hậu Jena<a class="headerlink" href="#vi-du-2-du-bao-don-bien-su-dung-du-lieu-khi-hau-jena" title="Permalink to this heading">#</a></h3>
+<p>Chúng ta sẽ sử dụng các giá trị nhiệt độ của dữ liệu trong phần này của chương để xem liệu chúng ta có thể dự báo các giá trị nhiệt độ trong 24 giờ tới hay không. Đối với cuốn sách này, dữ liệu đã được chia thành chuỗi huấn luyện (training_series), chuỗi kiểm định (validation_series) và chuỗi kiểm tra (test_series) như đã mô tả trong lời nói đầu. Trong chương này, tôi không cần thực hiện bất kỳ quy trình kiểm định nào, do đó tôi sẽ kết hợp chuỗi huấn luyện và chuỗi kiểm định để làm dữ liệu thô. Sau đó, chúng ta sẽ thực hiện theo các bước đã được phác thảo trong Ví dụ 1 và xem xét chỉ số MAE trung bình của dự báo khi sử dụng hồi quy tuyến tính.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># combining the training and validation data sets used in this Jupyter book as our training set in this chapter </span>
@@ -897,7 +897,7 @@ The mean absolute error, MAE is:  6.973973107834884
 </div>
 </div>
 </div>
-<p>Now, we select the temperature data and use it for univariate linear regression forecasting and visualize the raw data. We keep the training data set to be a multiple of 24.</p>
+<p>Bây giờ, chúng ta chọn dữ liệu nhiệt độ và sử dụng nó để dự báo hồi quy tuyến tính đơn biến, đồng thời trực quan hóa dữ liệu thô. Chúng ta giữ cho tập dữ liệu huấn luyện là một bội số của 24.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">len_train</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df3</span><span class="p">)</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">df3</span><span class="p">)</span><span class="o">%</span><span class="k">24</span>
@@ -933,7 +933,7 @@ The mean absolute error, MAE is:  6.973973107834884
 <img alt="../_images/b58a42a172759fb87900f9567c47c73dfcfd8987183ac53c871010373c3745df.png" src="../_images/b58a42a172759fb87900f9567c47c73dfcfd8987183ac53c871010373c3745df.png" />
 </div>
 </div>
-<p>To perform linear regression, we follow the same step we did in Example 1. We will use the shifted (by 24-hrs) temperature data (x-variable) as the prediction variable (y-variable). We get the equation by fitting with LR and use the equation in predicting the temperature in the next 24 hours.</p>
+<p>Để thực hiện hồi quy tuyến tính, chúng ta làm theo các bước tương tự như trong Ví dụ 1. Chúng ta sẽ sử dụng dữ liệu nhiệt độ được dịch chuyển (24 giờ) (biến x) làm biến dự đoán (biến y). Chúng ta thu được phương trình bằng cách khớp với LR và sử dụng phương trình đó để dự báo nhiệt độ trong 24 giờ tiếp theo.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">window</span> <span class="o">=</span> <span class="mi">24</span>
@@ -982,9 +982,9 @@ The mean absolute error, MAE is:  6.973973107834884
 </div>
 </div>
 </div>
-<section id="simultaneous-prediction-of-temperature-in-the-next-24-hours">
-<h4>Simultaneous prediction of temperature in the next 24 hours<a class="headerlink" href="#simultaneous-prediction-of-temperature-in-the-next-24-hours" title="Permalink to this heading">#</a></h4>
-<p>In order to make predictions for the next 24 hours, we will need to reshape our <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(y\)</span> data so that we can  use only one sample point <span class="math notranslate nohighlight">\(X\)</span> to predict the temperature for the next 24 hours.</p>
+<section id="du-bao-dong-thoi-nhiet-do-trong-24-gio-toi">
+<h4>Dự báo đồng thời nhiệt độ trong 24 giờ tới<a class="headerlink" href="#du-bao-dong-thoi-nhiet-do-trong-24-gio-toi" title="Permalink to this heading">#</a></h4>
+<p>Để thực hiện dự báo cho 24 giờ tiếp theo, chúng ta sẽ cần thay đổi cấu trúc (reshape) dữ liệu <span class="math notranslate nohighlight">\(X\)</span> và <span class="math notranslate nohighlight">\(y\)</span> sao cho có thể chỉ sử dụng một điểm mẫu <span class="math notranslate nohighlight">\(X\)</span> duy nhất để dự báo nhiệt độ cho toàn bộ 24 giờ kế tiếp.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Divide training data into 24 hour chunks</span>
@@ -1019,7 +1019,7 @@ The mean absolute error, MAE is:  6.973973107834884
 </div>
 </div>
 </div>
-<p>We create a vector that will contain the outputs of the fit.</p>
+<p>Chúng ta tạo một vectơ để chứa các kết quả đầu ra của quá trình khớp mô hình.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lr_vectoroutput</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
@@ -1028,7 +1028,7 @@ The mean absolute error, MAE is:  6.973973107834884
 </div>
 </div>
 </div>
-<p>Now, we divide the test data into 24 hour chunks, which will serve as our test sets. The average MAE of these test sets will be calculated to see how Univariate LR performs in predicting the temperature in the next 24 hrs.</p>
+<p>Bây giờ, chúng ta chia dữ liệu kiểm tra thành các khối 24 giờ, những khối này sẽ đóng vai trò là các tập kiểm tra của chúng ta. MAE trung bình của các tập kiểm tra này sẽ được tính toán để xem Hồi quy tuyến tính (LR) đơn biến hoạt động như thế nào trong việc dự báo nhiệt độ cho 24 giờ tới.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">temperature</span><span class="p">[</span><span class="s1">&#39;T (degC)&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="n">window</span><span class="p">:]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span>
@@ -1055,12 +1055,12 @@ The mean absolute error, MAE is:  6.973973107834884
 </div>
 </div>
 </div>
-<p>We see that the average MAE is 9.067496890754962, which shows that LR is not a good model for forecasting the next 24-hr temperature using the Jena Climate Data.</p>
+<p>Chúng ta thấy rằng MAE trung bình là 9.067496890754962, điều này cho thấy LR không phải là một mô hình tốt để dự báo nhiệt độ trong 24 giờ tới khi sử dụng Dữ liệu Khí hậu Jena.</p>
 </section>
 </section>
-<section id="example-3-multivariate-linear-regression-and-regularization-techniques">
-<h3>Example 3: Multivariate Linear Regression and Regularization Techniques<a class="headerlink" href="#example-3-multivariate-linear-regression-and-regularization-techniques" title="Permalink to this heading">#</a></h3>
-<p>In the previous example, we used univariate LR to demonstrate forecasting time series. In this example, we would like to demonstrate LR for a case where there are more than 1 independent variable, called the multivariate linear regression. To start off, we demonstrate the LR model first using a simple data on cars downloaded from one of the references. Take note that this is not yet forecasting in time series, but just a simple demonstration how multivariate LR works.</p>
+<section id="vi-du-3-hoi-quy-tuyen-tinh-da-bien-va-cac-ky-thuat-dieu-chuan-regularization">
+<h3>Ví dụ 3: Hồi quy tuyến tính đa biến và các kỹ thuật điều chuẩn (Regularization)<a class="headerlink" href="#vi-du-3-hoi-quy-tuyen-tinh-da-bien-va-cac-ky-thuat-dieu-chuan-regularization" title="Permalink to this heading">#</a></h3>
+<p>Trong ví dụ trước, chúng ta đã sử dụng hồi quy tuyến tính (LR) đơn biến để minh họa việc dự báo chuỗi thời gian. Trong ví dụ này, chúng tôi muốn trình diễn LR cho trường hợp có nhiều hơn một biến độc lập, được gọi là hồi quy tuyến tính đa biến. Để bắt đầu, chúng tôi sẽ trình diễn mô hình LR trước bằng cách sử dụng một bộ dữ liệu đơn giản về xe hơi được tải xuống từ một trong các tài liệu tham khảo. Lưu ý rằng đây chưa phải là dự báo chuỗi thời gian, mà chỉ là một minh họa đơn giản về cách thức hoạt động của LR đa biến.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#creating dataframe for simple data on cars</span>
@@ -1260,9 +1260,9 @@ CO2=  0.007805257527747122 x1 +  0.007550947270300685 x2 +  79.6947192911594
 </div>
 </div>
 </div>
-<section id="interpretation-of-coefficients">
-<h4>Interpretation of coefficients:<a class="headerlink" href="#interpretation-of-coefficients" title="Permalink to this heading">#</a></h4>
-<p>The slope for volume and weight of the cars are equal to 0.00781 and 0.00755, respectively. This means that for every 1 unit change in volume (weight) of cars, the expected increase in CO2 emission is 0.00781% (0.00755%).</p>
+<section id="giai-thich-cac-he-so">
+<h4>Giải thích các hệ số:<a class="headerlink" href="#giai-thich-cac-he-so" title="Permalink to this heading">#</a></h4>
+<p>Hệ số góc cho thể tích và trọng lượng của xe lần lượt bằng 0.00781 và 0.00755. Điều này có nghĩa là với mỗi 1 đơn vị thay đổi về thể tích (trọng lượng) của xe, lượng khí thải CO2 dự kiến sẽ tăng thêm 0.00781% (0.00755%).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -1279,29 +1279,29 @@ CO2=  0.007805257527747122 x1 +  0.007550947270300685 x2 +  79.6947192911594
 </div>
 </div>
 </section>
-<section id="interpretation-of-metrics">
-<h4>Interpretation of metrics:<a class="headerlink" href="#interpretation-of-metrics" title="Permalink to this heading">#</a></h4>
-<p>We can see that the value of mean absolute error is 5.67, which is less than 6% of the mean value of the CO2 emission. This means that our prediction is good.</p>
-<p>For multi-variate linear regression, sometimes we do not know which among the parameters are relevant to the prediction. Thus in order to make our predictions more accurate, we need to penalize the less relevant parameters (or basically decrease their effect on our predictions and sometimes let them approach zero). This is usually done using regularization techniques.</p>
+<section id="giai-thich-cac-chi-so">
+<h4>Giải thích các chỉ số:<a class="headerlink" href="#giai-thich-cac-chi-so" title="Permalink to this heading">#</a></h4>
+<p>Chúng ta có thể thấy rằng giá trị sai số tuyệt đối trung bình (MAE) là 5.67, nhỏ hơn 6% so với giá trị trung bình của lượng khí thải CO2. Điều này có nghĩa là dự đoán của chúng ta đạt kết quả tốt.</p>
+<p>Đối với hồi quy tuyến tính đa biến, đôi khi chúng ta không biết tham số nào trong số các tham số là có liên quan đến việc dự báo. Vì vậy, để giúp các dự báo chính xác hơn, chúng ta cần xử phạt (penalize) các tham số ít liên quan hơn (về cơ bản là giảm ảnh hưởng của chúng đối với các dự báo của chúng ta và đôi khi để chúng tiến dần về không). Điều này thường được thực hiện bằng cách sử dụng các kỹ thuật điều chuẩn (regularization).</p>
 </section>
 </section>
-<section id="l1-lasso-and-l2-ridge-regularization-for-multi-variate-linear-regression">
-<h3>L1 (Lasso) and L2 (Ridge) regularization for multi-variate linear regression<a class="headerlink" href="#l1-lasso-and-l2-ridge-regularization-for-multi-variate-linear-regression" title="Permalink to this heading">#</a></h3>
-<p>Regularization techniques is based on the idea that proper constraining the allowed values of variables will increase the accuracy. In this notebook, we will use two techniques:</p>
-<section id="lasso-regularization">
-<h4>Lasso Regularization<a class="headerlink" href="#lasso-regularization" title="Permalink to this heading">#</a></h4>
+<section id="dieu-chuan-l1-lasso-va-l2-ridge-cho-hoi-quy-tuyen-tinh-da-bien">
+<h3>Điều chuẩn L1 (Lasso) và L2 (Ridge) cho hồi quy tuyến tính đa biến<a class="headerlink" href="#dieu-chuan-l1-lasso-va-l2-ridge-cho-hoi-quy-tuyen-tinh-da-bien" title="Permalink to this heading">#</a></h3>
+<p>Các kỹ thuật điều chuẩn dựa trên ý tưởng rằng việc ràng buộc một cách thích hợp các giá trị được phép của các biến sẽ làm tăng độ chính xác. Trong sổ tay này, chúng ta sẽ sử dụng hai kỹ thuật:</p>
+<section id="dieu-chuan-lasso-lasso-regularization">
+<h4>Điều chuẩn Lasso (Lasso Regularization)<a class="headerlink" href="#dieu-chuan-lasso-lasso-regularization" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
-<li><p>It puts constraints on the absolute value of the coefficients.</p></li>
+<li><p>Kỹ thuật này đặt các ràng buộc lên giá trị tuyệt đối của các hệ số.</p></li>
 </ul>
 </section>
-<section id="ridge-regularization">
-<h4>Ridge Regularization<a class="headerlink" href="#ridge-regularization" title="Permalink to this heading">#</a></h4>
+<section id="dieu-chuan-ridge-ridge-regularization">
+<h4>Điều chuẩn Ridge (Ridge Regularization)<a class="headerlink" href="#dieu-chuan-ridge-ridge-regularization" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
-<li><p>It puts contraints on the square of the coefficients.</p></li>
+<li><p>Kỹ thuật này đặt các ràng buộc lên bình phương của các hệ số.</p></li>
 </ul>
 </section>
-<section id="l1-regularization">
-<h4>L1 Regularization<a class="headerlink" href="#l1-regularization" title="Permalink to this heading">#</a></h4>
+<section id="l1-dieu-chuan">
+<h4>L1 Điều chuẩn<a class="headerlink" href="#l1-dieu-chuan" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Lasso Regularization... alpha=0 is equivalent to linear regression</span>
@@ -1340,8 +1340,8 @@ CO2=  0.007716758354774066 x1 +  0.007406759259298172 x2 +  80.02363225450095
 </div>
 </div>
 </section>
-<section id="l2-regularization">
-<h4>L2 Regularization<a class="headerlink" href="#l2-regularization" title="Permalink to this heading">#</a></h4>
+<section id="l2-dieu-chuan">
+<h4>L2 Điều chuẩn<a class="headerlink" href="#l2-dieu-chuan" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ridge Regularization... alpha=0 is equivalent to linear regression</span>
@@ -1385,9 +1385,9 @@ CO2=  0.007019810017740837 x1 +  0.007728894654883425 x2 +  80.73020505101513
 </div>
 </section>
 </section>
-<section id="example-4-multi-variate-linear-regression-on-jena-climate-data">
-<h3>Example 4: Multi-variate Linear Regression on Jena Climate Data<a class="headerlink" href="#example-4-multi-variate-linear-regression-on-jena-climate-data" title="Permalink to this heading">#</a></h3>
-<p>In this section, we use the climate data to demonstrate forecasting using multivariate linear regression and regularization. The idea of forecasting method in this example is different from the method used in Example 1. In Example 1, we used the lagged value of the close prices of NFLX, i.e., we predicted <span class="math notranslate nohighlight">\(y_{T,t}\)</span> using the lagged value <span class="math notranslate nohighlight">\(y_{T-30}\)</span>. In this example, we will use different variables <span class="math notranslate nohighlight">\(x_{1,t}\)</span>, <span class="math notranslate nohighlight">\(x_{2,t}\)</span>,…, <span class="math notranslate nohighlight">\(x_{n,t}\)</span>, where n is the total number of variables used to predict y. In this case, n=14.</p>
+<section id="vi-du-4-hoi-quy-tuyen-tinh-da-bien-tren-du-lieu-khi-hau-jena">
+<h3>Ví dụ 4: Hồi quy tuyến tính đa biến trên Dữ liệu Khí hậu Jena<a class="headerlink" href="#vi-du-4-hoi-quy-tuyen-tinh-da-bien-tren-du-lieu-khi-hau-jena" title="Permalink to this heading">#</a></h3>
+<p>Trong phần này, chúng ta sử dụng dữ liệu khí hậu để minh họa việc dự báo bằng hồi quy tuyến tính đa biến và các kỹ thuật điều chuẩn. Ý tưởng của phương pháp dự báo trong ví dụ này khác với phương pháp đã sử dụng trong Ví dụ 1. Ở Ví dụ 1, chúng ta đã sử dụng giá trị trễ của giá đóng cửa NFLX, tức là chúng ta dự báo <span class="math notranslate nohighlight">\(y_{T,t}\)</span> bằng cách sử dụng giá trị trễ <span class="math notranslate nohighlight">\(y_{T-30}\)</span>. Trong ví dụ này, chúng ta sẽ sử dụng các biến khác nhau <span class="math notranslate nohighlight">\(x_{1,t}\)</span>, <span class="math notranslate nohighlight">\(x_{2,t}\)</span>,…, <span class="math notranslate nohighlight">\(x_{n,t}\)</span>, trong đó <span class="math notranslate nohighlight">\(n\)</span> là tổng số các biến được sử dụng để dự báo <span class="math notranslate nohighlight">\(y\)</span>. Trong trường hợp cụ thể này, <span class="math notranslate nohighlight">\(n=14\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/train_series_datetime.csv&#39;</span><span class="p">,</span><span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -1711,7 +1711,7 @@ CO2=  0.007019810017740837 x1 +  0.007728894654883425 x2 +  80.73020505101513
 </table>
 </div></div></div>
 </div>
-<p>To be consistent with all the other forecasting models, we manually set the first 300k+ data for training while the last 100k+ data points as test set.</p>
+<p>Để nhất quán với tất cả các mô hình dự báo khác, chúng ta sẽ thiết lập thủ công hơn 300.000 dữ liệu đầu tiên làm tập huấn luyện (training set), trong khi hơn 100.000 điểm dữ liệu cuối cùng sẽ được dùng làm tập kiểm tra (test set).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_train</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:</span><span class="mi">15</span><span class="p">]</span>
@@ -1876,7 +1876,7 @@ CO2=  0.007019810017740837 x1 +  0.007728894654883425 x2 +  80.73020505101513
 </div>
 </div>
 </div>
-<p>Again, for consistency with all the other forecasting models in this book, we use the same test set, which is the last 100k+ data.</p>
+<p>Một lần nữa, để đảm bảo tính nhất quán với tất cả các mô hình dự báo khác trong cuốn sách này, em và anh sẽ sử dụng cùng một tập kiểm tra, chính là hơn 100.000 dữ liệu cuối cùng.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_test</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/test_series.csv&#39;</span><span class="p">)</span>
@@ -1932,9 +1932,9 @@ CO2=  0.007019810017740837 x1 +  0.007728894654883425 x2 +  80.73020505101513
 </div>
 </div>
 </div>
-<p>We can see that the value of MAE error is 0.007635891353557461. This means that linear regression is good for this dataset if all the parameters are used. Now we try to use the regularization techniques if the errors will improve.</p>
+<p>Chúng ta có thể thấy rằng giá trị sai số MAE là 0.007635891353557461. Điều này có nghĩa là hồi quy tuyến tính hoạt động cực kỳ hiệu quả cho bộ dữ liệu này nếu tất cả các tham số đều được sử dụng. Bây giờ, chúng ta sẽ thử áp dụng các kỹ thuật điều chuẩn (regularization) để xem liệu các sai số có được cải thiện thêm hay không.</p>
 <section id="id1">
-<h4>L1 Regularization<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h4>
+<h4>L1 Điều chuẩn<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Lasso Regularization... alpha=0 is equivalent to linear regression</span>
@@ -1959,10 +1959,10 @@ CO2=  0.007019810017740837 x1 +  0.007728894654883425 x2 +  80.73020505101513
 </div>
 </div>
 </div>
-<p>L1 Regularization has worse performance having large errors, based on the metrics.</p>
+<p>Dựa trên các chỉ số đo lường, điều chuẩn L1 (Lasso) có hiệu suất kém hơn khi tạo ra các sai số lớn.</p>
 </section>
 <section id="id2">
-<h4>L2 Regularization<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h4>
+<h4>L2 Điều chuẩn<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ridge Regularization... alpha=0 is equivalent to linear regression</span>
@@ -1983,11 +1983,11 @@ CO2=  0.007019810017740837 x1 +  0.007728894654883425 x2 +  80.73020505101513
 </div>
 </div>
 </div>
-<p>Using L2 regularization, penalizing the other parameters didn’t lead to significant improvement in the prediction.</p>
+<p>Khi sử dụng điều chuẩn L2 (Ridge), việc xử phạt các tham số khác đã không dẫn đến sự cải thiện đáng kể nào trong kết quả dự báo.</p>
 </section>
-<section id="simultaneous-prediction-of-the-temperature-for-the-next-24-hours">
-<h4>Simultaneous prediction of the temperature for the next 24 hours<a class="headerlink" href="#simultaneous-prediction-of-the-temperature-for-the-next-24-hours" title="Permalink to this heading">#</a></h4>
-<p>In this part, we perform the same re-shaping of the data similar to what we did above when we applied univariate linear regression and use one sample point from each of the 730 24-hr test set described in Example 2 to predict the temperature for the next 24 hours.</p>
+<section id="id3">
+<h4>Dự báo đồng thời nhiệt độ trong 24 giờ tới<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h4>
+<p>Trong phần này, em và anh sẽ thực hiện việc thay đổi cấu trúc dữ liệu (reshape) tương tự như cách chúng ta đã làm ở trên khi áp dụng hồi quy tuyến tính đơn biến. Chúng ta sử dụng một điểm mẫu từ mỗi tập trong số 730 tập kiểm tra (mỗi tập dài 24 giờ) đã được mô tả ở Ví dụ 2 để dự báo nhiệt độ cho 24 giờ tiếp theo.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_train</span> <span class="o">=</span> <span class="n">data_train</span><span class="p">[[</span><span class="s1">&#39;p (mbar)&#39;</span><span class="p">,</span> <span class="s1">&#39;Tpot (K)&#39;</span><span class="p">,</span> 
@@ -2049,45 +2049,45 @@ CO2=  0.007019810017740837 x1 +  0.007728894654883425 x2 +  80.73020505101513
 </div>
 </div>
 </div>
-<p>We can see that the MAE improved compared to the MAE when we forecasted the temperature for the next 24 hours using univariate LR.</p>
+<p>Chúng ta có thể thấy rằng chỉ số MAE đã được cải thiện đáng kể so với khi chúng ta dự báo nhiệt độ cho 24 giờ tới bằng phương pháp hồi quy tuyến tính (LR) đơn biến.</p>
 </section>
 </section>
 </section>
-<section id="momentum-and-trend-forecasting">
-<h2>Momentum and Trend Forecasting<a class="headerlink" href="#momentum-and-trend-forecasting" title="Permalink to this heading">#</a></h2>
-<p>Now let us move to common tools in momentum and trend forecasting. We will see that these two topics on momentum and trend goes together, i.e., the momentum forecasting is based on the usage of trend forecasting. In this section, we will discuss by considering the applications in technical analysis and strategies in stock trading. In this are, the most common used tools are</p>
+<section id="du-bao-dong-luong-va-xu-huong">
+<h2>Dự báo Động lượng và Xu hướng<a class="headerlink" href="#du-bao-dong-luong-va-xu-huong" title="Permalink to this heading">#</a></h2>
+<p>Bây giờ, hãy cùng chuyển sang các công cụ phổ biến trong dự báo động lượng (momentum) và xu hướng (trend). Anh sẽ thấy rằng hai chủ đề này luôn đi đôi với nhau, cụ thể là việc dự báo động lượng thường dựa trên nền tảng của dự báo xu hướng. Trong phần này, chúng ta sẽ thảo luận thông qua việc xem xét các ứng dụng trong phân tích kỹ thuật và chiến lược giao dịch chứng khoán. Trong lĩnh vực này, các công cụ phổ biến nhất được sử dụng là:</p>
 <ol class="arabic simple">
-<li><p>Moving Average</p></li>
-<li><p>Momentum</p></li>
+<li><p>Đường trung bình động (Moving Average)</p></li>
+<li><p>Động lượng (Momentum)</p></li>
 </ol>
-<section id="moving-average-ma">
-<h3>Moving Average MA<a class="headerlink" href="#moving-average-ma" title="Permalink to this heading">#</a></h3>
-<p>MA trading rule is the most popular trading tool for traders. The trading signal or indicator is normally derived by first computing for the average closing price over a window of size <span class="math notranslate nohighlight">\(n\)</span>, with the following formula:</p>
+<section id="duong-trung-binh-dong-moving-average-ma">
+<h3>Đường trung bình động (Moving Average - MA)<a class="headerlink" href="#duong-trung-binh-dong-moving-average-ma" title="Permalink to this heading">#</a></h3>
+<p>Quy tắc giao dịch dựa trên MA là công cụ phổ biến nhất đối với các nhà giao dịch. Tín hiệu hoặc chỉ báo giao dịch thường được tính toán bằng cách lấy giá đóng cửa trung bình trong một khoảng thời gian (cửa sổ) kích thước <span class="math notranslate nohighlight">\(n\)</span>, theo công thức sau:</p>
 <p><span class="math notranslate nohighlight">\(MA_{n}(t) = \frac{w_{0}P_{t}+ w_{1}P_{t-1}+ w_{2}P_{t-2}+...+ w_{n-1}P_{t-n+1}}{w_{0}+ w_{1}+ w_{2}+... + w_{n-1}}\)</span> (1)</p>
 <p><span class="math notranslate nohighlight">\(MA_{n}(t) = \frac{\sum\limits _{i=0} ^{n-1} w_{i}P_{t-i}}{\sum\limits _{i=0} ^{n-1} w_{i}}\)</span> (2)</p>
-<p>There are three types of MA and they are as follows:</p>
+<p>Có ba loại đường MA chính như sau:</p>
 <ol class="arabic simple">
-<li><p>Simple Moving Average (SMA) - all prices are weighted equally such that <span class="math notranslate nohighlight">\(w_{i}=1\)</span> in equations (1, 2).</p></li>
-<li><p>Linear Moving Average (LMA) - the weights change, putting more relevance to the prices closer to the current price such that <span class="math notranslate nohighlight">\(w_{i}= n-i\)</span></p></li>
-<li><p>Exponential Moving Average (EMA) - similar to LMA, bigger weights are assigned to more recent prices and the weights drop exponentially. There are several ways proposed to compute the weights in EMA. We will discuss here the general formulation of EMA given as:</p></li>
+<li><p>Đường trung bình động đơn giản - Simple Moving Average (SMA) - Tất cả các mức giá đều có trọng số bằng nhau, tức là <span class="math notranslate nohighlight">\(w_{i}=1\)</span> trong các phương trình (1, 2).</p></li>
+<li><p>Đường trung bình động tuyến tính - Linear Moving Average (LMA) - Trọng số thay đổi, tập trung nhiều hơn vào các mức giá gần với giá hiện tại theo công thức <span class="math notranslate nohighlight">\(w_{i}= n-i\)</span>.</p></li>
+<li><p>Đường trung bình động lũy thừa - Exponential Moving Average (EMA) - Tương tự như LMA, trọng số lớn hơn được gán cho các mức giá gần đây nhất và trọng số giảm dần theo hàm mũ. Có nhiều cách để tính trọng số trong EMA, công thức tổng quát thường dùng là:</p></li>
 </ol>
 <p><span class="math notranslate nohighlight">\(EMA(n) = \frac{2}{n+1}P_{t} + (1- \frac{2}{n+1}) P_{t-1}\)</span></p>
-<p>Using these tools, if the current price is higher that a moving average over past <span class="math notranslate nohighlight">\(n\)</span> periods, the signal is “buy”.</p>
-<p>Momentum on the other hand, in its simplest form, is just the difference in the current price and the price <span class="math notranslate nohighlight">\(n\)</span> days ago. In other definitiions it can also be a change in the simple moving average with a scale factor of <span class="math notranslate nohighlight">\(N+1\)</span>:</p>
+<p>Sử dụng các công cụ này, nếu giá hiện tại cao hơn đường trung bình động của <span class="math notranslate nohighlight">\(n\)</span> kỳ trước đó, tín hiệu sẽ là “Mua” (Buy).</p>
+<p>Mặt khác, Động lượng (Momentum) ở dạng đơn giản nhất chỉ là sự chênh lệch giữa giá hiện tại và giá của <span class="math notranslate nohighlight">\(n\)</span> ngày trước. Trong các định nghĩa khác, nó cũng có thể là sự thay đổi của đường trung bình động đơn giản với hệ số tỷ lệ <span class="math notranslate nohighlight">\(N+1\)</span>:</p>
 <p><span class="math notranslate nohighlight">\(\frac{MOM}{N+1} = SMA_{today}- SMA_{yesterday}\)</span></p>
-<p>In trading, the indicators for both tools is given as:</p>
+<p>Trong giao dịch, các chỉ báo cho cả hai công cụ được đưa ra là:</p>
 <ol class="arabic simple">
-<li><p>Moving average:
+<li><p>Đường trung bình động - Moving average:
 <span class="math notranslate nohighlight">\(I_{t}(n) = P_{t}- MA_{n}\)</span></p></li>
-<li><p>Momentum
+<li><p>Động lượng - Momentum
 <span class="math notranslate nohighlight">\(I_{t}(n) = P_{t}-P_{t-n+1}\)</span></p></li>
 </ol>
-<p>The trader is suggested to buy if <span class="math notranslate nohighlight">\(I&gt;0\)</span> and sell otherwise.</p>
-<p>To understand these concepts in financial analysis more in depth, we will look at various examples in trading. But first, we will demonstrate using the climate data that MA trends are also used in smooting time series data. After which, we will proceed with the examples on stock price analysis.</p>
+<p>Nhà giao dịch được khuyến nghị mua nếu <span class="math notranslate nohighlight">\(I&gt;0\)</span> và bán trong trường hợp ngược lại.</p>
+<p>Để hiểu sâu hơn các khái niệm này trong phân tích tài chính, chúng ta sẽ xem xét các ví dụ khác nhau trong giao dịch. Nhưng trước tiên, em và anh sẽ sử dụng dữ liệu khí hậu để minh chứng rằng các xu hướng MA cũng được sử dụng để làm mượt (smoothing) dữ liệu chuỗi thời gian. Sau đó, chúng ta sẽ tiếp tục với các ví dụ về phân tích giá cổ phiếu.</p>
 </section>
-<section id="example-5-extracting-the-trend-in-climate-data-using-ma">
-<h3>Example 5: Extracting the Trend in Climate Data Using MA<a class="headerlink" href="#example-5-extracting-the-trend-in-climate-data-using-ma" title="Permalink to this heading">#</a></h3>
-<p>First, let us try to apply MA to see a smoother trend of the temperature measurements in the climate data. Here, we will use the simple MA and the exponential MA.</p>
+<section id="vi-du-5-trich-xuat-xu-huong-trong-du-lieu-khi-hau-bang-ma">
+<h3>Ví dụ 5: Trích xuất xu hướng trong Dữ liệu Khí hậu bằng MA<a class="headerlink" href="#vi-du-5-trich-xuat-xu-huong-trong-du-lieu-khi-hau-bang-ma" title="Permalink to this heading">#</a></h3>
+<p>Đầu tiên, chúng ta hãy thử áp dụng MA để thấy được xu hướng mượt mà hơn của các phép đo nhiệt độ trong dữ liệu khí hậu. Tại đây, chúng ta sẽ sử dụng MA đơn giản (SMA) và MA lũy thừa (EMA).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 3420 data is equivalent to 1 month while 83220 is equivalent to two years, 124830 for 3 years</span>
@@ -2111,26 +2111,26 @@ CO2=  0.007019810017740837 x1 +  0.007728894654883425 x2 +  80.73020505101513
 <img alt="../_images/b9afd6859076f03c9674d1c6b01c98b366ec8b2f2fe87dbe930364a69dd23b36.png" src="../_images/b9afd6859076f03c9674d1c6b01c98b366ec8b2f2fe87dbe930364a69dd23b36.png" />
 </div>
 </div>
-<p>Looking at our data, we can see that there is an apparent seasonal trend of temperature measurements and at this point, we might be interested to know which among the factors in the data are causing this trend in temperature. This concept is called causation and it will be discussed at a later chapter in this book.</p>
+<p>Nhìn vào dữ liệu, chúng ta có thể thấy rằng có một xu hướng theo mùa rõ rệt của các phép đo nhiệt độ. Tại thời điểm này, chúng ta có thể quan tâm đến việc xác định yếu tố nào trong dữ liệu đang gây ra xu hướng nhiệt độ này. Khái niệm này được gọi là quan hệ nhân quả (causation) và sẽ được thảo luận ở một chương sau trong cuốn sách này.</p>
 </section>
-<section id="momentum-strategies">
-<h3>Momentum Strategies<a class="headerlink" href="#momentum-strategies" title="Permalink to this heading">#</a></h3>
-<p>Momentum is used as a measure of strength of the current or future trend regardless of the direction, i.e., whether it will go up or down. It is purely a technical analysis technique and does not consider the fundamentals of the company. Traders use momentum strategy for short-term, when the trends are strong or when the price action momentum is high. An indicator of high momentum is the price advancing or declining over a wide range in a short period of time. High levels of momentum indicates increased volatility, too.</p>
-<p>Momentum investors tries to understand and anticipate the behavior of the market, since awareness of the biases and emotions of other investors make the momentum investing strategy to work better.</p>
-<section id="how-to-apply-momentum-strategy">
-<h4>How to apply momentum strategy:<a class="headerlink" href="#how-to-apply-momentum-strategy" title="Permalink to this heading">#</a></h4>
+<section id="chien-luoc-dong-luong-momentum-strategies">
+<h3>Chiến lược Động lượng (Momentum Strategies)<a class="headerlink" href="#chien-luoc-dong-luong-momentum-strategies" title="Permalink to this heading">#</a></h3>
+<p>Động lượng được sử dụng như một thước đo sức mạnh của xu hướng hiện tại hoặc tương lai bất kể hướng đi, nghĩa là liệu nó sẽ tăng hay giảm. Đây thuần túy là một kỹ thuật phân tích kỹ thuật và không xem xét các yếu tố cơ bản của công ty. Các nhà giao dịch sử dụng chiến lược động lượng cho ngắn hạn, khi các xu hướng mạnh hoặc khi động lượng hành động giá cao. Một chỉ báo về động lượng cao là giá tăng hoặc giảm trong một phạm vi rộng trong một khoảng thời gian ngắn. Mức độ động lượng cao cũng cho thấy sự gia tăng của biến động (volatility).</p>
+<p>Các nhà đầu tư động lượng cố gắng thấu hiểu và dự đoán hành vi của thị trường, vì nhận thức về các định kiến và cảm xúc của các nhà đầu tư khác giúp chiến lược đầu tư động lượng hoạt động hiệu quả hơn.</p>
+<section id="cach-ap-dung-chien-luoc-dong-luong">
+<h4>Cách áp dụng chiến lược động lượng:<a class="headerlink" href="#cach-ap-dung-chien-luoc-dong-luong" title="Permalink to this heading">#</a></h4>
 <ol class="arabic simple">
-<li><p>A trader checks the existence of trends using indicators such as trend lines, moving averages, and  ADX to identify the existence of a trend.</p></li>
-<li><p>As the trend gains momentum – strengthens – the trader decides what position to take following the direction of the trend (buy an uptrend; sell a downtrend).</p></li>
-<li><p>A trader exits when the momentum of the trend shows signs of weakening. Divergence between price action and the movement of momentum indicators such as the MACD or RSI is a usual indicator.</p></li>
+<li><p>Nhà giao dịch kiểm tra sự tồn tại của các xu hướng bằng cách sử dụng các chỉ báo như đường xu hướng (trend lines), đường trung bình động (moving averages) và ADX để xác định sự tồn tại của một xu hướng.</p></li>
+<li><p>Khi xu hướng có thêm động lượng – mạnh lên – nhà giao dịch quyết định vị thế sẽ thực hiện theo hướng của xu hướng (mua trong một xu hướng tăng; bán trong một xu hướng giảm).</p></li>
+<li><p>Nhà giao dịch thoát lệnh khi động lượng của xu hướng có dấu hiệu suy yếu. Sự phân kỳ (divergence) giữa hành động giá và chuyển động của các chỉ báo động lượng như MACD hoặc RSI là một chỉ báo thông thường.</p></li>
 </ol>
 </section>
 </section>
-<section id="example-6-momentum-trading-strategy-using-two-ma-s">
-<h3>Example 6: Momentum Trading Strategy Using Two MA’s<a class="headerlink" href="#example-6-momentum-trading-strategy-using-two-ma-s" title="Permalink to this heading">#</a></h3>
-<p>As mentioned above, momentum strategy can be applied after checking for trends using moving averages. SMA and EMA are widely used in technical analysis of stock prices and in generating buy/sell signals. The basic idea is to use two different windows (short and long observation window) and see where the two MA’s cross over. A shorter window reacts faster to price changes than a longer window. Thus if MA(n=short) &gt; MA(n=long), the trading strategy or signal is to buy. Otherwise, the signal is to sell.</p>
-<p>SMA works fine in technical analysis however, it’s behavior lags the current price by <span class="math notranslate nohighlight">\(n/2\)</span> days. This means that the changes in the trend can only be seen after the lag days making the strategy being delayed. EMA reduces this lag significantly as weights are decaying exponentially. The same strategy of looking for crossovers between two EMAs with short and long window of observation is always applied, i.e., a signal to buy is generated when the EMA with shorter window crosses above the EMA with longer observation window.</p>
-<p>Now let us demonstrate this idea using the Netflix data on how to use MA and EMA in making signals or decisions whether to buy or sell the stock.</p>
+<section id="vi-du-6-chien-luoc-giao-dich-dong-luong-su-dung-hai-duong-ma">
+<h3>Ví dụ 6: Chiến lược giao dịch Động lượng sử dụng hai đường MA<a class="headerlink" href="#vi-du-6-chien-luoc-giao-dich-dong-luong-su-dung-hai-duong-ma" title="Permalink to this heading">#</a></h3>
+<p>Như đã đề cập ở trên, chiến lược động lượng có thể được áp dụng sau khi kiểm tra các xu hướng bằng cách sử dụng các đường trung bình động. SMA và EMA được sử dụng rộng rãi trong phân tích kỹ thuật giá cổ phiếu và trong việc tạo ra các tín hiệu mua/bán. Ý tưởng cơ bản là sử dụng hai cửa sổ quan sát khác nhau (ngắn hạn và dài hạn) và quan sát điểm giao cắt giữa hai đường MA này. Một cửa sổ ngắn hạn sẽ phản ứng với sự thay đổi giá nhanh hơn so với cửa sổ dài hạn. Do đó, nếu MA(ngắn hạn) &gt; MA(dài hạn), chiến lược hoặc tín hiệu giao dịch là Mua. Ngược lại, tín hiệu sẽ là Bán.</p>
+<p>SMA hoạt động tốt trong phân tích kỹ thuật, tuy nhiên, hành vi của nó bị trễ so với giá hiện tại <span class="math notranslate nohighlight">\(n/2\)</span> ngày. Điều này có nghĩa là những thay đổi trong xu hướng chỉ có thể được nhận thấy sau những ngày trễ này, khiến chiến lược bị trì hoãn. EMA giảm thiểu độ trễ này một cách đáng kể vì các trọng số giảm dần theo hàm mũ. Chiến lược tìm kiếm điểm giao cắt tương tự giữa hai đường EMA với cửa sổ quan sát ngắn hạn và dài hạn luôn được áp dụng, tức là một tín hiệu mua được tạo ra khi đường EMA có cửa sổ ngắn hạn cắt lên trên đường EMA có cửa sổ quan sát dài hạn.</p>
+<p>Bây giờ, chúng ta hãy minh họa ý tưởng này bằng cách sử dụng dữ liệu Netflix về cách dùng SMA và EMA trong việc tạo tín hiệu hoặc đưa ra quyết định nên mua hay bán cổ phiếu.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Recall Netflix data we used above in forecasting using linear regression (LR)</span>
@@ -2147,7 +2147,7 @@ CO2=  0.007019810017740837 x1 +  0.007728894654883425 x2 +  80.73020505101513
 <img alt="../_images/8bb965ac847a644abb96aaef1cd22315b5d4cacaed684cdebbac2d4c9366f17b.png" src="../_images/8bb965ac847a644abb96aaef1cd22315b5d4cacaed684cdebbac2d4c9366f17b.png" />
 </div>
 </div>
-<p>We will use window size of n=25 for the short MA and n=65 for the long MA.</p>
+<p>Chúng ta sẽ sử dụng kích thước cửa sổ <span class="math notranslate nohighlight">\(n=25\)</span> cho đường MA ngắn hạn và <span class="math notranslate nohighlight">\(n=65\)</span> cho đường MA dài hạn.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## In pandas, the rolling windows is available in computing for the mean of a window sized-n. </span>
@@ -2157,8 +2157,8 @@ CO2=  0.007019810017740837 x1 +  0.007728894654883425 x2 +  80.73020505101513
 </div>
 </div>
 </div>
-<p>We will try to locate the crossover of the two MAs and create an ‘indicator’ of crossover. Note that this indicator is not exactly the same as the indicator “I” discussed above. Afterwhich, we will create our strategy based on the generated indicators.. The strategy is based on the movement of price.</p>
-<p>If MA20&gt; MA65, we have indicator equal to +1.0, otherwise indicator equal to 0.0. Once there is a crossover, there is a reversal of the positions of MA20 and MA65. Thus getting the difference between the indicators (<span class="math notranslate nohighlight">\(I_{diff} = I_{t} - I{t-1}\)</span>) for two consecutive times will tell us if the reversal is positive (buy) or negative (sell).</p>
+<p>Chúng ta sẽ cố gắng xác định điểm giao cắt của hai đường MA và tạo ra một “chỉ báo” giao cắt. Lưu ý rằng chỉ báo này không hoàn toàn giống với chỉ báo “<span class="math notranslate nohighlight">\(I\)</span>” đã thảo luận ở trên. Sau đó, chúng ta sẽ xây dựng chiến lược dựa trên các chỉ báo đã tạo. Chiến lược này dựa trên sự chuyển động của giá.</p>
+<p>Nếu MA25 &gt; MA65, chúng ta có chỉ báo bằng +1.0, ngược lại chỉ báo bằng 0.0. Khi xảy ra giao cắt, sẽ có sự đảo ngược vị trí giữa MA25 và MA65. Do đó, việc lấy hiệu số giữa các chỉ báo (<span class="math notranslate nohighlight">\(I_{diff} = I_{t} - I_{t-1}\)</span>) tại hai thời điểm liên tiếp sẽ cho chúng ta biết liệu sự đảo chiều đó là tích cực (mua) hay tiêu cực (bán).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">price</span><span class="p">[</span><span class="s1">&#39;Indicator&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span>
@@ -2192,7 +2192,7 @@ CO2=  0.007019810017740837 x1 +  0.007728894654883425 x2 +  80.73020505101513
 <img alt="../_images/0bc2dcac216889dfbb9d10eb5d978ebb10656a27527e4ba1c7b4421911ee7bae.png" src="../_images/0bc2dcac216889dfbb9d10eb5d978ebb10656a27527e4ba1c7b4421911ee7bae.png" />
 </div>
 </div>
-<p>Using two MA’s and getting their crossover or difference as indicator, we can decide whether to buy (green) the stock or sell (red). We can do the same process we did above using EMA.</p>
+<p>Sử dụng hai đường MA và xác định điểm giao cắt hoặc hiệu số của chúng làm chỉ báo, chúng ta có thể quyết định nên mua (màu xanh) hay bán (màu đỏ) cổ phiếu. Chúng ta có thể thực hiện quy trình tương tự như trên bằng cách sử dụng đường EMA.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># In pandas, the rolling window equivalent for EMA is </span>
@@ -2236,19 +2236,19 @@ CO2=  0.007019810017740837 x1 +  0.007728894654883425 x2 +  80.73020505101513
 <img alt="../_images/a92229d511f019a364838529be5e14a32dc0fd86203c0912419fb3edc0f86c60.png" src="../_images/a92229d511f019a364838529be5e14a32dc0fd86203c0912419fb3edc0f86c60.png" />
 </div>
 </div>
-<p>For this case, the momentum indicators generally helps us generate decisions whether to buy or not. The crossover is a sign of reversal of trend. In the context of technical analysis, “To buy” predicts that the price will increase, while “To Sell” predicts that the price will decrease.</p>
-<p>These tools work in general but there are more sophisticated tools that can be used in doing technical analysis.</p>
+<p>Đối với trường hợp này, các chỉ báo động lượng nhìn chung giúp chúng ta đưa ra quyết định có nên mua hay không. Điểm giao cắt là dấu hiệu của sự đảo chiều xu hướng. Trong bối cảnh phân tích kỹ thuật, lệnh “Mua” dự báo rằng giá sẽ tăng, trong khi lệnh “Bán” dự báo rằng giá sẽ giảm.</p>
+<p>Các công cụ này hoạt động hiệu quả trong các trường hợp tổng quát, tuy nhiên vẫn còn những công cụ tinh vi hơn có thể được sử dụng trong việc thực hiện phân tích kỹ thuật.</p>
 </section>
-<section id="example-7-momentum-trading-strategy-using-macd">
-<h3>Example 7: Momentum Trading Strategy Using MACD<a class="headerlink" href="#example-7-momentum-trading-strategy-using-macd" title="Permalink to this heading">#</a></h3>
-<p>There are many Momentum Trading Strategies that can be used. In this example, we will use the Moving Average Convergence Divergence (MACD). MACD is one of the most popular momentum indicators, which makes use of the difference between two exponential moving averages (12-day and 26-day) and compare it with EMA (9-day) of MACD.</p>
-<section id="macd-indicators">
-<h4>MACD Indicators<a class="headerlink" href="#macd-indicators" title="Permalink to this heading">#</a></h4>
+<section id="vi-du-7-chien-luoc-giao-dich-dong-luong-su-dung-macd">
+<h3>Ví dụ 7: Chiến lược giao dịch Động lượng sử dụng MACD<a class="headerlink" href="#vi-du-7-chien-luoc-giao-dich-dong-luong-su-dung-macd" title="Permalink to this heading">#</a></h3>
+<p>Có rất nhiều chiến lược giao dịch động lượng có thể được sử dụng. Trong ví dụ này, chúng ta sẽ sử dụng đường trung bình động hội tụ phân kỳ (MACD). MACD là một trong những chỉ báo động lượng phổ biến nhất, sử dụng hiệu số giữa hai đường trung bình động lũy thừa (EMA 12 ngày và EMA 26 ngày) và so sánh nó với đường EMA 9 ngày của chính MACD (được gọi là đường tín hiệu).</p>
+<section id="cac-chi-bao-macd">
+<h4>Các chỉ báo MACD<a class="headerlink" href="#cac-chi-bao-macd" title="Permalink to this heading">#</a></h4>
 <ol class="arabic simple">
-<li><p>bullish crossover (buy) -  occurs when MACD crosses above the signal line.</p></li>
-<li><p>bearish signal (sell) - MACD crosses below the signal line.</p></li>
-<li><p>overbought or oversold - crossover has a high sloping MACD, depending on if the crossover is bullish or bearish respectively. A correction or reversal of direction will soon follow.</p></li>
-<li><p>on movement - weak movement, indicated by the small slope of MACD has a high chance to correct while a strong movement highly probable to continue.</p></li>
+<li><p>Giao cắt tăng giá (Mua): Xảy ra khi đường MACD cắt lên trên đường tín hiệu (signal line).</p></li>
+<li><p>Tín hiệu giảm giá (Bán): Xảy ra khi đường MACD cắt xuống dưới đường tín hiệu.</p></li>
+<li><p>Quá mua hoặc quá bán: Xảy ra khi điểm giao cắt có đường MACD với độ dốc cao, tùy thuộc vào việc đó là giao cắt tăng giá hay giảm giá. Một sự điều chỉnh hoặc đảo chiều xu hướng sẽ sớm theo sau.</p></li>
+<li><p>Về chuyển động: Chuyển động yếu, được biểu thị bởi độ dốc nhỏ của MACD, có khả năng cao sẽ điều chỉnh; trong khi chuyển động mạnh có xác suất cao sẽ tiếp tục xu hướng.</p></li>
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2300,7 +2300,7 @@ CO2=  0.007019810017740837 x1 +  0.007728894654883425 x2 +  80.73020505101513
 <img alt="../_images/021ad6011e7877b68a8da8c3686956045c28d118f9e95359d4d758cca8da6ede.png" src="../_images/021ad6011e7877b68a8da8c3686956045c28d118f9e95359d4d758cca8da6ede.png" />
 </div>
 </div>
-<p>In the plot above, we can see the approximate dates where a bullish (buy) and bearish (sell) crossover happened. Now we want to examine the strength and identify overbought and oversold conditions. Here we use the same parameters, but we plot the original price and its MACD.</p>
+<p>Trong biểu đồ trên, chúng ta có thể thấy các ngày ước tính diễn ra sự giao cắt tăng giá (mua) và giao cắt giảm giá (bán). Bây giờ, chúng ta muốn kiểm tra cường độ và xác định các điều kiện quá mua (overbought) và quá bán (oversold). Tại đây, chúng ta sử dụng cùng các tham số đó, nhưng sẽ vẽ biểu đồ giá gốc và đường MACD của nó.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">price</span><span class="p">[</span><span class="s1">&#39;Close&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span> <span class="s1">&#39;Close&#39;</span><span class="p">)</span>
@@ -2313,7 +2313,7 @@ CO2=  0.007019810017740837 x1 +  0.007728894654883425 x2 +  80.73020505101513
 <img alt="../_images/fbc16b2d6e60bd1fc7e0ef4d3e9cff61bf2520a25562906e1ff27b46f59a96b9.png" src="../_images/fbc16b2d6e60bd1fc7e0ef4d3e9cff61bf2520a25562906e1ff27b46f59a96b9.png" />
 </div>
 </div>
-<p>Here, MACD stays somehow flat but notice that there are times where the MACD curve is steeper than other times, indicative of overbought or oversold conditions (e.g. before 2020-04).  Zooming-in to the MACD plot to see the slopes, we have the ff:</p>
+<p>Tại đây, MACD duy trì trạng thái tương đối phẳng, nhưng hãy lưu ý rằng có những thời điểm đường cong MACD dốc hơn so với các thời điểm khác, biểu thị các điều kiện quá mua hoặc quá bán (ví dụ: trước thời điểm 2020-04). Phóng to biểu đồ MACD để quan sát độ dốc, chúng ta có kết quả như sau:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -2330,22 +2330,22 @@ CO2=  0.007019810017740837 x1 +  0.007728894654883425 x2 +  80.73020505101513
 <img alt="../_images/a67f51b3604e6ea9b6640f83d9367da5a970a31e4cde8630182a5b9aae0904de.png" src="../_images/a67f51b3604e6ea9b6640f83d9367da5a970a31e4cde8630182a5b9aae0904de.png" />
 </div>
 </div>
-<p>From the above plots, the steep slopes of MACD happened before 2020-04 (oversold) and 2020-10 (overbought). Note that there are still some steep sloped in MACD after 2020-07 and could be indicative of other instances of overbuying and overselling.</p>
-<p>Finally, as discussed above, there are other momentum indicators that are used in trading such as RSI and ADX. The reader is left to explore on them following the procedure presented in this notebook.</p>
+<p>Từ các biểu đồ trên, các độ dốc lớn của MACD đã xảy ra trước thời điểm 2020-04 (quá bán) và 2020-10 (quá mua). Lưu ý rằng vẫn còn một số vị trí có độ dốc lớn trong MACD sau thời điểm 2020-07, và chúng có thể là dấu hiệu của các trường hợp quá mua và quá bán khác.</p>
+<p>Cuối cùng, như đã thảo luận ở trên, còn có các chỉ báo động lượng khác được sử dụng trong giao dịch như RSI (Chỉ số sức mạnh tương đối) và ADX (Chỉ số định hướng trung bình). Người đọc có thể tự tìm hiểu thêm về chúng theo quy trình đã được trình bày trong cuốn sách này.</p>
 </section>
 </section>
 </section>
-<section id="summary">
-<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this heading">#</a></h2>
-<p>In this chapter we discussed and demonstrated how we can use forecasting tools such as linear, trend, and momentum. Compared to the previous chapter, we noted here that there is no need to check for the stationarity of the time series and there is no need for differencing. We also showed that linear regression (and multi-variate LR) is limited and performs poorly when applied to some data. Finally we emphasized that while other forecasting tools require the removal of trends, in this notebook we showed that trends can be utilized to predict the future direction of the data.</p>
+<section id="tom-tat">
+<h2>Tóm tắt<a class="headerlink" href="#tom-tat" title="Permalink to this heading">#</a></h2>
+<p>Trong chương này, chúng ta đã thảo luận và minh họa cách sử dụng các công cụ dự báo như hồi quy tuyến tính, xu hướng và động lượng. So với chương trước, chúng ta lưu ý rằng ở đây không cần phải kiểm tra tính dừng (stationarity) của chuỗi thời gian và không cần thực hiện lấy vi phân (differencing). Chúng ta cũng đã chỉ ra rằng hồi quy tuyến tính (và hồi quy tuyến tính đa biến) có những hạn chế và hoạt động kém hiệu quả khi áp dụng cho một số loại dữ liệu nhất định. Cuối cùng, chúng ta nhấn mạnh rằng trong khi các công cụ dự báo khác yêu cầu loại bỏ xu hướng, thì trong nội dung này, chúng ta đã chứng minh rằng các xu hướng có thể được tận dụng để dự báo hướng đi của dữ liệu trong tương lai.</p>
 </section>
-<section id="preview-to-the-next-chapter">
-<h2>Preview to the next chapter…<a class="headerlink" href="#preview-to-the-next-chapter" title="Permalink to this heading">#</a></h2>
-<p>As simple as it is, the forecasting methods discussed here are not applicable in many other cases. Following our discussion, the next chapters will provide better forecasting models. In Chapter 3, the concept of vector autoregressive model (VAR) which is pressumed to be a better tool in forecasting time series data as it can incorportate information from the previous time step of another data, will be discussed.</p>
+<section id="xem-truoc-chuong-tiep-theo">
+<h2>Xem trước chương tiếp theo…<a class="headerlink" href="#xem-truoc-chuong-tiep-theo" title="Permalink to this heading">#</a></h2>
+<p>Dù đơn giản, nhưng các phương pháp dự báo được thảo luận ở đây không thể áp dụng trong nhiều trường hợp khác. Tiếp nối nội dung thảo luận, các chương tiếp theo sẽ cung cấp các mô hình dự báo tốt hơn. Trong Chương 3, khái niệm về mô hình vectơ tự hồi quy (VAR) sẽ được thảo luận. Đây được coi là một công cụ tốt hơn trong việc dự báo dữ liệu chuỗi thời gian vì nó có khả năng kết hợp thông tin từ các bước thời gian trước đó của các dữ liệu khác.</p>
 </section>
-<section id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
-<p>The discussions in this notebook were made with the help of the following references</p>
+<section id="tai-lieu-tham-khao">
+<h2>Tài liệu tham khảo<a class="headerlink" href="#tai-lieu-tham-khao" title="Permalink to this heading">#</a></h2>
+<p>Các nội dung thảo luận trong tài liệu này được xây dựng với sự hỗ trợ từ các tài liệu tham khảo sau đây:</p>
 <ul class="simple">
 <li><p>https://www.tandfonline.com/doi/pdf/10.1080/14697688.2020.1716057?needAccess=true</p></li>
 <li><p>https://towardsdatascience.com/introduction-to-linear-regression-in-python-c12a072bedf0</p></li>
@@ -2398,7 +2398,7 @@ CO2=  0.007019810017740837 x1 +  0.007728894654883425 x2 +  80.73020505101513
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Chương 1: Mô hình Trung bình động tích hợp tự hồi quy (AutoRegressive Integrated Moving Average - ARIMA)</p>
+        <p class="prev-next-title">Chương 1: Trung bình trượt tích hợp tự hồi quy (ARIMA)</p>
       </div>
     </a>
     <a class="right-next"
@@ -2406,7 +2406,7 @@ CO2=  0.007019810017740837 x1 +  0.007728894654883425 x2 +  80.73020505101513
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Chapter 3: Vector Autoregressive Methods</p>
+        <p class="prev-next-title">Chương 3: Các phương pháp Vectơ tự hồi quy (Vector Autoregressive Methods)</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -2426,56 +2426,56 @@ CO2=  0.007019810017740837 x1 +  0.007728894654883425 x2 +  80.73020505101513
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-use-this-notebook">How to Use This Notebook</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-regression-lr-forecasting">Linear Regression (LR) Forecasting</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gauss-markov-assumptions">Gauss Markov Assumptions</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1-univariate-lr-in-stock-price-of-netflix">Example 1: Univariate LR in Stock Price of Netflix</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-for-stationarity">Testing for Stationarity</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-for-autocorrelation">Testing for Autocorrelation</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-with-model-where-x-x-t-1">Compare with model where <span class="math notranslate nohighlight">\(X=X_{t-1}\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cach-su-dung-so-tay-nay">Cách sử dụng Sổ tay này</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#du-bao-bang-hoi-quy-tuyen-tinh-lr">Dự báo bằng Hồi quy Tuyến tính (LR)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cac-gia-dinh-gauss-markov">Các giả định Gauss Markov</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vi-du-1-hoi-quy-tuyen-tinh-don-bien-cho-gia-co-phieu-netflix">Ví dụ 1: Hồi quy tuyến tính đơn biến cho giá cổ phiếu Netflix</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#kiem-tra-tinh-dung">Kiểm tra tính dừng</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#kiem-tra-tu-tuong-quan">Kiểm tra Tự tương quan</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#so-sanh-voi-mo-hinh-trong-do-x-x-t-1">So sánh với mô hình trong đó <span class="math notranslate nohighlight">\(X=X_{t-1}\)</span></a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-univariate-forecasting-using-jena-climate-data">Example 2. Univariate Forecasting using Jena Climate Data</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#simultaneous-prediction-of-temperature-in-the-next-24-hours">Simultaneous prediction of temperature in the next 24 hours</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vi-du-2-du-bao-don-bien-su-dung-du-lieu-khi-hau-jena">Ví dụ 2. Dự báo đơn biến sử dụng Dữ liệu Khí hậu Jena</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#du-bao-dong-thoi-nhiet-do-trong-24-gio-toi">Dự báo đồng thời nhiệt độ trong 24 giờ tới</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-3-multivariate-linear-regression-and-regularization-techniques">Example 3: Multivariate Linear Regression and Regularization Techniques</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretation-of-coefficients">Interpretation of coefficients:</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretation-of-metrics">Interpretation of metrics:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vi-du-3-hoi-quy-tuyen-tinh-da-bien-va-cac-ky-thuat-dieu-chuan-regularization">Ví dụ 3: Hồi quy tuyến tính đa biến và các kỹ thuật điều chuẩn (Regularization)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#giai-thich-cac-he-so">Giải thích các hệ số:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#giai-thich-cac-chi-so">Giải thích các chỉ số:</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#l1-lasso-and-l2-ridge-regularization-for-multi-variate-linear-regression">L1 (Lasso) and L2 (Ridge) regularization for multi-variate linear regression</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lasso-regularization">Lasso Regularization</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ridge-regularization">Ridge Regularization</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#l1-regularization">L1 Regularization</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#l2-regularization">L2 Regularization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dieu-chuan-l1-lasso-va-l2-ridge-cho-hoi-quy-tuyen-tinh-da-bien">Điều chuẩn L1 (Lasso) và L2 (Ridge) cho hồi quy tuyến tính đa biến</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dieu-chuan-lasso-lasso-regularization">Điều chuẩn Lasso (Lasso Regularization)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dieu-chuan-ridge-ridge-regularization">Điều chuẩn Ridge (Ridge Regularization)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#l1-dieu-chuan">L1 Điều chuẩn</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#l2-dieu-chuan">L2 Điều chuẩn</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-4-multi-variate-linear-regression-on-jena-climate-data">Example 4: Multi-variate Linear Regression on Jena Climate Data</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">L1 Regularization</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">L2 Regularization</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#simultaneous-prediction-of-the-temperature-for-the-next-24-hours">Simultaneous prediction of the temperature for the next 24 hours</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#momentum-and-trend-forecasting">Momentum and Trend Forecasting</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#moving-average-ma">Moving Average MA</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-5-extracting-the-trend-in-climate-data-using-ma">Example 5: Extracting the Trend in Climate Data Using MA</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#momentum-strategies">Momentum Strategies</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-apply-momentum-strategy">How to apply momentum strategy:</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-6-momentum-trading-strategy-using-two-ma-s">Example 6: Momentum Trading Strategy Using Two MA’s</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-7-momentum-trading-strategy-using-macd">Example 7: Momentum Trading Strategy Using MACD</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#macd-indicators">MACD Indicators</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vi-du-4-hoi-quy-tuyen-tinh-da-bien-tren-du-lieu-khi-hau-jena">Ví dụ 4: Hồi quy tuyến tính đa biến trên Dữ liệu Khí hậu Jena</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">L1 Điều chuẩn</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">L2 Điều chuẩn</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Dự báo đồng thời nhiệt độ trong 24 giờ tới</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preview-to-the-next-chapter">Preview to the next chapter…</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#du-bao-dong-luong-va-xu-huong">Dự báo Động lượng và Xu hướng</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#duong-trung-binh-dong-moving-average-ma">Đường trung bình động (Moving Average - MA)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vi-du-5-trich-xuat-xu-huong-trong-du-lieu-khi-hau-bang-ma">Ví dụ 5: Trích xuất xu hướng trong Dữ liệu Khí hậu bằng MA</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chien-luoc-dong-luong-momentum-strategies">Chiến lược Động lượng (Momentum Strategies)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cach-ap-dung-chien-luoc-dong-luong">Cách áp dụng chiến lược động lượng:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vi-du-6-chien-luoc-giao-dich-dong-luong-su-dung-hai-duong-ma">Ví dụ 6: Chiến lược giao dịch Động lượng sử dụng hai đường MA</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vi-du-7-chien-luoc-giao-dich-dong-luong-su-dung-macd">Ví dụ 7: Chiến lược giao dịch Động lượng sử dụng MACD</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cac-chi-bao-macd">Các chỉ báo MACD</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tom-tat">Tóm tắt</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#xem-truoc-chuong-tiep-theo">Xem trước chương tiếp theo…</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tai-lieu-tham-khao">Tài liệu tham khảo</a></li>
 </ul>
   </nav></div>
 
