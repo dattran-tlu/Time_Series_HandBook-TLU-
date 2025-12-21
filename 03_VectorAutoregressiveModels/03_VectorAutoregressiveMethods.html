@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Chapter 3: Vector Autoregressive Methods &#8212; Bản dịch Time Series Analysis Handbook</title>
+    <title>Chương 3: Các phương pháp Vectơ tự hồi quy (Vector Autoregressive Methods) &#8212; Bản dịch Time Series Analysis Handbook</title>
   
   
   
@@ -171,9 +171,9 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../00_Introduction/00_Introduction.html">Chương 0: Phân tích Chuỗi Thời gian Nâng cao</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../01_AutoRegressiveIntegratedMovingAverage/01_AutoRegressiveIntegratedMovingAverage.html">Chương 1: Mô hình Trung bình động tích hợp tự hồi quy (AutoRegressive Integrated Moving Average - ARIMA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_AutoRegressiveIntegratedMovingAverage/01_AutoRegressiveIntegratedMovingAverage.html">Chương 1: Trung bình trượt tích hợp tự hồi quy (ARIMA)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../02_LinearForecastingTrendandMomentumForecasting/02_LinearTrendandMomentumForecasting.html">Chapter 2: Linear, Trend, and Momentum Forecasting</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Chapter 3: Vector Autoregressive Methods</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Chương 3: Các phương pháp Vectơ tự hồi quy (Vector Autoregressive Methods)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../04_GrangerCausality/04_GrangerCausality.html">Chapter 4: Granger Causality Test</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../05_SimplexandSmapProjections/05_Empirical%20Dynamic%20Modelling%20%28Simplex%20and%20SMap_Projections%29.html">Chapter 5 : Dynamical Forecasting Methods (Simplex and SMap Projections)</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../06_ConvergentCrossMappingandSugiharaCausality/ccm_sugihara.html">Chapter 6: Convergent Cross Mapping</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -324,7 +324,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Chapter 3: Vector Autoregressive Methods</h1>
+    <h1>Chương 3: Các phương pháp Vectơ tự hồi quy (Vector Autoregressive Methods)</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -334,77 +334,77 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multivariate-time-series-model">Multivariate Time Series Model</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definition-univariate-vs-multivariate-time-series">Definition: Univariate vs Multivariate Time Series</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1-multivariate-time-series">Example 1: Multivariate Time Series</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-air-quality-data-from-uci">A. Air Quality Data from UCI</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#b-global-health-from-the-world-bank">B. Global Health from The World Bank</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c-us-treasury-rates">C. US Treasury Rates</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#d-jena-climate-data">D. Jena Climate Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mo-hinh-chuoi-thoi-gian-da-bien">Mô hình chuỗi thời gian đa biến</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dinh-nghia-chuoi-thoi-gian-don-bien-va-da-bien">Định nghĩa: Chuỗi thời gian đơn biến và đa biến</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vi-du-1-chuoi-thoi-gian-da-bien">Ví dụ 1: Chuỗi thời gian đa biến</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-du-lieu-chat-luong-khong-khi-tu-uci">A. Dữ liệu chất lượng không khí từ UCI</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#b-suc-khoe-toan-cau-tu-ngan-hang-the-gioi-the-world-bank">B. Sức khỏe Toàn cầu từ Ngân hàng Thế giới (The World Bank)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c-lai-suat-kho-bac-hoa-ky-us-treasury-rates">C. Lãi suất Kho bạc Hoa Kỳ (US Treasury Rates)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#d-du-lieu-khi-hau-jena">D. Dữ liệu khí hậu Jena</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#foundations">Foundations</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#weak-stationarity-of-multivariate-time-series">Weak Stationarity of Multivariate Time Series</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#obtaining-cross-correlation-matrix-from-cross-covariance-matrix">Obtaining Cross-Correlation Matrix from Cross-Covariance Matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kien-thuc-nen-tang">Kiến thức nền tảng</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tinh-dung-yeu-cua-chuoi-thoi-gian-da-bien">Tính dừng yếu của chuỗi thời gian đa biến</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lay-ma-tran-tuong-quan-cheo-tu-ma-tran-hiep-phuong-sai-cheo">Lấy ma trận tương quan chéo từ ma trận hiệp phương sai chéo</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vector-autoregressive-var-models">Vector Autoregressive (VAR) Models</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#var-1-model">VAR(1) Model</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#structural-and-reduced-forms-of-the-var-model">Structural and Reduced Forms of the VAR model</a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#structural-var-var-in-primitive-form">Structural VAR (VAR in primitive form)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cac-mo-hinh-vecto-tu-hoi-quy-var">Các mô hình Vectơ tự hồi quy (VAR)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mo-hinh-var-1">Mô hình VAR(1)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dang-cau-truc-va-dang-rut-gon-cua-mo-hinh-var">Dạng cấu trúc và dạng rút gọn của mô hình VAR</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mo-hinh-var-dang-cau-truc-var-o-dang-nguyen-thuy">Mô hình VAR dạng cấu trúc (VAR ở dạng nguyên thủy)</a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#reduced-form-var-var-in-standard-form">Reduced-form VAR (VAR in standard form)</a></li>
 </ul>
 </li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#vma-infinite-representation-and-stationarity">VMA infinite representation and Stationarity</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#stationarity-of-the-var-1-model">Stationarity of the VAR(1) model</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bieu-dien-vma-vo-han-va-tinh-dung">Biểu diễn VMA vô hạn và Tính dừng</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tinh-dung-cua-mo-hinh-var-1">Tính dừng của mô hình VAR(1)</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#var-p-model">VAR(p) Model</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#properties">Properties</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#stationarity-of-var-p-model">Stationarity of VAR(p) model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mo-hinh-var-p">Mô hình VAR(p)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dac-tinh">Đặc tính</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tinh-dung-cua-mo-hinh-var-p">Tính dừng của mô hình VAR(p)</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#specification-of-a-var-model-choosing-the-order-p">Specification of a VAR model: Choosing the order <em>p</em></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#xac-dinh-mo-hinh-var-lua-chon-bac-p">Xác định mô hình VAR: Lựa chọn bậc <em>p</em></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-a-var-model">Building a VAR model</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-forecasting-air-quality-data-co-no2-and-rh">Example 2: Forecasting Air Quality Data (CO, NO2 and RH)</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#check-stationarity">1. Check stationarity</a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#kwiatkowskiphillipsschmidtshin-kpss-test">Kwiatkowski–Phillips–Schmidt–Shin (KPSS) test</a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#augmented-dickey-fuller-adf-test">Augmented Dickey-Fuller (ADF) test</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#xay-dung-mo-hinh-var">Xây dựng mô hình VAR</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vi-du-2-du-bao-du-lieu-chat-luong-khong-khi-co-no2-va-rh">Ví dụ 2: Dự báo dữ liệu chất lượng không khí (CO, NO2 và RH)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#kiem-tra-tinh-dung">1. Kiểm tra tính dừng</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#kiem-dinh-kwiatkowskiphillipsschmidtshin-kpss">Kiểm định Kwiatkowski–Phillips–Schmidt–Shin (KPSS)</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#kiem-dinh-augmented-dickey-fuller-adf">Kiểm định Augmented Dickey-Fuller (ADF)</a></li>
 </ul>
 </li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#split-data-into-train-and-test-sets">2. Split data into train and test sets</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#select-order-p">3. Select order <em>p</em></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#fit-var-model-with-chosen-order">3. Fit VAR model with chosen order</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#get-forecast">4. Get forecast</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-evaluation-comparison-with-arima-model">Performance Evaluation: Comparison with ARIMA model</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#structural-var-analysis">Structural VAR Analysis</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#impulse-response-function-irf">Impulse Response Function (IRF)</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#irf-in-the-var-system-for-air-quality">IRF in the VAR system for Air Quality</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#forecast-error-variance-decomposition-fevd">Forecast Error Variance Decomposition (FEVD)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-3-forecasting-the-jena-climate-data">Example 3: Forecasting the Jena climate data</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#load-dataset">Load dataset</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#check-stationarity-of-each-variable-using-adf-test">Check stationarity of each variable using ADF test</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Select order p</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#train-var-model-using-the-training-and-validation-data">Train VAR model using the training and validation data</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#forecast-24-hour-weather-measurements-and-evaluate-performance-on-test-set">Forecast 24-hour weather measurements and evaluate performance on test set</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#forecast-24-hours-beyond-test-set">Forecast 24 hours beyond test set</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#chia-du-lieu-thanh-tap-huan-luyen-train-va-tap-kiem-tra-test">2. Chia dữ liệu thành tập huấn luyện (train) và tập kiểm tra (test)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lua-chon-bac-p">3. Lựa chọn bậc <em>p</em></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#khop-mo-hinh-var-voi-bac-da-chon">3. Khớp mô hình VAR với bậc đã chọn</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#thuc-hien-du-bao">4. Thực hiện dự báo</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#danh-gia-hieu-suat-so-sanh-voi-mo-hinh-arima">Đánh giá hiệu suất: So sánh với mô hình ARIMA</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preview-to-the-next-chapter">Preview to the Next Chapter</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#phan-tich-var-cau-truc">Phân tích VAR cấu trúc</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ham-phan-ung-xung-impulse-response-function-irf">Hàm phản ứng xung (Impulse Response Function - IRF)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#irf-trong-he-var-cho-chat-luong-khong-khi">IRF trong hệ VAR cho Chất lượng Không khí</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#phan-ra-phuong-sai-sai-so-du-bao-forecast-error-variance-decomposition-fevd">Phân rã phương sai sai số dự báo (Forecast Error Variance Decomposition – FEVD)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vi-du-3-du-bao-du-lieu-khi-hau-jena">Ví dụ 3: Dự báo dữ liệu khí hậu Jena</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tai-bo-du-lieu">Tải bộ dữ liệu</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#kiem-tra-tinh-dung-cua-tung-bien-bang-kiem-dinh-adf">Kiểm tra tính dừng của từng biến bằng kiểm định ADF</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#chon-bac-p">Chọn bậc p</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#huan-luyen-mo-hinh-var-su-dung-du-lieu-huan-luyen-va-du-lieu-kiem-dinh">Huấn luyện mô hình VAR sử dụng dữ liệu huấn luyện và dữ liệu kiểm định</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#du-bao-cac-phep-do-thoi-tiet-trong-24-gio-va-danh-gia-hieu-nang-tren-tap-kiem-tra">Dự báo các phép đo thời tiết trong 24 giờ và đánh giá hiệu năng trên tập kiểm tra</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#du-bao-24-gio-tiep-theo-vuot-ngoai-tap-kiem-tra">Dự báo 24 giờ tiếp theo vượt ngoài tập kiểm tra</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tom-tat">Tóm tắt</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gioi-thieu-chuong-tiep-theo">Giới thiệu chương tiếp theo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tai-lieu-tham-khao">Tài liệu tham khảo</a></li>
 </ul>
             </nav>
         </div>
@@ -416,21 +416,19 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="chapter-3-vector-autoregressive-methods">
-<h1>Chapter 3: Vector Autoregressive Methods<a class="headerlink" href="#chapter-3-vector-autoregressive-methods" title="Permalink to this heading">#</a></h1>
-<p>Prepared by: Maria Eloisa Ventura</p>
-<p>Previously, we have introduced the classical approaches in forecasting single/univariate time series like the
-ARIMA (autoregressive integrated moving-average) model and the simple linear regression model. We learned that stationarity is a condition that is necessary when using ARIMA while this need not be imposed when using the linear regression model. In this notebook, we extend the forecasting problem to a more generalized framework where we deal with <strong>multivariate time series</strong>–time series which has more than one time-dependent variable. More specifically, we introduce <strong>vector autoregressive (VAR)</strong> models and show how they can be used in forecasting mutivariate time series.</p>
-<section id="multivariate-time-series-model">
-<h2>Multivariate Time Series Model<a class="headerlink" href="#multivariate-time-series-model" title="Permalink to this heading">#</a></h2>
-<p>As shown in the previous chapters, one of the main advantages of using simple univariate methods (e.g., ARIMA) is the ability to forecast future values of one variable by only using past values of itself. However, we know that most if not all of the variables that we observe are actually dependent on other variables. Most of the time, the information that we gather is limited by our capacity to measure the variables of interest. For example, if we want to study weather in a particular city, we could measure temperature, humidity and precipitation over time. But if we only have a thermometer, then we’ll only be able to collect data for temperature, effectively reducing our dataset to a univariate time series.</p>
-<p>Now, in cases where we have multiple time series (longitudinal measurements of more than one variable), we can actually use multivariate time series models to understand the relationships of the different variables over time.
-By utilizing the additional information available from related series, these models can often provide better forecasts than the univariate time series models.</p>
-<p>In this section, we cover the foundational information needed to understand Vector Autoregressive Models, a class of multivariate time series models, by using a framework similar to univariate time series laid out in the previous chapters, and extending it to the multivariate case.</p>
-<section id="definition-univariate-vs-multivariate-time-series">
-<h3>Definition: Univariate vs Multivariate Time Series<a class="headerlink" href="#definition-univariate-vs-multivariate-time-series" title="Permalink to this heading">#</a></h3>
-<p>Time series can either be univariate or multivariate. The term <strong>univariate time series</strong> consists of single observations recorded sequentially over equal time increments. When dealing with a univariate time series model (e.g., ARIMA), we usually refer to a model that contains lag values of itself as the independent variable.</p>
-<p>On the other hand, a <strong>multivariate time series</strong> has more than one time-dependent variable. For a multivariate process, several related time series are observed simultaneously over time. As an extension of the univariate case, the multivariate time series model involves two or more input variables, and leverages the interrelationship among the different time series variables.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="chuong-3-cac-phuong-phap-vecto-tu-hoi-quy-vector-autoregressive-methods">
+<h1>Chương 3: Các phương pháp Vectơ tự hồi quy (Vector Autoregressive Methods)<a class="headerlink" href="#chuong-3-cac-phuong-phap-vecto-tu-hoi-quy-vector-autoregressive-methods" title="Permalink to this heading">#</a></h1>
+<p>Được viết bởi: Maria Eloisa Ventura</p>
+<p>Trước đây, chúng ta đã giới thiệu các phương pháp cổ điển trong việc dự báo chuỗi thời gian đơn biến như mô hình ARIMA (tự hồi quy tích hợp trung bình động) và mô hình hồi quy tuyến tính đơn giản. Chúng ta đã biết rằng tính dừng (stationarity) là một điều kiện cần thiết khi sử dụng ARIMA, trong khi điều kiện này không bắt buộc khi sử dụng mô hình hồi quy tuyến tính. Trong nội dung này, chúng ta mở rộng bài toán dự báo sang một khuôn khổ tổng quát hơn, nơi chúng ta xử lý <strong>chuỗi thời gian đa biến (multivariate time series)</strong> – loại chuỗi thời gian có nhiều hơn một biến phụ thuộc vào thời gian. Cụ thể hơn, chúng ta sẽ giới thiệu các mô hình <strong>Vectơ tự hồi quy (VAR)</strong> và chỉ ra cách chúng được sử dụng trong việc dự báo chuỗi thời gian đa biến.</p>
+<section id="mo-hinh-chuoi-thoi-gian-da-bien">
+<h2>Mô hình chuỗi thời gian đa biến<a class="headerlink" href="#mo-hinh-chuoi-thoi-gian-da-bien" title="Permalink to this heading">#</a></h2>
+<p>Như đã trình bày trong các chương trước, một trong những ưu điểm chính của việc sử dụng các phương pháp đơn biến đơn giản (ví dụ: ARIMA) là khả năng dự báo các giá trị tương lai của một biến chỉ bằng cách sử dụng các giá trị quá khứ của chính nó. Tuy nhiên, chúng ta biết rằng hầu hết, nếu không muốn nói là tất cả, các biến mà chúng ta quan sát thực tế đều phụ thuộc vào các biến khác. Phần lớn thời gian, thông tin mà chúng ta thu thập được bị giới hạn bởi khả năng đo lường các biến mục tiêu. Ví dụ, nếu muốn nghiên cứu thời tiết ở một thành phố cụ thể, chúng ta có thể đo nhiệt độ, độ ẩm và lượng mưa theo thời gian. Nhưng nếu chỉ có một chiếc nhiệt kế, chúng ta sẽ chỉ thu thập được dữ liệu về nhiệt độ, điều này làm giảm tập dữ liệu xuống thành chuỗi thời gian đơn biến một cách hiệu quả.</p>
+<p>Giờ đây, trong trường hợp chúng ta có nhiều chuỗi thời gian (các phép đo dọc của nhiều hơn một biến), chúng ta thực sự có thể sử dụng các mô hình chuỗi thời gian đa biến để hiểu mối quan hệ của các biến khác nhau theo thời gian. Bằng cách tận dụng thông tin bổ sung có sẵn từ các chuỗi liên quan, các mô hình này thường có thể cung cấp các dự báo tốt hơn so với các mô hình chuỗi thời gian đơn biến.</p>
+<p>Trong phần này, chúng ta sẽ đề cập đến những thông tin nền tảng cần thiết để hiểu về Mô hình Vectơ tự hồi quy (Vector Autoregressive Models - VAR), một lớp của mô hình chuỗi thời gian đa biến, bằng cách sử dụng một khuôn khổ tương tự như chuỗi thời gian đơn biến đã được trình bày trong các chương trước và mở rộng nó sang trường hợp đa biến.</p>
+<section id="dinh-nghia-chuoi-thoi-gian-don-bien-va-da-bien">
+<h3>Định nghĩa: Chuỗi thời gian đơn biến và đa biến<a class="headerlink" href="#dinh-nghia-chuoi-thoi-gian-don-bien-va-da-bien" title="Permalink to this heading">#</a></h3>
+<p>Chuỗi thời gian có thể là đơn biến hoặc đa biến. Thuật ngữ chuỗi thời gian đơn biến bao gồm các quan sát đơn lẻ được ghi lại tuần tự theo các khoảng thời gian bằng nhau. Khi xử lý mô hình chuỗi thời gian đơn biến (ví dụ: ARIMA), chúng ta thường đề cập đến một mô hình chứa các giá trị trễ của chính nó đóng vai trò là biến độc lập.</p>
+<p>Mặt khác, một <strong>chuỗi thời gian đa biến (multivariate time series)</strong> có nhiều hơn một biến phụ thuộc vào thời gian. Đối với một quá trình đa biến, nhiều chuỗi thời gian liên quan được quan sát đồng thời theo thời gian. Là một phần mở rộng của trường hợp đơn biến, mô hình chuỗi thời gian đa biến bao gồm hai hoặc nhiều biến đầu vào, đồng thời tận dụng mối quan hệ tương hỗ giữa các biến chuỗi thời gian khác nhau đó.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
@@ -455,11 +453,11 @@ By utilizing the additional information available from related series, these mod
 </div>
 </div>
 </section>
-<section id="example-1-multivariate-time-series">
-<h3>Example 1: Multivariate Time Series<a class="headerlink" href="#example-1-multivariate-time-series" title="Permalink to this heading">#</a></h3>
-<section id="a-air-quality-data-from-uci">
-<h4>A. Air Quality Data from UCI<a class="headerlink" href="#a-air-quality-data-from-uci" title="Permalink to this heading">#</a></h4>
-<p>The dataset contains hourly averaged measurements obtained from an Air Quality Chemical Multisensor Device which was located on the field of a polluted area at an Italian city. The dataset can be downloaded <strong><a class="reference external" href="https://archive.ics.uci.edu/ml/datasets/Air+Quality#">here</a></strong>.</p>
+<section id="vi-du-1-chuoi-thoi-gian-da-bien">
+<h3>Ví dụ 1: Chuỗi thời gian đa biến<a class="headerlink" href="#vi-du-1-chuoi-thoi-gian-da-bien" title="Permalink to this heading">#</a></h3>
+<section id="a-du-lieu-chat-luong-khong-khi-tu-uci">
+<h4>A. Dữ liệu chất lượng không khí từ UCI<a class="headerlink" href="#a-du-lieu-chat-luong-khong-khi-tu-uci" title="Permalink to this heading">#</a></h4>
+<p>Tập dữ liệu này chứa các phép đo trung bình hàng giờ thu được từ Thiết bị đa cảm biến hóa học chất lượng không khí (Air Quality Chemical Multisensor Device), được đặt tại thực địa của một khu vực bị ô nhiễm tại một thành phố của Ý. Tập dữ liệu có thể được tải xuống tại <strong><a class="reference external" href="https://archive.ics.uci.edu/ml/datasets/Air+Quality#">đây</a></strong>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">aq_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s2">&quot;../data/AirQualityUCI/AirQualityUCI.xlsx&quot;</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[[</span><span class="s1">&#39;Date&#39;</span><span class="p">,</span> <span class="s1">&#39;Time&#39;</span><span class="p">]])</span>\
@@ -573,9 +571,9 @@ By utilizing the additional information available from related series, these mod
 </div>
 </div>
 </section>
-<section id="b-global-health-from-the-world-bank">
-<h4>B. Global Health from The World Bank<a class="headerlink" href="#b-global-health-from-the-world-bank" title="Permalink to this heading">#</a></h4>
-<p>This dataset combines key health statistics from a variety of sources to provide a look at global health and population trends. It includes information on nutrition, reproductive health, education, immunization, and diseases from over 200 countries. The dataset can be downloaded <strong><a class="reference external" href="https://console.cloud.google.com/marketplace/product/the-world-bank/global-health?filter=solution-type:dataset&amp;filter=category:health&amp;id=f3c38e10-2c45-43c8-8a12-8d749ba987ee">here</a></strong>.</p>
+<section id="b-suc-khoe-toan-cau-tu-ngan-hang-the-gioi-the-world-bank">
+<h4>B. Sức khỏe Toàn cầu từ Ngân hàng Thế giới (The World Bank)<a class="headerlink" href="#b-suc-khoe-toan-cau-tu-ngan-hang-the-gioi-the-world-bank" title="Permalink to this heading">#</a></h4>
+<p>Tập dữ liệu này kết hợp các số liệu thống kê y tế quan trọng từ nhiều nguồn khác nhau để cung cấp cái nhìn về xu hướng dân số và sức khỏe toàn cầu. Nó bao gồm thông tin về dinh dưỡng, sức khỏe sinh sản, giáo dục, tiêm chủng và bệnh tật từ hơn 200 quốc gia. Tập dữ liệu có thể được tải xuống tại <strong><a class="reference external" href="https://console.cloud.google.com/marketplace/product/the-world-bank/global-health?filter=solution-type:dataset&amp;filter=category:health&amp;id=f3c38e10-2c45-43c8-8a12-8d749ba987ee">đây</a></strong>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ind_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/WorldBankHealth/WorldBankHealthPopulation_SeriesSummary.csv&#39;</span><span class="p">)</span>\
@@ -658,11 +656,11 @@ By utilizing the additional information available from related series, these mod
 </div>
 </div>
 </section>
-<section id="c-us-treasury-rates">
-<h4>C. US Treasury Rates<a class="headerlink" href="#c-us-treasury-rates" title="Permalink to this heading">#</a></h4>
-<p>January, 1982 – December, 2016  (Weekly)
+<section id="c-lai-suat-kho-bac-hoa-ky-us-treasury-rates">
+<h4>C. Lãi suất Kho bạc Hoa Kỳ (US Treasury Rates)<a class="headerlink" href="#c-lai-suat-kho-bac-hoa-ky-us-treasury-rates" title="Permalink to this heading">#</a></h4>
+<p>Từ tháng 1 năm 1982 đến tháng 12 năm 2016 (Theo tuần)
 https://essentialoftimeseries.com/data/
-This sample dataset contains weekly data of US Treasury rates from January 1982 to December 2016. The dataset can be downloaded <strong><a class="reference external" href="https://essentialoftimeseries.com/data/">here</a></strong>.</p>
+Tập dữ liệu mẫu này chứa dữ liệu theo tuần về lãi suất Kho bạc Hoa Kỳ từ tháng 1 năm 1982 đến tháng 12 năm 2016. Tập dữ liệu có thể được tải xuống tại <strong><a class="reference external" href="https://essentialoftimeseries.com/data/">đây</a></strong>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">treas_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s2">&quot;../data/USTreasuryRates/us-treasury-rates-weekly.xlsx&quot;</span><span class="p">)</span>
@@ -823,9 +821,9 @@ This sample dataset contains weekly data of US Treasury rates from January 1982 
 </div>
 </div>
 </section>
-<section id="d-jena-climate-data">
-<h4>D. Jena Climate Data<a class="headerlink" href="#d-jena-climate-data" title="Permalink to this heading">#</a></h4>
-<p>Time series dataset recorded at the Weather Station at the Max Planck Institute for Biogeochemistry in Jena, Germany from 2009 to 2016. It contains 14 different quantities (e.g., air temperature, atmospheric pressure, humidity, wind direction, and so on) were recorded every 10 minutes. You can download the data <strong><a class="reference external" href="https://www.kaggle.com/stytch16/jena-climate-2009-2016">here</a></strong>.</p>
+<section id="d-du-lieu-khi-hau-jena">
+<h4>D. Dữ liệu khí hậu Jena<a class="headerlink" href="#d-du-lieu-khi-hau-jena" title="Permalink to this heading">#</a></h4>
+<p>Tập dữ liệu chuỗi thời gian được ghi nhận tại Trạm khí tượng của Viện Hóa địa sinh học Max Planck ở Jena, Đức từ năm 2009 đến năm 2016. Nó chứa 14 đại lượng khác nhau (ví dụ: nhiệt độ không khí, áp suất khí quyển, độ ẩm, hướng gió, v.v.) được ghi lại sau mỗi 10 phút. Tập dữ liệu có thể được tải xuống tại <strong><a class="reference external" href="https://www.kaggle.com/stytch16/jena-climate-2009-2016">đây</a></strong>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">jena_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/jena_climate_2009_2016.csv&#39;</span><span class="p">)</span>
@@ -959,64 +957,64 @@ This sample dataset contains weekly data of US Treasury rates from January 1982 
 </div>
 </section>
 </section>
-<section id="foundations">
-<h3>Foundations<a class="headerlink" href="#foundations" title="Permalink to this heading">#</a></h3>
-<p>Before we discuss VARs, we outline some fundamental concepts below that we will need to understand the model.</p>
-<section id="weak-stationarity-of-multivariate-time-series">
-<h4>Weak Stationarity of Multivariate Time Series<a class="headerlink" href="#weak-stationarity-of-multivariate-time-series" title="Permalink to this heading">#</a></h4>
-<p>As in the univariate case, one of the requirements that we need to satisfy before we can apply VAR models is stationarity–in particular, weak stationarity. Both in the univariate and multivariate case, the first two moments of the time series are time-invariant. More formally, we describe weak stationarity below.</p>
-<p>Consider a <span class="math notranslate nohighlight">\(N\)</span>-dimensional time series, <span class="math notranslate nohighlight">\(\mathbf{y}_t = \left[y_{1,t}, y_{2,t}, ..., y_{N,t}\right]^\prime\)</span>. This is said to be weakly stationary if the first two moments are finite and constant through time, that is,</p>
+<section id="kien-thuc-nen-tang">
+<h3>Kiến thức nền tảng<a class="headerlink" href="#kien-thuc-nen-tang" title="Permalink to this heading">#</a></h3>
+<p>Trước khi thảo luận về mô hình VAR, chúng tôi tóm lược một số khái niệm cơ bản dưới đây cần thiết để hiểu về mô hình này.</p>
+<section id="tinh-dung-yeu-cua-chuoi-thoi-gian-da-bien">
+<h4>Tính dừng yếu của chuỗi thời gian đa biến<a class="headerlink" href="#tinh-dung-yeu-cua-chuoi-thoi-gian-da-bien" title="Permalink to this heading">#</a></h4>
+<p>Tương tự như trường hợp đơn biến, một trong những yêu cầu cần đáp ứng trước khi áp dụng mô hình VAR là tính dừng – cụ thể là tính dừng yếu (weak stationarity). Trong cả trường hợp đơn biến và đa biến, hai mô-men đầu tiên của chuỗi thời gian phải không thay đổi theo thời gian. Một cách chính thức hơn, chúng tôi mô tả tính dừng yếu như sau:</p>
+<p>Xét một chuỗi thời gian <span class="math notranslate nohighlight">\(N\)</span> chiều, <span class="math notranslate nohighlight">\(\mathbf{y}_t = \left[y_{1,t}, y_{2,t}, ..., y_{N,t}\right]^\prime\)</span>. Chuỗi này được gọi là dừng yếu nếu hai mô-men đầu tiên là hữu hạn và không đổi theo thời gian, tức là:</p>
 <ol class="arabic simple">
 <li><p><span class="math notranslate nohighlight">\(E\left[\mathbf{y}_t\right] = \boldsymbol{\mu}\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(E\left[(\mathbf{y}_t-\boldsymbol{\mu})(\mathbf{y}_t-\boldsymbol{\mu})^\prime\right] \equiv \boldsymbol\Gamma_0 &lt; \infty\)</span> for all <span class="math notranslate nohighlight">\(t\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(E\left[(\mathbf{y}_t-\boldsymbol{\mu})(\mathbf{y}_{t-h}-\boldsymbol{\mu})^\prime\right] \equiv \boldsymbol\Gamma_h\)</span> for all <span class="math notranslate nohighlight">\(t\)</span> and <span class="math notranslate nohighlight">\(h\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(E\left[(\mathbf{y}_t-\boldsymbol{\mu})(\mathbf{y}_t-\boldsymbol{\mu})^\prime\right] \equiv \boldsymbol\Gamma_0 &lt; \infty\)</span> với mọi <span class="math notranslate nohighlight">\(t\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(E\left[(\mathbf{y}_t-\boldsymbol{\mu})(\mathbf{y}_{t-h}-\boldsymbol{\mu})^\prime\right] \equiv \boldsymbol\Gamma_h\)</span> với mọi <span class="math notranslate nohighlight">\(t\)</span> và <span class="math notranslate nohighlight">\(h\)</span></p></li>
 </ol>
-<p>where the expectations are taken element-by-element over the joint distribution of <span class="math notranslate nohighlight">\(\mathbf{y}_t\)</span>:</p>
+<p>Trong đó các giá trị kỳ vọng được lấy theo từng phần tử trên phân phối đồng thời của <span class="math notranslate nohighlight">\(\mathbf{y}_t\)</span>:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\boldsymbol{\mu}\)</span> is the vector of means <span class="math notranslate nohighlight">\(\boldsymbol\mu = \left[\mu_1, \mu_2, ..., \mu_N \right]\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(\boldsymbol\Gamma_0\)</span> is the <span class="math notranslate nohighlight">\(N\times N\)</span> covariance matrix where the <span class="math notranslate nohighlight">\(i\)</span>th diagonal element is the variance of <span class="math notranslate nohighlight">\(y_{i,t}\)</span>, and the <span class="math notranslate nohighlight">\((i, j)\)</span>th element is the covariance between <span class="math notranslate nohighlight">\(y_{i,t}\)</span> and <span class="math notranslate nohighlight">\({y_{j,t}}\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(\boldsymbol\Gamma_h\)</span> is the cross-covariance matrix at lag <span class="math notranslate nohighlight">\(h\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\boldsymbol{\mu}\)</span> là vectơ trung bình <span class="math notranslate nohighlight">\(\boldsymbol\mu = \left[\mu_1, \mu_2, ..., \mu_N \right]\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\boldsymbol\Gamma_0\)</span> là ma trận hiệp phương sai kích thước <span class="math notranslate nohighlight">\(N\times N\)</span> , trong đó phần tử trên đường chéo thứ <span class="math notranslate nohighlight">\(i\)</span>th là phương sai của <span class="math notranslate nohighlight">\(y_{i,t}\)</span>,và phần tử thứ <span class="math notranslate nohighlight">\((i, j)\)</span>th là hiệp phương sai giữa <span class="math notranslate nohighlight">\(y_{i,t}\)</span> and <span class="math notranslate nohighlight">\({y_{j,t}}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\boldsymbol\Gamma_h\)</span> là ma trận hiệp phương sai chéo (cross-covariance matrix) tại độ trễ <span class="math notranslate nohighlight">\(h\)</span></p></li>
 </ul>
 </section>
-<section id="obtaining-cross-correlation-matrix-from-cross-covariance-matrix">
-<h4>Obtaining Cross-Correlation Matrix from Cross-Covariance Matrix<a class="headerlink" href="#obtaining-cross-correlation-matrix-from-cross-covariance-matrix" title="Permalink to this heading">#</a></h4>
-<p>When dealing with a multivariate time series, we can examine the predictability of one variable on another by looking at the relationship between them using the cross-covariance function (CCVF) and cross-correlation function (CCF). To do this, we begin by defining the cross-covariance between two variables, then we estimate the cross-correlation between one variable and another variable that is time-shifted. This informs us whether one time series may be related to the past lags of the other. In other words, CCF is used for identifying lags of one variable that might be useful as a predictor of the other variable.</p>
-<p><strong>At lag 0</strong>:</p>
-<p>Let <span class="math notranslate nohighlight">\(\mathbf\Gamma_0\)</span> be the covariance matrix at lag 0, <span class="math notranslate nohighlight">\(\mathbf D\)</span> be a <span class="math notranslate nohighlight">\(N\times N\)</span> diagonal matrix containing the standard deviations of <span class="math notranslate nohighlight">\(y_{i,t}\)</span> for <span class="math notranslate nohighlight">\(i=1, ..., N\)</span>. The correlation matrix of <span class="math notranslate nohighlight">\(\mathbf{y}_t\)</span> is defined as</p>
+<section id="lay-ma-tran-tuong-quan-cheo-tu-ma-tran-hiep-phuong-sai-cheo">
+<h4>Lấy ma trận tương quan chéo từ ma trận hiệp phương sai chéo<a class="headerlink" href="#lay-ma-tran-tuong-quan-cheo-tu-ma-tran-hiep-phuong-sai-cheo" title="Permalink to this heading">#</a></h4>
+<p>Khi xử lý chuỗi thời gian đa biến, chúng ta có thể xem xét khả năng dự báo của một biến đối với một biến khác bằng cách xem xét mối quan hệ giữa chúng thông qua hàm hiệp phương sai chéo (CCVF) và hàm tương quan chéo (CCF). Để thực hiện việc này, chúng ta bắt đầu bằng cách định nghĩa hiệp phương sai chéo giữa hai biến, sau đó ước tính mức độ tương quan chéo giữa một biến và một biến khác bị dịch chuyển theo thời gian. Điều này cho chúng ta biết liệu một chuỗi thời gian có thể liên quan đến các độ trễ trong quá khứ của chuỗi kia hay không. Nói cách khác, CCF được sử dụng để xác định các độ trễ của một biến mà có thể hữu ích để làm biến dự báo cho biến còn lại.</p>
+<p><strong>Tại độ trễ 0</strong>:</p>
+<p>Giả sử <span class="math notranslate nohighlight">\(\mathbf\Gamma_0\)</span> là ma trận hiệp phương sai tại độ trễ 0, <span class="math notranslate nohighlight">\(\mathbf D\)</span> là một ma trận đường chéo kích thước <span class="math notranslate nohighlight">\(N\times N\)</span> chứa các độ lệch chuẩn của <span class="math notranslate nohighlight">\(y_{i,t}\)</span> với <span class="math notranslate nohighlight">\(i=1, ..., N\)</span>. Ma trận tương quan của <span class="math notranslate nohighlight">\(\mathbf{y}_t\)</span> được định nghĩa là:</p>
 <div class="math notranslate nohighlight">
 \[\boldsymbol\rho_0 = \mathbf D^{-1}\mathbf\Gamma_0\mathbf D^{-1}\]</div>
-<p>where the <span class="math notranslate nohighlight">\((i, j)\)</span>th element of <span class="math notranslate nohighlight">\(\boldsymbol\rho_0\)</span> is the correlation coefficient between <span class="math notranslate nohighlight">\(y_{i,t}\)</span> and <span class="math notranslate nohighlight">\(y_{j,t}\)</span> at time <span class="math notranslate nohighlight">\(t\)</span>:</p>
+<p>Trong đó phần tử thứ <span class="math notranslate nohighlight">\((i, j)\)</span> của <span class="math notranslate nohighlight">\(\boldsymbol\rho_0\)</span> là hệ số tương quan giữa <span class="math notranslate nohighlight">\(y_{i,t}\)</span> và <span class="math notranslate nohighlight">\(y_{j,t}\)</span> tại thời điểm <span class="math notranslate nohighlight">\(t\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\rho_{i,j}(0) = \dfrac{Cov\left[y_{i,t}, y_{j,t} \right]}{\sigma_{i,t} \sigma_{j,t}}\]</div>
-<p><strong>At lag h</strong>:</p>
-<p>Let <span class="math notranslate nohighlight">\(\boldsymbol\Gamma_h = E\left[(\mathbf{y}_t-\boldsymbol{\mu})(\mathbf{y}_{t-h}-\boldsymbol{\mu})^\prime\right]\)</span> be the lag-<span class="math notranslate nohighlight">\(h\)</span> covariance cross-covariance matrix of <span class="math notranslate nohighlight">\(\mathbf y_{t}\)</span>. The lag-<span class="math notranslate nohighlight">\(h\)</span> cross-correlation matrix is defined as</p>
+<p><strong>Tại độ trễ h</strong>:</p>
+<p>Giả sử <span class="math notranslate nohighlight">\(\boldsymbol\Gamma_h = E\left[(\mathbf{y}_t-\boldsymbol{\mu})(\mathbf{y}_{t-h}-\boldsymbol{\mu})^\prime\right]\)</span> là ma trận hiệp phương sai chéo tại độ trễ <span class="math notranslate nohighlight">\(h\)</span> của <span class="math notranslate nohighlight">\(\mathbf y_{t}\)</span>. Ma trận tương quan chéo tại độ trễ <span class="math notranslate nohighlight">\(h\)</span> được định nghĩa là:</p>
 <div class="math notranslate nohighlight">
 \[\boldsymbol\rho_h = \mathbf D^{-1}\mathbf\Gamma_h\mathbf D^{-1}\]</div>
-<p>The <span class="math notranslate nohighlight">\((i,j)\)</span>th element of <span class="math notranslate nohighlight">\(\boldsymbol\rho_h\)</span> is the correlation coefficient between <span class="math notranslate nohighlight">\(y_{i,t}\)</span> and <span class="math notranslate nohighlight">\(y_{j,t-h}\)</span>:</p>
+<p>Phần tử thứ <span class="math notranslate nohighlight">\((i,j)\)</span> của <span class="math notranslate nohighlight">\(\boldsymbol\rho_h\)</span> là hệ số tương quan giữa <span class="math notranslate nohighlight">\(y_{i,t}\)</span> và <span class="math notranslate nohighlight">\(y_{j,t-h}\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\rho_{i,j}(h) = \dfrac{Cov\left[y_{i,t}, y_{j,t-h} \right]}{\sigma_{i,t} \sigma_{j,t}}\]</div>
-<p><strong>What do we get from this?</strong></p>
+<p><strong>Chúng ta rút ra được điều gì từ kết quả này?</strong></p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
-<tr class="row-odd"><th class="head text-left"><p>Correlation Coefficient</p></th>
-<th class="head text-left"><p>Interpretation</p></th>
+<tr class="row-odd"><th class="head text-left"><p>Hệ số tương quan</p></th>
+<th class="head text-left"><p>Giải thích ý nghĩa</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td class="text-left"><p><span class="math notranslate nohighlight">\(\rho_{i,j}(0)\neq0\)</span></p></td>
-<td class="text-left"><p><span class="math notranslate nohighlight">\(y_{i,t}\)</span> and <span class="math notranslate nohighlight">\(y_{j,t}\)</span> are <em>contemporaneously linearly correlated</em></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(y_{i,t}\)</span> và <span class="math notranslate nohighlight">\(y_{j,t}\)</span> có <em>tương quan tuyến tính đồng thời</em> (xảy ra cùng lúc)</p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p><span class="math notranslate nohighlight">\(\rho_{i,j}(h)=\rho_{j,i}(h)=0\)</span> for all <span class="math notranslate nohighlight">\(h\geq0\)</span></p></td>
-<td class="text-left"><p><span class="math notranslate nohighlight">\(y_{i,t}\)</span> and <span class="math notranslate nohighlight">\(y_{j,t}\)</span> share <em>no linear relationship</em></p></td>
+<tr class="row-odd"><td class="text-left"><p><span class="math notranslate nohighlight">\(\rho_{i,j}(h)=\rho_{j,i}(h)=0\)</span> với mọi <span class="math notranslate nohighlight">\(h\geq0\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(y_{i,t}\)</span> và <span class="math notranslate nohighlight">\(y_{j,t}\)</span> <em>không có mối quan hệ tuyến tính</em> nào với nhau.</p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p><span class="math notranslate nohighlight">\(\rho_{i,j}(h)=0\)</span> and <span class="math notranslate nohighlight">\(\rho_{j,i}(h)=0\)</span> for all <span class="math notranslate nohighlight">\(h&gt;0\)</span></p></td>
-<td class="text-left"><p><span class="math notranslate nohighlight">\(y_{i,t}\)</span> and <span class="math notranslate nohighlight">\(y_{j,t}\)</span> are said to be linearly <em>uncoupled</em></p></td>
+<tr class="row-even"><td class="text-left"><p><span class="math notranslate nohighlight">\(\rho_{i,j}(h)=0\)</span> và <span class="math notranslate nohighlight">\(\rho_{j,i}(h)=0\)</span> với mọi <span class="math notranslate nohighlight">\(h&gt;0\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(y_{i,t}\)</span> và <span class="math notranslate nohighlight">\(y_{j,t}\)</span> được gọi là <em>không có liên kết tuyến tính (linearly uncoupled)</em>.</p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p><span class="math notranslate nohighlight">\(\rho_{i,j}(h)=0\)</span> for all <span class="math notranslate nohighlight">\(h&gt;0\)</span>, but <span class="math notranslate nohighlight">\(\rho_{j,i}(q)\neq0\)</span> for at least some <span class="math notranslate nohighlight">\(q&gt;0\)</span></p></td>
-<td class="text-left"><p>There is a <em>unidirectional (linear) relationship</em> between <span class="math notranslate nohighlight">\(y_{i,t}\)</span> and <span class="math notranslate nohighlight">\(y_{j,t}\)</span>, where <span class="math notranslate nohighlight">\(y_{i,t}\)</span> does not depend on <span class="math notranslate nohighlight">\(y_{j,t}\)</span>, but <span class="math notranslate nohighlight">\(y_{j,t}\)</span> depends on (some) lagged values of <span class="math notranslate nohighlight">\(y_{i,t}\)</span></p></td>
+<tr class="row-odd"><td class="text-left"><p><span class="math notranslate nohighlight">\(\rho_{i,j}(h)=0\)</span> với mọi <span class="math notranslate nohighlight">\(h&gt;0\)</span>, nhưng <span class="math notranslate nohighlight">\(\rho_{j,i}(q)\neq0\)</span> với ít nhất một <span class="math notranslate nohighlight">\(q&gt;0\)</span></p></td>
+<td class="text-left"><p>Có <em>mối quan hệ tuyến tính một chiều giữa</em> giữa <span class="math notranslate nohighlight">\(y_{i,t}\)</span> và <span class="math notranslate nohighlight">\(y_{j,t}\)</span>, trong đó <span class="math notranslate nohighlight">\(y_{i,t}\)</span> không phụ thuộc vào <span class="math notranslate nohighlight">\(y_{j,t}\)</span>, nhưng <span class="math notranslate nohighlight">\(y_{j,t}\)</span> phụ thuộc vào (một số) giá trị trễ của <span class="math notranslate nohighlight">\(y_{i,t}\)</span></p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p><span class="math notranslate nohighlight">\(\rho_{i,j}(h)\neq0\)</span> for at least some <span class="math notranslate nohighlight">\(h&gt;0\)</span> and <span class="math notranslate nohighlight">\(\rho_{j,i}(q)\neq0\)</span> for at least some <span class="math notranslate nohighlight">\(q&gt;0\)</span></p></td>
-<td class="text-left"><p>There is a <em>bi-directional (feedback) linear relationship</em> between <span class="math notranslate nohighlight">\(y_{i,t}\)</span> and <span class="math notranslate nohighlight">\(y_{j,t}\)</span></p></td>
+<tr class="row-even"><td class="text-left"><p><span class="math notranslate nohighlight">\(\rho_{i,j}(h)\neq0\)</span> với ít nhất một <span class="math notranslate nohighlight">\(h&gt;0\)</span> và <span class="math notranslate nohighlight">\(\rho_{j,i}(q)\neq0\)</span> với ít nhất một <span class="math notranslate nohighlight">\(q&gt;0\)</span></p></td>
+<td class="text-left"><p>Có một <em>mối quan hệ tuyến tính hai chiều (phản hồi)</em> giữa <span class="math notranslate nohighlight">\(y_{i,t}\)</span> và <span class="math notranslate nohighlight">\(y_{j,t}\)</span></p></td>
 </tr>
 </tbody>
 </table>
@@ -1024,48 +1022,48 @@ This sample dataset contains weekly data of US Treasury rates from January 1982 
 </section>
 </section>
 </section>
-<section id="vector-autoregressive-var-models">
-<h2>Vector Autoregressive (VAR) Models<a class="headerlink" href="#vector-autoregressive-var-models" title="Permalink to this heading">#</a></h2>
-<p>The vector autoregressive (VAR) model is one of the most successful models for analysis of multivariate time series. It has been demonstrated to be successful in describing relationships and forecasting economic and financial time series, and providing more accurate forecasts than the univariate time series models and theory-based simultaneous equations models.</p>
-<p>The structure of the VAR model is just the <strong>generalization of the univariate AR</strong> model. It is a system regression model that treats all the variables as endogenous, and allows each of the variables to depend on <span class="math notranslate nohighlight">\(p\)</span> lagged values of itself and of all the other variables in the system.</p>
-<p>A VAR model of order <span class="math notranslate nohighlight">\(p\)</span> can be represented as</p>
+<section id="cac-mo-hinh-vecto-tu-hoi-quy-var">
+<h2>Các mô hình Vectơ tự hồi quy (VAR)<a class="headerlink" href="#cac-mo-hinh-vecto-tu-hoi-quy-var" title="Permalink to this heading">#</a></h2>
+<p>Mô hình vectơ tự hồi quy (VAR) là một trong những mô hình thành công nhất để phân tích chuỗi thời gian đa biến. Mô hình này đã chứng minh được hiệu quả trong việc mô tả các mối quan hệ và dự báo các chuỗi thời gian kinh tế và tài chính, đồng thời cung cấp các dự báo chính xác hơn so với các mô hình chuỗi thời gian đơn biến và các mô hình hệ phương trình đồng thời dựa trên lý thuyết.</p>
+<p>Cấu trúc của mô hình VAR thực chất là sự <strong>tổng quát hóa của mô hình AR đơn biến (generalization of the univariate AR)</strong>. Đây là một mô hình hồi quy hệ thống (system regression model), coi tất cả các biến đều là biến nội sinh (endogenous), và cho phép mỗi biến phụ thuộc vào <span class="math notranslate nohighlight">\(p\)</span> giá trị trễ của chính nó cũng như của tất cả các biến khác trong hệ thống.</p>
+<p>Một mô hình VAR bậc <span class="math notranslate nohighlight">\(p\)</span> có thể được biểu diễn như sau:</p>
 <div class="math notranslate nohighlight">
 \[\mathbf y_t=\mathbf a_0 + \mathbf A_1 \mathbf y_{t-1} + \mathbf A_2 \mathbf y_{t-2} + ... + \mathbf A_p \mathbf y_{t-p} + \mathbf u_t = \mathbf a_0  + \sum_{j=1}^{p} \mathbf A_j \mathbf y_{t-j} + \mathbf u_t\]</div>
-<p>where <span class="math notranslate nohighlight">\(\mathbf y_t\)</span> is a <span class="math notranslate nohighlight">\(N\times 1\)</span> vector containing <span class="math notranslate nohighlight">\(N\)</span> endogenous variables, <span class="math notranslate nohighlight">\(\mathbf a_0\)</span> is a <span class="math notranslate nohighlight">\(N\times 1\)</span> vector of constants, <span class="math notranslate nohighlight">\(\mathbf A_1, \mathbf A_2, ..., \mathbf A_p\)</span> are the <span class="math notranslate nohighlight">\(p\)</span> <span class="math notranslate nohighlight">\(N\times N\)</span> matrices of autoregressive coefficients, and <span class="math notranslate nohighlight">\(\mathbf u_t\)</span> is a <span class="math notranslate nohighlight">\(N\times 1\)</span> vector of white noise disturbances.</p>
-<section id="var-1-model">
-<h3>VAR(1) Model<a class="headerlink" href="#var-1-model" title="Permalink to this heading">#</a></h3>
-<p>To illustrate, let’s consider the simplest VAR model where we have <span class="math notranslate nohighlight">\(p=1\)</span>.</p>
-<section id="structural-and-reduced-forms-of-the-var-model">
-<h4>Structural and Reduced Forms of the VAR model<a class="headerlink" href="#structural-and-reduced-forms-of-the-var-model" title="Permalink to this heading">#</a></h4>
-<p>Consider the following bivariate system</p>
+<p>Trong đó:<span class="math notranslate nohighlight">\(\mathbf y_t\)</span> là một vectơ cột kích thước <span class="math notranslate nohighlight">\(N \times 1\)</span> chứa <span class="math notranslate nohighlight">\(N\)</span> biến nội sinh.<span class="math notranslate nohighlight">\(\mathbf a_0\)</span> là một vectơ cột kích thước <span class="math notranslate nohighlight">\(N \times 1\)</span> chứa các hằng số. <span class="math notranslate nohighlight">\(\mathbf A_1, \mathbf A_2, ..., \mathbf A_p\)</span> là <span class="math notranslate nohighlight">\(p\)</span> ma trận hệ số tự hồi quy, mỗi ma trận có kích thước <span class="math notranslate nohighlight">\(N \times N\)</span> và <span class="math notranslate nohighlight">\(\mathbf u_t\)</span> Là một vectơ cột kích thước <span class="math notranslate nohighlight">\(N \times 1\)</span> chứa các nhiễu trắng (white noise).</p>
+<section id="mo-hinh-var-1">
+<h3>Mô hình VAR(1)<a class="headerlink" href="#mo-hinh-var-1" title="Permalink to this heading">#</a></h3>
+<p>Để minh họa, chúng ta hãy xem xét mô hình VAR đơn giản nhất với bậc trễ <span class="math notranslate nohighlight">\(p=1\)</span>.</p>
+<section id="dang-cau-truc-va-dang-rut-gon-cua-mo-hinh-var">
+<h4>Dạng cấu trúc và dạng rút gọn của mô hình VAR<a class="headerlink" href="#dang-cau-truc-va-dang-rut-gon-cua-mo-hinh-var" title="Permalink to this heading">#</a></h4>
+<p>Xét hệ hai biến số sau đây:</p>
 <div class="math notranslate nohighlight">
 \[ y_{1,t} = b_{1,0} - b_{1,2}y_{2,t} +  \varphi_{1,1}y_{1,t-1} + \varphi_{1,2}y_{2,t-1} + \varepsilon_{1,t}\]</div>
 <div class="math notranslate nohighlight">
 \[ y_{2,t} = b_{2,0} - b_{2,1}y_{2,t} +  \varphi_{2,1}y_{1,t-1} + \varphi_{2,2}y_{2,t-1} + \varepsilon_{2,t}\]</div>
-<p>where both <span class="math notranslate nohighlight">\(y_{1,t}\)</span> and <span class="math notranslate nohighlight">\(y_{2,t}\)</span> are assumed to be stationary, and <span class="math notranslate nohighlight">\(\varepsilon_{1,t}\)</span> and <span class="math notranslate nohighlight">\(\varepsilon_{2,t}\)</span> are the uncorrelated error terms with standard deviation <span class="math notranslate nohighlight">\(\sigma_{1,t}\)</span> and <span class="math notranslate nohighlight">\(\sigma_{2,t}\)</span>, respectively.</p>
-<p>In matrix notation:
-<img alt="../_images/bivariate1.png" src="../_images/bivariate1.png" /></p>
-<p>Let
-<img alt="../_images/bivariate2.png" src="../_images/bivariate2.png" /></p>
-<p>then</p>
+<p>Trong đó, cả <span class="math notranslate nohighlight">\(y_{1,t}\)</span> và <span class="math notranslate nohighlight">\(y_{2,t}\)</span> được giả định là các chuỗi dừng, còn <span class="math notranslate nohighlight">\(\varepsilon_{1,t}\)</span> và <span class="math notranslate nohighlight">\(\varepsilon_{2,t}\)</span> <span class="math notranslate nohighlight">\(\varepsilon_{2,t}\)</span> là các thành phần sai số không tương quan với độ lệch chuẩn lần lượt là <span class="math notranslate nohighlight">\(\sigma_{1,t}\)</span> và <span class="math notranslate nohighlight">\(\sigma_{2,t}\)</span>.</p>
+<p>Biểu diễn dưới dạng ma trận:</p>
+<img alt="../_images/bivariate1.png" src="../_images/bivariate1.png" />
+<p>Đặt các ma trận như sau:</p>
+<img alt="../_images/bivariate2.png" src="../_images/bivariate2.png" />
+<p>Khi đó</p>
 <div class="math notranslate nohighlight">
 \[\mathbf B \mathbf y_t = \mathbf Q_0 + \mathbf Q_1 \mathbf y_{t-1} + \boldsymbol\varepsilon_t\]</div>
-<section id="structural-var-var-in-primitive-form">
-<h5>Structural VAR (VAR in primitive form)<a class="headerlink" href="#structural-var-var-in-primitive-form" title="Permalink to this heading">#</a></h5>
+<section id="mo-hinh-var-dang-cau-truc-var-o-dang-nguyen-thuy">
+<h5>Mô hình VAR dạng cấu trúc (VAR ở dạng nguyên thủy)<a class="headerlink" href="#mo-hinh-var-dang-cau-truc-var-o-dang-nguyen-thuy" title="Permalink to this heading">#</a></h5>
 <ul class="simple">
-<li><p>Described by equation above</p></li>
-<li><p>Captures contemporaneous feedback effects (<span class="math notranslate nohighlight">\(b_{1,2}, b_{2,1}\)</span>)</p></li>
-<li><p>Not very practical to use</p></li>
-<li><p>Contemporaneous terms cannot be used in forecasting</p></li>
-<li><p>Needs further manipulation to make it more useful (e.g. multiplying the matrix equation by <span class="math notranslate nohighlight">\(\mathbf B^{-1}\)</span>)</p></li>
+<li><p>Được mô tả bởi hệ phương trình đã nêu ở trên.</p></li>
+<li><p>Ghi lại các tác động phản hồi đồng thời (các hệ số <span class="math notranslate nohighlight">\(b_{1,2}, b_{2,1}\)</span>)</p></li>
+<li><p>Không có tính ứng dụng thực tế cao trong việc tính toán trực tiếp.</p></li>
+<li><p>Các thành phần đồng thời (contemporaneous terms) không thể được sử dụng trực tiếp để dự báo tương lai (vì tại thời điểm <span class="math notranslate nohighlight">\(t\)</span>, anh chưa biết giá trị của cả hai biến để dự báo lẫn nhau).</p></li>
+<li><p>Cần thực hiện thêm các bước biến đổi để trở nên hữu ích hơn (ví dụ: nhân phương trình ma trận với <span class="math notranslate nohighlight">\(\mathbf{B}^{-1}\)</span>).</p></li>
 </ul>
-<p>Multiplying the matrix equation by <span class="math notranslate nohighlight">\(\mathbf B^{-1}\)</span>, we get</p>
+<p>Nhân phương trình ma trận với <span class="math notranslate nohighlight">\(\mathbf B^{-1}\)</span>, chúng ta thu được:</p>
 <div class="math notranslate nohighlight">
 \[\mathbf y_t = \mathbf a_0 + \mathbf A_1 \mathbf y_{t-1} + \mathbf u_t\]</div>
-<p>or</p>
+<p>hoặc</p>
 <div class="math notranslate nohighlight">
 \[\mathbf y_t = \mathbf a_0 + \mathbf A_1 L\mathbf y_t + \mathbf u_t\]</div>
-<p>where <span class="math notranslate nohighlight">\(\mathbf a_0 = \mathbf B^{-1}\mathbf Q_0\)</span>, <span class="math notranslate nohighlight">\(\mathbf A_1 = \mathbf B^{-1}\mathbf Q_1\)</span>, <span class="math notranslate nohighlight">\(L\)</span> is the lag/backshift operator, and <span class="math notranslate nohighlight">\(\mathbf u_t = \mathbf B^{-1}\boldsymbol\varepsilon_t\)</span>, equivalently,</p>
+<p>Trong đó <span class="math notranslate nohighlight">\(\mathbf a_0 = \mathbf B^{-1}\mathbf Q_0\)</span>, <span class="math notranslate nohighlight">\(\mathbf A_1 = \mathbf B^{-1}\mathbf Q_1\)</span>, <span class="math notranslate nohighlight">\(L\)</span> là toán tử trễ (lag/backshift operator), và <span class="math notranslate nohighlight">\(\mathbf u_t = \mathbf B^{-1}\boldsymbol\varepsilon_t\)</span>. Một cách tương đương, ta có hệ phương trình:</p>
 <div class="math notranslate nohighlight">
 \[ y_{1,t} = a_{1,0} + a_{1,1}y_{1,t-1} + a_{1,2}y_{2,t-1} + u_{1,t}\]</div>
 <div class="math notranslate nohighlight">
@@ -1074,109 +1072,109 @@ This sample dataset contains weekly data of US Treasury rates from January 1982 
 <section id="reduced-form-var-var-in-standard-form">
 <h5>Reduced-form VAR (VAR in standard form)<a class="headerlink" href="#reduced-form-var-var-in-standard-form" title="Permalink to this heading">#</a></h5>
 <ul class="simple">
-<li><p>Described by equation above</p></li>
-<li><p>Only dependent on lagged endogenous variables (no contemporaneous feedback)</p></li>
-<li><p>Can be estimated using ordinary least squares (OLS)</p></li>
+<li><p>Được mô tả bởi hệ phương trình đã biến đổi ở trên.</p></li>
+<li><p>Chỉ phụ thuộc vào các biến nội sinh ở các thời điểm trễ trong quá khứ (không còn các tác động phản hồi đồng thời).</p></li>
+<li><p>Có thể được ước lượng bằng phương pháp bình phương tối thiểu thông thường (OLS).</p></li>
 </ul>
 </section>
 </section>
-<section id="vma-infinite-representation-and-stationarity">
-<h4>VMA infinite representation and Stationarity<a class="headerlink" href="#vma-infinite-representation-and-stationarity" title="Permalink to this heading">#</a></h4>
-<p>Consider the reduced form, standard VAR(1) model</p>
+<section id="bieu-dien-vma-vo-han-va-tinh-dung">
+<h4>Biểu diễn VMA vô hạn và Tính dừng<a class="headerlink" href="#bieu-dien-vma-vo-han-va-tinh-dung" title="Permalink to this heading">#</a></h4>
+<p>Xét mô hình VAR(1) dạng rút gọn chuẩn:</p>
 <div class="math notranslate nohighlight">
 \[\mathbf y_t = \mathbf a_0 + \mathbf A_1 \mathbf y_{t-1} + \mathbf u_t\]</div>
-<p>Assuming that the process is weakly stationary and taking the expectation of <span class="math notranslate nohighlight">\(\mathbf y_t\)</span>, we have</p>
+<p>Giả sử rằng quá trình này dừng yếu và lấy kỳ vọng của <span class="math notranslate nohighlight">\(\mathbf y_t\)</span>, ta có:</p>
 <div class="math notranslate nohighlight">
 \[E\left[\mathbf y_t\right] = \mathbf a_0 + \mathbf A_1 E\left[\mathbf y_{t-1}\right]\]</div>
-<p>where <span class="math notranslate nohighlight">\(E\left[\mathbf u_t\right]=0.\)</span> If we let <span class="math notranslate nohighlight">\(\tilde{\mathbf y}_{t}\equiv \mathbf y_t - \boldsymbol \mu\)</span> be the mean-corrected time-series, we can write the model as</p>
+<p>Trong đó <span class="math notranslate nohighlight">\(E\left[\mathbf u_t\right]=0.\)</span> Nếu ta đặt <span class="math notranslate nohighlight">\(\tilde{\mathbf y}_{t}\equiv \mathbf y_t - \boldsymbol \mu\)</span> là chuỗi thời gian đã được hiệu chỉnh giá trị trung bình (mean-corrected), ta có thể viết lại mô hình thành:</p>
 <div class="math notranslate nohighlight">
 \[\tilde{\mathbf y}_{t} = \mathbf A_1 \tilde{\mathbf y}_{t-1} + \mathbf u_t\]</div>
-<p>Substituting <span class="math notranslate nohighlight">\(\tilde{\mathbf y}_{t-1} = \mathbf A_1 \tilde{\mathbf y}_{t-2} + \mathbf u_{t-1}\)</span>,</p>
+<p>Thay thế <span class="math notranslate nohighlight">\(\tilde{\mathbf y}_{t-1} = \mathbf A_1 \tilde{\mathbf y}_{t-2} + \mathbf u_{t-1}\)</span> vào phương trình trên, ta có:</p>
 <div class="math notranslate nohighlight">
 \[\tilde{\mathbf y}_{t} = \mathbf A_1 \left( \mathbf A_1 \tilde{\mathbf y}_{t-2} + \mathbf u_{t-1}\right)+ \mathbf u_t\]</div>
-<p>If we keep iterating, we get</p>
+<p>Nếu chúng ta tiếp tục lặp lại quá trình thay thế này, ta thu được:</p>
 <div class="math notranslate nohighlight">
 \[\mathbf y_{t} = \boldsymbol\mu + \sum_{i=1}^{\infty} \mathbf A_1^i  \mathbf u_{t-i} + \mathbf u_t\]</div>
-<p>Letting <span class="math notranslate nohighlight">\(\boldsymbol\Theta_i\equiv A_1^i\)</span>, we get the <strong>VMA infinite representation</strong></p>
+<p>Đặt <span class="math notranslate nohighlight">\(\boldsymbol\Theta_i\equiv A_1^i\)</span>, ta có được <strong>Biểu diễn Vectơ trung bình động vô hạn (VMA infinite representation)</strong>:</p>
 <div class="math notranslate nohighlight">
 \[\mathbf y_{t} = \boldsymbol\mu + \sum_{i=1}^{\infty} \boldsymbol\Theta_i  \mathbf u_{t-i} + \mathbf u_t\]</div>
 </section>
-<section id="stationarity-of-the-var-1-model">
-<h4>Stationarity of the VAR(1) model<a class="headerlink" href="#stationarity-of-the-var-1-model" title="Permalink to this heading">#</a></h4>
+<section id="tinh-dung-cua-mo-hinh-var-1">
+<h4>Tính dừng của mô hình VAR(1)<a class="headerlink" href="#tinh-dung-cua-mo-hinh-var-1" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
-<li><p>All the N eigenvalues of the matrix <span class="math notranslate nohighlight">\(A_1\)</span> must be less than 1 in modulus, to avoid that the coefficient matrix <span class="math notranslate nohighlight">\(A_1^j\)</span> from either exploding or converging to a nonzero matrix as <span class="math notranslate nohighlight">\(j\)</span> goes to infinity.</p></li>
-<li><p>Provided that the covariance matrix of <span class="math notranslate nohighlight">\(u_t\)</span> exists, the requirement that all the eigenvalues of <span class="math notranslate nohighlight">\(A_1\)</span> are less than one in modulus is a necessary and sufficient condition for <span class="math notranslate nohighlight">\(y_t\)</span> to be stable, and thus, stationary.</p></li>
-<li><p>All roots of <span class="math notranslate nohighlight">\(det\left(\mathbf I_N - \mathbf A_1 z\right)=0\)</span> must lie outside the unit circle.</p></li>
+<li><p>Tất cả <span class="math notranslate nohighlight">\(N\)</span> giá trị riêng của ma trận <span class="math notranslate nohighlight">\(\mathbf{A}_1\)</span> phải có mô-đun nhỏ hơn 1, nhằm tránh việc ma trận hệ số <span class="math notranslate nohighlight">\(\mathbf{A}_1^j\)</span> bị bùng nổ hoặc hội tụ về một ma trận khác không khi <span class="math notranslate nohighlight">\(j\)</span> tiến tới vô hạn.</p></li>
+<li><p>Với điều kiện ma trận hiệp phương sai của <span class="math notranslate nohighlight">\(\mathbf{u}_t\)</span> tồn tại, yêu cầu tất cả các giá trị riêng của <span class="math notranslate nohighlight">\(\mathbf{A}_1\)</span> có mô-đun nhỏ hơn 1 là điều kiện cần và đủ để <span class="math notranslate nohighlight">\(\mathbf{y}_t\)</span> ổn định, và do đó, đạt tính dừng.</p></li>
+<li><p>Tất cả các nghiệm của <span class="math notranslate nohighlight">\(det\left(\mathbf I_N - \mathbf A_1 z\right)=0\)</span> phải nằm ngoài vòng tròn đơn vị.</p></li>
 </ul>
 </section>
 </section>
-<section id="var-p-model">
-<h3>VAR(p) Model<a class="headerlink" href="#var-p-model" title="Permalink to this heading">#</a></h3>
-<p>Consider the VAR(p) model described by</p>
+<section id="mo-hinh-var-p">
+<h3>Mô hình VAR(p)<a class="headerlink" href="#mo-hinh-var-p" title="Permalink to this heading">#</a></h3>
+<p>Xét mô hình VAR(p) được mô tả bởi:</p>
 <div class="math notranslate nohighlight">
 \[\mathbf y_t=\mathbf a_0 + \mathbf A_1 \mathbf y_{t-1} + \mathbf A_2 \mathbf y_{t-2} + ... + \mathbf A_p \mathbf y_{t-p} + \mathbf u_t = \mathbf a_0  + \sum_{j=1}^{p} \mathbf A_j \mathbf y_{t-j} + \mathbf u_t\]</div>
-<p>Using the lag operator <span class="math notranslate nohighlight">\(L\)</span>, we get</p>
+<p>Sử dụng toán tử trễ <span class="math notranslate nohighlight">\(L\)</span>, ta có:</p>
 <div class="math notranslate nohighlight">
 \[\tilde{\mathbf A} (L) \mathbf y_t = \mathbf a_0 + \mathbf u_t\]</div>
-<p>where <span class="math notranslate nohighlight">\(\tilde{\mathbf A} (L) = (\mathbf I_N - A_1 L - ... - A_p L^p)\)</span>. Assuming that <span class="math notranslate nohighlight">\(\mathbf y_t\)</span> is weakly stationary, we obtain that</p>
+<p>Trong đó <span class="math notranslate nohighlight">\(\tilde{\mathbf A} (L) = (\mathbf I_N - A_1 L - ... - A_p L^p)\)</span>. Giả sử rằng <span class="math notranslate nohighlight">\(\mathbf y_t\)</span> dừng yếu, ta thu được:</p>
 <div class="math notranslate nohighlight">
 \[\boldsymbol\mu = E\left[\mathbf y_t\right] = (\mathbf I_N - A_1 L - ... - A_p L^p)^{-1} \mathbf a_0\]</div>
-<p>Defining <span class="math notranslate nohighlight">\(\tilde{\mathbf y}_t=\mathbf y_t -\boldsymbol\mu\)</span>, we have</p>
+<p>Đặt <span class="math notranslate nohighlight">\(\tilde{\mathbf y}_t=\mathbf y_t -\boldsymbol\mu\)</span>, ta có:</p>
 <div class="math notranslate nohighlight">
 \[\tilde{\mathbf y}_t =  \mathbf A_1 \tilde{\mathbf y}_{t-1} + \mathbf A_2 \tilde{\mathbf y}_{t-2} + ... + \mathbf A_p \tilde{\mathbf y}_{t-p} + \mathbf u_t\]</div>
-<section id="properties">
-<h4>Properties<a class="headerlink" href="#properties" title="Permalink to this heading">#</a></h4>
+<section id="dac-tinh">
+<h4>Đặc tính<a class="headerlink" href="#dac-tinh" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(Cov[\mathbf y_t, \mathbf u_t] = \Sigma_u\)</span>, the covariance matrix of <span class="math notranslate nohighlight">\(\mathbf u_t\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(Cov[\mathbf y_{t-h}, \mathbf u_t] = \mathbf 0\)</span> for any <span class="math notranslate nohighlight">\(h&gt;0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(Cov[\mathbf y_t, \mathbf u_t] = \Sigma_u\)</span>, ma trận hiệp phương sai của <span class="math notranslate nohighlight">\(\mathbf u_t\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(Cov[\mathbf y_{t-h}, \mathbf u_t] = \mathbf 0\)</span> với mọi <span class="math notranslate nohighlight">\(h&gt;0\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(\boldsymbol\Gamma_h = \mathbf A_1 \boldsymbol\Gamma_{h-1} +...+\mathbf A_p \boldsymbol\Gamma_{h-p}\)</span> for <span class="math notranslate nohighlight">\(h&gt;0\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(\boldsymbol\rho_h = \boldsymbol \Psi_1 \boldsymbol\Gamma_{h-1} +...+\boldsymbol \Psi_p \boldsymbol\Gamma_{h-p}\)</span> for <span class="math notranslate nohighlight">\(h&gt;0\)</span>, where <span class="math notranslate nohighlight">\(\boldsymbol \Psi_i = \mathbf D^{-1/2}\mathbf A_i D^{-1/2}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\boldsymbol\rho_h = \boldsymbol \Psi_1 \boldsymbol\Gamma_{h-1} +...+\boldsymbol \Psi_p \boldsymbol\Gamma_{h-p}\)</span> for <span class="math notranslate nohighlight">\(h&gt;0\)</span>, trong đó <span class="math notranslate nohighlight">\(\boldsymbol \Psi_i = \mathbf D^{-1/2}\mathbf A_i D^{-1/2}\)</span></p></li>
 </ul>
 </section>
-<section id="stationarity-of-var-p-model">
-<h4>Stationarity of VAR(p) model<a class="headerlink" href="#stationarity-of-var-p-model" title="Permalink to this heading">#</a></h4>
+<section id="tinh-dung-cua-mo-hinh-var-p">
+<h4>Tính dừng của mô hình VAR(p)<a class="headerlink" href="#tinh-dung-cua-mo-hinh-var-p" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
-<li><p>All roots of <span class="math notranslate nohighlight">\(det\left(\mathbf I_N - \mathbf A_1 z - ...-  \mathbf A_p z^p\right)=0\)</span> must lie outside the unit circle.</p></li>
+<li><p>Tất cả các nghiệm của phương trình <span class="math notranslate nohighlight">\(det\left(\mathbf I_N - \mathbf A_1 z - ...-  \mathbf A_p z^p\right)=0\)</span> phải nằm ngoài vòng tròn đơn vị.</p></li>
 </ul>
 </section>
 </section>
-<section id="specification-of-a-var-model-choosing-the-order-p">
-<h3>Specification of a VAR model: Choosing the order <em>p</em><a class="headerlink" href="#specification-of-a-var-model-choosing-the-order-p" title="Permalink to this heading">#</a></h3>
-<p>Fitting a VAR model involves the selection of a single parameter: the model order or lag length <span class="math notranslate nohighlight">\(p\)</span>. The most common approach in selecting the best model is choosing the <span class="math notranslate nohighlight">\(p\)</span> that minimizes one or more information criteria evaluated over a range of model orders. The criterion consists of two terms: the first one characterizes the entropy rate or prediction error, and second one characterizes the number of freely estimated parameters in the model. Minimizing both terms will allow us to identify a model that accurately models the data while preventing overfitting (due to too many parameters).</p>
-<p>Some of the commonly used information criteria include: Akaike Information Criterion (AIC), Schwarz’s Bayesian Information Criterion (BIC), Hannan-Quinn Criterion (HQ), and Akaike’s Final Prediction Error Criterion (FPE). The equation for each are shown below.</p>
-<p><em>Akaike’s information criterion</em></p>
+<section id="xac-dinh-mo-hinh-var-lua-chon-bac-p">
+<h3>Xác định mô hình VAR: Lựa chọn bậc <em>p</em><a class="headerlink" href="#xac-dinh-mo-hinh-var-lua-chon-bac-p" title="Permalink to this heading">#</a></h3>
+<p>Việc khớp một mô hình VAR bao gồm việc lựa chọn một tham số duy nhất: bậc của mô hình hoặc độ dài độ trễ <span class="math notranslate nohighlight">\(p\)</span>. Cách tiếp cận phổ biến nhất trong việc chọn mô hình tốt nhất là chọn giá trị <span class="math notranslate nohighlight">\(p\)</span> sao cho tối thiểu hóa được một hoặc nhiều tiêu chí thông tin (information criteria) được đánh giá trên một phạm vi các bậc mô hình. Các tiêu chí này bao gồm hai thành phần: thành phần thứ nhất đặc trưng cho tỷ lệ entropy hoặc sai số dự báo, và thành phần thứ hai đặc trưng cho số lượng các tham số được ước lượng tự do trong mô hình. Việc tối thiểu hóa cả hai thành phần này sẽ cho phép chúng ta xác định được một mô hình mô phỏng chính xác dữ liệu đồng thời ngăn chặn hiện tượng quá khớp (overfitting - do có quá nhiều tham số).</p>
+<p>Một số tiêu chí thông tin thường được sử dụng bao gồm: Tiêu chí thông tin Akaike (AIC), Tiêu chí thông tin Bayes của Schwarz (BIC), Tiêu chí Hannan-Quinn (HQ), và Tiêu chí Sai số dự báo cuối cùng của Akaike (FPE). Công thức cho mỗi tiêu chí được trình bày dưới đây.</p>
+<p><em>Tiêu chí thông tin Akaike</em></p>
 <div class="math notranslate nohighlight">
 \[(M)\operatorname{AIC} = \operatorname{ln}|\tilde{\boldsymbol\Sigma}_u | + 2\dfrac{k}{T}\]</div>
-<p><em>Schwarz’s Bayesian information criterion</em></p>
+<p><em>Tiêu chí thông tin Bayes của Schwarz</em></p>
 <div class="math notranslate nohighlight">
 \[(M)\operatorname{BIC} = \operatorname{ln}|\tilde{\boldsymbol\Sigma}_u | + \dfrac{k}{T}\operatorname{ln}(T)\]</div>
-<p><em>Hannan-Quinn’s information criterion</em></p>
+<p><em>Tiêu chí thông tin Hannan-Quinn</em></p>
 <div class="math notranslate nohighlight">
 \[(M)\operatorname{HQIC} = \operatorname{ln}|\tilde{\boldsymbol\Sigma}_u | + \dfrac{k}{T}\operatorname{ln}(\operatorname{ln}(T))\]</div>
-<p><em>Final prediction error</em></p>
+<p><em>Sai số dự báo cuối cùng</em></p>
 <div class="math notranslate nohighlight">
 \[\operatorname{FPE}(p) = \left(\dfrac{T+Np+1}{T-Np+1} \right)^N |\tilde{\boldsymbol\Sigma}_u | \]</div>
 <div class="math notranslate nohighlight">
 \[\operatorname{ln}(\operatorname{FPE}(p)) = \operatorname{ln}|\tilde{\boldsymbol\Sigma}_u | + N \operatorname{ln}\left(\dfrac{T+Np+1}{T-Np+1} \right) \]</div>
-<p>where <span class="math notranslate nohighlight">\(M\)</span> stands for multivariate, <span class="math notranslate nohighlight">\(\tilde{\boldsymbol\Sigma}_u\)</span> is the estimated covariance matrix of the residuals, <span class="math notranslate nohighlight">\(T\)</span> is the number of observations in the sample, and <span class="math notranslate nohighlight">\(k\)</span> is the total number of equations in the VAR(<span class="math notranslate nohighlight">\(p\)</span>) (i.e. <span class="math notranslate nohighlight">\(N^2p + N\)</span> where <span class="math notranslate nohighlight">\(N\)</span> is the number of equations and <span class="math notranslate nohighlight">\(p\)</span> is the number of lags).</p>
-<p>Among the metrics above, AIC and BIC are the most widely used criteria, but BIC penalizes higher orders more. For moderate and large sample sizes, AIC and FPE are essentially equivalent, but FPE may outperform AIC for small sample sizes. HQ also penalizes higher order models more heavily than AIC, but less than BIC. However, under small sample conditions, AIC/FPE may outperform BIC and/or HQ in selecting true model order.</p>
-<p>There are cases when AIC and FPE show no clear minimum over a range or model orders or lag lengths. In this case, there may be a clear “elbow” when we plot the values over model order. This may indicate a suitable model order.</p>
+<p>Trong đó <span class="math notranslate nohighlight">\(M\)</span> đại diện cho đa biến (multivariate), <span class="math notranslate nohighlight">\(\tilde{\boldsymbol\Sigma}_u\)</span> là ma trận hiệp phương sai ước lượng của các phần dư, <span class="math notranslate nohighlight">\(T\)</span>  là số lượng quan sát trong mẫu, và <span class="math notranslate nohighlight">\(k\)</span> là tổng số lượng tham số trong mô hình VAR(<span class="math notranslate nohighlight">\(p\)</span>) (tức là <span class="math notranslate nohighlight">\(N^2p + N\)</span>, với <span class="math notranslate nohighlight">\(N\)</span> là số lượng phương trình và <span class="math notranslate nohighlight">\(p\)</span> là số lượng độ trễ).</p>
+<p>Trong số các chỉ số trên, AIC và BIC là những tiêu chí được sử dụng rộng rãi nhất, nhưng BIC xử phạt (penalize) các bậc cao nặng nề hơn. Đối với kích thước mẫu trung bình và lớn, AIC và FPE về cơ bản là tương đương nhau, nhưng FPE có thể vượt trội hơn AIC đối với kích thước mẫu nhỏ. HQ cũng xử phạt các mô hình bậc cao nặng hơn AIC, nhưng nhẹ hơn so với BIC. Tuy nhiên, trong điều kiện mẫu nhỏ, AIC/FPE có thể hiệu quả hơn BIC và/hoặc HQ trong việc lựa chọn bậc mô hình thực tế.</p>
+<p>Có những trường hợp khi AIC và FPE không hiển thị giá trị tối thiểu rõ ràng trên một phạm vi các bậc mô hình hoặc độ dài độ trễ. Trong trường hợp này, có thể xuất hiện một điểm “khuỷu tay” (elbow) rõ rệt khi chúng ta vẽ biểu đồ các giá trị theo bậc mô hình. Điều này có thể gợi ý một bậc mô hình phù hợp.</p>
 </section>
 </section>
-<section id="building-a-var-model">
-<h2>Building a VAR model<a class="headerlink" href="#building-a-var-model" title="Permalink to this heading">#</a></h2>
-<p>In this section, we show how we can use the VAR model to forecast the air quality data. The following steps are shown below:</p>
+<section id="xay-dung-mo-hinh-var">
+<h2>Xây dựng mô hình VAR<a class="headerlink" href="#xay-dung-mo-hinh-var" title="Permalink to this heading">#</a></h2>
+<p>Trong phần này, chúng em sẽ trình bày cách sử dụng mô hình VAR để dự báo dữ liệu chất lượng không khí. Các bước thực hiện được liệt kê dưới đây:</p>
 <ol class="arabic simple">
-<li><p>Check for stationarity.</p></li>
-<li><p>Split data into train and test sets.</p></li>
-<li><p>Select the VAR order <em>p</em> that gives.</p></li>
-<li><p>Fit VAR model of order <em>p</em> on the train set.</p></li>
-<li><p>Generate forecast.</p></li>
-<li><p>Evaluate model performance.</p></li>
+<li><p>Kiểm tra tính dừng.</p></li>
+<li><p>Chia dữ liệu thành tập huấn luyện (train) và tập kiểm tra (test).</p></li>
+<li><p>Lựa chọn bậc VAR <em>p</em> phù hợp.</p></li>
+<li><p>Khớp mô hình VAR bậc <em>p</em> trên tập huấn luyện.</p></li>
+<li><p>Thực hiện dự báo.</p></li>
+<li><p>Đánh giá hiệu suất của mô hình.</p></li>
 </ol>
-<section id="example-2-forecasting-air-quality-data-co-no2-and-rh">
-<h3>Example 2: Forecasting Air Quality Data (CO, NO2 and RH)<a class="headerlink" href="#example-2-forecasting-air-quality-data-co-no2-and-rh" title="Permalink to this heading">#</a></h3>
-<p>For illustration, we consider the carbon monoxide, nitrous dioxide  and relative humidity time series from the Air Quality Dataset from 1 October 2014.</p>
+<section id="vi-du-2-du-bao-du-lieu-chat-luong-khong-khi-co-no2-va-rh">
+<h3>Ví dụ 2: Dự báo dữ liệu chất lượng không khí (CO, NO2 và RH)<a class="headerlink" href="#vi-du-2-du-bao-du-lieu-chat-luong-khong-khi-co-no2-va-rh" title="Permalink to this heading">#</a></h3>
+<p>Để minh họa, chúng ta xem xét các chuỗi thời gian về khí carbon monoxide (CO), nitrous dioxide (NO2) và độ ẩm tương đối (RH) từ Tập dữ liệu Chất lượng Không khí tính từ ngày 1 tháng 10 năm 2014.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;CO(GT)&#39;</span><span class="p">,</span> <span class="s1">&#39;NO2(GT)&#39;</span><span class="p">,</span> <span class="s1">&#39;RH&#39;</span><span class="p">]</span>
@@ -1193,9 +1191,9 @@ This sample dataset contains weekly data of US Treasury rates from January 1982 
 <img alt="../_images/00a4747dd6bf2e7cca97f32229bd98fb73a209065b3b37414fff5666dbaa9c10.png" src="../_images/00a4747dd6bf2e7cca97f32229bd98fb73a209065b3b37414fff5666dbaa9c10.png" />
 </div>
 </div>
-<p><strong>Quick inspection before we proceed with modeling…</strong></p>
-<p>To find out whether the multivariate approach is better than treating the signals separately as univariate time series, we examine the relationship between the variables using CCF. The sample below shows the CCF for the last 100 data points of the Air quality data for CO, NO2 and RH.</p>
-<p><em>CO and NO2</em></p>
+<p><strong>Kiểm tra nhanh trước khi tiến hành xây dựng mô hình…</strong></p>
+<p>Để tìm hiểu xem liệu phương pháp đa biến có tốt hơn việc xử lý các tín hiệu riêng biệt như các chuỗi thời gian đơn biến hay không, chúng ta kiểm tra mối quan hệ giữa các biến bằng hàm tương quan chéo (CCF). Mẫu dưới đây hiển thị CCF cho 100 điểm dữ liệu cuối cùng của dữ liệu chất lượng không khí đối với các biến CO, NO2 và RH.</p>
+<p><em>CO và NO2</em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample_df</span> <span class="o">=</span> <span class="n">data_df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">100</span><span class="p">:]</span>
@@ -1220,7 +1218,7 @@ This sample dataset contains weekly data of US Treasury rates from January 1982 
 <img alt="../_images/e663dd4d791cff8a8216acb416b2238db5d8505f51294850632ca603cb22b085.png" src="../_images/e663dd4d791cff8a8216acb416b2238db5d8505f51294850632ca603cb22b085.png" />
 </div>
 </div>
-<p><em>CO and RH</em></p>
+<p><em>CO và RH</em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ccf_y1_y2</span> <span class="o">=</span> <span class="n">ccf</span><span class="p">(</span><span class="n">sample_df</span><span class="p">[</span><span class="s1">&#39;CO(GT)&#39;</span><span class="p">],</span> <span class="n">sample_df</span><span class="p">[</span><span class="s1">&#39;RH&#39;</span><span class="p">],</span> <span class="n">unbiased</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -1244,7 +1242,7 @@ This sample dataset contains weekly data of US Treasury rates from January 1982 
 <img alt="../_images/a0f4949436e8b2967cd6642d84d18c40ce2a6ebeb81d729160d08380188482f4.png" src="../_images/a0f4949436e8b2967cd6642d84d18c40ce2a6ebeb81d729160d08380188482f4.png" />
 </div>
 </div>
-<p><em>RH and NO2</em></p>
+<p><em>RH và NO2</em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ccf_y1_y2</span> <span class="o">=</span> <span class="n">ccf</span><span class="p">(</span><span class="n">sample_df</span><span class="p">[</span><span class="s1">&#39;RH&#39;</span><span class="p">],</span> <span class="n">sample_df</span><span class="p">[</span><span class="s1">&#39;NO2(GT)&#39;</span><span class="p">],</span> <span class="n">unbiased</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -1268,20 +1266,20 @@ This sample dataset contains weekly data of US Treasury rates from January 1982 
 <img alt="../_images/4746784f415d3ac70770b12df63b0dfc92705d10e32d54057a3d743d872e96fb.png" src="../_images/4746784f415d3ac70770b12df63b0dfc92705d10e32d54057a3d743d872e96fb.png" />
 </div>
 </div>
-<p><strong>Observation/s</strong>:</p>
-<p>As shown in the plot above, we can see that there’s a relationship between:</p>
+<p><strong>Các quan sát</strong>:</p>
+<p>Như được thể hiện trong biểu đồ trên, chúng ta có thể thấy rằng có mối quan hệ giữa:</p>
 <ul class="simple">
-<li><p>CO and some lagged values of RH and NO2</p></li>
-<li><p>NO2 and some lagged values of RH and CO</p></li>
-<li><p>RH and some lagged values of CO and NO2</p></li>
+<li><p>CO và một số giá trị trễ của RH và NO2.</p></li>
+<li><p>NO2 và một số giá trị trễ của RH và CO.</p></li>
+<li><p>RH và một số giá trị trễ của CO và NO2.</p></li>
 </ul>
-<p>This shows that we can benefit from the multivariate approach, so we proceed with building the VAR model.</p>
-<section id="check-stationarity">
-<h4>1. Check stationarity<a class="headerlink" href="#check-stationarity" title="Permalink to this heading">#</a></h4>
-<p>To check for stationarity, we use the Kwiatkowski–Phillips–Schmidt–Shin (KPSS) test and the Augmented Dickey-Fuller (ADF) test. For the data to be suitable for VAR modelling, we need each of the variables in the multivariate time series to be stationary. In both tests, we need the test statistic to be less than the critical values to say that a time series (a variable) to be stationary.</p>
-<section id="kwiatkowskiphillipsschmidtshin-kpss-test">
-<h5>Kwiatkowski–Phillips–Schmidt–Shin (KPSS) test<a class="headerlink" href="#kwiatkowskiphillipsschmidtshin-kpss-test" title="Permalink to this heading">#</a></h5>
-<p>Recall: Null hypothesis is that an observable time series is stationary around a deterministic trend (i.e. trend-stationary) against the alternative of a unit root.</p>
+<p>Điều này cho thấy chúng ta có thể nhận được lợi ích từ phương pháp tiếp cận đa biến, vì vậy chúng ta tiến hành xây dựng mô hình VAR.</p>
+<section id="kiem-tra-tinh-dung">
+<h4>1. Kiểm tra tính dừng<a class="headerlink" href="#kiem-tra-tinh-dung" title="Permalink to this heading">#</a></h4>
+<p>Để kiểm tra tính dừng, chúng ta sử dụng kiểm định Kwiatkowski–Phillips–Schmidt–Shin (KPSS) và kiểm định Augmented Dickey-Fuller (ADF). Để dữ liệu phù hợp cho việc lập mô hình VAR, chúng ta cần từng biến trong chuỗi thời gian đa biến phải đạt tính dừng. Trong cả hai kiểm định, chúng ta cần giá trị thống kê kiểm định (test statistic) nhỏ hơn các giá trị tới hạn (critical values) để có thể kết luận rằng một chuỗi thời gian (một biến) là dừng.</p>
+<section id="kiem-dinh-kwiatkowskiphillipsschmidtshin-kpss">
+<h5>Kiểm định Kwiatkowski–Phillips–Schmidt–Shin (KPSS)<a class="headerlink" href="#kiem-dinh-kwiatkowskiphillipsschmidtshin-kpss" title="Permalink to this heading">#</a></h5>
+<p>Nhắc lại: Giả thuyết không là chuỗi thời gian quan sát được đạt tính dừng xung quanh một xu thế xác định (tức là dừng theo xu thế - trend-stationary), đối nghịch với giả thuyết đối là có một nghiệm đơn vị (unit root).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_stat</span><span class="p">,</span> <span class="n">p_val</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
@@ -1370,12 +1368,12 @@ This sample dataset contains weekly data of US Treasury rates from January 1982 
 </table>
 </div></div></div>
 </div>
-<p><strong>Observation/s</strong>:</p>
-<p>From the KPSS test, CO and RH are stationary.</p>
+<p><strong>Các quan sát</strong>:</p>
+<p>Từ kết quả kiểm định KPSS, các biến CO và RH đạt tính dừng.</p>
 </section>
-<section id="augmented-dickey-fuller-adf-test">
-<h5>Augmented Dickey-Fuller (ADF) test<a class="headerlink" href="#augmented-dickey-fuller-adf-test" title="Permalink to this heading">#</a></h5>
-<p>Recall: Null hypothesis is that a unit root is present in a time series sample against the alternative that the time series is stationary.</p>
+<section id="kiem-dinh-augmented-dickey-fuller-adf">
+<h5>Kiểm định Augmented Dickey-Fuller (ADF)<a class="headerlink" href="#kiem-dinh-augmented-dickey-fuller-adf" title="Permalink to this heading">#</a></h5>
+<p>Nhắc lại: Giả thuyết không là có sự hiện diện của một nghiệm đơn vị (unit root) trong mẫu chuỗi thời gian, đối nghịch với giả thuyết đối là chuỗi thời gian đó đạt tính dừng.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_stat</span><span class="p">,</span> <span class="n">p_val</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
@@ -1456,13 +1454,13 @@ This sample dataset contains weekly data of US Treasury rates from January 1982 
 </table>
 </div></div></div>
 </div>
-<p><strong>Observation/s</strong>:</p>
-<p>From the ADF test, CO, NO2 and RH are stationary.</p>
+<p><strong>Các quan sát</strong>:</p>
+<p>Từ kết quả kiểm định ADF, cả ba biến CO, NO2 và RH đều đạt tính dừng.</p>
 </section>
 </section>
-<section id="split-data-into-train-and-test-sets">
-<h4>2. Split data into train and test sets<a class="headerlink" href="#split-data-into-train-and-test-sets" title="Permalink to this heading">#</a></h4>
-<p>We use the dataset from 01 October 2014 to predict the last 24 points (24 hrs/1 day) in the dataset.</p>
+<section id="chia-du-lieu-thanh-tap-huan-luyen-train-va-tap-kiem-tra-test">
+<h4>2. Chia dữ liệu thành tập huấn luyện (train) và tập kiểm tra (test)<a class="headerlink" href="#chia-du-lieu-thanh-tap-huan-luyen-train-va-tap-kiem-tra-test" title="Permalink to this heading">#</a></h4>
+<p>Chúng ta sử dụng tập dữ liệu từ ngày 01 tháng 10 năm 2014 để dự báo 24 điểm cuối cùng (tương ứng với 24 giờ/1 ngày) trong tập dữ liệu.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">forecast_length</span> <span class="o">=</span> <span class="mi">24</span> 
@@ -1495,9 +1493,9 @@ This sample dataset contains weekly data of US Treasury rates from January 1982 
 </div>
 </div>
 </section>
-<section id="select-order-p">
-<h4>3. Select order <em>p</em><a class="headerlink" href="#select-order-p" title="Permalink to this heading">#</a></h4>
-<p>We compute the different multivariate information criteria (AIC, BIC, HQIC), and FPE. We pick the set of order parameters that correspond to the lowest values.</p>
+<section id="lua-chon-bac-p">
+<h4>3. Lựa chọn bậc <em>p</em><a class="headerlink" href="#lua-chon-bac-p" title="Permalink to this heading">#</a></h4>
+<p>Chúng ta tính toán các tiêu chí thông tin đa biến khác nhau (AIC, BIC, HQIC) và FPE. Sau đó, chúng ta sẽ chọn bộ tham số bậc tương ứng với các giá trị thấp nhất.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">aic</span><span class="p">,</span> <span class="n">bic</span><span class="p">,</span> <span class="n">fpe</span><span class="p">,</span> <span class="n">hqic</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[]</span>
@@ -1524,11 +1522,11 @@ This sample dataset contains weekly data of US Treasury rates from January 1982 
 <img alt="../_images/44b467ec82542518d90f41ce7a3f23559f08ff117a190bfe94ad82e280c7881d.png" src="../_images/44b467ec82542518d90f41ce7a3f23559f08ff117a190bfe94ad82e280c7881d.png" />
 </div>
 </div>
-<p><strong>Observation/s</strong>:</p>
-<p>We find BIC and HQIC to be lowest at <span class="math notranslate nohighlight">\(p=26\)</span>, and we also observe an elbow in the plots for AIC, and FPE, so we choose the number of lags to be 26.</p>
+<p><strong>Các quan sát</strong>:</p>
+<p>Chúng ta thấy rằng BIC và HQIC đạt giá trị thấp nhất tại <span class="math notranslate nohighlight">\(p=26\)</span>. Đồng thời, chúng ta cũng quan sát thấy một điểm “khuỷu tay” (elbow) trên biểu đồ của AIC và FPE, do đó chúng ta lựa chọn số lượng độ trễ là 26.</p>
 </section>
-<section id="fit-var-model-with-chosen-order">
-<h4>3. Fit VAR model with chosen order<a class="headerlink" href="#fit-var-model-with-chosen-order" title="Permalink to this heading">#</a></h4>
+<section id="khop-mo-hinh-var-voi-bac-da-chon">
+<h4>3. Khớp mô hình VAR với bậc đã chọn<a class="headerlink" href="#khop-mo-hinh-var-voi-bac-da-chon" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
@@ -1819,8 +1817,8 @@ RH         0.150771  0.078143  1.000000
 </div>
 </div>
 </section>
-<section id="get-forecast">
-<h4>4. Get forecast<a class="headerlink" href="#get-forecast" title="Permalink to this heading">#</a></h4>
+<section id="thuc-hien-du-bao">
+<h4>4. Thực hiện dự báo<a class="headerlink" href="#thuc-hien-du-bao" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">forecast_var</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">var_model</span><span class="o">.</span><span class="n">forecast</span><span class="p">(</span><span class="n">train_df</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> 
@@ -1851,9 +1849,9 @@ RH         0.150771  0.078143  1.000000
 </div>
 </div>
 </section>
-<section id="performance-evaluation-comparison-with-arima-model">
-<h4>Performance Evaluation: Comparison with ARIMA model<a class="headerlink" href="#performance-evaluation-comparison-with-arima-model" title="Permalink to this heading">#</a></h4>
-<p>When using ARIMA, we treat each variable as a univariate time series, and we perform the forecasting for each variable: 1 for CO, 1 for NO2, and 1 for RH</p>
+<section id="danh-gia-hieu-suat-so-sanh-voi-mo-hinh-arima">
+<h4>Đánh giá hiệu suất: So sánh với mô hình ARIMA<a class="headerlink" href="#danh-gia-hieu-suat-so-sanh-voi-mo-hinh-arima" title="Permalink to this heading">#</a></h4>
+<p>Khi sử dụng ARIMA, chúng ta coi mỗi biến là một chuỗi thời gian đơn biến riêng biệt và thực hiện dự báo cho từng biến: một mô hình cho CO, một cho NO2 và một cho RH.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># For model order selection, refer to Chapter 1</span>
@@ -1966,7 +1964,7 @@ Wall time: 1.48 s
 <img alt="../_images/2b072182fb7f5ed2c5fe27cb0a4e95a74c62af458d0b6834c852681a90507af3.png" src="../_images/2b072182fb7f5ed2c5fe27cb0a4e95a74c62af458d0b6834c852681a90507af3.png" />
 </div>
 </div>
-<p><strong>Performance Metrics</strong></p>
+<p><strong>Chỉ số hiệu suất</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">utils</span><span class="o">.</span><span class="n">test_performance_metrics</span><span class="p">(</span><span class="n">test_df</span><span class="p">,</span> <span class="n">forecast_var</span><span class="p">,</span> <span class="n">suffix</span><span class="o">=</span><span class="s1">&#39;-VAR&#39;</span><span class="p">),</span>
@@ -2033,45 +2031,45 @@ Wall time: 1.48 s
 </table>
 </div></div></div>
 </div>
-<p><strong>Observation/s</strong>:</p>
+<p><strong>Các quan sát</strong>:</p>
 <ul class="simple">
-<li><p>MAE: VAR forecasts have lower errors than ARIMA forecasts for CO and NO2 but not in RH.</p></li>
-<li><p>MSE: VAR forecasts have lower errors for all variables (CO, NO2 and RH).</p></li>
-<li><p>MAPE: VAR forecasts have lower errors for all variables (CO, NO2 and RH).</p></li>
-<li><p>Training time is significantly reduced when using VAR compared to ARIMA (&lt;0.1s run time for VAR while ~20s for ARIMA)</p></li>
+<li><p>MAE: Dự báo bằng mô hình VAR có sai số thấp hơn ARIMA đối với CO và NO2, nhưng không tốt hơn đối với RH.</p></li>
+<li><p>MSE: Mô hình VAR cho sai số thấp hơn ARIMA đối với tất cả các biến (CO, NO2 và RH).</p></li>
+<li><p>MAPE: Mô hình VAR cho sai số thấp hơn ARIMA đối với tất cả các biến (CO, NO2 và RH).</p></li>
+<li><p>Thời gian huấn luyện: VAR có thời gian huấn luyện ngắn hơn đáng kể so với ARIMA (thời gian chạy &lt; 0,1 giây đối với VAR, trong khi ARIMA mất khoảng ~20 giây).</p></li>
 </ul>
 </section>
 </section>
 </section>
-<section id="structural-var-analysis">
-<h2>Structural VAR Analysis<a class="headerlink" href="#structural-var-analysis" title="Permalink to this heading">#</a></h2>
-<p>In addition to forecasting, VAR models are also used for structural inference and policy analysis. In macroeconomics, this structural analysis has been extensively employed to investigate the transmission mechanisms of macroeconomic shocks (e.g., monetary shocks, financial shocks) and test economic theories. There are particular assumptions imposed about the causal structure of the dataset, and the resulting causal impacts of unexpected shocks (also called innovations or perturbations) to a specific variable on the different variables in the model are summarized. In this section, we cover two of the common methods in summarizing the effects of these causal impacts: (1) impulse response functions, and (2): forecast error variance decompositions.</p>
-<section id="impulse-response-function-irf">
-<h3>Impulse Response Function (IRF)<a class="headerlink" href="#impulse-response-function-irf" title="Permalink to this heading">#</a></h3>
+<section id="phan-tich-var-cau-truc">
+<h2>Phân tích VAR cấu trúc<a class="headerlink" href="#phan-tich-var-cau-truc" title="Permalink to this heading">#</a></h2>
+<p>Bên cạnh dự báo, các mô hình VAR còn được sử dụng cho suy luận cấu trúc và phân tích chính sách. Trong kinh tế học vĩ mô, phân tích cấu trúc này đã được sử dụng rộng rãi để nghiên cứu các cơ chế truyền dẫn của các cú sốc kinh tế vĩ mô (ví dụ: cú sốc tiền tệ, cú sốc tài chính) và kiểm định các lý thuyết kinh tế. Có những giả định cụ thể được áp đặt về cấu trúc nhân quả của bộ dữ liệu, và các tác động nhân quả thu được của những cú sốc bất ngờ (còn được gọi là innovations hoặc perturbations) lên một biến cụ thể đối với các biến khác trong mô hình được tóm lược. Trong phần này, chúng ta trình bày hai phương pháp phổ biến để tóm tắt các tác động của những ảnh hưởng nhân quả này: (1) hàm phản ứng xung, và (2) phân rã phương sai sai số dự báo.</p>
+<section id="ham-phan-ung-xung-impulse-response-function-irf">
+<h3>Hàm phản ứng xung (Impulse Response Function - IRF)<a class="headerlink" href="#ham-phan-ung-xung-impulse-response-function-irf" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Coefficients of the VAR models are often difficult to interpret so practitioners often estimate the impulse response function.</p></li>
-<li><p>IRFs trace out the time path of the effects of an exogenous shock to one (or more) of the endogenous variables on some or all of the other variables in a VAR system.</p></li>
-<li><p>IRF traces out the response of the dependent variable of the VAR system to shocks (also called innovations or impulses) in the error terms.</p></li>
+<li><p>Các hệ số của mô hình VAR thường rất khó để giải thích trực tiếp, vì vậy những người thực hành phân tích thường ước lượng hàm phản ứng xung.</p></li>
+<li><p>IRF mô tả lại lộ trình thời gian về tác động của một cú sốc ngoại sinh từ một (hoặc nhiều) biến nội sinh lên một số hoặc tất cả các biến khác trong hệ thống VAR.</p></li>
+<li><p>IRF vạch ra phản ứng của biến phụ thuộc trong hệ thống VAR đối với các cú sốc (còn được gọi là các đổi mới - innovations hoặc các xung lực - impulses) xảy ra trong các thành phần sai số.</p></li>
 </ul>
-<section id="irf-in-the-var-system-for-air-quality">
-<h4>IRF in the VAR system for Air Quality<a class="headerlink" href="#irf-in-the-var-system-for-air-quality" title="Permalink to this heading">#</a></h4>
-<p>Let <span class="math notranslate nohighlight">\(y_{1,t}\)</span>, <span class="math notranslate nohighlight">\(y_{2,t}\)</span> and <span class="math notranslate nohighlight">\(y_{3,t}\)</span> be the time series corresponding to CO signal, NO2 signal, and RH signal, respectively. Consider the moving average representation of the system shown below:</p>
-<p>Let
-<img alt="../_images/irf_eq.png" src="../_images/irf_eq.png" /></p>
-<p>Suppose <span class="math notranslate nohighlight">\(u_1\)</span> in the first equation increases by a value of one standard deviation.</p>
+<section id="irf-trong-he-var-cho-chat-luong-khong-khi">
+<h4>IRF trong hệ VAR cho Chất lượng Không khí<a class="headerlink" href="#irf-trong-he-var-cho-chat-luong-khong-khi" title="Permalink to this heading">#</a></h4>
+<p>Gọi <span class="math notranslate nohighlight">\(y_{1,t}\)</span>, <span class="math notranslate nohighlight">\(y_{2,t}\)</span> và <span class="math notranslate nohighlight">\(y_{3,t}\)</span> lần lượt là các chuỗi thời gian tương ứng với tín hiệu CO, tín hiệu NO2 và tín hiệu RH. Xét dạng biểu diễn trung bình trượt của hệ thống được trình bày dưới đây:</p>
+<p>Cho</p>
+<img alt="../_images/irf_eq.png" src="../_images/irf_eq.png" />
+<p>Giả sử <span class="math notranslate nohighlight">\(u_1\)</span> trong phương trình thứ nhất tăng lên một giá trị bằng một độ lệch chuẩn.</p>
 <ul class="simple">
-<li><p>This shock will change <span class="math notranslate nohighlight">\(y_1\)</span> in the current as well as the future periods.</p></li>
-<li><p>This shock will also have an impact on <span class="math notranslate nohighlight">\(y_2\)</span> and <span class="math notranslate nohighlight">\(y_3\)</span>.</p></li>
+<li><p>Cú sốc này sẽ làm thay đổi <span class="math notranslate nohighlight">\(y_1\)</span> ở thời điểm hiện tại cũng như trong các thời kỳ tương lai.</p></li>
+<li><p>Cú sốc này cũng sẽ có tác động đến <span class="math notranslate nohighlight">\(y_2\)</span> và <span class="math notranslate nohighlight">\(y_3\)</span>.</p></li>
 </ul>
-<p>Suppose <span class="math notranslate nohighlight">\(u_2\)</span> in the second equation increases by a value of one standard deviation.</p>
+<p>Giả sử <span class="math notranslate nohighlight">\(u_2\)</span> trong phương trình thứ hai tăng lên một giá trị bằng một độ lệch chuẩn.</p>
 <ul class="simple">
-<li><p>This shock will change <span class="math notranslate nohighlight">\(y_2\)</span> in the current as well as the future periods.</p></li>
-<li><p>This shock will also have an impact on <span class="math notranslate nohighlight">\(y_1\)</span> and <span class="math notranslate nohighlight">\(y_3\)</span>.</p></li>
+<li><p>Cú sốc này sẽ làm thay đổi <span class="math notranslate nohighlight">\(y_2\)</span> ở thời điểm hiện tại cũng như trong các thời kỳ tương lai.</p></li>
+<li><p>Cú sốc này cũng sẽ có tác động đến <span class="math notranslate nohighlight">\(y_1\)</span> và <span class="math notranslate nohighlight">\(y_3\)</span>.</p></li>
 </ul>
-<p>Suppose <span class="math notranslate nohighlight">\(u_3\)</span> in the third equation increases by a value of one standard deviation.</p>
+<p>Giả sử <span class="math notranslate nohighlight">\(u_3\)</span> trong phương trình thứ ba tăng lên một giá trị bằng một độ lệch chuẩn.</p>
 <ul class="simple">
-<li><p>This shock will change <span class="math notranslate nohighlight">\(y_3\)</span> in the current as well as the future periods.</p></li>
-<li><p>This shock will also have an impact on <span class="math notranslate nohighlight">\(y_1\)</span> and <span class="math notranslate nohighlight">\(y_2\)</span>.</p></li>
+<li><p>Cú sốc này sẽ làm thay đổi <span class="math notranslate nohighlight">\(y_3\)</span> ở thời điểm hiện tại cũng như trong các thời kỳ tương lai.</p></li>
+<li><p>Cú sốc này cũng sẽ có tác động đến <span class="math notranslate nohighlight">\(y_1\)</span> và <span class="math notranslate nohighlight">\(y_2\)</span>.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2085,30 +2083,30 @@ Wall time: 1.48 s
 <img alt="../_images/2c4b8ff0c53b794709eaa4de2ea993e6c4bf49ef01e4297319ecf27ad8c5a7c7.png" src="../_images/2c4b8ff0c53b794709eaa4de2ea993e6c4bf49ef01e4297319ecf27ad8c5a7c7.png" />
 </div>
 </div>
-<p><strong>Observation/s:</strong></p>
-<p><em>Effects of exogenous perturbation/shocks (1SD) of a variable on itself:</em></p>
+<p><strong>Các quan sát:</strong></p>
+<p><em>Tác động của nhiễu loạn/cú sốc ngoại sinh (1 độ lệch chuẩn) của một biến lên chính nó:</em></p>
 <ul class="simple">
-<li><p>CO <span class="math notranslate nohighlight">\(\rightarrow\)</span> CO: A shock in the value of CO has a larger effect CO in the early hours but this decays over time.</p></li>
-<li><p>NO2 <span class="math notranslate nohighlight">\(\rightarrow\)</span> NO2: A shock in the value of NO2 has a larger effect NO2 in the early hours but this decays over time.</p></li>
-<li><p>RH <span class="math notranslate nohighlight">\(\rightarrow\)</span> RH: A shock in the value of RH has a largest effect in RH after 1 hour and this effect decays over time.</p></li>
+<li><p>CO <span class="math notranslate nohighlight">\(\rightarrow\)</span> CO: Một cú sốc trong giá trị CO có tác động lớn hơn lên CO trong những giờ đầu, nhưng tác động này suy giảm dần theo thời gian.</p></li>
+<li><p>NO2 <span class="math notranslate nohighlight">\(\rightarrow\)</span> NO2: Một cú sốc trong giá trị NO₂ có tác động lớn hơn lên NO₂ trong những giờ đầu, nhưng tác động này suy giảm dần theo thời gian.</p></li>
+<li><p>RH <span class="math notranslate nohighlight">\(\rightarrow\)</span> RH: Một cú sốc trong giá trị RH có tác động lớn nhất lên RH sau 1 giờ, và tác động này suy giảm dần theo thời gian.</p></li>
 </ul>
-<p><em>Effects of exogenous perturbation/shocks of a variable on another:</em></p>
+<p><em>Tác động của nhiễu loạn/cú sốc ngoại sinh của một biến lên biến khác:</em></p>
 <ul class="simple">
-<li><p>CO <span class="math notranslate nohighlight">\(\rightarrow\)</span> NO2: A shock in the value of CO has a largest effect in NO2 after 1 hour and this effect decays over time.</p></li>
-<li><p>CO <span class="math notranslate nohighlight">\(\rightarrow\)</span> RH: A shock in the value of CO has an immediate effect in the value of RH. However, the effect decreases immediately after an hour, and the value seems to stay at around 0.2.</p></li>
-<li><p>NO2 <span class="math notranslate nohighlight">\(\rightarrow\)</span> CO: A shock in NO2 only causes a small effect in the values of CO. There seems to be a delayed effect, peaking after 3 hours, but the magnitude is still small.</p></li>
-<li><p>NO2 <span class="math notranslate nohighlight">\(\rightarrow\)</span> RH: A shock in NO2 causes a small (negative) effect in the values of RH. The magnitude seems to decline further after 6 hours. The value of the IRF reaches zero in about 7 hours.</p></li>
-<li><p>RH <span class="math notranslate nohighlight">\(\rightarrow\)</span> CO: A shock in RH only causes a small effect in the values of CO.</p></li>
-<li><p>RH <span class="math notranslate nohighlight">\(\rightarrow\)</span> NO2: A shock in the value of RH has a largest effect in NO2 after 1 hour and this effect decays over time. The value of the IRF reaches zero after 6 hours.</p></li>
+<li><p>CO <span class="math notranslate nohighlight">\(\rightarrow\)</span> NO2: Một cú sốc trong giá trị CO có tác động lớn nhất lên NO₂ sau 1 giờ, và tác động này suy giảm dần theo thời gian.</p></li>
+<li><p>CO <span class="math notranslate nohighlight">\(\rightarrow\)</span> RH: Một cú sốc trong giá trị CO có tác động ngay lập tức lên giá trị RH. Tuy nhiên, tác động này giảm ngay sau 1 giờ, và giá trị có xu hướng ổn định quanh mức 0,2.</p></li>
+<li><p>NO2 <span class="math notranslate nohighlight">\(\rightarrow\)</span> CO: Một cú sốc trong NO₂ chỉ gây ra tác động nhỏ lên các giá trị của CO. Dường như có một tác động trễ, đạt đỉnh sau 3 giờ, nhưng biên độ vẫn nhỏ.</p></li>
+<li><p>NO2 <span class="math notranslate nohighlight">\(\rightarrow\)</span> RH: Một cú sốc trong NO₂ gây ra một tác động nhỏ (âm) lên các giá trị của RH. Biên độ dường như tiếp tục giảm sau 6 giờ. Giá trị của IRF đạt về 0 sau khoảng 7 giờ.</p></li>
+<li><p>RH <span class="math notranslate nohighlight">\(\rightarrow\)</span> CO: Một cú sốc trong RH chỉ gây ra tác động nhỏ lên các giá trị của CO.</p></li>
+<li><p>RH <span class="math notranslate nohighlight">\(\rightarrow\)</span> NO2: Một cú sốc trong giá trị RH có tác động lớn nhất lên NO₂ sau 1 giờ, và tác động này suy giảm dần theo thời gian. Giá trị của IRF đạt về 0 sau 6 giờ.</p></li>
 </ul>
 </section>
 </section>
-<section id="forecast-error-variance-decomposition-fevd">
-<h3>Forecast Error Variance Decomposition (FEVD)<a class="headerlink" href="#forecast-error-variance-decomposition-fevd" title="Permalink to this heading">#</a></h3>
+<section id="phan-ra-phuong-sai-sai-so-du-bao-forecast-error-variance-decomposition-fevd">
+<h3>Phân rã phương sai sai số dự báo (Forecast Error Variance Decomposition – FEVD)<a class="headerlink" href="#phan-ra-phuong-sai-sai-so-du-bao-forecast-error-variance-decomposition-fevd" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
-<li><p>FEVD indicates the amount of information each variable contributes to the other variables in the autoregression</p></li>
-<li><p>While impulse response functions trace the effects of a shock to one endogenous variable on to the other variables in the VAR, variance decomposition separates the variation in an endogenous variable into the component shocks to the VAR.</p></li>
-<li><p>It determines how much of the forecast error variance of each of the variables can be explained by exogenous shocks to the other variables.</p></li>
+<li><p>FEVD cho biết mức độ thông tin mà mỗi biến đóng góp vào các biến khác trong mô hình tự hồi quy.</p></li>
+<li><p>Trong khi hàm phản ứng xung (IRF) theo dõi tác động của một cú sốc lên một biến nội sinh đối với các biến khác trong mô hình VAR, thì phân rã phương sai tách sự biến động của một biến nội sinh thành các thành phần cú sốc trong mô hình VAR.</p></li>
+<li><p>FEVD xác định bao nhiêu phần trăm phương sai của sai số dự báo của mỗi biến có thể được giải thích bởi các cú sốc ngoại sinh từ các biến khác.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2122,18 +2120,18 @@ Wall time: 1.48 s
 <img alt="../_images/989ea9377365c918d7509ec36ff36a059356820b6380614c7492a68aa0744c1d.png" src="../_images/989ea9377365c918d7509ec36ff36a059356820b6380614c7492a68aa0744c1d.png" />
 </div>
 </div>
-<p><strong>Observation/s:</strong></p>
+<p><strong>Các quan át:</strong></p>
 <ul class="simple">
-<li><p>For CO, the variance is mostly explained by exogenous shocks to CO. This decreases over time but only by a small amount.</p></li>
-<li><p>For NO2, the variance is mostly explained by exogenous shocks to NO2 and CO.</p></li>
-<li><p>For RH, the variance is mostly explained by exogenous shocks to RH. Over time, the contribution of the exogenous shocks to CO increases.</p></li>
+<li><p>Đối với CO, phương sai chủ yếu được giải thích bởi các cú sốc ngoại sinh tác động lên chính CO. Mức độ này giảm dần theo thời gian nhưng chỉ với một lượng nhỏ.</p></li>
+<li><p>Đối với NO₂, phương sai chủ yếu được giải thích bởi các cú sốc ngoại sinh tác động lên NO₂ và CO.</p></li>
+<li><p>Đối với RH, phương sai chủ yếu được giải thích bởi các cú sốc ngoại sinh tác động lên RH. Theo thời gian, mức đóng góp của các cú sốc ngoại sinh từ CO tăng lên.</p></li>
 </ul>
 </section>
-<section id="example-3-forecasting-the-jena-climate-data">
-<h3>Example 3: Forecasting the Jena climate data<a class="headerlink" href="#example-3-forecasting-the-jena-climate-data" title="Permalink to this heading">#</a></h3>
-<p>We try to forecast the Jena climate data using the method outlined above. We will train the VAR model using hourly weather measurements from January 1, 2019 (00:10) up to December 29, 2014 (18:10). The performance of the model will be evaluated on the test set which contains data from December 29, 2014 (19:10) to December 31, 2014 (23:20) which is equivalent to 17,523 data points for each of the variables.</p>
-<section id="load-dataset">
-<h4>Load dataset<a class="headerlink" href="#load-dataset" title="Permalink to this heading">#</a></h4>
+<section id="vi-du-3-du-bao-du-lieu-khi-hau-jena">
+<h3>Ví dụ 3: Dự báo dữ liệu khí hậu Jena<a class="headerlink" href="#vi-du-3-du-bao-du-lieu-khi-hau-jena" title="Permalink to this heading">#</a></h3>
+<p>Chúng ta tiến hành dự báo dữ liệu khí hậu Jena bằng phương pháp đã trình bày ở trên. Chúng ta sẽ huấn luyện mô hình VAR sử dụng các phép đo thời tiết theo giờ từ ngày 1 tháng 1 năm 2019 (00:10) đến ngày 29 tháng 12 năm 2014 (18:10). Hiệu năng của mô hình sẽ được đánh giá trên tập kiểm tra, bao gồm dữ liệu từ ngày 29 tháng 12 năm 2014 (19:10) đến ngày 31 tháng 12 năm 2014 (23:20), tương đương với 17.523 điểm dữ liệu cho mỗi biến.</p>
+<section id="tai-bo-du-lieu">
+<h4>Tải bộ dữ liệu<a class="headerlink" href="#tai-bo-du-lieu" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/train_series_datetime.csv&#39;</span><span class="p">,</span><span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Date Time&#39;</span><span class="p">)</span>
@@ -2154,8 +2152,8 @@ Wall time: 1.48 s
 </div>
 </div>
 </section>
-<section id="check-stationarity-of-each-variable-using-adf-test">
-<h4>Check stationarity of each variable using ADF test<a class="headerlink" href="#check-stationarity-of-each-variable-using-adf-test" title="Permalink to this heading">#</a></h4>
+<section id="kiem-tra-tinh-dung-cua-tung-bien-bang-kiem-dinh-adf">
+<h4>Kiểm tra tính dừng của từng biến bằng kiểm định ADF<a class="headerlink" href="#kiem-tra-tinh-dung-cua-tung-bien-bang-kiem-dinh-adf" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
@@ -2335,11 +2333,11 @@ dtype: bool
 </div>
 </div>
 </div>
-<p><strong>Observation/s</strong>:</p>
-<p>From the values above, all the components of the Jena climate data are stationary, so we’ll use all the variables in our VAR model.</p>
+<p><strong>Các quan sát</strong>:</p>
+<p>Từ các giá trị ở trên, tất cả các thành phần của dữ liệu khí hậu Jena đều là chuỗi dừng, do đó chúng ta sẽ sử dụng toàn bộ các biến trong mô hình VAR.</p>
 </section>
-<section id="id1">
-<h4>Select order p<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h4>
+<section id="chon-bac-p">
+<h4>Chọn bậc p<a class="headerlink" href="#chon-bac-p" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
@@ -2403,11 +2401,11 @@ dtype: int64
 </div>
 </div>
 </div>
-<p><strong>Observation/s</strong>:</p>
-<p>The model order that resulted to the minimum value varies for each information criteria, showing no clear minimum. We see an elbow at <span class="math notranslate nohighlight">\(p=5\)</span>, but if we look at AIC and HQIC we’re observing another elbow/local minimum at <span class="math notranslate nohighlight">\(p=26\)</span>. So, we choose <span class="math notranslate nohighlight">\(p=26\)</span> as our lag length.</p>
+<p><strong>Các quan sát</strong>:</p>
+<p>Bậc của mô hình cho giá trị nhỏ nhất khác nhau đối với từng tiêu chí thông tin, cho thấy không tồn tại một giá trị tối ưu rõ ràng. Chúng ta quan sát thấy một điểm “khuỷu tay” tại <span class="math notranslate nohighlight">\(p=5\)</span>, Bậc của mô hình cho giá trị nhỏ nhất khác nhau đối với từng tiêu chí thông tin, cho thấy không tồn tại một giá trị tối ưu rõ ràng. Chúng ta quan sát thấy một điểm “khuỷu tay” tại <span class="math notranslate nohighlight">\(p=26\)</span>. Do đó, chúng ta lựa chọn <span class="math notranslate nohighlight">\(p=26\)</span> làm độ trễ của mô hình.</p>
 </section>
-<section id="train-var-model-using-the-training-and-validation-data">
-<h4>Train VAR model using the training and validation data<a class="headerlink" href="#train-var-model-using-the-training-and-validation-data" title="Permalink to this heading">#</a></h4>
+<section id="huan-luyen-mo-hinh-var-su-dung-du-lieu-huan-luyen-va-du-lieu-kiem-dinh">
+<h4>Huấn luyện mô hình VAR sử dụng dữ liệu huấn luyện và dữ liệu kiểm định<a class="headerlink" href="#huan-luyen-mo-hinh-var-su-dung-du-lieu-huan-luyen-va-du-lieu-kiem-dinh" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
@@ -2431,8 +2429,8 @@ Wall time: 631 ms
 </div>
 </div>
 </section>
-<section id="forecast-24-hour-weather-measurements-and-evaluate-performance-on-test-set">
-<h4>Forecast 24-hour weather measurements and evaluate performance on test set<a class="headerlink" href="#forecast-24-hour-weather-measurements-and-evaluate-performance-on-test-set" title="Permalink to this heading">#</a></h4>
+<section id="du-bao-cac-phep-do-thoi-tiet-trong-24-gio-va-danh-gia-hieu-nang-tren-tap-kiem-tra">
+<h4>Dự báo các phép đo thời tiết trong 24 giờ và đánh giá hiệu năng trên tập kiểm tra<a class="headerlink" href="#du-bao-cac-phep-do-thoi-tiet-trong-24-gio-va-danh-gia-hieu-nang-tren-tap-kiem-tra" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">forecasts_df</span> <span class="o">=</span> <span class="p">[]</span>
@@ -2478,7 +2476,7 @@ Wall time: 631 ms
 <img alt="../_images/c0e2fc7683d4bbe3d24d18a93f71ccc01ac23b79d634b2b14b2061e0646f1ed1.png" src="../_images/c0e2fc7683d4bbe3d24d18a93f71ccc01ac23b79d634b2b14b2061e0646f1ed1.png" />
 </div>
 </div>
-<p><em><strong>Evaluate forecasts</strong></em></p>
+<p><em><strong>Đánh giá kết quả dự báo</strong></em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">utils</span><span class="o">.</span><span class="n">test_performance_metrics</span><span class="p">(</span><span class="n">test_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">forecasts_df</span><span class="o">.</span><span class="n">index</span><span class="p">],</span> <span class="n">forecasts_df</span><span class="p">,</span> <span class="n">suffix</span><span class="o">=</span><span class="s1">&#39;-VAR&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">loc</span><span class="p">[[</span><span class="s1">&#39;MAE&#39;</span><span class="p">,</span> <span class="s1">&#39;MSE&#39;</span><span class="p">]]</span>
@@ -2582,10 +2580,10 @@ Wall time: 631 ms
 </div>
 </div>
 </div>
-<p><strong>Observation/s</strong>: The VAR(26) model outperformed the <a class="reference internal" href="../08_WinningestMethods/lightgbm_jena_forecasting.html"><span class="doc std std-doc">naive (MAE= 3.18), seasonal naive (MAE= 2.61)</span></a> and <a class="reference internal" href="../01_AutoRegressiveIntegratedMovingAverage/01_AutoRegressiveIntegratedMovingAverage.html"><span class="doc std std-doc">ARIMA (MAE= 3.19)</span></a> models.</p>
+<p><strong>Các quan sát</strong>: Mô hình VAR(26) cho kết quả tốt hơn các mô hình <a class="reference internal" href="../08_WinningestMethods/lightgbm_jena_forecasting.html"><span class="doc std std-doc">naive (MAE= 3.18), seasonal naive (MAE= 2.61)</span></a> và <a class="reference internal" href="../01_AutoRegressiveIntegratedMovingAverage/01_AutoRegressiveIntegratedMovingAverage.html"><span class="doc std std-doc">ARIMA (MAE= 3.19)</span></a>.</p>
 </section>
-<section id="forecast-24-hours-beyond-test-set">
-<h4>Forecast 24 hours beyond test set<a class="headerlink" href="#forecast-24-hours-beyond-test-set" title="Permalink to this heading">#</a></h4>
+<section id="du-bao-24-gio-tiep-theo-vuot-ngoai-tap-kiem-tra">
+<h4>Dự báo 24 giờ tiếp theo vượt ngoài tập kiểm tra<a class="headerlink" href="#du-bao-24-gio-tiep-theo-vuot-ngoai-tap-kiem-tra" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">all_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">train_df</span><span class="p">,</span> <span class="n">val_df</span><span class="p">,</span> <span class="n">test_df</span><span class="p">])</span>
@@ -2645,27 +2643,27 @@ Wall time: 631 ms
 </section>
 </section>
 </section>
-<section id="summary">
-<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this heading">#</a></h2>
+<section id="tom-tat">
+<h2>Tóm tắt<a class="headerlink" href="#tom-tat" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
-<li><p>VAR methods are useful when dealing with multivariate time series, as they allow us to use the relationship between the different variable to forecast.</p></li>
-<li><p>These models allow us to forecast the different variables simultaneously, with the added benefit of easy (only 1 hyperparameter) and fast training.</p></li>
-<li><p>Using the fitted VAR model, we can also explain the relationship between variables, and how the perturbation in one variable affects the others by getting the impulse response functions and the variance decomposition of the forecasts.</p></li>
-<li><p>However, the application of these models is limited due to the stationarity requirement for ALL the variables in the multivariate time series. This method won’t work well if there is at least one variable that’s non-stationary. When dealing with non-stationary multivariate time series, one can explore the use of vector error correction models (VECM).</p></li>
+<li><p>Các phương pháp VAR rất hữu ích khi xử lý chuỗi thời gian đa biến, vì chúng cho phép chúng ta sử dụng mối quan hệ giữa các biến khác nhau để thực hiện dự báo.</p></li>
+<li><p>Các mô hình này cho phép chúng ta dự báo đồng thời nhiều biến, đồng thời có ưu điểm là việc huấn luyện đơn giản (chỉ có 1 siêu tham số) và nhanh chóng.</p></li>
+<li><p>Sử dụng mô hình VAR đã được ước lượng, chúng ta cũng có thể giải thích mối quan hệ giữa các biến và cách mà nhiễu loạn ở một biến ảnh hưởng đến các biến khác thông qua việc phân tích hàm phản ứng xung và phân rã phương sai của dự báo.</p></li>
+<li><p>Tuy nhiên, việc áp dụng các mô hình này bị hạn chế do yêu cầu tính dừng đối với tất cả các biến trong chuỗi thời gian đa biến. Phương pháp này sẽ không hoạt động hiệu quả nếu tồn tại ít nhất một biến không dừng. Khi làm việc với chuỗi thời gian đa biến không dừng, người ta có thể xem xét sử dụng mô hình hiệu chỉnh sai số vectơ (VECM).</p></li>
 </ul>
 </section>
-<section id="preview-to-the-next-chapter">
-<h2>Preview to the Next Chapter<a class="headerlink" href="#preview-to-the-next-chapter" title="Permalink to this heading">#</a></h2>
-<p>In the next chapter, we further extend the use of VAR models to explain the relationships between variables in a multivariate time series using <strong>Granger causality</strong>, which is one of the most common ways to describe causal mechanisms in time series data.</p>
+<section id="gioi-thieu-chuong-tiep-theo">
+<h2>Giới thiệu chương tiếp theo<a class="headerlink" href="#gioi-thieu-chuong-tiep-theo" title="Permalink to this heading">#</a></h2>
+<p>Trong chương tiếp theo, chúng ta sẽ tiếp tục mở rộng việc sử dụng các mô hình VAR để giải thích mối quan hệ giữa các biến trong chuỗi thời gian đa biến thông qua <strong>nhân quả Granger (Granger causality)</strong>, một trong những phương pháp phổ biến nhất để mô tả các cơ chế nhân quả trong dữ liệu chuỗi thời gian.</p>
 </section>
-<section id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
-<p><strong>Main references</strong></p>
+<section id="tai-lieu-tham-khao">
+<h2>Tài liệu tham khảo<a class="headerlink" href="#tai-lieu-tham-khao" title="Permalink to this heading">#</a></h2>
+<p><strong>Tài liệu tham khảo chính</strong></p>
 <ul class="simple">
 <li><p>Lütkepohl, H. (2005). New introduction to multiple time series analysis. Berlin: Springer.</p></li>
 <li><p>Kilian, L., &amp; Lütkepohl, H. (2018). Structural vector autoregressive analysis. Cambridge: Cambridge University Press.</p></li>
 </ul>
-<p><strong>Supplementary references</strong> are listed <a class="reference download internal" download="" href="../_downloads/14cb39e27355f98360ffeac63b930a8a/VARreferences.txt"><span class="xref download myst">here</span></a>.</p>
+<p><strong>Các tài liệu tham khảo bổ sung</strong> được liệt kê tại <a class="reference download internal" download="" href="../_downloads/14cb39e27355f98360ffeac63b930a8a/VARreferences.txt"><span class="xref download myst">đây</span></a>.</p>
 </section>
 </section>
 
@@ -2733,77 +2731,77 @@ Wall time: 631 ms
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multivariate-time-series-model">Multivariate Time Series Model</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definition-univariate-vs-multivariate-time-series">Definition: Univariate vs Multivariate Time Series</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1-multivariate-time-series">Example 1: Multivariate Time Series</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-air-quality-data-from-uci">A. Air Quality Data from UCI</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#b-global-health-from-the-world-bank">B. Global Health from The World Bank</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c-us-treasury-rates">C. US Treasury Rates</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#d-jena-climate-data">D. Jena Climate Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mo-hinh-chuoi-thoi-gian-da-bien">Mô hình chuỗi thời gian đa biến</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dinh-nghia-chuoi-thoi-gian-don-bien-va-da-bien">Định nghĩa: Chuỗi thời gian đơn biến và đa biến</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vi-du-1-chuoi-thoi-gian-da-bien">Ví dụ 1: Chuỗi thời gian đa biến</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-du-lieu-chat-luong-khong-khi-tu-uci">A. Dữ liệu chất lượng không khí từ UCI</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#b-suc-khoe-toan-cau-tu-ngan-hang-the-gioi-the-world-bank">B. Sức khỏe Toàn cầu từ Ngân hàng Thế giới (The World Bank)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c-lai-suat-kho-bac-hoa-ky-us-treasury-rates">C. Lãi suất Kho bạc Hoa Kỳ (US Treasury Rates)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#d-du-lieu-khi-hau-jena">D. Dữ liệu khí hậu Jena</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#foundations">Foundations</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#weak-stationarity-of-multivariate-time-series">Weak Stationarity of Multivariate Time Series</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#obtaining-cross-correlation-matrix-from-cross-covariance-matrix">Obtaining Cross-Correlation Matrix from Cross-Covariance Matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kien-thuc-nen-tang">Kiến thức nền tảng</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tinh-dung-yeu-cua-chuoi-thoi-gian-da-bien">Tính dừng yếu của chuỗi thời gian đa biến</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lay-ma-tran-tuong-quan-cheo-tu-ma-tran-hiep-phuong-sai-cheo">Lấy ma trận tương quan chéo từ ma trận hiệp phương sai chéo</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vector-autoregressive-var-models">Vector Autoregressive (VAR) Models</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#var-1-model">VAR(1) Model</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#structural-and-reduced-forms-of-the-var-model">Structural and Reduced Forms of the VAR model</a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#structural-var-var-in-primitive-form">Structural VAR (VAR in primitive form)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cac-mo-hinh-vecto-tu-hoi-quy-var">Các mô hình Vectơ tự hồi quy (VAR)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mo-hinh-var-1">Mô hình VAR(1)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dang-cau-truc-va-dang-rut-gon-cua-mo-hinh-var">Dạng cấu trúc và dạng rút gọn của mô hình VAR</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mo-hinh-var-dang-cau-truc-var-o-dang-nguyen-thuy">Mô hình VAR dạng cấu trúc (VAR ở dạng nguyên thủy)</a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#reduced-form-var-var-in-standard-form">Reduced-form VAR (VAR in standard form)</a></li>
 </ul>
 </li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#vma-infinite-representation-and-stationarity">VMA infinite representation and Stationarity</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#stationarity-of-the-var-1-model">Stationarity of the VAR(1) model</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bieu-dien-vma-vo-han-va-tinh-dung">Biểu diễn VMA vô hạn và Tính dừng</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tinh-dung-cua-mo-hinh-var-1">Tính dừng của mô hình VAR(1)</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#var-p-model">VAR(p) Model</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#properties">Properties</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#stationarity-of-var-p-model">Stationarity of VAR(p) model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mo-hinh-var-p">Mô hình VAR(p)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dac-tinh">Đặc tính</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tinh-dung-cua-mo-hinh-var-p">Tính dừng của mô hình VAR(p)</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#specification-of-a-var-model-choosing-the-order-p">Specification of a VAR model: Choosing the order <em>p</em></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#xac-dinh-mo-hinh-var-lua-chon-bac-p">Xác định mô hình VAR: Lựa chọn bậc <em>p</em></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-a-var-model">Building a VAR model</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-forecasting-air-quality-data-co-no2-and-rh">Example 2: Forecasting Air Quality Data (CO, NO2 and RH)</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#check-stationarity">1. Check stationarity</a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#kwiatkowskiphillipsschmidtshin-kpss-test">Kwiatkowski–Phillips–Schmidt–Shin (KPSS) test</a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#augmented-dickey-fuller-adf-test">Augmented Dickey-Fuller (ADF) test</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#xay-dung-mo-hinh-var">Xây dựng mô hình VAR</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vi-du-2-du-bao-du-lieu-chat-luong-khong-khi-co-no2-va-rh">Ví dụ 2: Dự báo dữ liệu chất lượng không khí (CO, NO2 và RH)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#kiem-tra-tinh-dung">1. Kiểm tra tính dừng</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#kiem-dinh-kwiatkowskiphillipsschmidtshin-kpss">Kiểm định Kwiatkowski–Phillips–Schmidt–Shin (KPSS)</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#kiem-dinh-augmented-dickey-fuller-adf">Kiểm định Augmented Dickey-Fuller (ADF)</a></li>
 </ul>
 </li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#split-data-into-train-and-test-sets">2. Split data into train and test sets</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#select-order-p">3. Select order <em>p</em></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#fit-var-model-with-chosen-order">3. Fit VAR model with chosen order</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#get-forecast">4. Get forecast</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-evaluation-comparison-with-arima-model">Performance Evaluation: Comparison with ARIMA model</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#structural-var-analysis">Structural VAR Analysis</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#impulse-response-function-irf">Impulse Response Function (IRF)</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#irf-in-the-var-system-for-air-quality">IRF in the VAR system for Air Quality</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#forecast-error-variance-decomposition-fevd">Forecast Error Variance Decomposition (FEVD)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-3-forecasting-the-jena-climate-data">Example 3: Forecasting the Jena climate data</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#load-dataset">Load dataset</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#check-stationarity-of-each-variable-using-adf-test">Check stationarity of each variable using ADF test</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Select order p</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#train-var-model-using-the-training-and-validation-data">Train VAR model using the training and validation data</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#forecast-24-hour-weather-measurements-and-evaluate-performance-on-test-set">Forecast 24-hour weather measurements and evaluate performance on test set</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#forecast-24-hours-beyond-test-set">Forecast 24 hours beyond test set</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#chia-du-lieu-thanh-tap-huan-luyen-train-va-tap-kiem-tra-test">2. Chia dữ liệu thành tập huấn luyện (train) và tập kiểm tra (test)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lua-chon-bac-p">3. Lựa chọn bậc <em>p</em></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#khop-mo-hinh-var-voi-bac-da-chon">3. Khớp mô hình VAR với bậc đã chọn</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#thuc-hien-du-bao">4. Thực hiện dự báo</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#danh-gia-hieu-suat-so-sanh-voi-mo-hinh-arima">Đánh giá hiệu suất: So sánh với mô hình ARIMA</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preview-to-the-next-chapter">Preview to the Next Chapter</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#phan-tich-var-cau-truc">Phân tích VAR cấu trúc</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ham-phan-ung-xung-impulse-response-function-irf">Hàm phản ứng xung (Impulse Response Function - IRF)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#irf-trong-he-var-cho-chat-luong-khong-khi">IRF trong hệ VAR cho Chất lượng Không khí</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#phan-ra-phuong-sai-sai-so-du-bao-forecast-error-variance-decomposition-fevd">Phân rã phương sai sai số dự báo (Forecast Error Variance Decomposition – FEVD)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vi-du-3-du-bao-du-lieu-khi-hau-jena">Ví dụ 3: Dự báo dữ liệu khí hậu Jena</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tai-bo-du-lieu">Tải bộ dữ liệu</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#kiem-tra-tinh-dung-cua-tung-bien-bang-kiem-dinh-adf">Kiểm tra tính dừng của từng biến bằng kiểm định ADF</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#chon-bac-p">Chọn bậc p</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#huan-luyen-mo-hinh-var-su-dung-du-lieu-huan-luyen-va-du-lieu-kiem-dinh">Huấn luyện mô hình VAR sử dụng dữ liệu huấn luyện và dữ liệu kiểm định</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#du-bao-cac-phep-do-thoi-tiet-trong-24-gio-va-danh-gia-hieu-nang-tren-tap-kiem-tra">Dự báo các phép đo thời tiết trong 24 giờ và đánh giá hiệu năng trên tập kiểm tra</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#du-bao-24-gio-tiep-theo-vuot-ngoai-tap-kiem-tra">Dự báo 24 giờ tiếp theo vượt ngoài tập kiểm tra</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tom-tat">Tóm tắt</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gioi-thieu-chuong-tiep-theo">Giới thiệu chương tiếp theo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tai-lieu-tham-khao">Tài liệu tham khảo</a></li>
 </ul>
   </nav></div>
 

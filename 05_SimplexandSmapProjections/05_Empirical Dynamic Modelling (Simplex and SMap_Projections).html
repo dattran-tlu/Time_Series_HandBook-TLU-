@@ -171,9 +171,9 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../00_Introduction/00_Introduction.html">Chương 0: Phân tích Chuỗi Thời gian Nâng cao</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../01_AutoRegressiveIntegratedMovingAverage/01_AutoRegressiveIntegratedMovingAverage.html">Chương 1: Mô hình Trung bình động tích hợp tự hồi quy (AutoRegressive Integrated Moving Average - ARIMA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_AutoRegressiveIntegratedMovingAverage/01_AutoRegressiveIntegratedMovingAverage.html">Chương 1: Trung bình trượt tích hợp tự hồi quy (ARIMA)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../02_LinearForecastingTrendandMomentumForecasting/02_LinearTrendandMomentumForecasting.html">Chapter 2: Linear, Trend, and Momentum Forecasting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../03_VectorAutoregressiveModels/03_VectorAutoregressiveMethods.html">Chapter 3: Vector Autoregressive Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_VectorAutoregressiveModels/03_VectorAutoregressiveMethods.html">Chương 3: Các phương pháp Vectơ tự hồi quy (Vector Autoregressive Methods)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../04_GrangerCausality/04_GrangerCausality.html">Chapter 4: Granger Causality Test</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Chapter 5 : Dynamical Forecasting Methods (Simplex and SMap Projections)</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../06_ConvergentCrossMappingandSugiharaCausality/ccm_sugihara.html">Chapter 6: Convergent Cross Mapping</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -439,12 +439,12 @@ document.write(`
 The Lorenz system is notable for having chaotic solutions for certain parameter values and initial conditions. (“Butterfly Effect”). The term “Butterfly Effect” both signifies the characteristic of the Lorenz system of having possibly huge divergent values even with very small perturbations (“the flaps of a butterfly caused a tornado in the other side of the planet”) and the visual look of the system which looks like butterfly wings at certain angles.</p>
 <p>It’s a coupled dynamic system consisting of 3 differential equations (think of the axes as variables in a dynamic system).
 In an ecological examples, it could be a Resource-Prey-Predator dynamic system.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-bc0d14ab-2c5b-4870-9cac-441de55957d2">
-<span class="eqno">(8)<a class="headerlink" href="#equation-bc0d14ab-2c5b-4870-9cac-441de55957d2" title="Permalink to this equation">#</a></span>\[\begin{align} \frac{dX}{dt} = \sigma Y - \sigma X   \end{align}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-b6c4f5e5-2d3d-4efd-8d4f-e47bdcafb126">
-<span class="eqno">(9)<a class="headerlink" href="#equation-b6c4f5e5-2d3d-4efd-8d4f-e47bdcafb126" title="Permalink to this equation">#</a></span>\[\begin{align} \frac{dY}{dt} = -XZ + \rho X - Y  \end{align}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-a2e37f90-f7dd-47f0-9152-54d46508a993">
-<span class="eqno">(10)<a class="headerlink" href="#equation-a2e37f90-f7dd-47f0-9152-54d46508a993" title="Permalink to this equation">#</a></span>\[\begin{align} \frac{dZ}{dt} =  XY - \beta Z \end{align}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-f6019a7a-ddab-4fd0-908d-77f3fed4d7b5">
+<span class="eqno">(8)<a class="headerlink" href="#equation-f6019a7a-ddab-4fd0-908d-77f3fed4d7b5" title="Permalink to this equation">#</a></span>\[\begin{align} \frac{dX}{dt} = \sigma Y - \sigma X   \end{align}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-f006a403-b8ef-4e59-b4bc-43bb5c80369d">
+<span class="eqno">(9)<a class="headerlink" href="#equation-f006a403-b8ef-4e59-b4bc-43bb5c80369d" title="Permalink to this equation">#</a></span>\[\begin{align} \frac{dY}{dt} = -XZ + \rho X - Y  \end{align}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-e5ef707c-622c-4f2e-927a-d3b74e266281">
+<span class="eqno">(10)<a class="headerlink" href="#equation-e5ef707c-622c-4f2e-927a-d3b74e266281" title="Permalink to this equation">#</a></span>\[\begin{align} \frac{dZ}{dt} =  XY - \beta Z \end{align}\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Visualize Lorenz Attractor [Piziniacco. L, 2020]</span>
@@ -674,8 +674,8 @@ Requirement already satisfied: pytz&gt;=2017.2 in /opt/conda/lib/python3.8/site-
 <section id="chaotic-tentmap-data-generation">
 <h3>Chaotic TentMap Data Generation<a class="headerlink" href="#chaotic-tentmap-data-generation" title="Permalink to this heading">#</a></h3>
 <p>TentMap generated from the following function:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a98e89c8-c7fe-47b3-9e58-7da0eb731de8">
-<span class="eqno">(11)<a class="headerlink" href="#equation-a98e89c8-c7fe-47b3-9e58-7da0eb731de8" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-4be51ca0-e78e-49be-8306-db63916a1a5c">
+<span class="eqno">(11)<a class="headerlink" href="#equation-4be51ca0-e78e-49be-8306-db63916a1a5c" title="Permalink to this equation">#</a></span>\[\begin{equation}
         \mathbf{x_\mathbf{(t+1)}}=
         \begin{cases}
             2\mathbf{x_t} &amp; 0.5 &gt; \mathbf{x_t} &gt; 0  \\

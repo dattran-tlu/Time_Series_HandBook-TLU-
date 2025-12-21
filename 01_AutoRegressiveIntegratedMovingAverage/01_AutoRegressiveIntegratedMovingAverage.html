@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Chương 1: Mô hình Trung bình động tích hợp tự hồi quy (AutoRegressive Integrated Moving Average - ARIMA) &#8212; Bản dịch Time Series Analysis Handbook</title>
+    <title>Chương 1: Trung bình trượt tích hợp tự hồi quy (ARIMA) &#8212; Bản dịch Time Series Analysis Handbook</title>
   
   
   
@@ -171,9 +171,9 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../00_Introduction/00_Introduction.html">Chương 0: Phân tích Chuỗi Thời gian Nâng cao</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Chương 1: Mô hình Trung bình động tích hợp tự hồi quy (AutoRegressive Integrated Moving Average - ARIMA)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Chương 1: Trung bình trượt tích hợp tự hồi quy (ARIMA)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../02_LinearForecastingTrendandMomentumForecasting/02_LinearTrendandMomentumForecasting.html">Chapter 2: Linear, Trend, and Momentum Forecasting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../03_VectorAutoregressiveModels/03_VectorAutoregressiveMethods.html">Chapter 3: Vector Autoregressive Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_VectorAutoregressiveModels/03_VectorAutoregressiveMethods.html">Chương 3: Các phương pháp Vectơ tự hồi quy (Vector Autoregressive Methods)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../04_GrangerCausality/04_GrangerCausality.html">Chapter 4: Granger Causality Test</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../05_SimplexandSmapProjections/05_Empirical%20Dynamic%20Modelling%20%28Simplex%20and%20SMap_Projections%29.html">Chapter 5 : Dynamical Forecasting Methods (Simplex and SMap Projections)</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../06_ConvergentCrossMappingandSugiharaCausality/ccm_sugihara.html">Chapter 6: Convergent Cross Mapping</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -324,7 +324,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Chương 1: Mô hình Trung bình động tích hợp tự hồi quy (AutoRegressive Integrated Moving Average - ARIMA)</h1>
+    <h1>Chương 1: Trung bình trượt tích hợp tự hồi quy (ARIMA)</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -336,33 +336,33 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gioi-thieu-ve-arima">Giới thiệu về ARIMA</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vi-du-1-chuoi-thoi-gian-don-bien-dung-va-khong-dung">Ví dụ 1: Chuỗi thời gian đơn biến dừng và không dừng</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cac-thanh-phan-cua-mo-hinh">Các thành phần của mô hình</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#thanh-phan-mo-hinh">Thành phần mô hình</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cac-tham-so-mo-hinh-p-d-va-q-va-cac-truong-hop-dac-biet">Các tham số mô hình <em>p, d, và q</em> và Các trường hợp đặc biệt</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#xac-dinh-p-d-va-q-determining-p-d-and-q">Xác định p, d, và q (Determining p, d, and q)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tim-bac-sai-phan-d-finding-the-order-differencing-d">Tìm bậc sai phân d (Finding the order differencing d)</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#finding-the-order-of-the-autoregressive-term-p">Finding the order of the AutoRegressive term <em>p</em></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#finding-the-order-of-the-moving-average-term-q">Finding the order of the Moving Average term <em>q</em></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-the-arima-model">Building the ARIMA model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation-and-forecasting-using-arima">Implementation and Forecasting using ARIMA</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-forecasting-temperature-in-jena-climate-data">Example 2: Forecasting Temperature in Jena Climate Data</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#model-order-selection-hyperparameter-tuning">Model order selection (hyperparameter tuning)</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluate-model-performance-on-test-set">Evaluate model performance on test set</a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#forecast-24-hours-beyond-test-set">Forecast 24 hours beyond test set</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cac-tham-so-mo-hinh-p-d-and-q-va-cac-truong-hop-dac-biet">Các tham số mô hình <em>p, d, and q</em> và các trường hợp đặc biệt</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#xac-dinh-p-d-va-q">Xác định <em>p</em>, <em>d</em>, và <em>q</em></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tim-bac-sai-phan-d">Tìm bậc sai phân <em>d</em></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tim-bac-cua-thanh-phan-tu-hoi-quy-p">Tìm bậc của thành phần Tự hồi quy <em>p</em></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tim-bac-cua-thanh-phan-trung-binh-truot-q">Tìm bậc của thành phần Trung bình trượt <em>q</em></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-3-using-arima-for-multivariate-time-series">Example 3: Using ARIMA for Multivariate Time Series</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#xay-dung-mo-hinh-arima">Xây dựng mô hình ARIMA</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trien-khai-va-du-bao-bang-arima">Triển khai và Dự báo bằng ARIMA</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vi-du-2-du-bao-nhiet-do-trong-bo-du-lieu-khi-hau-jena">Ví dụ 2: Dự báo nhiệt độ trong Bộ dữ liệu Khí hậu Jena</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lua-chon-bac-mo-hinh-tinh-chinh-sieu-tham-so">Lựa chọn bậc mô hình (tinh chỉnh siêu tham số)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#danh-gia-hieu-suat-mo-hinh-tren-tap-kiem-tra">Đánh giá hiệu suất mô hình trên tập kiểm tra</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#du-bao-24-gio-tiep-theo-ngoai-tap-kiem-tra">Dự báo 24 giờ tiếp theo ngoài tập kiểm tra</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preview-to-the-next-chapter">Preview to the next Chapter</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vi-du-3-su-dung-arima-cho-chuoi-thoi-gian-da-bien-multivariate-time-series">Ví dụ 3: Sử dụng ARIMA cho chuỗi thời gian đa biến (Multivariate Time Series)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#xem-truoc-chuong-tiep-theo">Xem trước chương tiếp theo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tai-lieu-tham-khao">Tài liệu tham khảo</a></li>
 </ul>
             </nav>
         </div>
@@ -374,14 +374,14 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="chuong-1-mo-hinh-trung-binh-dong-tich-hop-tu-hoi-quy-autoregressive-integrated-moving-average-arima">
-<h1>Chương 1: Mô hình Trung bình động tích hợp tự hồi quy (AutoRegressive Integrated Moving Average - ARIMA)<a class="headerlink" href="#chuong-1-mo-hinh-trung-binh-dong-tich-hop-tu-hoi-quy-autoregressive-integrated-moving-average-arima" title="Permalink to this heading">#</a></h1>
-<p>Được viết bởi: Benjur Emmanuel L. Borja và Maria Eloisa M. Ventura</p>
-<p>Trong notebook này, chúng ta sẽ giới thiệu phương pháp đầu tiên để dự báo chuỗi thời gian, đó là <strong>ARIMA</strong> (Trung bình động tích hợp tự hồi quy - AutoRegressive Integrated Moving Average). Notebook này sẽ trình bày:</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="chuong-1-trung-binh-truot-tich-hop-tu-hoi-quy-arima">
+<h1>Chương 1: Trung bình trượt tích hợp tự hồi quy (ARIMA)<a class="headerlink" href="#chuong-1-trung-binh-truot-tich-hop-tu-hoi-quy-arima" title="Permalink to this heading">#</a></h1>
+<p>Được viết bởi: Benjur Emmanuel L. Borja and Maria Eloisa M. Ventura</p>
+<p>Trong sổ tay này, chúng ta sẽ giới thiệu phương pháp tiếp cận đầu tiên đối với dự báo chuỗi thời gian, đó là <strong>ARIMA</strong>hay Trung bình trượt tích hợp tự hồi quy. Notebook này sẽ thảo luận về:</p>
 <ol class="arabic simple">
-<li><p>Định nghĩa và công thức của mô hình ARIMA</p></li>
-<li><p>Các tham số mô hình (p, d, và q) và các trường hợp đặc biệt của mô hình ARIMA</p></li>
-<li><p>Các thống kê mô hình và cách diễn giải</p></li>
+<li><p>Định nghĩa và Công thức của các mô hình ARIMA</p></li>
+<li><p>Các tham số của mô hình (p, d, và q) và các trường hợp đặc biệt của mô hình ARIMA</p></li>
+<li><p>Các thống kê mô hình và cách giải thích</p></li>
 <li><p>Triển khai và dự báo sử dụng ARIMA</p></li>
 </ol>
 <div class="cell docutils container">
@@ -407,101 +407,101 @@ document.write(`
 </div>
 <section id="gioi-thieu-ve-arima">
 <h2>Giới thiệu về ARIMA<a class="headerlink" href="#gioi-thieu-ve-arima" title="Permalink to this heading">#</a></h2>
-<p>ARIMA, hay Trung bình động tích hợp tự hồi quy (AutoRegressive Integrated Moving Average), là một tập hợp các mô hình giải thích chuỗi thời gian dựa trên các giá trị trước đó của chính nó (được gọi là các độ trễ - <strong>Tự hồi quy</strong> (AutoRegressive)) và các sai số trễ (<strong>Trung bình động</strong> (Moving Average)), đồng thời xem xét tính dừng (stationarity) được hiệu chỉnh bằng phép lấy sai phân (trái ngược với <strong>Tích phân</strong> (Integration)). Nói cách khác, ARIMA giả định rằng chuỗi thời gian được mô tả bởi các tự tương quan (autocorrelations) trong dữ liệu thay vì xu hướng (trend) và tính mùa vụ (seasonality). Trong bối cảnh này, chúng ta định nghĩa xu hướng và tính mùa vụ như sau:</p>
+<p>ARIMA, hay Trung bình trượt tích hợp tự hồi quy, là một tập hợp các mô hình giải thích một chuỗi thời gian bằng cách sử dụng các giá trị trước đó của chính nó thông qua các độ trễ (<strong>A</strong>uto<strong>R</strong>egressive - Tự hồi quy) và các sai số trễ (<strong>M</strong>oving <strong>A</strong>verage - Trung bình trượt), đồng thời xem xét tính dừng đã được hiệu chỉnh bằng cách lấy sai phân (ngược lại với Integration - Tích hợp). Nói cách khác, ARIMA giả định rằng chuỗi thời gian được mô tả bởi các tương quan tự thuận trong dữ liệu thay vì các xu hướng và tính thời vụ. Trong bối cảnh này, chúng ta định nghĩa xu hướng và tính thời vụ như sau:</p>
 <ul class="simple">
-<li><p><strong>Xu hướng</strong> (Trend): Một chuỗi thời gian có xu hướng nếu có sự tăng hoặc giảm dài hạn trong dữ liệu, không nhất thiết phải là tuyến tính.</p></li>
-<li><p><strong>Tính mùa vụ</strong> (Seasonality): Dữ liệu chuỗi thời gian có tính mùa vụ khi bị ảnh hưởng bởi các yếu tố theo mùa như thời điểm trong năm hoặc ngày trong tuần. Tính mùa vụ của dữ liệu thể hiện rõ khi có tần suất xuất hiện mẫu cố định.</p></li>
+<li><p><strong>Xu hướng (Trend)</strong>: Một chuỗi thời gian có xu hướng nếu có một sự tăng hoặc giảm dài hạn bao trùm trong dữ liệu, và sự tăng giảm này không nhất thiết phải là tuyến tính.</p></li>
+<li><p><strong>Tính thời vụ (Seasonality)</strong>: Dữ liệu chuỗi thời gian có tính thời vụ khi nó bị ảnh hưởng bởi các yếu tố thời vụ như thời điểm trong năm hoặc các ngày trong tuần. Tính thời vụ của dữ liệu là rõ rệt khi có một tần suất xuất hiện quy luật cố định.</p></li>
 </ul>
 <section id="vi-du-1-chuoi-thoi-gian-don-bien-dung-va-khong-dung">
 <h3>Ví dụ 1: Chuỗi thời gian đơn biến dừng và không dừng<a class="headerlink" href="#vi-du-1-chuoi-thoi-gian-don-bien-dung-va-khong-dung" title="Permalink to this heading">#</a></h3>
-<p>Để minh họa, hãy xem các ví dụ sau về chuỗi thời gian (<strong><a class="reference external" href="https://otexts.com/fpp2/fpp_files/figure-html/stationary-1.png">nguồn</a></strong>):</p>
+<p>Để minh họa, hãy cùng xem các ví dụ sau đây về chuỗi thời gian (<strong><a class="reference external" href="https://otexts.com/fpp2/fpp_files/figure-html/stationary-1.png">source</a></strong>):</p>
 <p>(a) Giá cổ phiếu Google trong 200 ngày liên tiếp</p>
-<p>(b) Biến động giá hàng ngày của cổ phiếu Google trong 200 ngày liên tiếp</p>
-<p>(c) Số lượng cuộc đình công hàng năm tại Mỹ</p>
-<p>(d) Doanh số bán hàng tháng của các căn nhà một gia đình mới tại Mỹ; (e) Giá một tá trứng hàng năm tại Mỹ (giá cố định)</p>
-<p>(f) Tổng số lợn bị giết mổ hàng tháng tại Victoria, Úc</p>
-<p>(g) Tổng số linh miêu bị bẫy hàng năm tại khu vực sông McKenzie ở tây bắc Canada; (h) Sản lượng bia Úc hàng tháng</p>
-<p>(i) Sản lượng điện Úc hàng tháng.</p>
+<p>(b) Sự thay đổi giá cổ phiếu Google hàng ngày trong 200 ngày liên tiếp</p>
+<p>(c) Số lượng các cuộc đình công hàng năm ở Hoa Kỳ</p>
+<p>(d) Doanh số bán nhà mới cho một gia đình hàng tháng tại Hoa Kỳ; (e) Giá hàng năm của một tá trứng tại Hoa Kỳ (theo giá trị đồng đô la không đổi)</p>
+<p>(f) Tổng số lợn bị giết mổ hàng tháng ở Victoria, Úc</p>
+<p>(g) Tổng số linh miêu bị bẫy hàng năm ở khu vực sông McKenzie thuộc phía tây bắc Canada; (h) Sản lượng bia hàng tháng của Úc</p>
+<p>(i) Sản lượng điện hàng tháng của Úc.</p>
 <p><img alt="stationary-1.png" src="../_images/stationary-1.png" /></p>
-<p><strong>Chuỗi nào trong số này là chuỗi dừng (stationary)?</strong></p>
-<p>Tính mùa vụ (seasonality) rõ ràng loại trừ các chuỗi (d), (h) và (i). Xu hướng (trend) và mức độ thay đổi loại trừ các chuỗi (a), (c), (e), (f) và (i). Độ biến động tăng dần cũng loại trừ (i). Như vậy chỉ còn lại (b) và (g) là chuỗi dừng (stationary). Nhìn qua, (g) có vẻ không dừng nhưng các chu kỳ này là không định kỳ (aperiodic), và phụ thuộc vào sự tương tác phức tạp giữa số lượng linh miêu và nguồn thức ăn. Thời điểm của các chu kỳ này là không thể dự đoán, do đó chuỗi thời gian này là không dừng (non-stationary).</p>
-<p>Bây giờ hãy chú ý đến Giá cổ phiếu Google (a) và biến động giá hàng ngày của cổ phiếu Google (b). Hai chuỗi thời gian này xuất phát từ cùng một hệ thống, nhưng lại thể hiện động lực khác nhau. Điều này cho thấy chúng ta có thể biến chuỗi thời gian không dừng (non-stationary) thành chuỗi dừng (stationary) bằng cách lấy hiệu giữa các quan sát liên tiếp – hay gọi là <strong>Lấy sai phân (Differencing)</strong>. Lấy sai phân giúp ổn định chuỗi thời gian bằng cách loại bỏ sự thay đổi về mức độ của chuỗi, từ đó giảm xu hướng (trend) và tính mùa vụ (seasonality).</p>
+<p><strong>Chuỗi nào trong số này là chuỗi dừng?</strong></p>
+<p>Tính thời vụ rõ rệt đã loại trừ các chuỗi (d), (h) và (i). Các xu hướng và mức độ thay đổi đã loại trừ các chuỗi (a), (c), (e), (f) và (i). Phương sai tăng dần cũng loại trừ chuỗi (i). Như vậy chỉ còn lại (b) và (g) là các chuỗi dừng. Thoạt nhìn, (g) có vẻ không dừng nhưng các chu kỳ này không có tính chu kỳ cố định, và phụ thuộc vào các tương tác phức tạp giữa quần thể linh miêu và nguồn thức ăn sẵn có. Thời điểm của các chu kỳ này là không thể dự đoán được, do đó, chuỗi thời gian này là dừng.</p>
+<p>Bây giờ hãy chú ý đến Giá cổ phiếu Google (a) và sự thay đổi hàng ngày của Giá cổ phiếu Google (b). Các chuỗi thời gian này đến từ cùng một hệ thống, nhưng biểu hiện các động lực khác nhau. điều này minh họa rằng chúng ta có thể biến chuỗi thời gian không dừng thành chuỗi dừng bằng cách lấy hiệu số giữa các quan sát liên tiếp - hay còn gọi là <strong>Lấy sai phân (Differencing)</strong>. Lấy sai phân giúp ổn định chuỗi thời gian của chúng ta bằng cách loại bỏ những thay đổi về mức độ của chuỗi thời gian, từ đó giảm thiểu các xu hướng và tính thời vụ.</p>
 </section>
-<section id="cac-thanh-phan-cua-mo-hinh">
-<h3>Các thành phần của mô hình<a class="headerlink" href="#cac-thanh-phan-cua-mo-hinh" title="Permalink to this heading">#</a></h3>
-<p>Như đã đề cập trước đó, các mô hình ARIMA được xây dựng dựa trên các khía cạnh chính sau:</p>
-<p><strong>AR</strong>: Tự hồi quy (Autoregression). Một mô hình sử dụng mối quan hệ phụ thuộc giữa một quan sát và một số quan sát trễ (lagged observations).<br />
-<strong>I</strong>: Tích phân (Integrated). Việc sử dụng phép lấy sai phân (differencing) các quan sát gốc (ví dụ: lấy hiệu giữa một quan sát và quan sát ở bước thời gian trước đó) nhằm làm cho chuỗi thời gian trở nên dừng (stationary).<br />
-<strong>MA</strong>: Trung bình động (Moving Average). Một mô hình sử dụng sự phụ thuộc giữa một quan sát và sai số dư (residual error) từ mô hình trung bình động được áp dụng cho các quan sát trễ.</p>
-<p>Mỗi thành phần này được chỉ định rõ ràng trong mô hình dưới dạng một tham số. Một ký hiệu chuẩn được sử dụng là ARIMA(p,d,q), trong đó các tham số được thay thế bằng các giá trị nguyên để nhanh chóng chỉ ra mô hình ARIMA cụ thể đang được sử dụng:<br />
-<strong>p</strong>: Số lượng quan sát trễ (lag observations) được đưa vào mô hình, còn gọi là bậc trễ (lag order) (<em>liên quan đến <strong>cửa sổ (window)</strong> của <span class="math notranslate nohighlight">\(X_t\)</span></em>)<br />
-<strong>d</strong>: Số lần các quan sát gốc được lấy sai phân (differenced), còn gọi là bậc sai phân (degree of differencing) (<em>liên quan đến thứ tự <strong>lấy sai phân (differencing)</strong> của <span class="math notranslate nohighlight">\(X_t\)</span></em>)<br />
-<strong>q</strong>: Kích thước cửa sổ trung bình động (moving average window), còn gọi là bậc trung bình động (order of moving average) (<em>liên quan đến <strong>sai số dư (residuals)</strong></em>)</p>
-<p>Với các tham số này, trường hợp tổng quát của <em><strong>ARIMA(p,d,q)</strong></em> có thể được viết như sau:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1d8a2e84-36cb-48cb-807d-4abac6f271d8">
-<span class="eqno">(1)<a class="headerlink" href="#equation-1d8a2e84-36cb-48cb-807d-4abac6f271d8" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<section id="thanh-phan-mo-hinh">
+<h3>Thành phần mô hình<a class="headerlink" href="#thanh-phan-mo-hinh" title="Permalink to this heading">#</a></h3>
+<p>Như đã đề cập trước đó, các mô hình ARIMA được xây dựng dựa trên các khía cạnh then chốt sau:</p>
+<p><strong>AR</strong>: Tự hồi quy. Một mô hình sử dụng mối quan hệ phụ thuộc giữa một quan sát và một số lượng nhất định các quan sát trễ.<br />
+<strong>I</strong>: Tích hợp. Việc sử dụng sai phân các quan sát thô (ví dụ: lấy một quan sát trừ đi quan sát ở bước thời gian trước đó) để làm cho chuỗi thời gian trở nên dừng.<br />
+<strong>MA</strong>: Trung bình trượt. Một mô hình sử dụng sự phụ thuộc giữa một quan sát và sai số dư từ một mô hình trung bình trượt áp dụng cho các quan sát trễ.</p>
+<p>Mỗi thành phần này được chỉ định rõ ràng trong mô hình dưới dạng một tham số. Một ký hiệu tiêu chuẩn được sử dụng là ARIMA(p,d,q), trong đó các tham số được thay thế bằng các giá trị nguyên để chỉ ra nhanh chóng mô hình ARIMA cụ thể đang được sử dụng:
+<strong>p</strong>: Số lượng quan sát trễ có trong mô hình, còn được gọi là bậc trễ (xử lý với <strong>cửa sổ</strong> của <span class="math notranslate nohighlight">\(X_t\)</span>).
+<strong>d</strong>: Số lần các quan sát thô được lấy sai phân, còn được gọi là bậc sai phân (<em>xử lý bậc <strong>sai phân (differencing)</strong> của <span class="math notranslate nohighlight">\(X_t\)</span></em>)<br />
+<strong>q</strong>: Kích thước của cửa sổ trung bình trượt, còn được gọi là bậc của trung bình trượt (<em>xử lý các <strong>phần dư (residuals)</strong></em>)</p>
+<p>Dựa trên điều này, trường hợp tổng quát của <em><strong>ARIMA(p,d,q)</strong></em> có thể được viết là:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-9ff85fe8-4d7b-4079-a9d1-fcf1d4fb7c1a">
+<span class="eqno">(1)<a class="headerlink" href="#equation-9ff85fe8-4d7b-4079-a9d1-fcf1d4fb7c1a" title="Permalink to this equation">#</a></span>\[\begin{equation}
 X_{t} = \alpha _{1}X_{t-1} + \dots + \alpha _{p}X_{t-p} + \varepsilon _{t}+\theta_{1}\varepsilon _{t-1}+\cdots +\theta _{q}\varepsilon _{t-q}
 \end{equation}\]</div>
 <p>Hoặc diễn giải bằng lời:</p>
-<p><strong>Giá trị dự báo <span class="math notranslate nohighlight">\(X_t\)</span></strong> = Hằng số + Tổ hợp tuyến tính các <strong>giá trị trễ của <span class="math notranslate nohighlight">\(X\)</span> (tối đa <span class="math notranslate nohighlight">\(p\)</span> trễ)</strong> + Tổ hợp tuyến tính các <strong>sai số dự báo trễ (tối đa <span class="math notranslate nohighlight">\(q\)</span> trễ)</strong>. Với điều kiện chuỗi thời gian đã được <strong>lấy sai phân (tối đa <span class="math notranslate nohighlight">\(d\)</span> lần)</strong> để đảm bảo tính dừng.</p>
+<p><strong>Dự báo <span class="math notranslate nohighlight">\(X_t\)</span></strong> = Hằng số + Kết hợp tuyến tính của <strong>Các trễ của <span class="math notranslate nohighlight">\(X\)</span> (lên đến <span class="math notranslate nohighlight">\(p\)</span> trễ)</strong> + Kết hợp tuyến tính của <strong>Các sai số dự báo trễ (lên đến q trễ)</strong>. Với điều kiện là chuỗi thời gian đã được lấy <strong>sai phân (lên đến d số hạng)</strong> để đảm bảo tính dừng.</p>
 </section>
 </section>
-<section id="cac-tham-so-mo-hinh-p-d-va-q-va-cac-truong-hop-dac-biet">
-<h2>Các tham số mô hình <em>p, d, và q</em> và Các trường hợp đặc biệt<a class="headerlink" href="#cac-tham-so-mo-hinh-p-d-va-q-va-cac-truong-hop-dac-biet" title="Permalink to this heading">#</a></h2>
-<p>Trước khi chúng ta bàn về cách xác định các giá trị p, d, và q phù hợp nhất để biểu diễn một chuỗi thời gian, hãy cùng xem qua các trường hợp đặc biệt của mô hình ARIMA, điều này sẽ giúp minh họa rõ hơn về công thức của phương trình ARIMA.</p>
-<p><strong>Trường hợp 1: ARIMA(p,0,0) = mô hình tự hồi quy (autoregressive)</strong>: nếu chuỗi là dừng (stationary) và có tự tương quan (autocorrelated), có thể dự báo nó như một bội số của chính giá trị trước đó, cộng với một hằng số.</p>
+<section id="cac-tham-so-mo-hinh-p-d-and-q-va-cac-truong-hop-dac-biet">
+<h2>Các tham số mô hình <em>p, d, and q</em> và các trường hợp đặc biệt<a class="headerlink" href="#cac-tham-so-mo-hinh-p-d-and-q-va-cac-truong-hop-dac-biet" title="Permalink to this heading">#</a></h2>
+<p>Trước khi thảo luận về cách xác định p, d và q tốt nhất để đại diện cho một chuỗi thời gian, trước tiên hãy cùng xem xét các trường hợp đặc biệt của mô hình ARIMA nhằm giúp minh họa việc thiết lập phương trình ARIMA.</p>
+<p><strong>Case 1: ARIMA(p,0,0) = mô hình tự hồi quy (autoregressive model)</strong>: nếu chuỗi là dừng và có tự tương quan, có lẽ nó có thể được dự báo bằng bội số của giá trị trước đó của chính nó, cộng với một hằng số.</p>
 <p>Phương trình dự báo cho ARIMA(1,0,0) là:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-63ceec85-2585-4c52-ac46-c5f94d6a11d8">
-<span class="eqno">(2)<a class="headerlink" href="#equation-63ceec85-2585-4c52-ac46-c5f94d6a11d8" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c5024cb1-4626-4f73-9d74-ede8b1be01e3">
+<span class="eqno">(2)<a class="headerlink" href="#equation-c5024cb1-4626-4f73-9d74-ede8b1be01e3" title="Permalink to this equation">#</a></span>\[\begin{equation}
 X_{t}  =  \mu  + \alpha _{1}X_{t-1}
 \end{equation}\]</div>
-<p>Với ARIMA(2,0,0):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ef988088-78c9-487e-9dda-8b0493316ca9">
-<span class="eqno">(3)<a class="headerlink" href="#equation-ef988088-78c9-487e-9dda-8b0493316ca9" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<p>trong khi ARIMA(2,0,0) là:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-c8869b14-36d3-48fc-bd7b-43e7f3be220b">
+<span class="eqno">(3)<a class="headerlink" href="#equation-c8869b14-36d3-48fc-bd7b-43e7f3be220b" title="Permalink to this equation">#</a></span>\[\begin{equation}
 X_{t}  =  \mu  + \alpha _{1}X_{t-1} +  \alpha _{2}X_{t-2}
 \end{equation}\]</div>
-<p>Hoặc tổng quát hơn với ARIMA(p,0,0):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8a5df8c6-4c7a-419a-aaf1-abe2b31c99bb">
-<span class="eqno">(4)<a class="headerlink" href="#equation-8a5df8c6-4c7a-419a-aaf1-abe2b31c99bb" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<p>hoặc tổng quát ARIMA(p,0,0):</p>
+<div class="amsmath math notranslate nohighlight" id="equation-38f1ea94-b6cd-4ed6-bf49-e7e5e84a9476">
+<span class="eqno">(4)<a class="headerlink" href="#equation-38f1ea94-b6cd-4ed6-bf49-e7e5e84a9476" title="Permalink to this equation">#</a></span>\[\begin{equation}
 X_{t}  =  \mu  + \alpha _{1}X_{t-1} +  \alpha _{2}X_{t-2} \dots + \alpha _{p}X_{t-p}
 \end{equation}\]</div>
-<p><strong>Trường hợp 2: ARIMA(0,0,q) = mô hình trung bình động (moving average)</strong>: nếu chuỗi là dừng (stationary) nhưng lại có tương quan với sai số (errors) của các giá trị trước đó, ta có thể hồi quy dựa trên các sai số dự báo trong quá khứ.</p>
-<p>Phương trình dự báo cho ARIMA(0,0,1) là:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-33105476-bf1e-4e0d-8eea-022e049cf164">
-<span class="eqno">(5)<a class="headerlink" href="#equation-33105476-bf1e-4e0d-8eea-022e049cf164" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<p><strong>Trường hợp 2: ARIMA(0,0,q) = mô hình trung bình trượt (moving average model)</strong>: nếu chuỗi là dừng nhưng tương quan với các sai số của các giá trị trước đó, chúng ta có thể hồi quy bằng cách sử dụng các sai số dự báo trong quá khứ.</p>
+<p>Phương trình dự báo cho ARIMA(0,0,1) được cho bởi:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-9a814db0-0a71-48a6-af0b-cbac3e5e2b34">
+<span class="eqno">(5)<a class="headerlink" href="#equation-9a814db0-0a71-48a6-af0b-cbac3e5e2b34" title="Permalink to this equation">#</a></span>\[\begin{equation}
 X_{t} = \varepsilon _{t}+\theta_{1}\varepsilon _{t-1}
 \end{equation}\]</div>
-<p>Và tương tự như với p, có thể tổng quát hóa thành ARIMA(0,0,q):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7ad635e5-3ef7-4322-a2e7-5913de502307">
-<span class="eqno">(6)<a class="headerlink" href="#equation-7ad635e5-3ef7-4322-a2e7-5913de502307" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<p>hoặc theo cách tương tự như p, điều này có thể được tổng quát hóa thành ARIMA(0,0,q):</p>
+<div class="amsmath math notranslate nohighlight" id="equation-65d0f869-0998-417b-ae5a-baf22a672829">
+<span class="eqno">(6)<a class="headerlink" href="#equation-65d0f869-0998-417b-ae5a-baf22a672829" title="Permalink to this equation">#</a></span>\[\begin{equation}
 X_{t} = \varepsilon _{t}+\theta_{1}\varepsilon _{t-1}+\cdots +\theta _{q}\varepsilon _{t-q}
 \end{equation}\]</div>
-<p>Trong đó <span class="math notranslate nohighlight">\(\theta_{q}\)</span> là hệ số tại thời điểm <span class="math notranslate nohighlight">\(t-q\)</span> của phần dư (residual) <span class="math notranslate nohighlight">\(\varepsilon _{t-q}\)</span>.</p>
-<p><strong>Trường hợp 3: ARIMA(0,1,0) = Mô hình bước ngẫu nhiên (Random Walk)</strong>: nếu chuỗi là không dừng (non-stationary) thì mô hình đơn giản nhất có thể sử dụng là mô hình bước ngẫu nhiên, được cho bởi:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-cf706557-3581-4a9a-9db6-0918c05771e1">
-<span class="eqno">(7)<a class="headerlink" href="#equation-cf706557-3581-4a9a-9db6-0918c05771e1" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<p>trong đó <span class="math notranslate nohighlight">\(\theta_{q}\)</span> là hệ số tại thời điểm <span class="math notranslate nohighlight">\(t-q\)</span> của phần dư <span class="math notranslate nohighlight">\(\varepsilon _{t-q}\)</span>.</p>
+<p><strong>Trường hợp 3: ARIMA(0,1,0) = Bước đi ngẫu nhiên (Random Walk)</strong>: nếu chuỗi là không dừng thì mô hình đơn giản nhất mà chúng ta có thể sử dụng là mô hình bước đi ngẫu nhiên, được cho bởi:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-3288e82e-d8b9-4182-aa84-346bdd224006">
+<span class="eqno">(7)<a class="headerlink" href="#equation-3288e82e-d8b9-4182-aa84-346bdd224006" title="Permalink to this equation">#</a></span>\[\begin{equation}
 X_{t}  =  \mu  + X_{t-1}
 \end{equation}\]</div>
-<p><em>Điều này có thể được tổng quát hóa thành ARIMA(0,d,0) tương tự như hai trường hợp đầu.</em></p>
-<p>Như đã trình bày ở các trường hợp trên, ta có thể sử dụng giá trị 0 cho một tham số, điều này có nghĩa là không sử dụng thành phần đó trong mô hình. Bằng cách này, mô hình ARIMA có thể được cấu hình để thực hiện chức năng của mô hình ARMA, thậm chí là các mô hình AR, I, hoặc MA đơn giản. <strong>Lưu ý rằng trường hợp ARIMA(0,1,1) chính là mô hình làm mịn hàm mũ đơn giản (Simple Exponential Smoothing)</strong>, nhưng chúng ta sẽ bàn về điều này ở một phần khác.</p>
-<p>Việc triển khai mô hình ARIMA cho một chuỗi thời gian giả định rằng các quan sát là một quá trình ARIMA. Để triển khai ARIMA, một mô hình hồi quy tuyến tính được xây dựng bao gồm số lượng và loại các thành phần đã chỉ định, và dữ liệu sẽ được lấy sai phân (differencing) một số lần nhất định để làm cho chuỗi trở nên dừng (stationary), tức là loại bỏ xu hướng (trend) và cấu trúc mùa vụ (seasonal) có thể ảnh hưởng tiêu cực đến mô hình hồi quy.</p>
-<section id="xac-dinh-p-d-va-q-determining-p-d-and-q">
-<h3>Xác định p, d, và q (Determining p, d, and q)<a class="headerlink" href="#xac-dinh-p-d-va-q-determining-p-d-and-q" title="Permalink to this heading">#</a></h3>
-<p>Chúng ta cần chỉ định rõ ràng các giá trị <span class="math notranslate nohighlight">\(p, d,\)</span> và <span class="math notranslate nohighlight">\(q\)</span> khi triển khai các mô hình ARIMA. Việc lựa chọn các giá trị <span class="math notranslate nohighlight">\(p, d,\)</span> và <span class="math notranslate nohighlight">\(q\)</span> phù hợp có thể gặp khó khăn, nhưng có một vài phương pháp để tự động hóa quy trình (process) này. Ví dụ, chúng ta có thể sử dụng tìm kiếm lưới (grid search) trong Python để quét qua các giá trị khác nhau và kiểm tra xem mô hình nào sẽ là tối ưu (sẽ được thảo luận sau). R sử dụng hàm auto.arima() để thực hiện việc này một cách tự động. Đối với trường hợp của chúng ta, chúng ta sẽ xem xét Kiểm định Augmented-Dickey Fuller (Augmented-Dickey Fuller Test - ADF), Hàm tự tương quan (AutoCorrelation Function - ACF), và Hàm tự tương quan riêng phần (Partial Autocorrelation Function - PACF) để xác định các tham số của mô hình.</p>
-</section>
-<section id="tim-bac-sai-phan-d-finding-the-order-differencing-d">
-<h3>Tìm bậc sai phân d (Finding the order differencing d)<a class="headerlink" href="#tim-bac-sai-phan-d-finding-the-order-differencing-d" title="Permalink to this heading">#</a></h3>
-<p>Như đã nêu trước đó, các mô hình ARIMA (ARIMA models) được giả định là có tính dừng (stationary). Việc thực hiện lấy sai phân (implementing differencing) có thể tạo ra tính dừng (induce stationarity) cho nhiều chuỗi thời gian (time series) khác nhau. Cách nhanh nhất để xác định d cho các mô hình của chúng ta là lấy sai phân (difference) và chỉ đơn giản là chạy kiểm định ADF (run ADF) để kiểm tra tính dừng (check for stationarity). Chúng ta cũng có thể quan sát PACF (Partial Autocorrelation Function) và ACF (AutoCorrelation Function) để xem liệu chuỗi thời gian của mình đã đạt được tính dừng (stationary) sau khi lấy sai phân (differencing) bậc <span class="math notranslate nohighlight">\(d\)</span> hay chưa.Để minh họa (To illustrate), hãy cùng xem ví dụ sau đây:</p>
+<p><em>Điều này sau đó có thể được tổng quát hóa thêm thành ARIMA(0,d,0) tương tự như hai trường hợp đầu tiên.</em></p>
+<p>hư đã trình bày trong các trường hợp của chúng ta, chúng ta có thể sử dụng giá trị 0 cho một tham số, điều này chỉ ra việc không sử dụng thành phần đó của mô hình. Bằng cách này, mô hình ARIMA có thể được cấu hình để thực hiện chức năng của một mô hình ARMA, và thậm chí là một mô hình AR, I hoặc MA đơn giản. <strong>Cần lưu ý rằng trường hợp ARIMA(0,1,1) chính là mô hình San bằng mũ đơn giản (Simple Exponential Smoothing)</strong> nhưng chúng ta sẽ để điều đó trong một cuộc thảo luận khác.</p>
+<p>Việc triển khai một mô hình ARIMA cho một chuỗi thời gian giả định rằng các quan sát là một tiến trình ARIMA. Để triển khai ARIMA, một mô hình hồi quy tuyến tính được xây dựng bao gồm số lượng và loại các số hạng đã chỉ định, và dữ liệu được chuẩn bị bằng một bậc sai phân nhằm làm cho nó trở nên dừng, nghĩa là để loại bỏ các cấu trúc xu hướng và thời vụ ảnh hưởng tiêu cực đến mô hình hồi quy.</p>
+<section id="xac-dinh-p-d-va-q">
+<h3>Xác định <em>p</em>, <em>d</em>, và <em>q</em><a class="headerlink" href="#xac-dinh-p-d-va-q" title="Permalink to this heading">#</a></h3>
+<p>Chúng ta cần chỉ định rõ ràng các giá trị <span class="math notranslate nohighlight">\(p, d,\)</span> và <span class="math notranslate nohighlight">\(q\)</span> khi triển khai các mô hình ARIMA. Việc lựa chọn bộ tham số phù hợp có thể khá khó khăn, nhưng có một vài phương pháp để tự động hóa quy trình này. Ví dụ, chúng ta có thể sử dụng tìm kiếm lưới trong Python để quét qua các giá trị khác nhau và kiểm tra xem mô hình nào là tối ưu (sẽ được thảo luận sau). Ngôn ngữ R thì sử dụng hàm auto.arima() để thực hiện việc này một cách tự động. Trong trường hợp của chúng ta, chúng ta sẽ xem xét Kiểm định Augmented Dickey-Fuller (ADF), Hàm tự tương quan (ACF) và Hàm tự tương quan riêng phần (PACF) để xác định các tham số của mô hình.</p>
+<section id="tim-bac-sai-phan-d">
+<h4>Tìm bậc sai phân <em>d</em><a class="headerlink" href="#tim-bac-sai-phan-d" title="Permalink to this heading">#</a></h4>
+<p>Như đã trình bày trước đó, các mô hình ARIMA được giả định là phải dừng. Việc thực hiện lấy sai phân có thể giúp tạo ra tính dừng cho nhiều loại chuỗi thời gian khác nhau. Cách nhanh nhất để xác định <em>d</em> cho mô hình là thực hiện lấy sai phân và chạy kiểm định ADF để kiểm tra tính dừng. Chúng ta cũng có thể quan sát PACF và ACF để xem liệu chuỗi thời gian đã dừng sau khi lấy sai phân bậc <em>d</em> hay chưa.</p>
+<p>Để minh họa, hãy cùng xem ví dụ sau:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Chúng ta đang sử dụng một dữ liệu mẫu (sample data) từ https://raw.githubusercontent.com/selva86/datasets/master/wwwusage.csv</span>
-<span class="c1"># Nhập dữ liệu (Import data)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We&#39;re using a sample data from https://raw.githubusercontent.com/selva86/datasets/master/wwwusage.csv</span>
+<span class="c1"># Import data</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/wwwusage.csv&#39;</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">],</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Chuỗi gốc (Original Series)&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Thời gian (Time)&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Giá trị (Value)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Original Series&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Value&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -510,7 +510,7 @@ X_{t}  =  \mu  + X_{t-1}
 <img alt="../_images/97c086f53681fdddd5e1647a523ebbba12d276a1bc0db1f5a58e9a25d250bc64.png" src="../_images/97c086f53681fdddd5e1647a523ebbba12d276a1bc0db1f5a58e9a25d250bc64.png" />
 </div>
 </div>
-<p>Quan sát sơ bộ (Initial eyeballing) cho thấy chuỗi thời gian (time series) này có một xu hướng (trend) và không dừng (non-stationary). Kiểm tra bằng cách sử dụng kiểm định ADF (Checking using ADF):</p>
+<p>Việc quan sát sơ bộ ban đầu cho thấy chuỗi thời gian này có một xu hướng rõ rệt và không dừng. Kiểm tra bằng cách sử dụng kiểm định ADF:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">adfuller</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">dropna</span><span class="p">())</span>
@@ -526,8 +526,8 @@ p-value: 0.124419
 </div>
 </div>
 </div>
-<p>The null hypothesis of the ADF test is that the time series is non-stationary. So, if the p-value of the test is less than the significance level (0.05) then you reject the null hypothesis and infer that the time series is indeed stationary. For our example, we fail to reject the null hypothesis.</p>
-<p>Next we difference our time series and check the results of the ADF test. We will also look at the ACF.</p>
+<p>Giả thuyết không của kiểm định ADF là chuỗi thời gian không dừng. Do đó, nếu giá trị <span class="math notranslate nohighlight">\(p\)</span> (<span class="math notranslate nohighlight">\(p\text{-value}\)</span>) của kiểm định nhỏ hơn mức ý nghĩa (<span class="math notranslate nohighlight">\(0,05\)</span>), bạn sẽ bác bỏ giả thuyết không và suy ra rằng chuỗi thời gian thực sự là dừng. Đối với ví dụ của chúng ta, chúng ta đã thất bại trong việc bác bỏ giả thuyết không (nghĩa là chuỗi vẫn chưa dừng).</p>
+<p>Tiếp theo, chúng ta lấy sai phân chuỗi thời gian và kiểm tra kết quả của kiểm định ADF. Chúng ta cũng sẽ xem xét biểu đồ ACF.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">:(</span><span class="mi">15</span><span class="p">,</span><span class="mi">8</span><span class="p">),</span> <span class="s1">&#39;figure.dpi&#39;</span><span class="p">:</span><span class="mi">120</span><span class="p">})</span>
@@ -586,10 +586,11 @@ Critical Values:
 </div>
 </div>
 </div>
-<p>Given the results of our ACF and ADF, we can see that our time series reachees stationarity after two orders of differencing. However, the ACF of the 2nd order differencing goes into the negative zone fairly quick. This can indicates that the series might have been over differenced. It is now up to us if we want consider the first or second order differencing for our ARIMA models.</p>
-<section id="finding-the-order-of-the-autoregressive-term-p">
-<h4>Finding the order of the AutoRegressive term <em>p</em><a class="headerlink" href="#finding-the-order-of-the-autoregressive-term-p" title="Permalink to this heading">#</a></h4>
-<p>As we have discussed previously, we can look at the PACF plot to determine the lag for our AR terms. Partial autocorrelation can be imagined as the correlation between the series and its lag, after excluding the contributions from the intermediate lags. So, PACF sort of conveys the pure correlation between a lag and the series. That way, we will know if that lag is needed in the AR term or not.</p>
+<p>Dựa trên kết quả của ACF và ADF, chúng ta có thể thấy rằng chuỗi thời gian đạt được tính dừng sau hai bậc lấy sai phân. Tuy nhiên, biểu đồ ACF của sai phân bậc 2 rơi vào vùng âm khá nhanh. Điều này có thể cho thấy chuỗi dữ liệu có khả năng đã bị lấy sai phân quá mức (over-differenced). Việc quyết định sử dụng sai phân bậc một hay bậc hai cho các mô hình ARIMA hiện tại là tùy thuộc vào chúng ta.</p>
+</section>
+<section id="tim-bac-cua-thanh-phan-tu-hoi-quy-p">
+<h4>Tìm bậc của thành phần Tự hồi quy <em>p</em><a class="headerlink" href="#tim-bac-cua-thanh-phan-tu-hoi-quy-p" title="Permalink to this heading">#</a></h4>
+<p>Như chúng ta đã thảo luận trước đó, chúng ta có thể quan sát biểu đồ PACF để xác định độ trễ cho các thành phần AR. Tự tương quan riêng phần có thể được hình dung là sự tương quan giữa chuỗi dữ liệu và độ trễ của chính nó, sau khi đã loại trừ đi sự đóng góp từ các độ trễ trung gian. Vì vậy, PACF truyền tải một cách thuần túy mối tương quan giữa một độ trễ và chuỗi dữ liệu. Bằng cách đó, chúng ta sẽ biết liệu độ trễ đó có cần thiết trong thành phần AR hay không.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># PACF plot of 1st differenced series</span>
@@ -608,12 +609,12 @@ Critical Values:
 <img alt="../_images/bd62eedf892e40a739f9c34170757f7587c2d1dba725c7d6dba1a3adf42e7b93.png" src="../_images/bd62eedf892e40a739f9c34170757f7587c2d1dba725c7d6dba1a3adf42e7b93.png" />
 </div>
 </div>
-<p>Immediately, we can observe that our PACF returns sigificance at Lag 1 and Lag 2, meaning it crosses the significance limit (blue region). We can also observe significance at higher order terms but note that given the amount of lag that we are testing, it is statistically probable to see random spikes in our PACF and ACF plots. <em>Although this can also be attributed to Seasonality which will be tackled separately.</em></p>
-<p>With this, we can now decide to use <span class="math notranslate nohighlight">\(p = 2\)</span> for our ARIMA model.</p>
+<p>Ngay lập tức, chúng ta có thể quan sát thấy biểu đồ PACF cho kết quả có ý nghĩa thống kê tại Độ trễ 1 và Độ trễ 2, nghĩa là nó vượt qua giới hạn ý nghĩa (vùng màu xanh). Chúng ta cũng có thể thấy các giá trị có ý nghĩa ở các bậc cao hơn, nhưng hãy lưu ý rằng với số lượng độ trễ mà chúng ta đang kiểm tra, về mặt thống kê, việc xuất hiện các cột nhọn ngẫu nhiên (random spikes) trong biểu đồ PACF và ACF là điều hoàn toàn có thể xảy ra. <em>Mặc dù điều này cũng có thể là do Tính thời vụ, vấn đề mà chúng ta sẽ giải quyết riêng biệt.</em></p>
+<p>Với kết quả này, giờ đây chúng ta có thể quyết định sử dụng <span class="math notranslate nohighlight">\(p = 2\)</span> cho mô hình ARIMA của mình.</p>
 </section>
-<section id="finding-the-order-of-the-moving-average-term-q">
-<h4>Finding the order of the Moving Average term <em>q</em><a class="headerlink" href="#finding-the-order-of-the-moving-average-term-q" title="Permalink to this heading">#</a></h4>
-<p>Simillar to how we determined <span class="math notranslate nohighlight">\(p\)</span>, we will now look at the ACF to determine the <span class="math notranslate nohighlight">\(q\)</span> terms to be considered for our MA. The ACF tells how many MA terms are required to remove any autocorrelation in the stationary series.</p>
+<section id="tim-bac-cua-thanh-phan-trung-binh-truot-q">
+<h4>Tìm bậc của thành phần Trung bình trượt <em>q</em><a class="headerlink" href="#tim-bac-cua-thanh-phan-trung-binh-truot-q" title="Permalink to this heading">#</a></h4>
+<p>Tương tự như cách chúng ta xác định <span class="math notranslate nohighlight">\(p\)</span>, bây giờ chúng ta sẽ nhìn vào biểu đồ ACF để xác định các thành phần <span class="math notranslate nohighlight">\(q\)</span> cần xem xét cho phần MA. Biểu đồ ACF cho biết cần bao nhiêu thành phần MA để loại bỏ bất kỳ sự tự tương quan nào trong chuỗi đã dừng.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ACF plot of 1st differenced series</span>
@@ -632,13 +633,13 @@ Critical Values:
 <img alt="../_images/de1b0adc2464e68d5acadfd1067b9b08d024b84492597389ca93427d5308a250.png" src="../_images/de1b0adc2464e68d5acadfd1067b9b08d024b84492597389ca93427d5308a250.png" />
 </div>
 </div>
-<p>Our results for the ACF is not as apparent compared to our PCF. We can observed several ACF terms that is above our significance level. This may be  attritbuted to the fact that our model has a weak stationarity. This may also be caused by the fact that our time series is not perfectly MA and is an ARIMA model. For now, let’s consider <span class="math notranslate nohighlight">\(q = 3\)</span>.</p>
+<p>Kết quả trên biểu đồ ACF của chúng ta không rõ ràng như biểu đồ PACF. Chúng ta có thể quan sát thấy một vài số hạng ACF nằm trên mức ý nghĩa. Điều này có thể là do mô hình của chúng ta có tính dừng yếu. Nguyên nhân cũng có thể xuất phát từ việc chuỗi thời gian này không phải là một mô hình MA thuần túy mà là một mô hình ARIMA. Tạm thời, chúng ta hãy cân nhắc chọn <span class="math notranslate nohighlight">\(q = 3\)</span>.</p>
 </section>
 </section>
 </section>
-<section id="building-the-arima-model">
-<h2>Building the ARIMA model<a class="headerlink" href="#building-the-arima-model" title="Permalink to this heading">#</a></h2>
-<p>Now that we’ve determined the values of p, d and q, we have everything needed to fit the ARIMA model. Let’s implement using this dataset first before we move on to a deeper look at the implementation of ARIMA in the next section. Let’s use the ARIMA() implementation in statsmodels package. As computed, we will use ARIMA(2,1,3):</p>
+<section id="xay-dung-mo-hinh-arima">
+<h2>Xây dựng mô hình ARIMA<a class="headerlink" href="#xay-dung-mo-hinh-arima" title="Permalink to this heading">#</a></h2>
+<p>Bây giờ chúng ta đã xác định được các giá trị <span class="math notranslate nohighlight">\(p, d\)</span> và <span class="math notranslate nohighlight">\(q\)</span>, chúng ta đã có mọi thứ cần thiết để khớp mô hình ARIMA. Hãy triển khai trên bộ dữ liệu này trước khi chúng ta đi sâu hơn vào cách thực hiện ARIMA trong phần tiếp theo. Chúng ta sẽ sử dụng thư viện ARIMA() trong gói statsmodels. Theo như tính toán, chúng ta sẽ sử dụng bộ tham số ARIMA(2,1,3):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">ARIMA</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
@@ -680,7 +681,7 @@ MA.3           -1.1296           +0.7624j            1.3628            0.4055
 </div>
 </div>
 </div>
-<p>There’s quite a bit of information to unpack from the summary. Generally, we are interested in the Akaike’s Information Criterion (AIC), coefficients of our AR and MA terms (coef_), and the p-values of the terms (P&gt;|z|). We need the p-values to be less than 0.05 to be significant, which means that our model failed to reach significance for the AR and MA terms. Let’s try to be conservative and use small values for p and d, i.e. ARIMA(1,1,1), as given by the p-values of AR1 and MA1 in our results.</p>
+<p>Có khá nhiều thông tin cần được bóc tách từ bảng tổng kết (summary). Nhìn chung, chúng ta thường quan tâm đến Chỉ số Thông tin Akaike (AIC), các hệ số của các thành phần AR và MA (coef_), và giá trị p-values của các số hạng (P&gt;|z|). Chúng ta cần giá trị <span class="math notranslate nohighlight">\(p\)</span> nhỏ hơn 0,05 để đạt được ý nghĩa thống kê, điều này có nghĩa là mô hình của chúng ta đã thất bại trong việc đạt được ý nghĩa thống kê cho các thành phần AR và MA (ở bộ thông số trước). Hãy thử cách tiếp cận thận trọng hơn bằng cách sử dụng các giá trị p và d, i.e. Cụ thể là ARIMA(1,1,1), như được gợi ý bởi giá trị <span class="math notranslate nohighlight">\(p\)</span> của AR1 và MA1 trong kết quả của chúng ta.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">ARIMA</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
@@ -716,7 +717,7 @@ MA.1           -1.8879           +0.0000j            1.8879            0.5000
 </div>
 </div>
 </div>
-<p>Immediately, we can see that the p-values is now  &lt;&lt;0.05 for both the AR and MA terms and is highly significant. We will now check the residuals of our time-series to ensure that we will not see patterns and will have a constant mean and variance.</p>
+<p>Ngay lập tức, chúng ta có thể thấy rằng giá trị <span class="math notranslate nohighlight">\(p\)</span> hiện tại đã nhỏ hơn rất nhiều so với <span class="math notranslate nohighlight">\(0,05\)</span> cho cả hai thành phần AR và MA, đạt ý nghĩa thống kê rất cao. Bây giờ, chúng ta sẽ kiểm tra phần dư (residuals) của chuỗi thời gian để đảm bảo rằng không còn quy luật nào sót lại và phần dư có giá trị trung bình cũng như phương sai không đổi.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot residual errors</span>
@@ -732,7 +733,7 @@ MA.1           -1.8879           +0.0000j            1.8879            0.5000
 <img alt="../_images/c561531e7cd5a83ed8e23b90dcb2609e077daeff60cd92c5b7ac0e889ec0d1fe.png" src="../_images/c561531e7cd5a83ed8e23b90dcb2609e077daeff60cd92c5b7ac0e889ec0d1fe.png" />
 </div>
 </div>
-<p>The residuals is a good final check for our ARIMA models. Ideally, the residual errors should be a Gaussian with a zero mean and uniform variance. With this, we can now proceed with fitting our initial time series with our model.</p>
+<p>Phần dư là một bước kiểm tra cuối cùng hữu ích cho các mô hình ARIMA của chúng ta. Về mặt lý tưởng, các sai số dư nên tuân theo phân phối Gaussian (phân phối chuẩn) với giá trị trung bình bằng không và phương sai đồng nhất. Với kết quả này, giờ đây chúng ta có thể tiến hành khớp chuỗi thời gian ban đầu với mô hình của mình.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Actual vs Fitted</span>
@@ -747,13 +748,13 @@ MA.1           -1.8879           +0.0000j            1.8879            0.5000
 <img alt="../_images/1c3166e2fc6fac7ef0d0ebfe8ac0b1549000f50d939db16e992de63fdb06a85c.png" src="../_images/1c3166e2fc6fac7ef0d0ebfe8ac0b1549000f50d939db16e992de63fdb06a85c.png" />
 </div>
 </div>
-<p>When we set dynamic=False the in-sample lagged values are used for prediction. That is, the model gets trained up until the previous value to make the next prediction. We can also call this as a <strong>walk-forward</strong> or <strong>one-step ahead</strong> prediction.</p>
-<p>However, we should note two things:</p>
+<p>Khi chúng ta thiết lập dynamic=False, các giá trị trễ trong mẫu (in-sample) sẽ được sử dụng để dự báo. Điều đó có nghĩa là mô hình sẽ được huấn luyện cho đến giá trị ngay trước đó để đưa ra dự báo tiếp theo. Chúng ta cũng có thể gọi đây là dự báo <strong>tịnh tiến (walk-forward)</strong> hoặc dự báo <strong>trước một bước (one-step ahead)</strong>.</p>
+<p>Tuy nhiên, chúng ta cần lưu ý hai điều:</p>
 <ol class="arabic simple">
-<li><p>We used the entire time series to train our model</p></li>
-<li><p>Some of the use-cases that we will be tackling will require us to forecast t-steps ahead</p></li>
+<li><p>Chúng ta đã sử dụng toàn bộ chuỗi thời gian để huấn luyện mô hình.</p></li>
+<li><p>Một số trường hợp sử dụng mà chúng ta sẽ giải quyết yêu cầu chúng ta phải dự báo trước t bước.</p></li>
 </ol>
-<p>We will be solving the first point in the next section by tackling real-world datasets. The second point can be solved immediately using dynamic=True argument shown below.</p>
+<p>Chúng ta sẽ giải quyết điểm thứ nhất trong phần tiếp theo bằng cách xử lý các bộ dữ liệu thực tế. Điểm thứ hai có thể được giải quyết ngay lập tức bằng cách sử dụng đối số dynamic=True như được hiển thị bên dưới.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Actual vs Fitted</span>
@@ -768,21 +769,21 @@ MA.1           -1.8879           +0.0000j            1.8879            0.5000
 <img alt="../_images/f9cbf2d9269327beaac08465b57b22b0518e353eb429c3014d959d91087657c1.png" src="../_images/f9cbf2d9269327beaac08465b57b22b0518e353eb429c3014d959d91087657c1.png" />
 </div>
 </div>
-<p>Notice that our confidence interval is now increasing as we go farther our given data set since we will be compounding errors given by out forecasted values. Also note that generally, our ARIMA model captured the direction of the trend of our time series but is consistently lower than the actual values. We can correct this by varying the parameters of our ARIMA models and validating using performance metrics.</p>
+<p>Hãy chú ý rằng khoảng tin cậy (confidence interval) của chúng ta hiện đang tăng dần khi chúng ta đi xa hơn bộ dữ liệu đã cho, vì các sai số từ những giá trị dự báo sẽ bị cộng dồn lại. Đồng thời, hãy lưu ý rằng nhìn chung, mô hình ARIMA của chúng ta đã nắm bắt được hướng của xu hướng trong chuỗi thời gian nhưng kết quả dự báo lại thấp hơn một cách nhất quán so với các giá trị thực tế. Chúng ta có thể khắc phục điều này bằng cách thay đổi các tham số của mô hình ARIMA và xác thực bằng các chỉ số đo lường hiệu suất.</p>
 </section>
-<section id="implementation-and-forecasting-using-arima">
-<h2>Implementation and Forecasting using ARIMA<a class="headerlink" href="#implementation-and-forecasting-using-arima" title="Permalink to this heading">#</a></h2>
-<p>Given the steps discussed in the first three sections of this notebook, we can now create a framework of how we can approach ARIMA models in general. We can use a modified version of the Hyndman-Khandakar algorithm (Hyndman &amp; Khandakar, 2008), which combines unit root tests, minimisation of the AIC and MLE to obtain an ARIMA model. The steps are outlined below:</p>
+<section id="trien-khai-va-du-bao-bang-arima">
+<h2>Triển khai và Dự báo bằng ARIMA<a class="headerlink" href="#trien-khai-va-du-bao-bang-arima" title="Permalink to this heading">#</a></h2>
+<p>Dựa trên các bước đã thảo luận trong ba phần đầu của sổ tay này, giờ đây chúng ta có thể tạo ra một framework về cách tiếp cận các mô hình ARIMA nói chung. Chúng ta có thể sử dụng một phiên bản sửa đổi của thuật toán Hyndman-Khandakar (Hyndman &amp; Khandakar, 2008), thuật toán này kết hợp các kiểm định nghiệm đơn vị (unit root tests), tối thiểu hóa chỉ số AIC và phương pháp ước lượng hợp lý cực đại (MLE) để thu được một mô hình ARIMA. Các bước được phác thảo dưới đây:</p>
 <ol class="arabic simple">
-<li><p>The differencing term d is determined using repeated ADF tests.</p></li>
-<li><p>The values of p and q are chosen based on the AIC, ACF, and PACF of our differenced time series.</p></li>
-<li><p>Use a step-wise traversal of our parameter space (+-1) for p, d, and q to find a lower AIC. <em>We can use insights and heuristics to observe our ACF and PACF to determine if we need to add or reduce our p, d, and q.</em></p></li>
-<li><p>Check the residuals for Gaussian Distribution to establish stationarity.</p></li>
+<li><p>Bậc sai phân d được xác định bằng cách thực hiện lặp lại các kiểm định ADF.</p></li>
+<li><p>Các giá trị p và q ược chọn dựa trên AIC, ACF và PACF của chuỗi thời gian đã lấy sai phân.</p></li>
+<li><p>Sử dụng phương pháp duyệt từng bước (step-wise traversal) trong không gian tham số (<span class="math notranslate nohighlight">\(\pm 1\)</span>) cho p, d, và q để tìm chỉ số AIC thấp hơn. <em>Chúng ta có thể sử dụng kinh nghiệm và các quy tắc suy nghiệm (heuristics) khi quan sát ACF và PACF để quyết định xem cần tăng hay giảm p, d, và q.</em></p></li>
+<li><p>Kiểm tra phần dư xem có tuân theo Phân phối Gaussian hay không để xác lập tính dừng.</p></li>
 </ol>
-<p>Or in our case, we will instead use a grid-search algorithm to find automatically configure our ARIMA and find our hyperparameters. We will search values of p, d, and q for combinations (skipping those that fail to converge), and find the combination that results in the best performance on the test set. We use grid search to explore all combinations in a subset of integer values.</p>
-<p>Specifically, we will search all combinations of the following parameters:</p>
-<p>p: 0 to 4. d: 0 to 3. q: 0 to 4. This is (4 * 3 * 4), or 48, potential runs of the test harness and will take some time to execute.</p>
-<p>The complete worked example with the grid search version of the test harness is listed below.</p>
+<p>Hoặc trong trường hợp của chúng ta, chúng ta sẽ sử dụng thuật toán tìm kiếm lưới để tự động cấu hình ARIMA và tìm các siêu tham số. Chúng ta sẽ tìm kiếm các kết hợp giá trị của p, d, và q (bỏ qua những kết hợp không hội tụ) và tìm ra kết hợp mang lại hiệu suất tốt nhất trên tập kiểm tra. Chúng ta sử dụng tìm kiếm lưới để khám phá tất cả các kết hợp trong một tập hợp con các giá trị nguyên.</p>
+<p>Cụ thể, chúng ta sẽ tìm kiếm tất cả các kết hợp của các tham số sau:</p>
+<p>p: 0 đến 4. d: 0 đến 3. q: 0 đến 4. Như vậy sẽ có (<span class="math notranslate nohighlight">\(4 \times 3 \times 4\)</span>), hay 48 lượt chạy tiềm năng cho hệ thống thử nghiệm và sẽ mất một khoảng thời gian để thực thi.</p>
+<p>Ví dụ hoàn chỉnh về việc áp dụng tìm kiếm lưới cho hệ thống thử nghiệm được liệt kê dưới đây.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create a differenced series</span>
@@ -843,9 +844,9 @@ MA.1           -1.8879           +0.0000j            1.8879            0.5000
 </div>
 </div>
 </div>
-<section id="example-2-forecasting-temperature-in-jena-climate-data">
-<h3>Example 2: Forecasting Temperature in Jena Climate Data<a class="headerlink" href="#example-2-forecasting-temperature-in-jena-climate-data" title="Permalink to this heading">#</a></h3>
-<p>We now use the method above to perform <strong>multi-step forecasting</strong> (24-step) in the Jena temperature data.</p>
+<section id="vi-du-2-du-bao-nhiet-do-trong-bo-du-lieu-khi-hau-jena">
+<h3>Ví dụ 2: Dự báo nhiệt độ trong Bộ dữ liệu Khí hậu Jena<a class="headerlink" href="#vi-du-2-du-bao-nhiet-do-trong-bo-du-lieu-khi-hau-jena" title="Permalink to this heading">#</a></h3>
+<p>Giờ đây, chúng ta sử dụng phương pháp nêu trên để thực hiện <strong>dự báo đa bước - multi-step forecasting</strong> (dự báo trước 24 bước) đối với dữ liệu nhiệt độ Jena.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/train_series.csv&#39;</span><span class="p">,</span><span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="p">[</span><span class="s1">&#39;T (degC)&#39;</span><span class="p">]]</span>
@@ -863,9 +864,9 @@ MA.1           -1.8879           +0.0000j            1.8879            0.5000
 <img alt="../_images/b60937971c3f47f1701d37effe00ca674f313e25e6f03ecdb2e9a7439ad89fc4.png" src="../_images/b60937971c3f47f1701d37effe00ca674f313e25e6f03ecdb2e9a7439ad89fc4.png" />
 </div>
 </div>
-<section id="model-order-selection-hyperparameter-tuning">
-<h4>Model order selection (hyperparameter tuning)<a class="headerlink" href="#model-order-selection-hyperparameter-tuning" title="Permalink to this heading">#</a></h4>
-<p>Before we proceed with the grid-search algorithm, we perform some preliminary tests on the time series to narrow down our parameter search. We can start by checking the stationarity of the signal to estimate <span class="math notranslate nohighlight">\(d\)</span>. Then, we plot the PACF and ACF of the time series to estimate <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(q\)</span>, respectively.</p>
+<section id="lua-chon-bac-mo-hinh-tinh-chinh-sieu-tham-so">
+<h4>Lựa chọn bậc mô hình (tinh chỉnh siêu tham số)<a class="headerlink" href="#lua-chon-bac-mo-hinh-tinh-chinh-sieu-tham-so" title="Permalink to this heading">#</a></h4>
+<p>Trước khi tiến hành thuật toán tìm kiếm lưới (grid-search), chúng ta thực hiện một số kiểm tra sơ bộ trên chuỗi thời gian để thu hẹp phạm vi tìm kiếm tham số. Chúng ta có thể bắt đầu bằng cách kiểm tra tính dừng của tín hiệu để ước tính <span class="math notranslate nohighlight">\(d\)</span>. Sau đó, chúng ta vẽ biểu đồ PACF và ACF của chuỗi thời gian để lần lượt ước tính <span class="math notranslate nohighlight">\(p\)</span> và <span class="math notranslate nohighlight">\(q\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">adfuller</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span>
@@ -888,7 +889,7 @@ Critical Values:
 </div>
 </div>
 </div>
-<p><strong>Observation</strong>: Based on the results of the ADF test, the signal is stationary. This implies that <span class="math notranslate nohighlight">\(d=0\)</span> so we no longer need to perform differencing.</p>
+<p><strong>Quan sát</strong>: Dựa trên kết quả của kiểm định ADF, tín hiệu đã đạt tính dừng. Điều này ngụ ý rằng <span class="math notranslate nohighlight">\(d=0\)</span> vì vậy chúng ta không cần phải thực hiện lấy sai phân nữa.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">:(</span><span class="mi">15</span><span class="p">,</span><span class="mf">2.5</span><span class="p">),</span> <span class="s1">&#39;figure.dpi&#39;</span><span class="p">:</span><span class="mi">120</span><span class="p">})</span>
@@ -906,7 +907,7 @@ Critical Values:
 <img alt="../_images/eae6887b759768a25b77c9065c6c63483d28b87e0db3634670748d5bcb92338c.png" src="../_images/eae6887b759768a25b77c9065c6c63483d28b87e0db3634670748d5bcb92338c.png" />
 </div>
 </div>
-<p><strong>Observation</strong>: Based on the plot of the PACF, we can see that the function drops to a value of almost zero for lags &gt; 2. So, we can set <span class="math notranslate nohighlight">\(p\)</span> to be from 0 to 2.</p>
+<p><strong>Quan sát</strong>: Dựa trên biểu đồ PACF, chúng ta có thể thấy rằng giá trị của hàm giảm xuống gần bằng không đối với các độ trễ lags &gt; 2. Do đó, chúng ta có thể thiết lập <span class="math notranslate nohighlight">\(p\)</span> trong khoảng từ 0 đến 2.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">:(</span><span class="mi">15</span><span class="p">,</span><span class="mf">2.5</span><span class="p">),</span> <span class="s1">&#39;figure.dpi&#39;</span><span class="p">:</span><span class="mi">120</span><span class="p">})</span>
@@ -923,8 +924,8 @@ Critical Values:
 <img alt="../_images/b140478c6d373c1dc0f92c35100ab5fe2b8254a9a17518e0b9c78e9161c9bb38.png" src="../_images/b140478c6d373c1dc0f92c35100ab5fe2b8254a9a17518e0b9c78e9161c9bb38.png" />
 </div>
 </div>
-<p><strong>Observation</strong>: Unlike the PACF which displayed a sharp cutoff, the ACF decays more slowly. We can say that the  series has an <em>autoregressive signature</em> which means that the autocorrelation pattern can be explained more easily by adding AR terms than by adding MA terms. Let’s test for values <span class="math notranslate nohighlight">\(q\)</span> from 0 to <span class="math notranslate nohighlight">\(5\)</span>.</p>
-<p>Due to constraints in computing resources, we will limit the length of the training data (from 35045 to 17524). We will also reduce the number of folds to be used (from 730 to 20).</p>
+<p><strong>Quan sát</strong>: Không giống như PACF hiển thị sự đứt đoạn đột ngột, biểu đồ ACF suy giảm chậm hơn. Chúng ta có thể nói rằng chuỗi dữ liệu này có một <em>autoregressive signature</em> nghĩa là quy luật tự tương quan có thể được giải thích dễ dàng hơn bằng cách thêm các số hạng AR thay vì thêm các số hạng MA. Hãy thử nghiệm các giá trị <span class="math notranslate nohighlight">\(q\)</span> từ 0 đến <span class="math notranslate nohighlight">\(5\)</span>.</p>
+<p>Do hạn chế về tài nguyên tính toán, chúng ta sẽ giới hạn độ dài của dữ liệu huấn luyện (từ 35045 xuống còn 17524 mẫu). Chúng ta cũng sẽ giảm số lượng tập kiểm định chéo (folds) sẽ sử dụng (từ 730 xuống còn 20).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># evaluate an ARIMA model for a given order (p,d,q) and return RMSE</span>
@@ -1002,9 +1003,9 @@ Critical Values:
 </div>
 </div>
 </section>
-<section id="evaluate-model-performance-on-test-set">
-<h4>Evaluate model performance on test set<a class="headerlink" href="#evaluate-model-performance-on-test-set" title="Permalink to this heading">#</a></h4>
-<p>We use the multiprocessing package which supports spawning processes using an API similar to the threading module.</p>
+<section id="danh-gia-hieu-suat-mo-hinh-tren-tap-kiem-tra">
+<h4>Đánh giá hiệu suất mô hình trên tập kiểm tra<a class="headerlink" href="#danh-gia-hieu-suat-mo-hinh-tren-tap-kiem-tra" title="Permalink to this heading">#</a></h4>
+<p>Chúng ta sử dụng gói multiprocessing, gói này hỗ trợ việc tạo ra các tiến trình (processes) bằng cách sử dụng một API tương tự như mô đun threading.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">wrapper_fit_arima</span><span class="p">(</span><span class="n">x_vals</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)):</span>
@@ -1051,7 +1052,7 @@ Critical Values:
 </div>
 </div>
 </div>
-<p>We fit the ARIMA(1,0,2) model using the validation set to predict the 24-hour chunks of temperature measurements in the test set.</p>
+<p>Chúng ta khớp mô hình ARIMA(1,0,2) bằng cách sử dụng tập kiểm định để dự báo các đoạn dữ liệu nhiệt độ dài 24 giờ trong tập kiểm tra.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Uncomment code below to fit and predict temperature values in the test set</span>
@@ -1071,9 +1072,9 @@ Critical Values:
 </div>
 </div>
 </div>
-<p><strong>Observation/s</strong>: The ARIMA(1,0,2) model had a poorer performance (ARIMA MAE: 3.19) on the test set compared to our <a class="reference internal" href="../08_WinningestMethods/lightgbm_jena_forecasting.html"><span class="doc std std-doc">baseline models</span></a> (naive MAE: 3.18, seasonal naive MAE: 2.61).</p>
-<section id="forecast-24-hours-beyond-test-set">
-<h5>Forecast 24 hours beyond test set<a class="headerlink" href="#forecast-24-hours-beyond-test-set" title="Permalink to this heading">#</a></h5>
+<p><strong>Quan sát/s</strong>: Mô hình ARIMA(1,0,2) có hiệu suất kém hơn (ARIMA MAE: 3.19) trên tập kiểm tra khi so sánh với các <a class="reference internal" href="../08_WinningestMethods/lightgbm_jena_forecasting.html"><span class="doc std std-doc">baseline models</span></a> của chúng ta (naive MAE: 3.18, seasonal naive MAE: 2.61).</p>
+<section id="du-bao-24-gio-tiep-theo-ngoai-tap-kiem-tra">
+<h5>Dự báo 24 giờ tiếp theo ngoài tập kiểm tra<a class="headerlink" href="#du-bao-24-gio-tiep-theo-ngoai-tap-kiem-tra" title="Permalink to this heading">#</a></h5>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
@@ -1114,9 +1115,9 @@ Wall time: 49.3 s
 </section>
 </section>
 </section>
-<section id="example-3-using-arima-for-multivariate-time-series">
-<h3>Example 3: Using ARIMA for Multivariate Time Series<a class="headerlink" href="#example-3-using-arima-for-multivariate-time-series" title="Permalink to this heading">#</a></h3>
-<p>In this final example, we use ARIMA to forecast different time series signals from an Air Quality Dataset measured in a polluted area at an Italian City. To illustrate, we forecast the data for the last 24 hours for CO, and NO2. The following figure shows the training data for each of these parameters.</p>
+<section id="vi-du-3-su-dung-arima-cho-chuoi-thoi-gian-da-bien-multivariate-time-series">
+<h3>Ví dụ 3: Sử dụng ARIMA cho chuỗi thời gian đa biến (Multivariate Time Series)<a class="headerlink" href="#vi-du-3-su-dung-arima-cho-chuoi-thoi-gian-da-bien-multivariate-time-series" title="Permalink to this heading">#</a></h3>
+<p>Trong ví dụ cuối cùng này, chúng ta sử dụng ARIMA để dự báo các tín hiệu chuỗi thời gian khác nhau từ Bộ dữ liệu Chất lượng Không khí (Air Quality Dataset), được đo tại một khu vực ô nhiễm ở một thành phố của Ý. Để minh họa, chúng ta sẽ dự báo dữ liệu trong 24 giờ cuối cùng cho nồng độ CO và NO2. Hình dưới đây hiển thị dữ liệu huấn luyện cho từng tham số này.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_aq</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/AirQualityUCI/train_data.csv&#39;</span><span class="p">,</span><span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Date_Time&#39;</span><span class="p">)</span>
@@ -1240,7 +1241,7 @@ Wall time: 49.3 s
 </div>
 </div>
 </div>
-<p>To make predictions, we train 3 ARIMA models—one for CO, one for NO2, and one for RH. We perform grid search for the following parameters:</p>
+<p>Để thực hiện dự báo, chúng ta sẽ huấn luyện 3 mô hình ARIMA riêng biệt—một cho CO, một cho NO2 và một cho RH (Độ ẩm tương đối). Chúng ta tiến hành tìm kiếm lưới cho các tham số sau:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p_values</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
@@ -1331,20 +1332,20 @@ Wall time: 1.9 s
 </div>
 </section>
 </section>
-<section id="preview-to-the-next-chapter">
-<h2>Preview to the next Chapter<a class="headerlink" href="#preview-to-the-next-chapter" title="Permalink to this heading">#</a></h2>
-<p>ARIMA model is just one of the many algorithms that we will discuss. We can see the inherent limitations of ARIMA. In particular, we are not considering:</p>
+<section id="xem-truoc-chuong-tiep-theo">
+<h2>Xem trước chương tiếp theo<a class="headerlink" href="#xem-truoc-chuong-tiep-theo" title="Permalink to this heading">#</a></h2>
+<p>Mô hình ARIMA chỉ là một trong số nhiều thuật toán mà chúng ta sẽ thảo luận. Chúng ta có thể thấy những hạn chế cố hữu của ARIMA. Cụ thể, chúng ta đang không xem xét đến:</p>
 <ol class="arabic simple">
-<li><p>Trends and seasonality</p></li>
-<li><p>Long-range dependence</p></li>
-<li><p>Multi-variate time series</p></li>
+<li><p>Xu hướng và tính thời vụ</p></li>
+<li><p>Sự phụ thuộc tầm xa</p></li>
+<li><p>Chuỗi thời gian đa biến</p></li>
 </ol>
-<p>These factors are generally more frequent and will be important in several applications. For example, trend is important in technical analysis in stock trading. This can be solved using Momentum Forecasting which will be discussed in Chapter 2, among other methods.</p>
-<p>In Chapter 3, we will revisit the Air Quality example and use a multivariate approach.  We’ll introduce vector autoregressive (VAR) methods—a family of models that expresses each variable as a linear function of past lags and past lags of the other variables—and show that we can improve the forecasts by extending this to a multivariate time series problem.</p>
+<p>Những yếu tố này thường phổ biến hơn và sẽ quan trọng trong nhiều ứng dụng. Ví dụ, xu hướng rất quan trọng trong phân tích kỹ thuật của giao dịch chứng khoán. Điều này có thể được giải quyết bằng cách sử dụng Dự báo Động lượng (Momentum Forecasting), thứ sẽ được thảo luận trong Chương 2 cùng với các phương pháp khác.</p>
+<p>Trong Chương 3, chúng ta sẽ xem lại ví dụ về Chất lượng Không khí và sử dụng phương pháp tiếp cận đa biến. Chúng ta sẽ giới thiệu các phương pháp tự hồi quy vectơ (VAR) — một họ mô hình biểu diễn mỗi biến dưới dạng hàm tuyến tính của các độ trễ trong quá khứ của chính nó và độ trễ trong quá khứ của các biến khác — và cho thấy rằng chúng ta có thể cải thiện các dự báo bằng cách mở rộng điều này thành một bài toán chuỗi thời gian đa biến.</p>
 </section>
-<section id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
-<p>The contents of this notebook is compiled from the following sources:</p>
+<section id="tai-lieu-tham-khao">
+<h2>Tài liệu tham khảo<a class="headerlink" href="#tai-lieu-tham-khao" title="Permalink to this heading">#</a></h2>
+<p>Nội dung của sổ tay này được biên soạn từ các nguồn sau:</p>
 <ul class="simple">
 <li><p>https://www.machinelearningplus.com/time-series/arima-model-time-series-forecasting-python/</p></li>
 <li><p>https://otexts.com/fpp2/arima.html</p></li>
@@ -1425,33 +1426,33 @@ Wall time: 1.9 s
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gioi-thieu-ve-arima">Giới thiệu về ARIMA</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vi-du-1-chuoi-thoi-gian-don-bien-dung-va-khong-dung">Ví dụ 1: Chuỗi thời gian đơn biến dừng và không dừng</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cac-thanh-phan-cua-mo-hinh">Các thành phần của mô hình</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#thanh-phan-mo-hinh">Thành phần mô hình</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cac-tham-so-mo-hinh-p-d-va-q-va-cac-truong-hop-dac-biet">Các tham số mô hình <em>p, d, và q</em> và Các trường hợp đặc biệt</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#xac-dinh-p-d-va-q-determining-p-d-and-q">Xác định p, d, và q (Determining p, d, and q)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tim-bac-sai-phan-d-finding-the-order-differencing-d">Tìm bậc sai phân d (Finding the order differencing d)</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#finding-the-order-of-the-autoregressive-term-p">Finding the order of the AutoRegressive term <em>p</em></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#finding-the-order-of-the-moving-average-term-q">Finding the order of the Moving Average term <em>q</em></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-the-arima-model">Building the ARIMA model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation-and-forecasting-using-arima">Implementation and Forecasting using ARIMA</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-forecasting-temperature-in-jena-climate-data">Example 2: Forecasting Temperature in Jena Climate Data</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#model-order-selection-hyperparameter-tuning">Model order selection (hyperparameter tuning)</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluate-model-performance-on-test-set">Evaluate model performance on test set</a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#forecast-24-hours-beyond-test-set">Forecast 24 hours beyond test set</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cac-tham-so-mo-hinh-p-d-and-q-va-cac-truong-hop-dac-biet">Các tham số mô hình <em>p, d, and q</em> và các trường hợp đặc biệt</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#xac-dinh-p-d-va-q">Xác định <em>p</em>, <em>d</em>, và <em>q</em></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tim-bac-sai-phan-d">Tìm bậc sai phân <em>d</em></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tim-bac-cua-thanh-phan-tu-hoi-quy-p">Tìm bậc của thành phần Tự hồi quy <em>p</em></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tim-bac-cua-thanh-phan-trung-binh-truot-q">Tìm bậc của thành phần Trung bình trượt <em>q</em></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-3-using-arima-for-multivariate-time-series">Example 3: Using ARIMA for Multivariate Time Series</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#xay-dung-mo-hinh-arima">Xây dựng mô hình ARIMA</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trien-khai-va-du-bao-bang-arima">Triển khai và Dự báo bằng ARIMA</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vi-du-2-du-bao-nhiet-do-trong-bo-du-lieu-khi-hau-jena">Ví dụ 2: Dự báo nhiệt độ trong Bộ dữ liệu Khí hậu Jena</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lua-chon-bac-mo-hinh-tinh-chinh-sieu-tham-so">Lựa chọn bậc mô hình (tinh chỉnh siêu tham số)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#danh-gia-hieu-suat-mo-hinh-tren-tap-kiem-tra">Đánh giá hiệu suất mô hình trên tập kiểm tra</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#du-bao-24-gio-tiep-theo-ngoai-tap-kiem-tra">Dự báo 24 giờ tiếp theo ngoài tập kiểm tra</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preview-to-the-next-chapter">Preview to the next Chapter</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vi-du-3-su-dung-arima-cho-chuoi-thoi-gian-da-bien-multivariate-time-series">Ví dụ 3: Sử dụng ARIMA cho chuỗi thời gian đa biến (Multivariate Time Series)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#xem-truoc-chuong-tiep-theo">Xem trước chương tiếp theo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tai-lieu-tham-khao">Tài liệu tham khảo</a></li>
 </ul>
   </nav></div>
 
