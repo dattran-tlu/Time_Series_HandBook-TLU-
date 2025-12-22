@@ -165,7 +165,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../Preface/Preface.html">
-                    Preface: Introduction to Time Series Analysis
+                    Lời nói đầu: Giới thiệu về Phân tích Chuỗi Thời Gian (Time Series Analysis)
                 </a>
             </li>
         </ul>
@@ -177,7 +177,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../04_GrangerCausality/04_GrangerCausality.html">Chapter 4: Chương 4: Kiểm định nhân quả Granger (Granger Causality)</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Chapter 5 : Chương 5: Các phương pháp dự báo động lực (Simplex và SMap Projections)</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../06_ConvergentCrossMappingandSugiharaCausality/ccm_sugihara.html">Chương 6: Convergent Cross Mapping</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../06_ConvergentCrossMappingandSugiharaCausality/using_causal_ccm_package.html">Applying CCM Using causal-ccm package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../06_ConvergentCrossMappingandSugiharaCausality/using_causal_ccm_package.html">Áp dụng CCM bằng gói causal-ccm</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../07_CrosscorrelationsFourierTransformandWaveletTransform/07_CrosscorrelationsFourierTransformandWaveletTransform.html">Chapter 7: Cross-Correlations, Fourier Transform, and Wavelet Transform</a></li>
@@ -438,12 +438,12 @@ document.write(`
 <p>Lorenz Attractor là một tập nghiệm hỗn loạn của hệ Lorenz. Hệ Lorenz nổi tiếng vì có nghiệm hỗn loạn đối với một số giá trị tham số và điều kiện ban đầu nhất định (hiện tượng “Hiệu ứng cánh bướm”). Thuật ngữ Butterfly Effect vừa biểu thị đặc tính của hệ Lorenz—rằng chỉ một nhiễu loạn rất nhỏ cũng có thể dẫn đến sự phân kỳ rất lớn trong kết quả (“cái vỗ cánh của một con bướm có thể gây ra một cơn lốc ở phía bên kia Trái Đất”)—vừa mô tả hình dạng trực quan của hệ, trông giống như đôi cánh bướm ở một số góc nhìn nhất định.</p>
 <p>Đây là một hệ động lực ghép gồm ba phương trình vi phân (có thể hình dung các trục là các biến trong một hệ động lực).
 Trong bối cảnh sinh thái học, nó có thể được hiểu như một hệ Tài nguyên – Con mồi – Động vật ăn thịt.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-136f07ff-bc56-497f-aeee-d735d97ae78b">
-<span class="eqno">(8)<a class="headerlink" href="#equation-136f07ff-bc56-497f-aeee-d735d97ae78b" title="Permalink to this equation">#</a></span>\[\begin{align} \frac{dX}{dt} = \sigma Y - \sigma X   \end{align}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-1287dc37-a53c-4e8c-a035-f4a670b58df0">
-<span class="eqno">(9)<a class="headerlink" href="#equation-1287dc37-a53c-4e8c-a035-f4a670b58df0" title="Permalink to this equation">#</a></span>\[\begin{align} \frac{dY}{dt} = -XZ + \rho X - Y  \end{align}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-6ab3a6e6-817c-4a35-b359-2433d41cdd1c">
-<span class="eqno">(10)<a class="headerlink" href="#equation-6ab3a6e6-817c-4a35-b359-2433d41cdd1c" title="Permalink to this equation">#</a></span>\[\begin{align} \frac{dZ}{dt} =  XY - \beta Z \end{align}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-9c152097-cfdd-49c3-81b4-56f4af7752b5">
+<span class="eqno">(8)<a class="headerlink" href="#equation-9c152097-cfdd-49c3-81b4-56f4af7752b5" title="Permalink to this equation">#</a></span>\[\begin{align} \frac{dX}{dt} = \sigma Y - \sigma X   \end{align}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-422db38c-d9a5-4c3d-8686-5f70a55ad8ed">
+<span class="eqno">(9)<a class="headerlink" href="#equation-422db38c-d9a5-4c3d-8686-5f70a55ad8ed" title="Permalink to this equation">#</a></span>\[\begin{align} \frac{dY}{dt} = -XZ + \rho X - Y  \end{align}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-f49ac437-b4f2-420d-914f-c574ffc20920">
+<span class="eqno">(10)<a class="headerlink" href="#equation-f49ac437-b4f2-420d-914f-c574ffc20920" title="Permalink to this equation">#</a></span>\[\begin{align} \frac{dZ}{dt} =  XY - \beta Z \end{align}\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Visualize Lorenz Attractor [Piziniacco. L, 2020]</span>
@@ -673,8 +673,8 @@ Requirement already satisfied: pytz&gt;=2017.2 in /opt/conda/lib/python3.8/site-
 <section id="du-lieu-hon-loan-tentmap-sinh-du-lieu">
 <h3>Dữ liệu hỗn loạn TentMap – Sinh dữ liệu<a class="headerlink" href="#du-lieu-hon-loan-tentmap-sinh-du-lieu" title="Permalink to this heading">#</a></h3>
 <p>TentMap được tạo ra từ hàm sau:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-02966a9a-5098-4c5f-be37-d7a0dcabd019">
-<span class="eqno">(11)<a class="headerlink" href="#equation-02966a9a-5098-4c5f-be37-d7a0dcabd019" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-fdd20015-0b90-4498-9e13-d86773b97191">
+<span class="eqno">(11)<a class="headerlink" href="#equation-fdd20015-0b90-4498-9e13-d86773b97191" title="Permalink to this equation">#</a></span>\[\begin{equation}
         \mathbf{x_\mathbf{(t+1)}}=
         \begin{cases}
             2\mathbf{x_t} &amp; 0.5 &gt; \mathbf{x_t} &gt; 0  \\

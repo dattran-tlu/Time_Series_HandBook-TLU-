@@ -67,7 +67,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = '06_ConvergentCrossMappingandSugiharaCausality/ccm_sugihara';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Applying CCM Using causal-ccm package" href="using_causal_ccm_package.html" />
+    <link rel="next" title="Áp dụng CCM bằng gói causal-ccm" href="using_causal_ccm_package.html" />
     <link rel="prev" title="Chapter 5 : Chương 5: Các phương pháp dự báo động lực (Simplex và SMap Projections)" href="../05_SimplexandSmapProjections/05_Empirical%20Dynamic%20Modelling%20%28Simplex%20and%20SMap_Projections%29.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -165,7 +165,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../Preface/Preface.html">
-                    Preface: Introduction to Time Series Analysis
+                    Lời nói đầu: Giới thiệu về Phân tích Chuỗi Thời Gian (Time Series Analysis)
                 </a>
             </li>
         </ul>
@@ -177,7 +177,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../04_GrangerCausality/04_GrangerCausality.html">Chapter 4: Chương 4: Kiểm định nhân quả Granger (Granger Causality)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../05_SimplexandSmapProjections/05_Empirical%20Dynamic%20Modelling%20%28Simplex%20and%20SMap_Projections%29.html">Chapter 5 : Chương 5: Các phương pháp dự báo động lực (Simplex và SMap Projections)</a></li>
 <li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Chương 6: Convergent Cross Mapping</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="using_causal_ccm_package.html">Applying CCM Using causal-ccm package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using_causal_ccm_package.html">Áp dụng CCM bằng gói causal-ccm</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../07_CrosscorrelationsFourierTransformandWaveletTransform/07_CrosscorrelationsFourierTransformandWaveletTransform.html">Chapter 7: Cross-Correlations, Fourier Transform, and Wavelet Transform</a></li>
@@ -360,33 +360,33 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#applying-ccm-to-our-sample-systems">Applying CCM to our Sample Systems</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ccm-co-the-du-doan-quan-he-nhan-qua-trong-he-kiem-thu-cua-chung-ta-khong">CCM có thể dự đoán quan hệ nhân quả trong hệ kiểm thử của chúng ta không?</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-betas-affect-causality-as-indicated-by-convergence">How Betas Affect Causality As Indicated By Convergence</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-if-asymmetrically-coupled-the-effect-is-only-in-one-direction">What if asymmetrically coupled (the effect is only in one direction)?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cach-cac-he-so-beta-anh-huong-den-quan-he-nhan-qua-duoc-the-hien-thong-qua-su-hoi-tu">Cách các hệ số Beta ảnh hưởng đến quan hệ nhân quả được thể hiện thông qua sự hội tụ</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dieu-gi-xay-ra-neu-he-duoc-ghep-noi-bat-doi-xung-tac-dong-chi-theo-mot-chieu">Điều gì xảy ra nếu hệ được ghép nối bất đối xứng (tác động chỉ theo một chiều)?</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#effect-of-strong-forcing">Effect of “Strong Forcing”</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#application-in-real-world-systems">Application in Real World Systems</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nicolas-cage-films-and-number-of-drowned-victims-in-the-us">Nicolas Cage Films and Number of Drowned Victims in the US</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dam-system">Dam System</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#angat-dam-vs-rain">Angat Dam vs Rain</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#angat-dam-vs-nia">Angat Dam vs NIA</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ipo-dam-vs-rain">Ipo Dam vs Rain</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ipo-dam-vs-nia">Ipo Dam vs NIA</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ipo-dam-vs-angat-dam">Ipo Dam vs Angat Dam</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#anh-huong-cua-strong-forcing-tac-dong-cuong-buc-manh">Ảnh hưởng của “Strong Forcing” (tác động cưỡng bức mạnh)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ung-dung-trong-cac-he-thong-thuc-te">Ứng dụng trong các hệ thống thực tế</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#phim-cua-nicolas-cage-va-so-nguoi-chet-duoi-tai-my">Phim của Nicolas Cage và số người chết đuối tại Mỹ</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#he-thong-dap">Hệ thống đập</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dap-angat-vs-luong-mua">Đập Angat vs Lượng mưa</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Đập Angat vs Lượng mưa</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dap-ipo-vs-luong-mua">Đập Ipo vs Lượng mưa</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dap-ipo-vs-nia">Đập Ipo vs NIA</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dap-ipo-vs-dap-angat">Đập Ipo vs Đập Angat</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dam-system-inferred-causal-relationships">Dam System Inferred Causal Relationships</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jena-climate-data">Jena climate data</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#climate-change">Climate change</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#co2-emissions-global-temperature-and-arctic-ice-area-non-ecological">CO2 emissions, global temperature, and arctic ice area (Non-ecological)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cac-moi-quan-he-nhan-qua-duoc-suy-ra-trong-he-thong-dap">Các mối quan hệ nhân quả được suy ra trong hệ thống đập</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#du-lieu-khi-hau-jena">Dữ liệu khí hậu Jena</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bien-doi-khi-hau">Biến đổi khí hậu</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#phat-thai-co2-nhiet-do-toan-cau-va-dien-tich-bang-bac-cuc-phi-sinh-thai-non-ecological">Phát thải CO₂, nhiệt độ toàn cầu và diện tích băng Bắc Cực (phi sinh thái / non-ecological)</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inferred-climate-system-causal-relationships">Inferred Climate System Causal Relationships</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cac-moi-quan-he-nhan-qua-cua-he-thong-khi-hau-duoc-suy-luan">Các mối quan hệ nhân quả của hệ thống khí hậu được suy luận</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limitation">Limitation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#han-che">Hạn chế</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tom-tat">Tóm tắt</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tai-lieu-tham-khao">Tài liệu tham khảo</a></li>
 </ul>
             </nav>
         </div>
@@ -1008,16 +1008,16 @@ def plot_ccm_correls(self):
 <img alt="../_images/f02578ae79fb6be480322aed7771d5766ca9f25c5dc640223566a7df9e7f5f0a.png" src="../_images/f02578ae79fb6be480322aed7771d5766ca9f25c5dc640223566a7df9e7f5f0a.png" />
 </div>
 </div>
-<p><strong>Discussion</strong></p>
+<p><strong>Thảo luận</strong></p>
 <ul class="simple">
-<li><p>Convergence means we are able to improve cross mapping accuracy the longer the period <span class="math notranslate nohighlight">\(L\)</span> we consider. To recap, this happens only when we are able to enhance our reconstruction of the shared attractor between two variables using more data.</p></li>
-<li><p>In the plot above, we find that both cross mappings converge, however one converges more than the other. We have satisfied the two criteria for CCM: convergence and cross mapping. We can thus say causality exists. However, the magnitudes of causality going from one direction or the other are different.</p></li>
-<li><p>What can we conclude from this plot about the interactions between <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span>?</p></li>
-<li><p>Which variable has more influence on the other?</p></li>
+<li><p>Hội tụ (convergence) có nghĩa là chúng ta có thể cải thiện độ chính xác của phép ánh xạ chéo khi khoảng thời gian quan sát <span class="math notranslate nohighlight">\(L\)</span> tăng lên. Nhắc lại, điều này chỉ xảy ra khi chúng ta có thể cải thiện việc tái dựng bộ hút chung (shared attractor) giữa hai biến bằng cách sử dụng nhiều dữ liệu hơn.</p></li>
+<li><p>Trong biểu đồ ở trên, ta thấy rằng cả hai phép ánh xạ chéo đều hội tụ, tuy nhiên một phép hội tụ mạnh hơn phép còn lại. Như vậy, chúng ta đã thỏa mãn hai tiêu chí của CCM: hội tụ và ánh xạ chéo. Do đó, ta có thể nói rằng tồn tại quan hệ nhân quả. Tuy nhiên, độ lớn của quan hệ nhân quả theo mỗi hướng là khác nhau.</p></li>
+<li><p>Từ biểu đồ này, chúng ta có thể kết luận điều gì về sự tương tác giữa <span class="math notranslate nohighlight">\(X\)</span> và <span class="math notranslate nohighlight">\(Y\)</span>?</p></li>
+<li><p>Biến nào có ảnh hưởng lớn hơn lên biến còn lại?</p></li>
 </ul>
 </section>
-<section id="how-betas-affect-causality-as-indicated-by-convergence">
-<h3>How Betas Affect Causality As Indicated By Convergence<a class="headerlink" href="#how-betas-affect-causality-as-indicated-by-convergence" title="Permalink to this heading">#</a></h3>
+<section id="cach-cac-he-so-beta-anh-huong-den-quan-he-nhan-qua-duoc-the-hien-thong-qua-su-hoi-tu">
+<h3>Cách các hệ số Beta ảnh hưởng đến quan hệ nhân quả được thể hiện thông qua sự hội tụ<a class="headerlink" href="#cach-cac-he-so-beta-anh-huong-den-quan-he-nhan-qua-duoc-the-hien-thong-qua-su-hoi-tu" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Checking convergence for various betas</span>
@@ -1087,19 +1087,22 @@ def plot_ccm_correls(self):
 <img alt="../_images/bf96fc7a44b201185f888aac56bbde248e4baa5d06fc2b86bb15cdeb16030344.png" src="../_images/bf96fc7a44b201185f888aac56bbde248e4baa5d06fc2b86bb15cdeb16030344.png" />
 </div>
 </div>
-<p><strong>Discussion</strong></p>
-<p>The chart above shows the difference in predictive performance <span class="math notranslate nohighlight">\(\rho(\hat{Y}|M_x) - \rho(\hat{X}|M_y)\)</span> for different <span class="math notranslate nohighlight">\(\beta_{y,x}\)</span> and <span class="math notranslate nohighlight">\(\beta_{x,y}\)</span>. Remember that <span class="math notranslate nohighlight">\(\beta_{y,x}\)</span> is how much <span class="math notranslate nohighlight">\(X\)</span> influences <span class="math notranslate nohighlight">\(Y\)</span> and that a higher score <span class="math notranslate nohighlight">\(\rho(\hat{X}|M_y)\)</span> means we are able to predict <span class="math notranslate nohighlight">\(X\)</span> better from <span class="math notranslate nohighlight">\(Y\)</span> indicating that much of information from <span class="math notranslate nohighlight">\(X\)</span> gets stored in <span class="math notranslate nohighlight">\(Y\)</span> or in other words, <span class="math notranslate nohighlight">\(X\)</span> causes <span class="math notranslate nohighlight">\(Y\)</span>. Note that the “spots” in the chart can be due to our randomization of the value of <span class="math notranslate nohighlight">\(r_x\)</span> and <span class="math notranslate nohighlight">\(r_y\)</span> in each iteration. (We followed the method of randomizing <span class="math notranslate nohighlight">\(r\)</span> as implied in the supplemental materials in Sugihara et al’s paper. Their chart also has spots.)</p>
+<p><strong>Thảo luận</strong></p>
+<p>Biểu đồ phía trên cho thấy sự khác biệt về hiệu năng dự báo
+<span class="math notranslate nohighlight">\(\rho(\hat{Y}\mid M_x) - \rho(\hat{X}\mid M_y)\)</span>
+đối với các giá trị khác nhau của <span class="math notranslate nohighlight">\(\beta_{y,x}\)</span> và <span class="math notranslate nohighlight">\(\beta_{x,y}\)</span>. Hãy nhớ rằng <span class="math notranslate nohighlight">\(\beta_{y,x}\)</span> biểu thị mức độ mà <span class="math notranslate nohighlight">\(X\)</span> ảnh hưởng đến <span class="math notranslate nohighlight">\(Y\)</span>, và rằng giá trị <span class="math notranslate nohighlight">\(\rho(\hat{X}\mid M_y)\)</span> càng cao thì điều đó có nghĩa là chúng ta có thể dự báo <span class="math notranslate nohighlight">\(X\)</span> từ <span class="math notranslate nohighlight">\(Y\)</span> tốt hơn, cho thấy rằng phần lớn thông tin từ <span class="math notranslate nohighlight">\(X\)</span> được “lưu trữ” trong <span class="math notranslate nohighlight">\(Y\)</span>, hay nói cách khác, <span class="math notranslate nohighlight">\(X\)</span> gây ra <span class="math notranslate nohighlight">\(Y\)</span>.</p>
+<p>Lưu ý rằng các “đốm” (spots) trong biểu đồ có thể xuất hiện do việc chúng ta ngẫu nhiên hóa giá trị của <span class="math notranslate nohighlight">\(r_x\)</span> và <span class="math notranslate nohighlight">\(r_y\)</span> trong mỗi vòng lặp. (Chúng tôi làm theo phương pháp ngẫu nhiên hóa <span class="math notranslate nohighlight">\(r\)</span> như được ngụ ý trong phần tài liệu bổ sung của bài báo Sugihara et al.. Biểu đồ của họ cũng có các đốm tương tự.)</p>
 <ul class="simple">
-<li><p>Based on the plot, as <span class="math notranslate nohighlight">\(\beta_{y,x}\)</span> increases, what happens to our predicted <span class="math notranslate nohighlight">\(\hat{Y}|M_x\)</span> and <span class="math notranslate nohighlight">\(\hat{X}|M_y\)</span>?</p></li>
-<li><p>Do the results align with our intuition that higher <span class="math notranslate nohighlight">\(\beta_{y,x}\)</span> means higher effect of <span class="math notranslate nohighlight">\(X\)</span> on <span class="math notranslate nohighlight">\(Y\)</span>?</p></li>
+<li><p>Dựa trên biểu đồ, khi <span class="math notranslate nohighlight">\(\beta_{y,x}\)</span> tăng lên, điều gì xảy ra với các dự báo <span class="math notranslate nohighlight">\(\hat{Y}\mid M_x\)</span> và <span class="math notranslate nohighlight">\(\hat{X}\mid M_y\)</span>?</p></li>
+<li><p>Các kết quả này có phù hợp với trực giác của chúng ta rằng <span class="math notranslate nohighlight">\(\beta_{y,x}\)</span> lớn hơn thì tác động của <span class="math notranslate nohighlight">\(X\)</span> lên <span class="math notranslate nohighlight">\(Y\)</span> cũng lớn hơn hay không?</p></li>
 </ul>
 </section>
-<section id="what-if-asymmetrically-coupled-the-effect-is-only-in-one-direction">
-<h3>What if asymmetrically coupled (the effect is only in one direction)?<a class="headerlink" href="#what-if-asymmetrically-coupled-the-effect-is-only-in-one-direction" title="Permalink to this heading">#</a></h3>
-<p>Let us define our system as</p>
+<section id="dieu-gi-xay-ra-neu-he-duoc-ghep-noi-bat-doi-xung-tac-dong-chi-theo-mot-chieu">
+<h3>Điều gì xảy ra nếu hệ được ghép nối bất đối xứng (tác động chỉ theo một chiều)?<a class="headerlink" href="#dieu-gi-xay-ra-neu-he-duoc-ghep-noi-bat-doi-xung-tac-dong-chi-theo-mot-chieu" title="Permalink to this heading">#</a></h3>
+<p>Hãy định nghĩa hệ của chúng ta như sau:</p>
 <p><span class="math notranslate nohighlight">\(X(t+1)=X(t)[3.7-3.7X_t-0Y(t)]\)</span>
 <br><span class="math notranslate nohighlight">\(Y(t+1)=Y(t)[3.7-3.7Y_t-0.32X(t)]\)</span></p>
-<p>Are we convinced that this system has causality in one direction only?</p>
+<p>Chúng ta có bị thuyết phục rằng hệ này chỉ có quan hệ nhân quả theo một chiều duy nhất hay không?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize test dataset</span>
@@ -1184,10 +1187,10 @@ def plot_ccm_correls(self):
 <img alt="../_images/640c58dfd1af9661b6e090dd2cec092d279b393801cccd7d78d80f2312ec2017.png" src="../_images/640c58dfd1af9661b6e090dd2cec092d279b393801cccd7d78d80f2312ec2017.png" />
 </div>
 </div>
-<p><strong>Discussion</strong></p>
+<p><strong>Thảo luận</strong></p>
 <ul class="simple">
-<li><p>What can you observe about the cross mappings between the two manifolds in this system? Remember that the direction of cross mapping is from the blue squares to the red stars</p></li>
-<li><p>Is this something that we expected?</p></li>
+<li><p>Chúng ta có thể quan sát được điều gì về các phép cross mapping giữa hai đa tạp trong hệ này? Hãy nhớ rằng hướng của cross mapping là từ các ô vuông màu xanh sang các ngôi sao màu đỏ.</p></li>
+<li><p>Đây có phải là điều mà chúng ta đã kỳ vọng hay không?</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1238,18 +1241,18 @@ Y-&gt;X r 0.09 p value 0.0
 <img alt="../_images/1e81ab8f59b3b09b770c2bcae6ed013b12fd31b8129737cd5e414f8905d11624.png" src="../_images/1e81ab8f59b3b09b770c2bcae6ed013b12fd31b8129737cd5e414f8905d11624.png" />
 </div>
 </div>
-<p><strong>Discussion</strong></p>
+<p><strong>Thảo luận</strong></p>
 <ul class="simple">
-<li><p>How do we interpret these charts in the context of determining causality using the CCM framework?</p></li>
-<li><p>Are the results here expected?</p></li>
+<li><p>Chúng ta diễn giải các biểu đồ này như thế nào trong bối cảnh xác định quan hệ nhân quả bằng khung CCM?</p></li>
+<li><p>Các kết quả ở đây có đúng như những gì chúng ta kỳ vọng hay không?</p></li>
 </ul>
 </section>
 </section>
-<section id="effect-of-strong-forcing">
-<h2>Effect of “Strong Forcing”<a class="headerlink" href="#effect-of-strong-forcing" title="Permalink to this heading">#</a></h2>
-<p>What happens to the result of CCM when <span class="math notranslate nohighlight">\(X\)</span> has very strong effects on <span class="math notranslate nohighlight">\(Y\)</span> yet <span class="math notranslate nohighlight">\(Y\)</span> has 0 effect on <span class="math notranslate nohighlight">\(X\)</span>?</p>
+<section id="anh-huong-cua-strong-forcing-tac-dong-cuong-buc-manh">
+<h2>Ảnh hưởng của “Strong Forcing” (tác động cưỡng bức mạnh)<a class="headerlink" href="#anh-huong-cua-strong-forcing-tac-dong-cuong-buc-manh" title="Permalink to this heading">#</a></h2>
+<p>Điều gì xảy ra với kết quả của CCM khi <span class="math notranslate nohighlight">\(X\)</span> có tác động rất mạnh lên <span class="math notranslate nohighlight">\(Y\)</span> nhưng <span class="math notranslate nohighlight">\(Y\)</span> lại không có bất kỳ tác động nào lên <span class="math notranslate nohighlight">\(X\)</span>?</p>
 <p><span class="math notranslate nohighlight">\(X(t+1)=X(t)[3.7-3.7X_t-0Y(t)]\)</span>
-<br><span class="math notranslate nohighlight">\(Y(t+1)=Y(t)[3.7-3.7Y_t- \beta_{yx} X(t)] \text{ where } \beta_{yx} \text{is large}\)</span></p>
+<br><span class="math notranslate nohighlight">\(Y(t+1)=Y(t)[3.7-3.7Y_t- \beta_{yx} X(t)] \text{ trong đó } \beta_{yx} \text{là lớn}\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize test dataset</span>
@@ -1335,16 +1338,17 @@ Y-&gt;X r 0.09 p value 0.0
 <img alt="../_images/44ed7965ffb34c987afce538fc3d486060cd688c74a060fbe2adc9c15cfc1758.png" src="../_images/44ed7965ffb34c987afce538fc3d486060cd688c74a060fbe2adc9c15cfc1758.png" />
 </div>
 </div>
-<p><strong>Discussion</strong></p>
+<p><strong>Thảo luận</strong></p>
 <ul class="simple">
-<li><p>Remember that if <span class="math notranslate nohighlight">\(Y\)</span> causes <span class="math notranslate nohighlight">\(X\)</span>, information from <span class="math notranslate nohighlight">\(Y\)</span> is embedded in <span class="math notranslate nohighlight">\(X\)</span> and we should be able to predict <span class="math notranslate nohighlight">\(Y\)</span> given the shadow manifold <span class="math notranslate nohighlight">\(M_x\)</span>.</p></li>
-<li><p>We find that despite <span class="math notranslate nohighlight">\(Y\)</span> having no influence on <span class="math notranslate nohighlight">\(X\)</span>, CCM gives a high cross mapping performance if the influence of <span class="math notranslate nohighlight">\(X\)</span> on <span class="math notranslate nohighlight">\(Y\)</span>, <span class="math notranslate nohighlight">\(\beta_{yx}\)</span> is very high. This is what we call “strong forcing.” An intuition here is if the effect of <span class="math notranslate nohighlight">\(X\)</span> on <span class="math notranslate nohighlight">\(Y\)</span> is too high, <span class="math notranslate nohighlight">\(Y\)</span> tends to look a lot likt <span class="math notranslate nohighlight">\(X\)</span> and thus <span class="math notranslate nohighlight">\(M_x\)</span> becomes easier to cross map to <span class="math notranslate nohighlight">\(M_y\)</span>, which shouldn’t be the case. We can thus be misled to think bidirectional causality exists when it doesn’t.</p></li>
-<li><p>What are the implications when using CCM to infer causality?</p></li>
+<li><p>Hãy nhớ rằng nếu <span class="math notranslate nohighlight">\(Y\)</span> gây ra <span class="math notranslate nohighlight">\(X\)</span>, thì thông tin từ <span class="math notranslate nohighlight">\(Y\)</span> sẽ được “nhúng” (embedded) vào <span class="math notranslate nohighlight">\(X\)</span>, và khi đó ta sẽ có thể dự đoán <span class="math notranslate nohighlight">\(Y\)</span> dựa trên đa tạp bóng (shadow manifold) <span class="math notranslate nohighlight">\(M_x\)</span>.</p></li>
+<li><p>Tuy nhiên, chúng ta nhận thấy rằng mặc dù <span class="math notranslate nohighlight">\(Y\)</span> không hề có ảnh hưởng lên <span class="math notranslate nohighlight">\(X\)</span>, CCM vẫn cho kết quả cross mapping rất cao nếu mức độ ảnh hưởng của <span class="math notranslate nohighlight">\(X\)</span> lên <span class="math notranslate nohighlight">\(Y\)</span>, tức <span class="math notranslate nohighlight">\(\beta_{yx}\)</span>, là rất lớn. Hiện tượng này được gọi là “strong forcing” (tác động cưỡng bức mạnh).
+Trực giác ở đây là: khi tác động của <span class="math notranslate nohighlight">\(X\)</span> lên <span class="math notranslate nohighlight">\(Y\)</span> quá mạnh, <span class="math notranslate nohighlight">\(Y\)</span> sẽ có xu hướng “trông rất giống” <span class="math notranslate nohighlight">\(X\)</span>. Do đó, việc ánh xạ chéo (cross map) từ <span class="math notranslate nohighlight">\(M_x\)</span> sang <span class="math notranslate nohighlight">\(M_y\)</span> trở nên dễ dàng hơn, mặc dù về mặt nhân quả thì điều này không nên xảy ra. Kết quả là ta có thể bị đánh lừa và nghĩ rằng tồn tại quan hệ nhân quả hai chiều, trong khi thực tế thì không.</p></li>
+<li><p>Vậy điều này hàm ý gì khi sử dụng CCM để suy luận quan hệ nhân quả?</p></li>
 </ul>
 </section>
-<section id="application-in-real-world-systems">
-<h2>Application in Real World Systems<a class="headerlink" href="#application-in-real-world-systems" title="Permalink to this heading">#</a></h2>
-<p>Here, we apply CCM on real world systems to infer relationships between variables.</p>
+<section id="ung-dung-trong-cac-he-thong-thuc-te">
+<h2>Ứng dụng trong các hệ thống thực tế<a class="headerlink" href="#ung-dung-trong-cac-he-thong-thuc-te" title="Permalink to this heading">#</a></h2>
+<p>Ở đây, chúng ta áp dụng CCM lên các hệ thống trong thế giới thực để suy luận mối quan hệ giữa các biến.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">make_plots</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">dt_name</span><span class="p">,</span> <span class="n">val1_name</span><span class="p">,</span> <span class="n">val2_name</span><span class="p">):</span>
@@ -1366,9 +1370,9 @@ Y-&gt;X r 0.09 p value 0.0
 </div>
 </div>
 </div>
-<section id="nicolas-cage-films-and-number-of-drowned-victims-in-the-us">
-<h3>Nicolas Cage Films and Number of Drowned Victims in the US<a class="headerlink" href="#nicolas-cage-films-and-number-of-drowned-victims-in-the-us" title="Permalink to this heading">#</a></h3>
-<p>We check how much the number of drowned victims in the US affect the number of Nicolas Cage Films for the year and vice versa. Do we expect these two to be causally linked?</p>
+<section id="phim-cua-nicolas-cage-va-so-nguoi-chet-duoi-tai-my">
+<h3>Phim của Nicolas Cage và số người chết đuối tại Mỹ<a class="headerlink" href="#phim-cua-nicolas-cage-va-so-nguoi-chet-duoi-tai-my" title="Permalink to this heading">#</a></h3>
+<p>Chúng ta kiểm tra mức độ mà số người chết đuối tại Mỹ ảnh hưởng đến số lượng phim của Nicolas Cage trong từng năm và ngược lại. Liệu chúng ta có kỳ vọng hai đại lượng này có mối liên hệ nhân quả với nhau hay không?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/cage_drowning.csv&#39;</span><span class="p">)</span>
@@ -1424,14 +1428,14 @@ Y-&gt;X r -0.11 p value 0.77
 <img alt="../_images/daec5a30a21b81e5da66e32c9b2d138b1f7d21e47df4f6fb9b7f4218d137c7a4.png" src="../_images/daec5a30a21b81e5da66e32c9b2d138b1f7d21e47df4f6fb9b7f4218d137c7a4.png" />
 </div>
 </div>
-<p><strong>Discussion</strong></p>
-<p>Although for time period up to 7, it might look like there is convergence as shown by improvement in crossmapping correlation, proceeding further results in drop in convergence. We conclude that these two variables are not causally linked.</p>
+<p><strong>Thảo luận</strong></p>
+<p>Mặc dù trong khoảng thời gian lên đến 7, có vẻ như tồn tại sự hội tụ, thể hiện qua việc cải thiện hệ số tương quan của cross mapping, nhưng khi tiếp tục xét các khoảng thời gian dài hơn thì mức độ hội tụ lại giảm xuống. Do đó, chúng tôi kết luận rằng hai biến này không có mối liên hệ nhân quả.</p>
 </section>
-<section id="dam-system">
-<h3>Dam System<a class="headerlink" href="#dam-system" title="Permalink to this heading">#</a></h3>
-<p>We then look at two dam systems in the Philippines: Angat Dam and Ipo Dam as well as rainfall and irrigation water flow rate (NIA).</p>
-<section id="angat-dam-vs-rain">
-<h4>Angat Dam vs Rain<a class="headerlink" href="#angat-dam-vs-rain" title="Permalink to this heading">#</a></h4>
+<section id="he-thong-dap">
+<h3>Hệ thống đập<a class="headerlink" href="#he-thong-dap" title="Permalink to this heading">#</a></h3>
+<p>Tiếp theo, chúng ta xem xét hai hệ thống đập tại Philippines: đập Angat và đập Ipo, cùng với lượng mưa và lưu lượng nước tưới tiêu (NIA).</p>
+<section id="dap-angat-vs-luong-mua">
+<h4>Đập Angat vs Lượng mưa<a class="headerlink" href="#dap-angat-vs-luong-mua" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Num Angat Dam Level vs NIA (what is NIA?)</span>
@@ -1488,10 +1492,10 @@ Y-&gt;X r 0.17 p value 0.0
 </div>
 </div>
 <p><strong>Discussion</strong></p>
-<p>Rain’s effect on dam levels shows some convergence as we increase the time period <span class="math notranslate nohighlight">\(L\)</span>. However, convergence is not clear on the effect of dam level on rain.</p>
+<p>Ảnh hưởng của lượng mưa lên mực nước đập cho thấy một mức độ hội tụ nhất định khi chúng ta tăng độ dài khoảng thời gian <span class="math notranslate nohighlight">\(L\)</span>. Tuy nhiên, sự hội tụ không rõ ràng đối với ảnh hưởng của mực nước đập lên lượng mưa.</p>
 </section>
-<section id="angat-dam-vs-nia">
-<h4>Angat Dam vs NIA<a class="headerlink" href="#angat-dam-vs-nia" title="Permalink to this heading">#</a></h4>
+<section id="id1">
+<h4>Đập Angat vs Lượng mưa<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Num Angat Dam Level vs NIA (what is NIA?)</span>
@@ -1547,11 +1551,11 @@ Y-&gt;X r 0.65 p value 0.0
 <img alt="../_images/9b6db67d34df8e2fb0ff077e071750d81d077fae9561cc51da4816089cb14fe9.png" src="../_images/9b6db67d34df8e2fb0ff077e071750d81d077fae9561cc51da4816089cb14fe9.png" />
 </div>
 </div>
-<p><strong>Discussion</strong></p>
-<p>Convergence is cleaner for the effect of irrigation water flow on Dam level. However there is still a rather noisy convergence for the effect of dam level on irrigation water flow.</p>
+<p><strong>Thảo luận</strong></p>
+<p>Sự hội tụ rõ ràng hơn đối với ảnh hưởng của lưu lượng nước tưới tiêu lên mực nước đập. Tuy nhiên, vẫn tồn tại sự hội tụ khá nhiễu đối với ảnh hưởng của mực nước đập lên lưu lượng nước tưới tiêu.</p>
 </section>
-<section id="ipo-dam-vs-rain">
-<h4>Ipo Dam vs Rain<a class="headerlink" href="#ipo-dam-vs-rain" title="Permalink to this heading">#</a></h4>
+<section id="dap-ipo-vs-luong-mua">
+<h4>Đập Ipo vs Lượng mưa<a class="headerlink" href="#dap-ipo-vs-luong-mua" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Num Ipo Dam Level vs NIA (what is NIA?)</span>
@@ -1607,11 +1611,11 @@ Y-&gt;X r 0.05 p value 0.0
 <img alt="../_images/81a46830f137a51bcc3b3f1de4793bb094929767277f21e18e578411599f6e9f.png" src="../_images/81a46830f137a51bcc3b3f1de4793bb094929767277f21e18e578411599f6e9f.png" />
 </div>
 </div>
-<p><strong>Discussion</strong></p>
-<p>Convergence is clear for the effect of rain on dam levels. Meanwhile there is no convergence for the effect of dam levels on rain.</p>
+<p><strong>Thảo luận</strong></p>
+<p>Sự hội tụ là rõ ràng đối với ảnh hưởng của lượng mưa lên mực nước đập. Trong khi đó, không có sự hội tụ đối với ảnh hưởng của mực nước đập lên lượng mưa.</p>
 </section>
-<section id="ipo-dam-vs-nia">
-<h4>Ipo Dam vs NIA<a class="headerlink" href="#ipo-dam-vs-nia" title="Permalink to this heading">#</a></h4>
+<section id="dap-ipo-vs-nia">
+<h4>Đập Ipo vs NIA<a class="headerlink" href="#dap-ipo-vs-nia" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Num Ipo Dam Level vs NIA (what is NIA?)</span>
@@ -1667,11 +1671,11 @@ Y-&gt;X r 0.21 p value 0.0
 <img alt="../_images/66543fc8ea0e906cf2236715227ed69be1d7b36eb29e08fe792ece1b89ab16b3.png" src="../_images/66543fc8ea0e906cf2236715227ed69be1d7b36eb29e08fe792ece1b89ab16b3.png" />
 </div>
 </div>
-<p><strong>Discussion</strong></p>
-<p>Convergence is clear for the effect of irrigation water flow on dam levels but it is not clear for the effect of dam levels on irrigation water flow.</p>
+<p><strong>Thảo luận</strong></p>
+<p>Sự hội tụ (convergence) thể hiện rõ ràng đối với tác động của lưu lượng nước tưới lên mực nước đập, nhưng không rõ ràng đối với tác động của mực nước đập lên lưu lượng nước tưới.</p>
 </section>
-<section id="ipo-dam-vs-angat-dam">
-<h4>Ipo Dam vs Angat Dam<a class="headerlink" href="#ipo-dam-vs-angat-dam" title="Permalink to this heading">#</a></h4>
+<section id="dap-ipo-vs-dap-angat">
+<h4>Đập Ipo vs Đập Angat<a class="headerlink" href="#dap-ipo-vs-dap-angat" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Num Ipo Dam Level vs Angat Dam Level</span>
@@ -1731,18 +1735,19 @@ Y-&gt;X r 0.2 p value 0.0
 <img alt="../_images/f1425b3d301ccddd76fb0baea3521b605d14db695240a739d413bead2b9bd6f0.png" src="../_images/f1425b3d301ccddd76fb0baea3521b605d14db695240a739d413bead2b9bd6f0.png" />
 </div>
 </div>
-<p><strong>Discussion</strong></p>
-<p>The effect of Angat dam level is stronger on Ipo than the reverse. Also note that convergence is not clear for the effect of Ipo dam level on Angat dam level.</p>
+<p><strong>Thảo luận</strong></p>
+<p>Ảnh hưởng của mực nước đập Angat lên đập Ipo mạnh hơn so với chiều ngược lại. Đồng thời, cũng lưu ý rằng sự hội tụ không rõ ràng đối với ảnh hưởng của mực nước đập Ipo lên mực nước đập Angat.</p>
 </section>
 </section>
-<section id="dam-system-inferred-causal-relationships">
-<h3>Dam System Inferred Causal Relationships<a class="headerlink" href="#dam-system-inferred-causal-relationships" title="Permalink to this heading">#</a></h3>
-<p>Based on the results above, we can infer a network of causal relationships. Relationships with unclear convergence are shown in broken lines while relationships with clear convergence are shown in solid lines.
-<a class="reference internal" href="../_images/dam_inferred_causality.png"><img alt="../_images/dam_inferred_causality.png" src="../_images/dam_inferred_causality.png" style="width: 400px;" /></a></p>
+<section id="cac-moi-quan-he-nhan-qua-duoc-suy-ra-trong-he-thong-dap">
+<h3>Các mối quan hệ nhân quả được suy ra trong hệ thống đập<a class="headerlink" href="#cac-moi-quan-he-nhan-qua-duoc-suy-ra-trong-he-thong-dap" title="Permalink to this heading">#</a></h3>
+<p>Dựa trên các kết quả ở trên, chúng ta có thể suy ra một mạng lưới các mối quan hệ nhân quả.
+Những mối quan hệ có sự hội tụ không rõ ràng được biểu diễn bằng đường nét đứt, trong khi những mối quan hệ có sự hội tụ rõ ràng được biểu diễn bằng đường liền.</p>
+<a class="reference internal image-reference" href="../_images/dam_inferred_causality.png"><img alt="../_images/dam_inferred_causality.png" src="../_images/dam_inferred_causality.png" style="width: 400px;" /></a>
 </section>
-<section id="jena-climate-data">
-<h3>Jena climate data<a class="headerlink" href="#jena-climate-data" title="Permalink to this heading">#</a></h3>
-<p>Here, we look at at some climate data taken from the Max Planck Institute for Biogeochemistry in Jena, Germany from 2009 to 2016</p>
+<section id="du-lieu-khi-hau-jena">
+<h3>Dữ liệu khí hậu Jena<a class="headerlink" href="#du-lieu-khi-hau-jena" title="Permalink to this heading">#</a></h3>
+<p>Tại đây, chúng ta xem xét một số dữ liệu khí hậu được thu thập từ Viện Max Planck về Địa hoá sinh học (Max Planck Institute for Biogeochemistry) tại Jena, Đức, trong giai đoạn từ năm 2009 đến năm 2016.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/jena_climate_2009_2016.csv&#39;</span><span class="p">)</span>
@@ -1795,14 +1800,14 @@ Y-&gt;X r 0.52 p value 0.0
 <img alt="../_images/1714b598a9cc55e5b7c1a7a97d3802473124ded2378faead07089a58641574e7.png" src="../_images/1714b598a9cc55e5b7c1a7a97d3802473124ded2378faead07089a58641574e7.png" />
 </div>
 </div>
-<p><strong>Discussion</strong>
-It seems there is bidirectional (assuming no strong forcing) relationship between pressure and temperature with pressure having more effect on temperature.</p>
+<p><strong>Thảo luận</strong>
+Có vẻ như tồn tại mối quan hệ hai chiều (giả sử không có hiện tượng strong forcing) giữa áp suất và nhiệt độ, trong đó áp suất có ảnh hưởng mạnh hơn lên nhiệt độ.</p>
 </section>
-<section id="climate-change">
-<h3>Climate change<a class="headerlink" href="#climate-change" title="Permalink to this heading">#</a></h3>
-<p>Here, we look at climate data taken from climate.nasa.gov.</p>
-<section id="co2-emissions-global-temperature-and-arctic-ice-area-non-ecological">
-<h4>CO2 emissions, global temperature, and arctic ice area (Non-ecological)<a class="headerlink" href="#co2-emissions-global-temperature-and-arctic-ice-area-non-ecological" title="Permalink to this heading">#</a></h4>
+<section id="bien-doi-khi-hau">
+<h3>Biến đổi khí hậu<a class="headerlink" href="#bien-doi-khi-hau" title="Permalink to this heading">#</a></h3>
+<p>Tại đây, chúng ta xem xét dữ liệu khí hậu được lấy từ climate.nasa.gov.</p>
+<section id="phat-thai-co2-nhiet-do-toan-cau-va-dien-tich-bang-bac-cuc-phi-sinh-thai-non-ecological">
+<h4>Phát thải CO₂, nhiệt độ toàn cầu và diện tích băng Bắc Cực (phi sinh thái / non-ecological)<a class="headerlink" href="#phat-thai-co2-nhiet-do-toan-cau-va-dien-tich-bang-bac-cuc-phi-sinh-thai-non-ecological" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/co2_temp - combined.csv&#39;</span><span class="p">)</span>
@@ -1956,42 +1961,44 @@ Y-&gt;X r 0.69 p value 0.0
 <img alt="../_images/c9f5a23f561d9ee505fd2621dc07ba968c6d46bf5ae8d1e8d5185e84aafe8f3d.png" src="../_images/c9f5a23f561d9ee505fd2621dc07ba968c6d46bf5ae8d1e8d5185e84aafe8f3d.png" />
 </div>
 </div>
-<p><strong>Discussion</strong></p>
+<p><strong>Thảo luận</strong></p>
 <ul class="simple">
-<li><p>We find strong convergence for all variables above.</p></li>
-<li><p>How do we interpret the plots above? Did we meet the requirement of convergent cross mapping (convergence and cross mapping) to say there’s causality between each pair of variables?</p></li>
-<li><p>How do we relate the concept of “strong forcing” on how we interpret the results?</p></li>
+<li><p>Chúng ta quan sát thấy sự hội tụ mạnh (strong convergence) đối với tất cả các biến ở trên.</p></li>
+<li><p>Chúng ta diễn giải các biểu đồ trên như thế nào? Liệu chúng ta đã thỏa mãn các điều kiện của Convergent Cross Mapping (CCM) — bao gồm cross mapping và hội tụ (convergence) — để có thể kết luận rằng tồn tại quan hệ nhân quả giữa từng cặp biến hay chưa?</p></li>
+<li><p>Khái niệm “strong forcing” (tác động cưỡng bức mạnh) liên quan như thế nào đến cách chúng ta diễn giải các kết quả này?</p></li>
 </ul>
 </section>
 </section>
-<section id="inferred-climate-system-causal-relationships">
-<h3>Inferred Climate System Causal Relationships<a class="headerlink" href="#inferred-climate-system-causal-relationships" title="Permalink to this heading">#</a></h3>
+<section id="cac-moi-quan-he-nhan-qua-cua-he-thong-khi-hau-duoc-suy-luan">
+<h3>Các mối quan hệ nhân quả của hệ thống khí hậu được suy luận<a class="headerlink" href="#cac-moi-quan-he-nhan-qua-cua-he-thong-khi-hau-duoc-suy-luan" title="Permalink to this heading">#</a></h3>
 <a class="reference internal image-reference" href="../_images/climate_causality.png"><img alt="../_images/climate_causality.png" src="../_images/climate_causality.png" style="width: 400px;" /></a>
-<p>Based on the results above, we can infer a network of causal relationships. There seems to be a strong feedback loops between all three elements in the system. Upon checking past researches on the topic, we find that there are papers that support the seemingly unintuitive interactions in the inferred causal network:</p>
+<p>Dựa trên các kết quả ở trên, chúng ta có thể suy ra một mạng lưới các mối quan hệ nhân quả. Có vẻ như tồn tại các vòng phản hồi mạnh giữa cả ba yếu tố trong hệ thống. Khi đối chiếu với các nghiên cứu trước đây về chủ đề này, chúng ta nhận thấy có nhiều công trình ủng hộ những tương tác tưởng chừng như không trực quan trong mạng lưới nhân quả được suy luận:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://www.pnas.org/content/113/3/514">Evolution of South Atlantic density and chemical stratification across the last deglaciation</a></p></li>
-<li><p><a class="reference external" href="https://www.sciencedaily.com/releases/2014/09/140922110424.htm">Arctic sea ice helps remove carbon dioxide from atmosphere, study shows</a></p></li>
-<li><p><a class="reference external" href="https://iopscience.iop.org/article/10.1088/0022-3727/45/44/445302">Carbon dioxide enhances fragility of ice crystals</a></p></li>
-<li><p><a class="reference external" href="https://www.nature.com/news/how-carbon-dioxide-melted-the-world-1.10393">How carbon dioxide melted the world</a></p></li>
+<li><p><a class="reference external" href="https://www.pnas.org/content/113/3/514">Sự tiến hóa của mật độ và phân tầng hóa học ở Nam Đại Tây Dương trong giai đoạn tan băng gần đây</a></p></li>
+<li><p><a class="reference external" href="https://www.sciencedaily.com/releases/2014/09/140922110424.htm">Băng biển Bắc Cực giúp loại bỏ CO₂ khỏi khí quyển, theo một nghiên cứu</a></p></li>
+<li><p><a class="reference external" href="https://iopscience.iop.org/article/10.1088/0022-3727/45/44/445302">Carbon dioxide làm tăng tính dễ vỡ của các tinh thể băng</a></p></li>
+<li><p><a class="reference external" href="https://www.nature.com/news/how-carbon-dioxide-melted-the-world-1.10393">Carbon dioxide đã làm tan chảy thế giới như thế nào</a></p></li>
 </ul>
 </section>
 </section>
-<section id="limitation">
-<h2>Limitation<a class="headerlink" href="#limitation" title="Permalink to this heading">#</a></h2>
-<p>We have shown how CCM can be a powerful tool for quantifying causalities between variables by using just time series data. However, the CCM has a limitation that we need to acknowledge: when “strong forcing” exists between two variables, bidirectional convergent cross mapping may still happen even with unidirectional causality. We must rule out strong forcing before we can explore if two variables have bidirectional causality.</p>
+<section id="han-che">
+<h2>Hạn chế<a class="headerlink" href="#han-che" title="Permalink to this heading">#</a></h2>
+<p>Chúng ta đã chỉ ra rằng CCM có thể là một công cụ mạnh mẽ để định lượng mối quan hệ nhân quả giữa các biến chỉ dựa trên dữ liệu chuỗi thời gian. Tuy nhiên, CCM có một hạn chế cần được thừa nhận: khi tồn tại hiện tượng “strong forcing” (tác động cưỡng bức mạnh) giữa hai biến, thì cross mapping hội tụ theo cả hai chiều vẫn có thể xảy ra ngay cả khi quan hệ nhân quả thực tế chỉ tồn tại theo một chiều.
+Do đó, chúng ta phải loại trừ khả năng strong forcing trước khi có thể kết luận rằng hai biến có quan hệ nhân quả hai chiều.</p>
 </section>
-<section id="summary">
-<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this heading">#</a></h2>
-<p>In this chapter we discussed the theory and algorithm behind Convergent Cross Mapping methodology to infer causality between variables using time series data. We then applied it on simulated and real world data. In the next chapter we will discuss techniques for finding pattens in time series data namely cross correlation, Fourier transform, and Wavelet transform.</p>
+<section id="tom-tat">
+<h2>Tóm tắt<a class="headerlink" href="#tom-tat" title="Permalink to this heading">#</a></h2>
+<p>Trong chương này, chúng ta đã thảo luận về lý thuyết và thuật toán đứng sau phương pháp Convergent Cross Mapping (CCM) nhằm suy luận quan hệ nhân quả giữa các biến dựa trên dữ liệu chuỗi thời gian. Sau đó, chúng ta đã áp dụng CCM cho cả dữ liệu mô phỏng và dữ liệu thực tế.</p>
+<p>Trong chương tiếp theo, chúng ta sẽ thảo luận về các kỹ thuật tìm kiếm mẫu (patterns) trong dữ liệu chuỗi thời gian, bao gồm: tương quan chéo (cross correlation), biến đổi Fourier (Fourier transform) và biến đổi Wavelet (Wavelet transform).</p>
 </section>
-<section id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
-<p><strong>Main references</strong></p>
+<section id="tai-lieu-tham-khao">
+<h2>Tài liệu tham khảo<a class="headerlink" href="#tai-lieu-tham-khao" title="Permalink to this heading">#</a></h2>
+<p><strong>Tài liệu chính</strong></p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://science.sciencemag.org/content/338/6106/496">Sugihara, G. et al., 2012. Detecting Causality in Complex Ecosystems. Science, 338(6106), pp.496-500.</a></p></li>
 <li><p><a class="reference external" href="https://science.sciencemag.org/content/suppl/2012/09/19/science.1227079.DC1">Sugihara, G. et al., 2012. Supplementary Materials. [online] Science.</a></p></li>
 </ul>
-<p><strong>Supplementary materials</strong></p>
+<p><strong>Tài liệu bổ trợ</strong></p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.pnas.org/content/pnas/suppl/2016/10/26/1607747113.DCSupplemental/pnas.1607747113.sapp.pdf">SI: Step-by-step EDM Analysis. PNAS</a></p></li>
 <li><p><a class="reference external" href="https://cran.microsoft.com/snapshot/2018-07-06/web/packages/rEDM/vignettes/rEDM-algorithms.pdf">Daon, Y., 2018. Simplex and S-map Algorithms. Comprehensive R Archive Network</a></p></li>
@@ -2003,7 +2010,7 @@ A test of Convergent Cross-Mapping. arXiv</a></p></li>
 <li><p>Uzal, Lucas &amp; Grinblat, G &amp; Verdes, Pablo. (2011). Optimal reconstruction of dynamical systems: A noise amplification approach. Physical review. E, Statistical, nonlinear, and soft matter physics. 84. 016223. 10.1103/PhysRevE.84.016223.</p></li>
 <li><p>Tsonis A.A., Deyle E.R., Ye H., Sugihara G. (2018) Convergent Cross Mapping: Theory and an Example. In: Tsonis A. (eds) Advances in Nonlinear Geosciences. Springer, Cham. https://doi.org/10.1007/978-3-319-58895-7_27</p></li>
 </ul>
-<p><strong>Datasets</strong></p>
+<p><strong>Bộ dữ liệu</strong></p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/myazdani/spurious-correlation-studies/tree/master/data">Nicolas Cage Movies &amp; Drownings Stats</a></p></li>
 <li><p><a class="reference external" href="https://climate.nasa.gov/vital-signs/carbon-dioxide/">Climate data</a></p></li>
@@ -2057,7 +2064,7 @@ A test of Convergent Cross-Mapping. arXiv</a></p></li>
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Applying CCM Using causal-ccm package</p>
+        <p class="prev-next-title">Áp dụng CCM bằng gói causal-ccm</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -2103,33 +2110,33 @@ A test of Convergent Cross-Mapping. arXiv</a></p></li>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#applying-ccm-to-our-sample-systems">Applying CCM to our Sample Systems</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ccm-co-the-du-doan-quan-he-nhan-qua-trong-he-kiem-thu-cua-chung-ta-khong">CCM có thể dự đoán quan hệ nhân quả trong hệ kiểm thử của chúng ta không?</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-betas-affect-causality-as-indicated-by-convergence">How Betas Affect Causality As Indicated By Convergence</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-if-asymmetrically-coupled-the-effect-is-only-in-one-direction">What if asymmetrically coupled (the effect is only in one direction)?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cach-cac-he-so-beta-anh-huong-den-quan-he-nhan-qua-duoc-the-hien-thong-qua-su-hoi-tu">Cách các hệ số Beta ảnh hưởng đến quan hệ nhân quả được thể hiện thông qua sự hội tụ</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dieu-gi-xay-ra-neu-he-duoc-ghep-noi-bat-doi-xung-tac-dong-chi-theo-mot-chieu">Điều gì xảy ra nếu hệ được ghép nối bất đối xứng (tác động chỉ theo một chiều)?</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#effect-of-strong-forcing">Effect of “Strong Forcing”</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#application-in-real-world-systems">Application in Real World Systems</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nicolas-cage-films-and-number-of-drowned-victims-in-the-us">Nicolas Cage Films and Number of Drowned Victims in the US</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dam-system">Dam System</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#angat-dam-vs-rain">Angat Dam vs Rain</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#angat-dam-vs-nia">Angat Dam vs NIA</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ipo-dam-vs-rain">Ipo Dam vs Rain</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ipo-dam-vs-nia">Ipo Dam vs NIA</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ipo-dam-vs-angat-dam">Ipo Dam vs Angat Dam</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#anh-huong-cua-strong-forcing-tac-dong-cuong-buc-manh">Ảnh hưởng của “Strong Forcing” (tác động cưỡng bức mạnh)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ung-dung-trong-cac-he-thong-thuc-te">Ứng dụng trong các hệ thống thực tế</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#phim-cua-nicolas-cage-va-so-nguoi-chet-duoi-tai-my">Phim của Nicolas Cage và số người chết đuối tại Mỹ</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#he-thong-dap">Hệ thống đập</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dap-angat-vs-luong-mua">Đập Angat vs Lượng mưa</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Đập Angat vs Lượng mưa</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dap-ipo-vs-luong-mua">Đập Ipo vs Lượng mưa</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dap-ipo-vs-nia">Đập Ipo vs NIA</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dap-ipo-vs-dap-angat">Đập Ipo vs Đập Angat</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dam-system-inferred-causal-relationships">Dam System Inferred Causal Relationships</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jena-climate-data">Jena climate data</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#climate-change">Climate change</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#co2-emissions-global-temperature-and-arctic-ice-area-non-ecological">CO2 emissions, global temperature, and arctic ice area (Non-ecological)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cac-moi-quan-he-nhan-qua-duoc-suy-ra-trong-he-thong-dap">Các mối quan hệ nhân quả được suy ra trong hệ thống đập</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#du-lieu-khi-hau-jena">Dữ liệu khí hậu Jena</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bien-doi-khi-hau">Biến đổi khí hậu</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#phat-thai-co2-nhiet-do-toan-cau-va-dien-tich-bang-bac-cuc-phi-sinh-thai-non-ecological">Phát thải CO₂, nhiệt độ toàn cầu và diện tích băng Bắc Cực (phi sinh thái / non-ecological)</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inferred-climate-system-causal-relationships">Inferred Climate System Causal Relationships</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cac-moi-quan-he-nhan-qua-cua-he-thong-khi-hau-duoc-suy-luan">Các mối quan hệ nhân quả của hệ thống khí hậu được suy luận</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limitation">Limitation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#han-che">Hạn chế</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tom-tat">Tóm tắt</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tai-lieu-tham-khao">Tài liệu tham khảo</a></li>
 </ul>
   </nav></div>
 

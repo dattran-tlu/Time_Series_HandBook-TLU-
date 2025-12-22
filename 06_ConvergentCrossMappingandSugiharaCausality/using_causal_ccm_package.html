@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Applying CCM Using causal-ccm package &#8212; Bản dịch Time Series Analysis Handbook</title>
+    <title>Áp dụng CCM bằng gói causal-ccm &#8212; Bản dịch Time Series Analysis Handbook</title>
   
   
   
@@ -68,7 +68,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Chapter 7: Cross-Correlations, Fourier Transform, and Wavelet Transform" href="../07_CrosscorrelationsFourierTransformandWaveletTransform/07_CrosscorrelationsFourierTransformandWaveletTransform.html" />
-    <link rel="prev" title="Chapter 6: Convergent Cross Mapping" href="ccm_sugihara.html" />
+    <link rel="prev" title="Chương 6: Convergent Cross Mapping" href="ccm_sugihara.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -165,19 +165,19 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../Preface/Preface.html">
-                    Preface: Introduction to Time Series Analysis
+                    Lời nói đầu: Giới thiệu về Phân tích Chuỗi Thời Gian (Time Series Analysis)
                 </a>
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../00_Introduction/00_Introduction.html">Chương 0: Phân tích Chuỗi Thời gian Nâng cao</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../01_AutoRegressiveIntegratedMovingAverage/01_AutoRegressiveIntegratedMovingAverage.html">Chương 1: Mô hình Trung bình động tích hợp tự hồi quy (AutoRegressive Integrated Moving Average - ARIMA)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../02_LinearForecastingTrendandMomentumForecasting/02_LinearTrendandMomentumForecasting.html">Chapter 2: Linear, Trend, and Momentum Forecasting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../03_VectorAutoregressiveModels/03_VectorAutoregressiveMethods.html">Chapter 3: Vector Autoregressive Methods</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../04_GrangerCausality/04_GrangerCausality.html">Chapter 4: Granger Causality Test</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../05_SimplexandSmapProjections/05_Empirical%20Dynamic%20Modelling%20%28Simplex%20and%20SMap_Projections%29.html">Chapter 5 : Dynamical Forecasting Methods (Simplex and SMap Projections)</a></li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="ccm_sugihara.html">Chapter 6: Convergent Cross Mapping</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Applying CCM Using causal-ccm package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_AutoRegressiveIntegratedMovingAverage/01_AutoRegressiveIntegratedMovingAverage.html">Chương 1: Trung bình trượt tích hợp tự hồi quy (ARIMA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_LinearForecastingTrendandMomentumForecasting/02_LinearTrendandMomentumForecasting.html">Chương 2: Dự báo Tuyến tính, Xu hướng và Động lượng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_VectorAutoregressiveModels/03_VectorAutoregressiveMethods.html">Chương 3: Các phương pháp Vectơ tự hồi quy (Vector Autoregressive Methods)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_GrangerCausality/04_GrangerCausality.html">Chapter 4: Chương 4: Kiểm định nhân quả Granger (Granger Causality)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_SimplexandSmapProjections/05_Empirical%20Dynamic%20Modelling%20%28Simplex%20and%20SMap_Projections%29.html">Chapter 5 : Chương 5: Các phương pháp dự báo động lực (Simplex và SMap Projections)</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="ccm_sugihara.html">Chương 6: Convergent Cross Mapping</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Áp dụng CCM bằng gói causal-ccm</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../07_CrosscorrelationsFourierTransformandWaveletTransform/07_CrosscorrelationsFourierTransformandWaveletTransform.html">Chapter 7: Cross-Correlations, Fourier Transform, and Wavelet Transform</a></li>
@@ -324,7 +324,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Applying CCM Using causal-ccm package</h1>
+    <h1>Áp dụng CCM bằng gói causal-ccm</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -334,10 +334,10 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-ccm-and-load-packages">Install CCM and Load Packages</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-dataset">Load Dataset</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-ccm">Run CCM</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretation">Interpretation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cai-dat-ccm-va-nap-cac-goi">Cài đặt CCM và nạp các gói</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nap-bo-du-lieu">Nạp bộ dữ liệu</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chay-ccm">Chạy CCM</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dien-giai">Diễn giải</a></li>
 </ul>
             </nav>
         </div>
@@ -349,11 +349,11 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="applying-ccm-using-causal-ccm-package">
-<h1>Applying CCM Using causal-ccm package<a class="headerlink" href="#applying-ccm-using-causal-ccm-package" title="Permalink to this heading">#</a></h1>
-<p>In this section we show how we can use <code class="docutils literal notranslate"><span class="pre">causal-ccm</span></code> package to infer causality.</p>
-<section id="install-ccm-and-load-packages">
-<h2>Install CCM and Load Packages<a class="headerlink" href="#install-ccm-and-load-packages" title="Permalink to this heading">#</a></h2>
+  <section class="tex2jax_ignore mathjax_ignore" id="ap-dung-ccm-bang-goi-causal-ccm">
+<h1>Áp dụng CCM bằng gói causal-ccm<a class="headerlink" href="#ap-dung-ccm-bang-goi-causal-ccm" title="Permalink to this heading">#</a></h1>
+<p>Trong phần này, chúng ta trình bày cách sử dụng gói <code class="docutils literal notranslate"><span class="pre">causal-ccm</span></code> để suy luận (xác định) quan hệ nhân quả.</p>
+<section id="cai-dat-ccm-va-nap-cac-goi">
+<h2>Cài đặt CCM và nạp các gói<a class="headerlink" href="#cai-dat-ccm-va-nap-cac-goi" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># !pip install causal-ccm</span>
@@ -376,8 +376,8 @@ document.write(`
 </div>
 </div>
 </section>
-<section id="load-dataset">
-<h2>Load Dataset<a class="headerlink" href="#load-dataset" title="Permalink to this heading">#</a></h2>
+<section id="nap-bo-du-lieu">
+<h2>Nạp bộ dữ liệu<a class="headerlink" href="#nap-bo-du-lieu" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/Ipo_dataset.csv&#39;</span><span class="p">)</span>
@@ -466,8 +466,8 @@ document.write(`
 </div>
 </div>
 </section>
-<section id="run-ccm">
-<h2>Run CCM<a class="headerlink" href="#run-ccm" title="Permalink to this heading">#</a></h2>
+<section id="chay-ccm">
+<h2>Chạy CCM<a class="headerlink" href="#chay-ccm" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># inputs</span>
@@ -559,9 +559,10 @@ Y-&gt;X r 0.02 p value 0.0775
 </div>
 </div>
 </section>
-<section id="interpretation">
-<h2>Interpretation<a class="headerlink" href="#interpretation" title="Permalink to this heading">#</a></h2>
-<p>From the charts above, we find significant convergent cross mapping for the effect of rain <span class="math notranslate nohighlight">\(X\)</span> on dam levels <span class="math notranslate nohighlight">\(Y\)</span>. Note that for <span class="math notranslate nohighlight">\(X -&gt; Y\)</span> cases, p-value is 0.0 which means the causality is significant while for <span class="math notranslate nohighlight">\(Y -&gt; X\)</span>, p value is &gt; 0.05. We can then say that rain drives dam levels but dam levels do not drive rain.</p>
+<section id="dien-giai">
+<h2>Diễn giải<a class="headerlink" href="#dien-giai" title="Permalink to this heading">#</a></h2>
+<p>Từ các biểu đồ trên, chúng ta nhận thấy cross mapping hội tụ (convergent cross mapping) rõ rệt đối với tác động của lượng mưa <span class="math notranslate nohighlight">\(X\)</span> lên mực nước đập <span class="math notranslate nohighlight">\(Y\)</span>. Lưu ý rằng trong trường hợp <span class="math notranslate nohighlight">\(X \rightarrow Y\)</span>, giá trị p-value = 0.0, điều này cho thấy mối quan hệ nhân quả là có ý nghĩa thống kê; trong khi đó, đối với <span class="math notranslate nohighlight">\(Y \rightarrow X\)</span>, p-value &gt; 0.05, nên không đủ bằng chứng để kết luận có quan hệ nhân quả.</p>
+<p>Vì vậy, chúng ta có thể kết luận rằng lượng mưa chi phối (gây ảnh hưởng đến) mực nước đập, nhưng mực nước đập không chi phối lượng mưa.</p>
 </section>
 </section>
 
@@ -601,7 +602,7 @@ Y-&gt;X r 0.02 p value 0.0775
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Chapter 6: Convergent Cross Mapping</p>
+        <p class="prev-next-title">Chương 6: Convergent Cross Mapping</p>
       </div>
     </a>
     <a class="right-next"
@@ -629,10 +630,10 @@ Y-&gt;X r 0.02 p value 0.0775
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-ccm-and-load-packages">Install CCM and Load Packages</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-dataset">Load Dataset</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-ccm">Run CCM</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretation">Interpretation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cai-dat-ccm-va-nap-cac-goi">Cài đặt CCM và nạp các gói</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nap-bo-du-lieu">Nạp bộ dữ liệu</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chay-ccm">Chạy CCM</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dien-giai">Diễn giải</a></li>
 </ul>
   </nav></div>
 
