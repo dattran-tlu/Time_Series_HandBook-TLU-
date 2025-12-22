@@ -438,12 +438,12 @@ document.write(`
 <p>Lorenz Attractor là một tập nghiệm hỗn loạn của hệ Lorenz. Hệ Lorenz nổi tiếng vì có nghiệm hỗn loạn đối với một số giá trị tham số và điều kiện ban đầu nhất định (hiện tượng “Hiệu ứng cánh bướm”). Thuật ngữ Butterfly Effect vừa biểu thị đặc tính của hệ Lorenz—rằng chỉ một nhiễu loạn rất nhỏ cũng có thể dẫn đến sự phân kỳ rất lớn trong kết quả (“cái vỗ cánh của một con bướm có thể gây ra một cơn lốc ở phía bên kia Trái Đất”)—vừa mô tả hình dạng trực quan của hệ, trông giống như đôi cánh bướm ở một số góc nhìn nhất định.</p>
 <p>Đây là một hệ động lực ghép gồm ba phương trình vi phân (có thể hình dung các trục là các biến trong một hệ động lực).
 Trong bối cảnh sinh thái học, nó có thể được hiểu như một hệ Tài nguyên – Con mồi – Động vật ăn thịt.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-eccb58d4-e79a-4c10-a433-b1490c974697">
-<span class="eqno">(8)<a class="headerlink" href="#equation-eccb58d4-e79a-4c10-a433-b1490c974697" title="Permalink to this equation">#</a></span>\[\begin{align} \frac{dX}{dt} = \sigma Y - \sigma X   \end{align}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-9d484bdd-d2ec-4e3a-b0ea-c9cdf8392504">
-<span class="eqno">(9)<a class="headerlink" href="#equation-9d484bdd-d2ec-4e3a-b0ea-c9cdf8392504" title="Permalink to this equation">#</a></span>\[\begin{align} \frac{dY}{dt} = -XZ + \rho X - Y  \end{align}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-eb97234e-eb08-49a6-bcf8-a640dd440d26">
-<span class="eqno">(10)<a class="headerlink" href="#equation-eb97234e-eb08-49a6-bcf8-a640dd440d26" title="Permalink to this equation">#</a></span>\[\begin{align} \frac{dZ}{dt} =  XY - \beta Z \end{align}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-948d6f92-84ae-46d8-94ab-85b77845d5df">
+<span class="eqno">(8)<a class="headerlink" href="#equation-948d6f92-84ae-46d8-94ab-85b77845d5df" title="Permalink to this equation">#</a></span>\[\begin{align} \frac{dX}{dt} = \sigma Y - \sigma X   \end{align}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-6b507b6d-5731-48e4-a9e5-22ad644be0da">
+<span class="eqno">(9)<a class="headerlink" href="#equation-6b507b6d-5731-48e4-a9e5-22ad644be0da" title="Permalink to this equation">#</a></span>\[\begin{align} \frac{dY}{dt} = -XZ + \rho X - Y  \end{align}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-7b2d7d4c-ba2c-4b63-a2da-a4dcb722f0ab">
+<span class="eqno">(10)<a class="headerlink" href="#equation-7b2d7d4c-ba2c-4b63-a2da-a4dcb722f0ab" title="Permalink to this equation">#</a></span>\[\begin{align} \frac{dZ}{dt} =  XY - \beta Z \end{align}\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Visualize Lorenz Attractor [Piziniacco. L, 2020]</span>
@@ -673,8 +673,8 @@ Requirement already satisfied: pytz&gt;=2017.2 in /opt/conda/lib/python3.8/site-
 <section id="du-lieu-hon-loan-tentmap-sinh-du-lieu">
 <h3>Dữ liệu hỗn loạn TentMap – Sinh dữ liệu<a class="headerlink" href="#du-lieu-hon-loan-tentmap-sinh-du-lieu" title="Permalink to this heading">#</a></h3>
 <p>TentMap được tạo ra từ hàm sau:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-265b0b4a-32aa-4b18-8f99-d13cb714ef6e">
-<span class="eqno">(11)<a class="headerlink" href="#equation-265b0b4a-32aa-4b18-8f99-d13cb714ef6e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c41abecf-77ea-4230-b986-2c651e1460c0">
+<span class="eqno">(11)<a class="headerlink" href="#equation-c41abecf-77ea-4230-b986-2c651e1460c0" title="Permalink to this equation">#</a></span>\[\begin{equation}
         \mathbf{x_\mathbf{(t+1)}}=
         \begin{cases}
             2\mathbf{x_t} &amp; 0.5 &gt; \mathbf{x_t} &gt; 0  \\
