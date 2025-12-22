@@ -1,6 +1,6 @@
 # Book settings
 title: "Bản dịch Time Series Analysis Handbook"
-author: "Trần Vũ Quang Huy - TLU"
+author: "By AI Department - TLU"
 
 # CẤM CỬA: Không cho quét linh tinh vào folder venv và các file rác
 exclude_patterns:
@@ -16,7 +16,7 @@ html:
   use_issues_button: false
   use_repository_button: false
   launch_buttons:
-    thebe: false # Tắt hẳn cái này cho nhẹ nợ
+    thebe: false 
 
 parse:
   myst_enable_extensions:
