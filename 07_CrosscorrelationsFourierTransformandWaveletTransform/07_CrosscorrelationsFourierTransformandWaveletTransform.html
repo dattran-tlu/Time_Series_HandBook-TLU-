@@ -863,8 +863,8 @@ Critical Values:
 <section id="bien-doi-fourier">
 <h2>Biến đổi Fourier:<a class="headerlink" href="#bien-doi-fourier" title="Permalink to this heading">#</a></h2>
 <p>Việc biến đổi một tín hiệu từ miền thời gian sang miền tần số (<span class="math notranslate nohighlight">\(\omega\)</span>) bằng phương pháp này được gọi là \textbf{Fourier Transform (FT)}. FT được cho bởi:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f1b6fd26-f441-4a2d-a11f-70fa93db4e55">
-<span class="eqno">(12)<a class="headerlink" href="#equation-f1b6fd26-f441-4a2d-a11f-70fa93db4e55" title="Permalink to this equation">#</a></span>\[\begin{align} \hat{y}(\omega) = \int_{-\infty}^{\infty}{y(t)e^{-2\pi i \omega t}d\omega} \end{align}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-386819ce-f0be-45f5-837b-b13fb8526be0">
+<span class="eqno">(12)<a class="headerlink" href="#equation-386819ce-f0be-45f5-837b-b13fb8526be0" title="Permalink to this equation">#</a></span>\[\begin{align} \hat{y}(\omega) = \int_{-\infty}^{\infty}{y(t)e^{-2\pi i \omega t}d\omega} \end{align}\]</div>
 <p>Để hiểu rõ hơn về FT, chúng ta hãy xem xét một số ứng dụng của nó.</p>
 <section id="ft-cua-mot-tin-hieu-thuan-pure-signal">
 <h3>FT của một tín hiệu thuần (Pure Signal)<a class="headerlink" href="#ft-cua-mot-tin-hieu-thuan-pure-signal" title="Permalink to this heading">#</a></h3>
@@ -978,8 +978,8 @@ Critical Values:
 <h2>Lọc nhiễu<a class="headerlink" href="#loc-nhieu" title="Permalink to this heading">#</a></h2>
 <p>Dữ liệu chuỗi thời gian trong thực tế không bao giờ hoàn toàn không có nhiễu, điều này khiến việc xác định động lực thực sự của đại lượng được đo trở nên khó khăn. Chúng ta có thể vô tình đi mô hình hóa nhiễu và bỏ qua hành vi thực sự của chuỗi thời gian.</p>
 <p>Rất may, chúng ta có thể thao tác dữ liệu chuỗi thời gian trong miền tần số để loại bỏ một trong những loại nhiễu phổ biến nhất – nhiễu trắng. Nhiễu trắng xuất hiện phổ biến trong dữ liệu chuỗi thời gian và theo định nghĩa, nó có các thành phần ở mọi tần số. Thông thường, một chuỗi thời gian có nhiễu trắng được biểu diễn như sau:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9173d0a3-6213-4cb4-8f56-d220da810fd8">
-<span class="eqno">(13)<a class="headerlink" href="#equation-9173d0a3-6213-4cb4-8f56-d220da810fd8" title="Permalink to this equation">#</a></span>\[\begin{align} y(t) = s(t) + v(t) \end{align}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-4a25463d-c1a6-4bb3-95cc-d14981ec2c24">
+<span class="eqno">(13)<a class="headerlink" href="#equation-4a25463d-c1a6-4bb3-95cc-d14981ec2c24" title="Permalink to this equation">#</a></span>\[\begin{align} y(t) = s(t) + v(t) \end{align}\]</div>
 <p>trong đó <span class="math notranslate nohighlight">\(s(t)\)</span> là tín hiệu thực mà ta muốn khôi phục từ <span class="math notranslate nohighlight">\(y(t)\)</span> và <span class="math notranslate nohighlight">\(v(t)\)</span> là nhiễu trắng mà ta muốn loại bỏ. Chúng tôi mô phỏng điều này bên dưới bằng cách thêm nhiễu trắng vào tín hiệu.</p>
 <section id="loc-theo-muc-nang-luong">
 <h3>Lọc theo mức năng lượng<a class="headerlink" href="#loc-theo-muc-nang-luong" title="Permalink to this heading">#</a></h3>
@@ -1773,7 +1773,7 @@ Critical Values:
   <div class="footer-item">
     
 <p class="component-author">
-By Trần Vũ Quang Huy - TLU
+By By AI Department - TLU
 </p>
 
   </div>
