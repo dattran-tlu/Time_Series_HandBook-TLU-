@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Chương 7: Cross-Correlations, Fourier Transform, and Wavelet Transform &#8212; Bản dịch Time Series Analysis Handbook</title>
+    <title>Chương 7: Tương quan chéo, Biến đổi Fourier và Biến đổi Wavelet (Cross-Correlations, Fourier Transform, and Wavelet Transform) &#8212; Bản dịch Time Series Analysis Handbook</title>
   
   
   
@@ -170,17 +170,17 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../00_Introduction/00_Introduction.html">Chương 0: Phân tích Chuỗi Thời gian Nâng cao</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_Introduction/00_Introduction.html">Chương 0: Phân tích Chuỗi Thời gian Nâng cao (Advanced Time Series Analysis)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../01_AutoRegressiveIntegratedMovingAverage/01_AutoRegressiveIntegratedMovingAverage.html">Chương 1: Trung bình trượt tích hợp tự hồi quy (ARIMA)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../02_LinearForecastingTrendandMomentumForecasting/02_LinearTrendandMomentumForecasting.html">Chương 2: Dự báo Tuyến tính, Xu hướng và Động lượng</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../03_VectorAutoregressiveModels/03_VectorAutoregressiveMethods.html">Chương 3: Các phương pháp Vectơ tự hồi quy (Vector Autoregressive Methods)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../04_GrangerCausality/04_GrangerCausality.html">Chương 4: Kiểm định nhân quả Granger (Granger Causality)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../05_SimplexandSmapProjections/05_Empirical%20Dynamic%20Modelling%20%28Simplex%20and%20SMap_Projections%29.html">Chương 5: Các phương pháp dự báo động lực (Simplex và SMap Projections)</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../06_ConvergentCrossMappingandSugiharaCausality/ccm_sugihara.html">Chương 6: Convergent Cross Mapping</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../06_ConvergentCrossMappingandSugiharaCausality/ccm_sugihara.html">Chương 6: Ánh xạ chéo hội tụ (Convergent Cross Mapping)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../06_ConvergentCrossMappingandSugiharaCausality/using_causal_ccm_package.html">Áp dụng CCM bằng gói causal-ccm</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Chương 7: Cross-Correlations, Fourier Transform, and Wavelet Transform</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Chương 7: Tương quan chéo, Biến đổi Fourier và Biến đổi Wavelet (Cross-Correlations, Fourier Transform, and Wavelet Transform)</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../08_WinningestMethods/lightgbm_m5_forecasting.html">Chapter 8: Winningest Methods in Time Series Forecasting</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../08_WinningestMethods/lightgbm_m5_tuning.html">Hyperparameter Tuning (Supplementary Notebook)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../08_WinningestMethods/lightgbm_jena_forecasting.html">Temperature Forecasting (Supplementary Notebook)</a></li>
@@ -324,7 +324,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Chương 7: Cross-Correlations, Fourier Transform, and Wavelet Transform</h1>
+    <h1>Chương 7: Tương quan chéo, Biến đổi Fourier và Biến đổi Wavelet (Cross-Correlations, Fourier Transform, and Wavelet Transform)</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -369,8 +369,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="chuong-7-cross-correlations-fourier-transform-and-wavelet-transform">
-<h1>Chương 7: Cross-Correlations, Fourier Transform, and Wavelet Transform<a class="headerlink" href="#chuong-7-cross-correlations-fourier-transform-and-wavelet-transform" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="chuong-7-tuong-quan-cheo-bien-doi-fourier-va-bien-doi-wavelet-cross-correlations-fourier-transform-and-wavelet-transform">
+<h1>Chương 7: Tương quan chéo, Biến đổi Fourier và Biến đổi Wavelet (Cross-Correlations, Fourier Transform, and Wavelet Transform)<a class="headerlink" href="#chuong-7-tuong-quan-cheo-bien-doi-fourier-va-bien-doi-wavelet-cross-correlations-fourier-transform-and-wavelet-transform" title="Permalink to this heading">#</a></h1>
 <p>Biên soạn bởi: Gilbert Chua</p>
 <p>Để đạt được sự hiểu biết sâu hơn về động lực học của chuỗi thời gian và phân loại chúng, chúng ta xem xét bài toán dự báo chuỗi thời gian dưới một góc nhìn khác.</p>
 <p>Trong chương này, chúng ta sẽ tiếp cận việc phân tích chuỗi thời gian theo một cách khác, mang tính bổ trợ cho dự báo. Trước đó, các phương pháp giải thích như Granger Causality, Simplex Mapping và Convergent Cross Mapping tập trung vào miền thời gian (time domain) — tức là các giá trị của chuỗi thời gian khi được đo theo thời gian hoặc trong không gian pha (phase space) của nó. Mặc dù cả hai cách tiếp cận này đều hữu ích cho nhiều bài toán, nhưng trong nhiều trường hợp, việc biến đổi các phép đo trong miền thời gian có thể giúp làm lộ ra những cấu trúc và mẫu hình vốn khó phát hiện trực tiếp. Cụ thể, chúng ta muốn xem xét miền tần số (frequency domain) nhằm vừa phân tích động lực của hệ, vừa thực hiện các kỹ thuật tiền xử lý có thể được sử dụng để biến đổi các tập dữ liệu trong thế giới thực.</p>
@@ -863,8 +863,8 @@ Critical Values:
 <section id="bien-doi-fourier">
 <h2>Biến đổi Fourier:<a class="headerlink" href="#bien-doi-fourier" title="Permalink to this heading">#</a></h2>
 <p>Việc biến đổi một tín hiệu từ miền thời gian sang miền tần số (<span class="math notranslate nohighlight">\(\omega\)</span>) bằng phương pháp này được gọi là \textbf{Fourier Transform (FT)}. FT được cho bởi:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1927eacb-a498-4108-968d-b7ed771a9155">
-<span class="eqno">(12)<a class="headerlink" href="#equation-1927eacb-a498-4108-968d-b7ed771a9155" title="Permalink to this equation">#</a></span>\[\begin{align} \hat{y}(\omega) = \int_{-\infty}^{\infty}{y(t)e^{-2\pi i \omega t}d\omega} \end{align}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-f1b6fd26-f441-4a2d-a11f-70fa93db4e55">
+<span class="eqno">(12)<a class="headerlink" href="#equation-f1b6fd26-f441-4a2d-a11f-70fa93db4e55" title="Permalink to this equation">#</a></span>\[\begin{align} \hat{y}(\omega) = \int_{-\infty}^{\infty}{y(t)e^{-2\pi i \omega t}d\omega} \end{align}\]</div>
 <p>Để hiểu rõ hơn về FT, chúng ta hãy xem xét một số ứng dụng của nó.</p>
 <section id="ft-cua-mot-tin-hieu-thuan-pure-signal">
 <h3>FT của một tín hiệu thuần (Pure Signal)<a class="headerlink" href="#ft-cua-mot-tin-hieu-thuan-pure-signal" title="Permalink to this heading">#</a></h3>
@@ -978,8 +978,8 @@ Critical Values:
 <h2>Lọc nhiễu<a class="headerlink" href="#loc-nhieu" title="Permalink to this heading">#</a></h2>
 <p>Dữ liệu chuỗi thời gian trong thực tế không bao giờ hoàn toàn không có nhiễu, điều này khiến việc xác định động lực thực sự của đại lượng được đo trở nên khó khăn. Chúng ta có thể vô tình đi mô hình hóa nhiễu và bỏ qua hành vi thực sự của chuỗi thời gian.</p>
 <p>Rất may, chúng ta có thể thao tác dữ liệu chuỗi thời gian trong miền tần số để loại bỏ một trong những loại nhiễu phổ biến nhất – nhiễu trắng. Nhiễu trắng xuất hiện phổ biến trong dữ liệu chuỗi thời gian và theo định nghĩa, nó có các thành phần ở mọi tần số. Thông thường, một chuỗi thời gian có nhiễu trắng được biểu diễn như sau:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9233b05f-e583-491c-82da-7a248e03c46e">
-<span class="eqno">(13)<a class="headerlink" href="#equation-9233b05f-e583-491c-82da-7a248e03c46e" title="Permalink to this equation">#</a></span>\[\begin{align} y(t) = s(t) + v(t) \end{align}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-9173d0a3-6213-4cb4-8f56-d220da810fd8">
+<span class="eqno">(13)<a class="headerlink" href="#equation-9173d0a3-6213-4cb4-8f56-d220da810fd8" title="Permalink to this equation">#</a></span>\[\begin{align} y(t) = s(t) + v(t) \end{align}\]</div>
 <p>trong đó <span class="math notranslate nohighlight">\(s(t)\)</span> là tín hiệu thực mà ta muốn khôi phục từ <span class="math notranslate nohighlight">\(y(t)\)</span> và <span class="math notranslate nohighlight">\(v(t)\)</span> là nhiễu trắng mà ta muốn loại bỏ. Chúng tôi mô phỏng điều này bên dưới bằng cách thêm nhiễu trắng vào tín hiệu.</p>
 <section id="loc-theo-muc-nang-luong">
 <h3>Lọc theo mức năng lượng<a class="headerlink" href="#loc-theo-muc-nang-luong" title="Permalink to this heading">#</a></h3>
