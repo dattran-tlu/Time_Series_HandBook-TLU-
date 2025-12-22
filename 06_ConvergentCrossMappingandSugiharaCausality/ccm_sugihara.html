@@ -68,7 +68,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Áp dụng CCM bằng gói causal-ccm" href="using_causal_ccm_package.html" />
-    <link rel="prev" title="Chapter 5 : Chương 5: Các phương pháp dự báo động lực (Simplex và SMap Projections)" href="../05_SimplexandSmapProjections/05_Empirical%20Dynamic%20Modelling%20%28Simplex%20and%20SMap_Projections%29.html" />
+    <link rel="prev" title="Chương 5: Các phương pháp dự báo động lực (Simplex và SMap Projections)" href="../05_SimplexandSmapProjections/05_Empirical%20Dynamic%20Modelling%20%28Simplex%20and%20SMap_Projections%29.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -174,13 +174,13 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../01_AutoRegressiveIntegratedMovingAverage/01_AutoRegressiveIntegratedMovingAverage.html">Chương 1: Trung bình trượt tích hợp tự hồi quy (ARIMA)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../02_LinearForecastingTrendandMomentumForecasting/02_LinearTrendandMomentumForecasting.html">Chương 2: Dự báo Tuyến tính, Xu hướng và Động lượng</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../03_VectorAutoregressiveModels/03_VectorAutoregressiveMethods.html">Chương 3: Các phương pháp Vectơ tự hồi quy (Vector Autoregressive Methods)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../04_GrangerCausality/04_GrangerCausality.html">Chapter 4: Chương 4: Kiểm định nhân quả Granger (Granger Causality)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../05_SimplexandSmapProjections/05_Empirical%20Dynamic%20Modelling%20%28Simplex%20and%20SMap_Projections%29.html">Chapter 5 : Chương 5: Các phương pháp dự báo động lực (Simplex và SMap Projections)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_GrangerCausality/04_GrangerCausality.html">Chương 4: Kiểm định nhân quả Granger (Granger Causality)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_SimplexandSmapProjections/05_Empirical%20Dynamic%20Modelling%20%28Simplex%20and%20SMap_Projections%29.html">Chương 5: Các phương pháp dự báo động lực (Simplex và SMap Projections)</a></li>
 <li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Chương 6: Convergent Cross Mapping</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="using_causal_ccm_package.html">Áp dụng CCM bằng gói causal-ccm</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1"><a class="reference internal" href="../07_CrosscorrelationsFourierTransformandWaveletTransform/07_CrosscorrelationsFourierTransformandWaveletTransform.html">Chapter 7: Cross-Correlations, Fourier Transform, and Wavelet Transform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../07_CrosscorrelationsFourierTransformandWaveletTransform/07_CrosscorrelationsFourierTransformandWaveletTransform.html">Chương 7: Cross-Correlations, Fourier Transform, and Wavelet Transform</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../08_WinningestMethods/lightgbm_m5_forecasting.html">Chapter 8: Winningest Methods in Time Series Forecasting</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../08_WinningestMethods/lightgbm_m5_tuning.html">Hyperparameter Tuning (Supplementary Notebook)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../08_WinningestMethods/lightgbm_jena_forecasting.html">Temperature Forecasting (Supplementary Notebook)</a></li>
@@ -407,7 +407,7 @@ document.write(`
 <p>Chúng ta sẽ lần lượt đi qua các ý tưởng cốt lõi của CCM, cách phương pháp này giải quyết các hạn chế của nhân quả Granger, và thuật toán đứng sau nó. Sau đó, chúng ta sẽ kiểm nghiệm khuôn khổ CCM trên dữ liệu mô phỏng, trong đó chúng ta cố ý điều chỉnh mức độ ảnh hưởng của một biến lên biến còn lại. Cuối cùng, chúng ta sẽ áp dụng CCM lên một số dữ liệu thực tế để suy luận các mối quan hệ giữa các biến trong một hệ thống.</p>
 <section id="goi-causal-ccm">
 <h3>Gói causal-ccm<a class="headerlink" href="#goi-causal-ccm" title="Permalink to this heading">#</a></h3>
-<p>Chương này giải thích chi tiết phương pháp CCM. Nếu bạn muốn áp dụng phương pháp này trong các dự án của riêng mình, hãy cài đặt framework bằng lệnh pip install causal-ccm. Xem notebook using_causal_ccm_package.ipynb để biết chi tiết cách sử dụng.</p>
+<p>Chương này giải thích chi tiết phương pháp CCM. Nếu bạn muốn áp dụng phương pháp này trong các dự án của riêng mình, hãy cài đặt framework bằng lệnh <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">causal-ccm</span></code>. Xem notebook <code class="docutils literal notranslate"><span class="pre">using_causal_ccm_package.ipynb</span></code> để biết chi tiết cách sử dụng.</p>
 </section>
 <section id="tam-quan-trong-cua-viec-hieu-nhan-qua">
 <h3>Tầm quan trọng của việc hiểu Nhân quả<a class="headerlink" href="#tam-quan-trong-cua-viec-hieu-nhan-qua" title="Permalink to this heading">#</a></h3>
@@ -2056,7 +2056,7 @@ A test of Convergent Cross-Mapping. arXiv</a></p></li>
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Chapter 5 : Chương 5: Các phương pháp dự báo động lực (Simplex và SMap Projections)</p>
+        <p class="prev-next-title">Chương 5: Các phương pháp dự báo động lực (Simplex và SMap Projections)</p>
       </div>
     </a>
     <a class="right-next"
