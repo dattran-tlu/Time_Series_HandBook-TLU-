@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Chapter 6: Convergent Cross Mapping &#8212; Bản dịch Time Series Analysis Handbook</title>
+    <title>Chương 6: Convergent Cross Mapping &#8212; Bản dịch Time Series Analysis Handbook</title>
   
   
   
@@ -68,7 +68,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Applying CCM Using causal-ccm package" href="using_causal_ccm_package.html" />
-    <link rel="prev" title="Chapter 5 : Dynamical Forecasting Methods (Simplex and SMap Projections)" href="../05_SimplexandSmapProjections/05_Empirical%20Dynamic%20Modelling%20%28Simplex%20and%20SMap_Projections%29.html" />
+    <link rel="prev" title="Chapter 5 : Chương 5: Các phương pháp dự báo động lực (Simplex và SMap Projections)" href="../05_SimplexandSmapProjections/05_Empirical%20Dynamic%20Modelling%20%28Simplex%20and%20SMap_Projections%29.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -171,12 +171,12 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../00_Introduction/00_Introduction.html">Chương 0: Phân tích Chuỗi Thời gian Nâng cao</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../01_AutoRegressiveIntegratedMovingAverage/01_AutoRegressiveIntegratedMovingAverage.html">Chương 1: Mô hình Trung bình động tích hợp tự hồi quy (AutoRegressive Integrated Moving Average - ARIMA)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../02_LinearForecastingTrendandMomentumForecasting/02_LinearTrendandMomentumForecasting.html">Chapter 2: Linear, Trend, and Momentum Forecasting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../03_VectorAutoregressiveModels/03_VectorAutoregressiveMethods.html">Chapter 3: Vector Autoregressive Methods</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../04_GrangerCausality/04_GrangerCausality.html">Chapter 4: Granger Causality Test</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../05_SimplexandSmapProjections/05_Empirical%20Dynamic%20Modelling%20%28Simplex%20and%20SMap_Projections%29.html">Chapter 5 : Dynamical Forecasting Methods (Simplex and SMap Projections)</a></li>
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Chapter 6: Convergent Cross Mapping</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1"><a class="reference internal" href="../01_AutoRegressiveIntegratedMovingAverage/01_AutoRegressiveIntegratedMovingAverage.html">Chương 1: Trung bình trượt tích hợp tự hồi quy (ARIMA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_LinearForecastingTrendandMomentumForecasting/02_LinearTrendandMomentumForecasting.html">Chương 2: Dự báo Tuyến tính, Xu hướng và Động lượng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_VectorAutoregressiveModels/03_VectorAutoregressiveMethods.html">Chương 3: Các phương pháp Vectơ tự hồi quy (Vector Autoregressive Methods)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_GrangerCausality/04_GrangerCausality.html">Chapter 4: Chương 4: Kiểm định nhân quả Granger (Granger Causality)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_SimplexandSmapProjections/05_Empirical%20Dynamic%20Modelling%20%28Simplex%20and%20SMap_Projections%29.html">Chapter 5 : Chương 5: Các phương pháp dự báo động lực (Simplex và SMap Projections)</a></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Chương 6: Convergent Cross Mapping</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="using_causal_ccm_package.html">Applying CCM Using causal-ccm package</a></li>
 </ul>
 </details></li>
@@ -324,7 +324,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Chapter 6: Convergent Cross Mapping</h1>
+    <h1>Chương 6: Convergent Cross Mapping</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -334,32 +334,32 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#causal-ccm-package">causal-ccm Package</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#importance-of-understanding-causality">Importance of Understanding Causality</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#limitations-of-granger-causality">Limitations of Granger Causality</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ccm-addresses-limits-of-granger-causality">CCM addresses limits of Granger causality</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gioi-thieu">Giới thiệu</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#goi-causal-ccm">Gói causal-ccm</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tam-quan-trong-cua-viec-hieu-nhan-qua">Tầm quan trọng của việc hiểu Nhân quả</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#han-che-cua-nhan-qua-granger">Hạn chế của Nhân quả Granger</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ccm-giai-quyet-cac-han-che-cua-nhan-qua-granger">CCM giải quyết các hạn chế của Nhân quả Granger</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#related-concepts">Related Concepts</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deterministic-dynamical-systems">Deterministic Dynamical Systems</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attractors">Attractors</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#takens-embedding-theorem-and-shadow-manifolds">Takens’ Embedding Theorem and Shadow Manifolds</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cac-khai-niem-lien-quan">Các khái niệm liên quan</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#he-dong-luc-xac-dinh-deterministic-dynamical-systems">Hệ động lực xác định (Deterministic Dynamical Systems)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bo-hut-attractors">Bộ hút (Attractors)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dinh-ly-nhung-takens-va-cac-da-tap-bong-shadow-manifolds">Định lý nhúng Takens và các đa tạp bóng (Shadow Manifolds)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview-of-ccm">Overview of CCM</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-mapping">Cross Mapping</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convergence">Convergence</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tong-quan-ve-ccm">Tổng quan về CCM</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-mapping-anh-xa-cheo">Cross Mapping (Ánh xạ chéo)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hoi-tu-convergence">Hội tụ (Convergence)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-our-sample-system">Defining our Sample System</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#xac-dinh-he-thong-mau-cua-chung-ta">Xác định hệ thống mẫu của chúng ta</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ccm-algorithm">CCM Algorithm</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-ccm-functions">Defining CCM Functions</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#functions-for-visualizing">Functions for Visualizing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dinh-nghia-cac-ham-trong-ccm">Định nghĩa các hàm trong CCM</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cac-ham-dung-de-truc-quan-hoa">Các hàm dùng để trực quan hóa</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#applying-ccm-to-our-sample-systems">Applying CCM to our Sample Systems</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#can-ccm-predict-causality-in-our-test-system">Can CCM predict causality in our test system?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ccm-co-the-du-doan-quan-he-nhan-qua-trong-he-kiem-thu-cua-chung-ta-khong">CCM có thể dự đoán quan hệ nhân quả trong hệ kiểm thử của chúng ta không?</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-betas-affect-causality-as-indicated-by-convergence">How Betas Affect Causality As Indicated By Convergence</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-if-asymmetrically-coupled-the-effect-is-only-in-one-direction">What if asymmetrically coupled (the effect is only in one direction)?</a></li>
 </ul>
@@ -398,83 +398,84 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="chapter-6-convergent-cross-mapping">
-<h1>Chapter 6: Convergent Cross Mapping<a class="headerlink" href="#chapter-6-convergent-cross-mapping" title="Permalink to this heading">#</a></h1>
-<p>Prepared by: Prince Joseph Erneszer Javier</p>
-<section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
-<p>In the previous chapters we talked about Simplex Projection, a forecasting technique that looks for similar trends in the past to forecast the future by computing for nearest neighbors on an embedding. In this chapter, we discuss  Convergent Cross Mapping (CCM) also formulated by <a class="reference external" href="https://science.sciencemag.org/content/338/6106/496">Sugihara et al., 2012</a> as a methodology that uses ideas from Simplex Projection to identify causality between variables in a complex dynamical system (e.g. ecosystem) using just time series data.</p>
-<p>We will go through the key ideas of CCM, how it addresses the limitations of Granger causality, and the algorithm behind it. We will then test the CCM framework on simulated data where we will deliberately adjust the influence of one variable over the other. Finally, we will apply CCM on some real world data to infer the relationships between variables in a system.</p>
-<section id="causal-ccm-package">
-<h3>causal-ccm Package<a class="headerlink" href="#causal-ccm-package" title="Permalink to this heading">#</a></h3>
-<p>This chapter explains the CCM methodology in detail. If you wish to apply this in your own projects, install the framework using <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">causal-ccm</span></code>. See <code class="docutils literal notranslate"><span class="pre">using_causal_ccm_package.ipynb</span></code> notebook for details how to use.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="chuong-6-convergent-cross-mapping">
+<h1>Chương 6: Convergent Cross Mapping<a class="headerlink" href="#chuong-6-convergent-cross-mapping" title="Permalink to this heading">#</a></h1>
+<p>Biên soạn bởi: Prince Joseph Erneszer Javier</p>
+<section id="gioi-thieu">
+<h2>Giới thiệu<a class="headerlink" href="#gioi-thieu" title="Permalink to this heading">#</a></h2>
+<p>Trong các chương trước, chúng ta đã nói về Simplex Projection, một kỹ thuật dự báo tìm kiếm các xu hướng tương tự trong quá khứ để dự báo tương lai bằng cách tính toán các láng giềng gần nhất trong một embedding. Trong chương này, chúng ta thảo luận về Convergent Cross Mapping (CCM), cũng được đề xuất bởi <a class="reference external" href="https://science.sciencemag.org/content/338/6106/496">Sugihara et al., 2012</a> như một phương pháp sử dụng các ý tưởng từ Simplex Projection để xác định quan hệ nhân quả giữa các biến trong một hệ động lực phức tạp (ví dụ: hệ sinh thái) chỉ bằng dữ liệu chuỗi thời gian.</p>
+<p>Chúng ta sẽ lần lượt đi qua các ý tưởng cốt lõi của CCM, cách phương pháp này giải quyết các hạn chế của nhân quả Granger, và thuật toán đứng sau nó. Sau đó, chúng ta sẽ kiểm nghiệm khuôn khổ CCM trên dữ liệu mô phỏng, trong đó chúng ta cố ý điều chỉnh mức độ ảnh hưởng của một biến lên biến còn lại. Cuối cùng, chúng ta sẽ áp dụng CCM lên một số dữ liệu thực tế để suy luận các mối quan hệ giữa các biến trong một hệ thống.</p>
+<section id="goi-causal-ccm">
+<h3>Gói causal-ccm<a class="headerlink" href="#goi-causal-ccm" title="Permalink to this heading">#</a></h3>
+<p>Chương này giải thích chi tiết phương pháp CCM. Nếu bạn muốn áp dụng phương pháp này trong các dự án của riêng mình, hãy cài đặt framework bằng lệnh pip install causal-ccm. Xem notebook using_causal_ccm_package.ipynb để biết chi tiết cách sử dụng.</p>
 </section>
-<section id="importance-of-understanding-causality">
-<h3>Importance of Understanding Causality<a class="headerlink" href="#importance-of-understanding-causality" title="Permalink to this heading">#</a></h3>
-<p>We define causality as the influence of one variable on another. Understanding causality is important because it allows us to:</p>
+<section id="tam-quan-trong-cua-viec-hieu-nhan-qua">
+<h3>Tầm quan trọng của việc hiểu Nhân quả<a class="headerlink" href="#tam-quan-trong-cua-viec-hieu-nhan-qua" title="Permalink to this heading">#</a></h3>
+<p>Chúng ta định nghĩa nhân quả là sự ảnh hưởng của một biến lên một biến khác. Việc hiểu nhân quả là quan trọng vì nó cho phép chúng ta:</p>
 <ul class="simple">
-<li><p>Explain phenomena that they are not necessarily supernatural/paranormal</p></li>
-<li><p>Anticipate the future and make the necessary adjustments</p></li>
-<li><p>Apply interventions in the system to achieve desired outcomes</p></li>
+<li><p>Giải thích các hiện tượng mà không nhất thiết là siêu nhiên / huyền bí</p></li>
+<li><p>Dự đoán tương lai và đưa ra các điều chỉnh cần thiết</p></li>
+<li><p>Áp dụng các can thiệp vào hệ thống để đạt được các kết quả mong muốn</p></li>
 </ul>
 </section>
-<section id="limitations-of-granger-causality">
-<h3>Limitations of Granger Causality<a class="headerlink" href="#limitations-of-granger-causality" title="Permalink to this heading">#</a></h3>
-<p>In chapter 4, we talked about a framework for establishing causality in a system called Granger Causality. However Granger Causality has its limitations.</p>
-<p>The intuition behind Granger causality is that a variable A causes B if we have a model that improves prediction of B if we include A. This framework assumes that we can “separate” the information about A from the rest of the system. However, in many systems that have interacting parts, information about a variable may not necessarily be removable from the rest of the system. They are integrated or in other words, not separable.</p>
-<p>Granger causality framework does not apply to cases where information about variables are not separable from the rest of the system especially for those whose causalities are weak to moderate (like in our test systems in the following sections). Finally, Granger Causality is dependent on the performance of a linear predictive model that assumes linear combination of variables. This model may not perform well for some systems that need nonlinear models to improve predictions.</p>
+<section id="han-che-cua-nhan-qua-granger">
+<h3>Hạn chế của Nhân quả Granger<a class="headerlink" href="#han-che-cua-nhan-qua-granger" title="Permalink to this heading">#</a></h3>
+<p>Trong Chương 4, chúng ta đã thảo luận về một khuôn khổ để thiết lập nhân quả trong một hệ thống, được gọi là Nhân quả Granger. Tuy nhiên, Nhân quả Granger có những hạn chế nhất định.</p>
+<p>Trực giác đằng sau Nhân quả Granger là: một biến A gây ra B nếu chúng ta có một mô hình giúp cải thiện việc dự báo B khi chúng ta đưa A vào. Khuôn khổ này giả định rằng chúng ta có thể “tách” thông tin về A ra khỏi phần còn lại của hệ thống. Tuy nhiên, trong nhiều hệ thống có các thành phần tương tác với nhau, thông tin về một biến không nhất thiết có thể được loại bỏ khỏi phần còn lại của hệ thống. Chúng được tích hợp với nhau, hay nói cách khác, không thể tách rời.</p>
+<p>Khuôn khổ Nhân quả Granger không áp dụng được cho các trường hợp mà thông tin về các biến không thể tách rời khỏi phần còn lại của hệ thống, đặc biệt đối với những hệ có mối quan hệ nhân quả yếu đến trung bình (như trong các hệ thống thử nghiệm của chúng ta ở các phần tiếp theo). Cuối cùng, Nhân quả Granger phụ thuộc vào hiệu năng của một mô hình dự báo tuyến tính, vốn giả định sự kết hợp tuyến tính của các biến. Mô hình này có thể không hoạt động tốt đối với một số hệ thống cần các mô hình phi tuyến để cải thiện khả năng dự báo.</p>
 </section>
-<section id="ccm-addresses-limits-of-granger-causality">
-<h3>CCM addresses limits of Granger causality<a class="headerlink" href="#ccm-addresses-limits-of-granger-causality" title="Permalink to this heading">#</a></h3>
-<p>Convergent Cross Mapping is designed to identify and quantify causalities in systems whose variables are not separable. Beyond this, it is designed to identify and quantify weak to moderate causalities, which Granger Causality may miss. Finally, CCM is independent of a predictive model so we’re not at the mercy of model performance.</p>
+<section id="ccm-giai-quyet-cac-han-che-cua-nhan-qua-granger">
+<h3>CCM giải quyết các hạn chế của Nhân quả Granger<a class="headerlink" href="#ccm-giai-quyet-cac-han-che-cua-nhan-qua-granger" title="Permalink to this heading">#</a></h3>
+<p>Convergent Cross Mapping (CCM) được thiết kế để xác định và định lượng quan hệ nhân quả trong các hệ mà các biến không thể tách rời. Ngoài ra, CCM còn được thiết kế để xác định và định lượng các mối quan hệ nhân quả yếu đến trung bình, những mối quan hệ mà Nhân quả Granger có thể bỏ sót. Cuối cùng, CCM không phụ thuộc vào một mô hình dự báo cụ thể, vì vậy chúng ta không bị lệ thuộc vào hiệu năng của mô hình.</p>
 </section>
 </section>
-<section id="related-concepts">
-<h2>Related Concepts<a class="headerlink" href="#related-concepts" title="Permalink to this heading">#</a></h2>
-<p>We briefly discuss key concepts related to CCM. Many of these concepts have been tackled in depth in the previous chapter: Dynamical Forecasting Methods</p>
-<section id="deterministic-dynamical-systems">
-<h3>Deterministic Dynamical Systems<a class="headerlink" href="#deterministic-dynamical-systems" title="Permalink to this heading">#</a></h3>
-<p>“Deterministic” means there’s no randomness in the system (even if it may look random, e.g. chaos). “Dynamical” means the values or “states” of the system change over time. “System” means it’s a set of things that interact with each other.</p>
+<section id="cac-khai-niem-lien-quan">
+<h2>Các khái niệm liên quan<a class="headerlink" href="#cac-khai-niem-lien-quan" title="Permalink to this heading">#</a></h2>
+<p>Chúng ta sẽ thảo luận ngắn gọn các khái niệm then chốt liên quan đến CCM. Nhiều khái niệm trong số này đã được trình bày chi tiết trong chương trước: Các phương pháp dự báo động lực học.</p>
+<section id="he-dong-luc-xac-dinh-deterministic-dynamical-systems">
+<h3>Hệ động lực xác định (Deterministic Dynamical Systems)<a class="headerlink" href="#he-dong-luc-xac-dinh-deterministic-dynamical-systems" title="Permalink to this heading">#</a></h3>
+<p>“Xác định” (deterministic) nghĩa là không có tính ngẫu nhiên trong hệ (ngay cả khi hệ trông có vẻ ngẫu nhiên, ví dụ như hỗn loạn). “Động lực” (dynamical) nghĩa là các giá trị hay “trạng thái” của hệ thay đổi theo thời gian. “Hệ” (system) nghĩa là đó là một tập hợp các thành phần tương tác với nhau.</p>
 </section>
-<section id="attractors">
-<h3>Attractors<a class="headerlink" href="#attractors" title="Permalink to this heading">#</a></h3>
+<section id="bo-hut-attractors">
+<h3>Bộ hút (Attractors)<a class="headerlink" href="#bo-hut-attractors" title="Permalink to this heading">#</a></h3>
 <img alt="https://fromsystosys.netlify.com/img/lorenz_custom_pers_small.gif" src="https://fromsystosys.netlify.com/img/lorenz_custom_pers_small.gif" />
-<p>An attractor is a “space” of states that the system tends to get attracted to as time goes on. When attractors can be thought of as curved spaces, they are called “manifolds.” I like to think of attractors as a way to summarize our system, like an embedding layer in a neural network architecture.</p>
-<p><em>Q: What do you think is the simplest type of attractor?</em></p>
+<p>Một bộ hút là một “không gian” các trạng thái mà hệ có xu hướng bị hút về khi thời gian trôi đi. Khi các bộ hút có thể được xem như những không gian cong, chúng được gọi là đa tạp (manifolds). Chúng ta có thể hình dung bộ hút như một cách để tóm tắt hệ thống, tương tự như một tầng embedding trong kiến trúc mạng nơ-ron.</p>
+<p><em>Câu hỏi: Theo bạn, loại bộ hút đơn giản nhất là gì?</em></p>
 </section>
-<section id="takens-embedding-theorem-and-shadow-manifolds">
-<h3>Takens’ Embedding Theorem and Shadow Manifolds<a class="headerlink" href="#takens-embedding-theorem-and-shadow-manifolds" title="Permalink to this heading">#</a></h3>
+<section id="dinh-ly-nhung-takens-va-cac-da-tap-bong-shadow-manifolds">
+<h3>Định lý nhúng Takens và các đa tạp bóng (Shadow Manifolds)<a class="headerlink" href="#dinh-ly-nhung-takens-va-cac-da-tap-bong-shadow-manifolds" title="Permalink to this heading">#</a></h3>
 <a class="reference internal image-reference" href="https://www.researchgate.net/profile/Pablo_Verdes/publication/51595532/figure/fig4/AS:305687352627206&#64;1449892952960/Color-online-Schematic-representation-of-the-measurement-process-and-reconstruction-of.png"><img alt="https://www.researchgate.net/profile/Pablo_Verdes/publication/51595532/figure/fig4/AS:305687352627206&#64;1449892952960/Color-online-Schematic-representation-of-the-measurement-process-and-reconstruction-of.png" src="https://www.researchgate.net/profile/Pablo_Verdes/publication/51595532/figure/fig4/AS:305687352627206&#64;1449892952960/Color-online-Schematic-representation-of-the-measurement-process-and-reconstruction-of.png" style="width: 500px;" /></a>
 <p>Uzal, Lucas &amp; Grinblat, G &amp; Verdes, Pablo. (2011). Optimal reconstruction of dynamical systems: A noise amplification approach. Physical review. E, Statistical, nonlinear, and soft matter physics. 84. 016223. 10.1103/PhysRevE.84.016223.</p>
-<p>From the term “shadow”, shadow manifolds are “projections” of the true system manifold on some variable <span class="math notranslate nohighlight">\(X\)</span>. What Takens’ theorem tells us is if <span class="math notranslate nohighlight">\(X\)</span> belongs to a system <span class="math notranslate nohighlight">\(S\)</span> then we can generate a shadow manifold of the true manifold <span class="math notranslate nohighlight">\(M_s\)</span> using vectors of lagged (historical) values of <span class="math notranslate nohighlight">\(X\)</span>. The points in this shadow manifold <span class="math notranslate nohighlight">\(M_x\)</span> will have a 1:1 correspondence with the points in the true (unknown) manifold <span class="math notranslate nohighlight">\(M_s\)</span>.</p>
+<p>Từ thuật ngữ “shadow”, đa tạp bóng là các “phép chiếu” của đa tạp hệ thực lên một biến nào đó X. Điều mà định lý Takens cho chúng ta biết là: nếu <span class="math notranslate nohighlight">\(X\)</span> thuộc về một hệ <span class="math notranslate nohighlight">\(S\)</span>, thì chúng ta có thể tạo ra một đa tạp bóng của đa tạp thực <span class="math notranslate nohighlight">\(M_s\)</span>, thì chúng ta có thể tạo ra một đa tạp bóng của đa tạp thực <span class="math notranslate nohighlight">\(X\)</span>. Các điểm trong đa tạp bóng này <span class="math notranslate nohighlight">\(M_x\)</span> sẽ có ánh xạ một–một với các điểm trong đa tạp thực (chưa biết) <span class="math notranslate nohighlight">\(M_s\)</span>.</p>
 </section>
 </section>
-<section id="overview-of-ccm">
-<h2>Overview of CCM<a class="headerlink" href="#overview-of-ccm" title="Permalink to this heading">#</a></h2>
+<section id="tong-quan-ve-ccm">
+<h2>Tổng quan về CCM<a class="headerlink" href="#tong-quan-ve-ccm" title="Permalink to this heading">#</a></h2>
 <a class="reference internal image-reference" href="https://media.springernature.com/lw785/springer-static/image/chp%3A10.1007%2F978-3-319-58895-7_27/MediaObjects/429072_1_En_27_Fig1_HTML.gif"><img alt="https://media.springernature.com/lw785/springer-static/image/chp%3A10.1007%2F978-3-319-58895-7_27/MediaObjects/429072_1_En_27_Fig1_HTML.gif" src="https://media.springernature.com/lw785/springer-static/image/chp%3A10.1007%2F978-3-319-58895-7_27/MediaObjects/429072_1_En_27_Fig1_HTML.gif" style="width: 400px;" /></a>
 <p>Tsonis A.A., Deyle E.R., Ye H., Sugihara G. (2018) Convergent Cross Mapping: Theory and an Example. In: Tsonis A. (eds) Advances in Nonlinear Geosciences. Springer, Cham. https://doi.org/10.1007/978-3-319-58895-7_27</p>
-<section id="cross-mapping">
-<h3>Cross Mapping<a class="headerlink" href="#cross-mapping" title="Permalink to this heading">#</a></h3>
-<p>In a system <span class="math notranslate nohighlight">\(Y=f(X,Y)\)</span>, cross Mapping means given the points on the manifold of one variable <span class="math notranslate nohighlight">\(M_y\)</span>, we look for the corresponding points on <span class="math notranslate nohighlight">\(M_x\)</span>, i.e. points at the same time <span class="math notranslate nohighlight">\(t\)</span>.</p>
-<p>If <span class="math notranslate nohighlight">\(X\)</span> causes <span class="math notranslate nohighlight">\(Y\)</span>, then we say some information about <span class="math notranslate nohighlight">\(X\)</span> gets stored in <span class="math notranslate nohighlight">\(Y\)</span>. If this is the case, then we can predict the values of <span class="math notranslate nohighlight">\(X\)</span> given values from <span class="math notranslate nohighlight">\(Y\)</span>. Note that this sounds counter intuitive. We contrast this with Granger causality which says that <span class="math notranslate nohighlight">\(X\)</span> causes <span class="math notranslate nohighlight">\(Y\)</span> if we can predict <span class="math notranslate nohighlight">\(Y\)</span> better given <span class="math notranslate nohighlight">\(X\)</span>.</p>
-<p>We use shadow manifolds because we do not know the true manifold of the system. Given Takens’ theorem however, we can say that we can compute shadow manifolds <span class="math notranslate nohighlight">\(M_x\)</span> and <span class="math notranslate nohighlight">\(M_y\)</span> which then cross map with 1:1 correspondence to the true manifold of the system.</p>
-<p>If we use the analogy that manifolds are “summaries” of system, we can think of <span class="math notranslate nohighlight">\(M_x\)</span> and <span class="math notranslate nohighlight">\(M_y\)</span> as summaries of <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span>. If <span class="math notranslate nohighlight">\(X\)</span> causes <span class="math notranslate nohighlight">\(Y\)</span>, information from <span class="math notranslate nohighlight">\(X\)</span> gets embedded in <span class="math notranslate nohighlight">\(Y\)</span>. It follows that we can then use <span class="math notranslate nohighlight">\(M_x\)</span> to predict <span class="math notranslate nohighlight">\(Y\)</span>, i.e. <span class="math notranslate nohighlight">\(\hat{Y}|M_x\)</span>. Finally, we can use the “accuracy” (MAE, MSE, or correlation) of this prediction as our metric for causality.</p>
+<section id="cross-mapping-anh-xa-cheo">
+<h3>Cross Mapping (Ánh xạ chéo)<a class="headerlink" href="#cross-mapping-anh-xa-cheo" title="Permalink to this heading">#</a></h3>
+<p>Trong một hệ <span class="math notranslate nohighlight">\(Y=f(X,Y)\)</span>, cross Mapping có nghĩa là: với các điểm trên đa tạp của một biến <span class="math notranslate nohighlight">\(M_y\)</span>, ta tìm các điểm tương ứng trên <span class="math notranslate nohighlight">\(M_x\)</span>, tức là các điểm tại cùng thời điểm <span class="math notranslate nohighlight">\(t\)</span>.</p>
+<p>Nếu <span class="math notranslate nohighlight">\(X\)</span> gây ra <span class="math notranslate nohighlight">\(Y\)</span>, thì ta nói rằng một phần thông tin của <span class="math notranslate nohighlight">\(X\)</span> được lưu trữ trong <span class="math notranslate nohighlight">\(Y\)</span>. Nếu điều này đúng, thì ta có thể dự đoán giá trị của <span class="math notranslate nohighlight">\(X\)</span> dựa trên các giá trị của <span class="math notranslate nohighlight">\(Y\)</span>. Lưu ý rằng điều này nghe có vẻ ngược trực giác. Điều này đối lập với nhân quả Granger, vốn cho rằng <span class="math notranslate nohighlight">\(X\)</span> gây ra <span class="math notranslate nohighlight">\(Y\)</span> nếu ta có thể dự đoán <span class="math notranslate nohighlight">\(Y\)</span> tốt hơn khi biết <span class="math notranslate nohighlight">\(X\)</span>.</p>
+<p>Chúng ta sử dụng đa tạp bóng (shadow manifolds) vì ta không biết đa tạp thực của hệ. Tuy nhiên, theo định lý Takens, ta có thể khẳng định rằng ta có thể xây dựng các đa tạp bóng <span class="math notranslate nohighlight">\(M_x\)</span> và <span class="math notranslate nohighlight">\(M_y\)</span>, và các đa tạp này sẽ ánh xạ chéo với quan hệ một–một tới đa tạp thực của hệ.</p>
+<p>Nếu dùng phép so sánh rằng các đa tạp là những “bản tóm tắt” của hệ thống, thì ta có thể xem <span class="math notranslate nohighlight">\(M_x\)</span> và <span class="math notranslate nohighlight">\(M_y\)</span> là các bản tóm tắt của <span class="math notranslate nohighlight">\(X\)</span> và <span class="math notranslate nohighlight">\(Y\)</span>. Nếu <span class="math notranslate nohighlight">\(X\)</span> gây ra <span class="math notranslate nohighlight">\(Y\)</span>, thông tin từ <span class="math notranslate nohighlight">\(X\)</span> sẽ được nhúng vào <span class="math notranslate nohighlight">\(Y\)</span>. Do đó, ta có thể sử dụng <span class="math notranslate nohighlight">\(M_x\)</span> để dự đoán <span class="math notranslate nohighlight">\(Y\)</span>, tức là <span class="math notranslate nohighlight">\(\hat{Y}|M_x\)</span>. Cuối cùng, ta sử dụng độ chính xác của phép dự đoán này (MAE, MSE hoặc hệ số tương quan) làm thước đo nhân quả.</p>
 </section>
-<section id="convergence">
-<h3>Convergence<a class="headerlink" href="#convergence" title="Permalink to this heading">#</a></h3>
-<p>Convergence in CCM means that for variables with causalities, the longer our observation period (or more data we gather), the better we can predict one variable using the other. In the attractor example above, we can imagine the attractor will get denser as time goes on since our system will eventually fill in some of the gaps in the manifold. Stated another way, more defined manifolds imply that for variables with causalities, we can expect the accuracy of <span class="math notranslate nohighlight">\(\hat{Y}|M_x\)</span> to improve. If two variables have no causal link, then improving their manifolds will not translate to improvement in predictions.</p>
-<p>Cross mapping and convergence are two requirements in the CCM framework that we need to satisfy to consider the possiblity of causality between variables.</p>
+<section id="hoi-tu-convergence">
+<h3>Hội tụ (Convergence)<a class="headerlink" href="#hoi-tu-convergence" title="Permalink to this heading">#</a></h3>
+<p>Hội tụ trong CCM có nghĩa là: đối với các biến có quan hệ nhân quả, thời gian quan sát càng dài (hoặc dữ liệu càng nhiều), thì ta càng có thể dự đoán tốt hơn một biến bằng cách sử dụng biến còn lại.</p>
+<p>Trong ví dụ về bộ hút ở trên, ta có thể hình dung rằng bộ hút sẽ trở nên dày đặc hơn theo thời gian, vì hệ thống cuối cùng sẽ lấp đầy các khoảng trống trong đa tạp. Nói cách khác, các đa tạp càng được xác định rõ thì, đối với các biến có quan hệ nhân quả, ta càng kỳ vọng độ chính xác của <span class="math notranslate nohighlight">\(\hat{Y}|M_x\)</span> sẽ được cải thiện. Nếu hai biến không có mối liên kết nhân quả, thì việc cải thiện chất lượng đa tạp của chúng sẽ không dẫn đến sự cải thiện trong dự đoán.</p>
+<p>Cross mapping và convergence là hai điều kiện bắt buộc trong khuôn khổ CCM mà ta cần thỏa mãn để có thể xem xét khả năng tồn tại quan hệ nhân quả giữa các biến.</p>
 </section>
 </section>
-<section id="defining-our-sample-system">
-<h2>Defining our Sample System<a class="headerlink" href="#defining-our-sample-system" title="Permalink to this heading">#</a></h2>
-<p>We show here a sample nonlinear system. Here, we explicitly defined <span class="math notranslate nohighlight">\(X\)</span> to be influenced by <span class="math notranslate nohighlight">\(Y\)</span> and vice versa. The effect of <span class="math notranslate nohighlight">\(X\)</span> on <span class="math notranslate nohighlight">\(Y\)</span> is a factor of <span class="math notranslate nohighlight">\(\beta_{y,x}\)</span> and the effect of <span class="math notranslate nohighlight">\(Y\)</span> on <span class="math notranslate nohighlight">\(X\)</span> is a factor of <span class="math notranslate nohighlight">\(\beta_{x,y}\)</span>. One way to read <span class="math notranslate nohighlight">\(\beta_{y,x}\)</span>: “the influence of <span class="math notranslate nohighlight">\(x\)</span> on <span class="math notranslate nohighlight">\(y\)</span>”. <span class="math notranslate nohighlight">\(r_x\)</span> and <span class="math notranslate nohighlight">\(r_y\)</span> are some constants that affect how chaotic the system is. As we increase <span class="math notranslate nohighlight">\(r\)</span> say <span class="math notranslate nohighlight">\(r &gt; 3.5\)</span> we get more unpredictable (“chaotic”) behavior.</p>
+<section id="xac-dinh-he-thong-mau-cua-chung-ta">
+<h2>Xác định hệ thống mẫu của chúng ta<a class="headerlink" href="#xac-dinh-he-thong-mau-cua-chung-ta" title="Permalink to this heading">#</a></h2>
+<p>Ở đây, chúng tôi trình bày một hệ phi tuyến mẫu. Trong hệ này, chúng tôi xác định rõ ràng rằng <span class="math notranslate nohighlight">\(X\)</span> chịu ảnh hưởng bởi <span class="math notranslate nohighlight">\(Y\)</span> và ngược lại. Mức độ tác động của <span class="math notranslate nohighlight">\(X\)</span> lên <span class="math notranslate nohighlight">\(Y\)</span> được biểu diễn bởi hệ số <span class="math notranslate nohighlight">\(\beta_{y,x}\)</span> và mức độ tác động của <span class="math notranslate nohighlight">\(Y\)</span> lên <span class="math notranslate nohighlight">\(X\)</span> được biểu diễn bởi hệ số <span class="math notranslate nohighlight">\(\beta_{x,y}\)</span>. Một cách đọc của <span class="math notranslate nohighlight">\(\beta_{y,x}\)</span>là: “mức độ ảnh hưởng của <span class="math notranslate nohighlight">\(x\)</span> lên <span class="math notranslate nohighlight">\(y\)</span>”. Các tham số <span class="math notranslate nohighlight">\(r_x\)</span> và <span class="math notranslate nohighlight">\(r_y\)</span> là những hằng số ảnh hưởng đến mức độ hỗn loạn (chaotic) của hệ thống. Khi ta tăng giá trị <span class="math notranslate nohighlight">\(r\)</span>, ví dụ khi <span class="math notranslate nohighlight">\(r &gt; 3.5\)</span>, hệ thống sẽ thể hiện hành vi ngày càng khó dự đoán (tức là hỗn loạn).</p>
 <p><span class="math notranslate nohighlight">\(X(t+1)=X(t)[r_x-r_xX_t-\beta_{x,y}Y(t)]\)</span>
 <br><span class="math notranslate nohighlight">\(Y(t+1)=Y(t)[r_y-r_yY_t-\beta_{y,x}X(t)]\)</span></p>
-<p>Key questions to keep in mind are:</p>
+<p>Những câu hỏi then chốt cần ghi nhớ</p>
 <ul class="simple">
-<li><p>Can we detect the causality or interaction between these two variables by looking at the correlation between them?</p></li>
-<li><p>Can convergent cross mapping help us find this out?</p></li>
+<li><p>Liệu chúng ta có thể phát hiện mối quan hệ nhân quả hoặc sự tương tác giữa hai biến này chỉ bằng cách xem xét hệ số tương quan giữa chúng hay không?</p></li>
+<li><p>Liệu Convergent Cross Mapping (CCM) có thể giúp chúng ta xác định được điều này hay không?</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -572,38 +573,41 @@ document.write(`
 </div>
 </div>
 </div>
-<p><strong>Discussion</strong></p>
+<p><strong>Thảo luận</strong></p>
 <ul class="simple">
-<li><p>Though we explicitly defined <span class="math notranslate nohighlight">\(Y\)</span> to be a function of <span class="math notranslate nohighlight">\(X\)</span> (<span class="math notranslate nohighlight">\(X\)</span> influences <span class="math notranslate nohighlight">\(Y\)</span>), we find no correlation between them in the long term.</p></li>
-<li><p>It’s hard to conclude the relationship between <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> (e.g. whether or not <span class="math notranslate nohighlight">\(X\)</span> influences <span class="math notranslate nohighlight">\(Y\)</span> or vice versa) based on the correlation plot and correlation value.</p></li>
+<li><p>Mặc dù chúng tôi đã xác định một cách tường minh rằng <span class="math notranslate nohighlight">\(Y\)</span> là một hàm của <span class="math notranslate nohighlight">\(X\)</span> (tức là <span class="math notranslate nohighlight">\(X\)</span> tác động lên <span class="math notranslate nohighlight">\(Y\)</span>), nhưng trong dài hạn, chúng tôi không tìm thấy mối tương quan giữa hai biến này.</p></li>
+<li><p>Việc rút ra kết luận về mối quan hệ giữa <span class="math notranslate nohighlight">\(X\)</span> và <span class="math notranslate nohighlight">\(Y\)</span> (ví dụ: liệu <span class="math notranslate nohighlight">\(X\)</span> có ảnh hưởng đến <span class="math notranslate nohighlight">\(Y\)</span> hay ngược lại hay không) là rất khó nếu chỉ dựa trên đồ thị tương quan và giá trị hệ số tương quan.</p></li>
 </ul>
 </section>
 <section id="ccm-algorithm">
 <h2>CCM Algorithm<a class="headerlink" href="#ccm-algorithm" title="Permalink to this heading">#</a></h2>
 <ol class="arabic simple">
-<li><p>Given two time series</p></li>
+<li><p>Cho hai chuỗi thời gian</p></li>
 </ol>
-<p><span class="math notranslate nohighlight">\(X = \{X(1), X(2), ..., X(L)\}\)</span> and <span class="math notranslate nohighlight">\(Y = \{Y(1), Y(2), ..., Y(L)\}\)</span> where <span class="math notranslate nohighlight">\(L\)</span> is time series length</p>
+<p><span class="math notranslate nohighlight">\(X = \{X(1), X(2), ..., X(L)\}\)</span> và <span class="math notranslate nohighlight">\(Y = \{Y(1), Y(2), ..., Y(L)\}\)</span> trong đó <span class="math notranslate nohighlight">\(L\)</span> là độ dài của chuỗi thời gian.</p>
 <ol class="arabic simple" start="2">
-<li><p>Compute lagged-coordinate vectors where <span class="math notranslate nohighlight">\(E\)</span> is an “embedding” dimension. Search algorithms e.g. grid search can be used to identify what the best <span class="math notranslate nohighlight">\(E\)</span> value is. <span class="math notranslate nohighlight">\(\tau\)</span> is the lag step.</p></li>
+<li><p>Tính các vector tọa độ trễ (lagged-coordinate vectors), trong đó <span class="math notranslate nohighlight">\(E\)</span> là số chiều embedding.
+Các thuật toán tìm kiếm (ví dụ: grid search) có thể được sử dụng để xác định giá trị E tối ưu. <span class="math notranslate nohighlight">\(\tau\)</span> là độ trễ (lag step)</p></li>
 </ol>
-<p><span class="math notranslate nohighlight">\(\underline{x}(t) = &lt;X(t), X(t-\tau), X(t-2\tau), ..., X(t-(E-1)\tau)&gt;\)</span> for <span class="math notranslate nohighlight">\(t \in [1+(E-1)\tau, L]\)</span></p>
+<p><span class="math notranslate nohighlight">\(\underline{x}(t) = &lt;X(t), X(t-\tau), X(t-2\tau), ..., X(t-(E-1)\tau)&gt;\)</span> với <span class="math notranslate nohighlight">\(t \in [1+(E-1)\tau, L]\)</span></p>
 <ol class="arabic simple" start="3">
-<li><p>Define the “shadow (attractor) manifold” <span class="math notranslate nohighlight">\(M_x = \{\underline{x}(t) \text{ for each } t \in [1+(E-1)\tau, L]\}\)</span></p></li>
-<li><p>At <span class="math notranslate nohighlight">\(t\)</span>, locate <span class="math notranslate nohighlight">\(\underline{x}(t)\)</span> in <span class="math notranslate nohighlight">\(M_x\)</span></p></li>
-<li><p>Find the <span class="math notranslate nohighlight">\(E+1\)</span> nearest neighbor vectors from selected vector <span class="math notranslate nohighlight">\(\underline{x}(t)\)</span>. Sugihara, et al. noted that <span class="math notranslate nohighlight">\(E+1\)</span> is the minimum number of points needed for an “embedding/simplex” with <span class="math notranslate nohighlight">\(E\)</span> dimensions. Intuitively, if you have a 2D matrix, you need 3 points (2 + 1) to “triangulate” a point</p></li>
-<li><p>Denote the time indices of the <span class="math notranslate nohighlight">\(E+1\)</span> nearest neighbors of <span class="math notranslate nohighlight">\(\underline{x}(t)\)</span> by <span class="math notranslate nohighlight">\(t_1, ..., t_{E+1}\)</span>. These indices will be used to identify the corresponding points in <span class="math notranslate nohighlight">\(Y\)</span>.</p></li>
-<li><p>Define the model that predicts <span class="math notranslate nohighlight">\(Y\)</span> given <span class="math notranslate nohighlight">\(M_x\)</span> as <span class="math notranslate nohighlight">\(\hat{Y} | M_x = \Sigma{w_iY(t_i)}\)</span> where <span class="math notranslate nohighlight">\(i = 1 ... E+1\)</span> where <span class="math notranslate nohighlight">\(w_i\)</span> is the weight that we multiply by the corresponding <span class="math notranslate nohighlight">\(Y(t_i)\)</span></p>
+<li><p>Định nghĩa đa tạp bóng (shadow / attractor manifold): <span class="math notranslate nohighlight">\(M_x = \{\underline{x}(t) \text{ for each } t \in [1+(E-1)\tau, L]\}\)</span></p></li>
+<li><p>Tại thời điểm <span class="math notranslate nohighlight">\(t\)</span>, xác định vị trí của <span class="math notranslate nohighlight">\(\underline{x}(t)\)</span> trong đa tạp <span class="math notranslate nohighlight">\(M_x\)</span></p></li>
+<li><p>Tìm <span class="math notranslate nohighlight">\(E+1\)</span> vector láng giềng gần nhất của <span class="math notranslate nohighlight">\(\underline{x}(t)\)</span>. Sugihara và cộng sự chỉ ra rằng <span class="math notranslate nohighlight">\(E+1\)</span> là số điểm tối thiểu cần thiết để tạo thành một simplex (embedding) trong không gian <span class="math notranslate nohighlight">\(E\)</span> chiều. Trực giác: nếu bạn có một ma trận 2 chiều, bạn cần 3 điểm (2 + 1) để “tam giác hóa” (triangulate) một điểm.</p></li>
+<li><p>Ký hiệu các chỉ số thời gian của <span class="math notranslate nohighlight">\(E+1\)</span> láng giềng gần nhất của <span class="math notranslate nohighlight">\(\underline{x}(t)\)</span> lần lượt là <span class="math notranslate nohighlight">\(t_1, ..., t_{E+1}\)</span>. Các chỉ số này sẽ được sử dụng để xác định các điểm tương ứng trong chuỗi <span class="math notranslate nohighlight">\(Y\)</span>.</p></li>
+<li><p>Định nghĩa mô hình dự đoán <span class="math notranslate nohighlight">\(Y\)</span> cho trước <span class="math notranslate nohighlight">\(M_x\)</span> như sau:
+<span class="math notranslate nohighlight">\(\hat{Y} | M_x = \Sigma{w_iY(t_i)}\)</span> với <span class="math notranslate nohighlight">\(i = 1 ... E+1\)</span>, trong đó <span class="math notranslate nohighlight">\(w_i\)</span> là trọng số được nhân với giá trị tương ứng <span class="math notranslate nohighlight">\(Y(t_i)\)</span></p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(w_i = u_i / \Sigma{u_j}\)</span> where <span class="math notranslate nohighlight">\(j = 1...E+1\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(u_i = exp[-d(\underline{x}(t), \underline{x}(t_i))/d(\underline{x}(t), \underline{x}(t_1))]\)</span> where <span class="math notranslate nohighlight">\(d(\underline{x}(s), \underline{x}(t))\)</span> is a Euclidean distance. Note that we divide by <span class="math notranslate nohighlight">\(d(x(t), x(t_1))\)</span> to “scale” the distances as a multiples of the distance to the closest point. The intuition here is the farther away the neighbor, the lower the weight by some <span class="math notranslate nohighlight">\(exp^-k\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(w_i = u_i / \Sigma{u_j}\)</span> với <span class="math notranslate nohighlight">\(j = 1...E+1\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(u_i = exp[-d(\underline{x}(t), \underline{x}(t_i))/d(\underline{x}(t), \underline{x}(t_1))]\)</span> trong đó <span class="math notranslate nohighlight">\(d(\underline{x}(s), \underline{x}(t))\)</span> là khoảng cách Euclid. Lưu ý rằng ta chia cho <span class="math notranslate nohighlight">\(d(x(t), x(t_1))\)</span> để chuẩn hóa khoảng cách, biểu diễn các khoảng cách như bội số của khoảng cách đến láng giềng gần nhất. Trực giác ở đây là: láng giềng càng xa thì trọng số càng nhỏ, theo hàm suy giảm mũ <span class="math notranslate nohighlight">\(exp^-k\)</span></p></li>
 </ul>
 </li>
-<li><p>If <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> are dynamically “coupled” i.e. one influences the other, a clump of points in <span class="math notranslate nohighlight">\(M_x\)</span> should correspond to a clump of points in <span class="math notranslate nohighlight">\(M_y\)</span>. And as <span class="math notranslate nohighlight">\(L\)</span> increases, we get a denser cluster of <span class="math notranslate nohighlight">\(E+1\)</span> points from <span class="math notranslate nohighlight">\(M_x\)</span> that correspond to a denser cluster of points in <span class="math notranslate nohighlight">\(M_y\)</span>. Given this, <span class="math notranslate nohighlight">\(\hat{Y} | M_x\)</span> intuitively should converge to <span class="math notranslate nohighlight">\(Y\)</span> as <span class="math notranslate nohighlight">\(L\)</span> increases, e.g. we get more data/samples. Hence, we can test for convergence of the nearest neighbors to test for correspondence between states on <span class="math notranslate nohighlight">\(M_x\)</span> and <span class="math notranslate nohighlight">\(M_y\)</span>.</p></li>
-<li><p>We then plot the correlation coefficients between <span class="math notranslate nohighlight">\(Y\)</span> and <span class="math notranslate nohighlight">\(\hat{Y} | M_x\)</span>. If there is significant correlation, this means we have enough information from <span class="math notranslate nohighlight">\(Y\)</span> that is stored in <span class="math notranslate nohighlight">\(X\)</span>. We say that <span class="math notranslate nohighlight">\(Y\)</span> influences <span class="math notranslate nohighlight">\(X\)</span>. It sounds counter intuitive but another way to think about it is: if <span class="math notranslate nohighlight">\(Y\)</span> influences <span class="math notranslate nohighlight">\(X\)</span> then information from <span class="math notranslate nohighlight">\(Y\)</span> gets stored in <span class="math notranslate nohighlight">\(X\)</span>. We can thus use <span class="math notranslate nohighlight">\(X\)</span> to predict <span class="math notranslate nohighlight">\(Y\)</span>. Same goes for <span class="math notranslate nohighlight">\(X\)</span> influencing <span class="math notranslate nohighlight">\(Y\)</span>.</p></li>
+<li><p>Nếu <span class="math notranslate nohighlight">\(X\)</span> và <span class="math notranslate nohighlight">\(Y\)</span> liên kết động lực (dynamically “coupled”), tức là một biến ảnh hưởng đến biến còn lại, thì một cụm điểm trong <span class="math notranslate nohighlight">\(M_x\)</span> sẽ tương ứng với một cụm điểm trong <span class="math notranslate nohighlight">\(M_y\)</span>. Khi <span class="math notranslate nohighlight">\(L\)</span> tăng, ta thu được các cụm <span class="math notranslate nohighlight">\(E+1\)</span> điểm dày đặc hơn trong <span class="math notranslate nohighlight">\(M_x\)</span>, và các cụm điểm tương ứng trong <span class="math notranslate nohighlight">\(M_y\)</span> cũng trở nên dày đặc hơn. Do đó, <span class="math notranslate nohighlight">\(\hat{Y} | M_x\)</span> theo trực giác sẽ hội tụ về <span class="math notranslate nohighlight">\(Y\)</span> khi <span class="math notranslate nohighlight">\(L\)</span> tăng, tức là khi có nhiều dữ liệu/mẫu hơn. Vì vậy, ta có thể kiểm tra sự hội tụ (convergence) của các láng giềng gần nhất để kiểm tra sự tương ứng giữa các trạng thái trên <span class="math notranslate nohighlight">\(M_x\)</span> và <span class="math notranslate nohighlight">\(M_y\)</span>.</p></li>
+<li><p>Cuối cùng, ta vẽ hệ số tương quan giữa <span class="math notranslate nohighlight">\(Y\)</span> và <span class="math notranslate nohighlight">\(\hat{Y} | M_x\)</span>. Nếu tồn tại tương quan có ý nghĩa, điều này có nghĩa là đã có đủ thông tin từ <span class="math notranslate nohighlight">\(Y\)</span> được lưu trữ trong <span class="math notranslate nohighlight">\(X\)</span>. Khi đó, ta nói rằng <span class="math notranslate nohighlight">\(Y\)</span> ảnh hưởng đến <span class="math notranslate nohighlight">\(X\)</span>. Mặc dù điều này nghe có vẻ ngược trực giác, nhưng có thể hiểu theo cách khác như sau:
+nếu <span class="math notranslate nohighlight">\(Y\)</span> ảnh hưởng đến <span class="math notranslate nohighlight">\(X\)</span>, thì thông tin từ <span class="math notranslate nohighlight">\(Y\)</span> được mã hóa trong <span class="math notranslate nohighlight">\(X\)</span>. Do đó, ta có thể sử dụng <span class="math notranslate nohighlight">\(X\)</span> để dự đoán <span class="math notranslate nohighlight">\(Y\)</span>. Lập luận tương tự cũng áp dụng cho trường hợp <span class="math notranslate nohighlight">\(X\)</span> ảnh hưởng đến <span class="math notranslate nohighlight">\(Y\)</span>.</p></li>
 </ol>
-<section id="defining-ccm-functions">
-<h3>Defining CCM Functions<a class="headerlink" href="#defining-ccm-functions" title="Permalink to this heading">#</a></h3>
+<section id="dinh-nghia-cac-ham-trong-ccm">
+<h3>Định nghĩa các hàm trong CCM<a class="headerlink" href="#dinh-nghia-cac-ham-trong-ccm" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Computing &quot;Causality&quot; (Correlation between True and Predictions)</span>
@@ -770,8 +774,8 @@ def causality(self):
 </div>
 </div>
 </section>
-<section id="functions-for-visualizing">
-<h3>Functions for Visualizing<a class="headerlink" href="#functions-for-visualizing" title="Permalink to this heading">#</a></h3>
+<section id="cac-ham-dung-de-truc-quan-hoa">
+<h3>Các hàm dùng để trực quan hóa<a class="headerlink" href="#cac-ham-dung-de-truc-quan-hoa" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">add_to</span> ccm
@@ -898,9 +902,9 @@ def plot_ccm_correls(self):
 </section>
 <section id="applying-ccm-to-our-sample-systems">
 <h2>Applying CCM to our Sample Systems<a class="headerlink" href="#applying-ccm-to-our-sample-systems" title="Permalink to this heading">#</a></h2>
-<section id="can-ccm-predict-causality-in-our-test-system">
-<h3>Can CCM predict causality in our test system?<a class="headerlink" href="#can-ccm-predict-causality-in-our-test-system" title="Permalink to this heading">#</a></h3>
-<p>Remember our test system is:</p>
+<section id="ccm-co-the-du-doan-quan-he-nhan-qua-trong-he-kiem-thu-cua-chung-ta-khong">
+<h3>CCM có thể dự đoán quan hệ nhân quả trong hệ kiểm thử của chúng ta không?<a class="headerlink" href="#ccm-co-the-du-doan-quan-he-nhan-qua-trong-he-kiem-thu-cua-chung-ta-khong" title="Permalink to this heading">#</a></h3>
+<p>Hãy nhớ rằng hệ kiểm thử của chúng ta được xác định như sau:</p>
 <p><span class="math notranslate nohighlight">\(X(t+1)=X(t)[r_x-r_xX_t-\beta_{x,y}Y(t)]\)</span>
 <br><span class="math notranslate nohighlight">\(Y(t+1)=Y(t)[r_y-r_yY_t-\beta_{y,x}X(t)]\)</span></p>
 <div class="cell docutils container">
@@ -946,12 +950,12 @@ def plot_ccm_correls(self):
 <img alt="../_images/8c5895f1dd56b3fa3d1e7e2d99b0d86cd707a6d7351a440e63ceb2eac23e48ee.png" src="../_images/8c5895f1dd56b3fa3d1e7e2d99b0d86cd707a6d7351a440e63ceb2eac23e48ee.png" />
 </div>
 </div>
-<p><strong>Discussion</strong></p>
+<p><strong>Thảo luận</strong></p>
 <ul class="simple">
-<li><p>In the shadow manifolds above, we show the cross mapping of points from one manifold (blue box) to the corresponding points on the other manifold (red star)</p></li>
-<li><p>If values from one manifold e.g. <span class="math notranslate nohighlight">\(M_x\)</span> make a spread out cross mapping to values on another manifold e.g. <span class="math notranslate nohighlight">\(M_y\)</span>, this means that we are not able to precisely predict <span class="math notranslate nohighlight">\(M_y\)</span> or <span class="math notranslate nohighlight">\(Y\)</span> given <span class="math notranslate nohighlight">\(M_x\)</span>. This implies that not much information from <span class="math notranslate nohighlight">\(Y\)</span> is transferred to <span class="math notranslate nohighlight">\(X\)</span> to make highly precise predictions. In other words, <span class="math notranslate nohighlight">\(Y\)</span> may drive <span class="math notranslate nohighlight">\(X\)</span> but not by much.</p></li>
-<li><p>The stronger the causality between variables, the more narrow the cross mapping is more narrow, e.g. cross mapping <span class="math notranslate nohighlight">\(M_x\)</span> from <span class="math notranslate nohighlight">\(M_y\)</span> (left chart) has a relatively narrow cross mapping which may imply that <span class="math notranslate nohighlight">\(X\)</span> influences <span class="math notranslate nohighlight">\(Y\)</span>.</p></li>
-<li><p>While narrow cross convergence may indicate causality, this is just one of two criteria to conclude causality. We also need to satisfy convergence which we will discuss next.</p></li>
+<li><p>Trong các đa tạp bóng (shadow manifolds) ở trên, chúng ta minh họa phép ánh xạ chéo (cross mapping) của các điểm từ một đa tạp (khung màu xanh) sang các điểm tương ứng trên đa tạp còn lại (ngôi sao màu đỏ).</p></li>
+<li><p>Nếu các giá trị từ một đa tạp, ví dụ <span class="math notranslate nohighlight">\(M_x\)</span>, ánh xạ chéo một cách phân tán sang các giá trị trên đa tạp khác, ví dụ <span class="math notranslate nohighlight">\(M_y\)</span>, điều này có nghĩa là chúng ta không thể dự đoán chính xác <span class="math notranslate nohighlight">\(M_y\)</span> hoặc <span class="math notranslate nohighlight">\(Y\)</span> khi biết <span class="math notranslate nohighlight">\(M_x\)</span>. Điều này hàm ý rằng không có nhiều thông tin từ <span class="math notranslate nohighlight">\(Y\)</span> được truyền sang <span class="math notranslate nohighlight">\(X\)</span> để tạo ra các dự đoán có độ chính xác cao. Nói cách khác, <span class="math notranslate nohighlight">\(Y\)</span> có thể tác động lên <span class="math notranslate nohighlight">\(X\)</span> nhưng mức độ tác động là không lớn.</p></li>
+<li><p>Mối quan hệ nhân quả giữa các biến càng mạnh thì phép ánh xạ chéo càng hẹp. Ví dụ, ánh xạ chéo của <span class="math notranslate nohighlight">\(M_x\)</span> từ <span class="math notranslate nohighlight">\(M_y\)</span> (biểu đồ bên trái) có độ hẹp tương đối, điều này có thể hàm ý rằng <span class="math notranslate nohighlight">\(X\)</span> tác động lên <span class="math notranslate nohighlight">\(Y\)</span>.</p></li>
+<li><p>Mặc dù sự hội tụ hẹp của ánh xạ chéo có thể chỉ ra quan hệ nhân quả, nhưng đây chỉ là một trong hai tiêu chí để kết luận quan hệ nhân quả. Chúng ta còn cần thỏa mãn điều kiện hội tụ (convergence), sẽ được thảo luận tiếp theo.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -967,11 +971,11 @@ def plot_ccm_correls(self):
 <img alt="../_images/ebdd56d51e19ef9c9885198c50036491c7f97debc7bf5ac4e1ec06311da4bf0c.png" src="../_images/ebdd56d51e19ef9c9885198c50036491c7f97debc7bf5ac4e1ec06311da4bf0c.png" />
 </div>
 </div>
-<p><strong>Discussion</strong></p>
+<p><strong>Thảo luận</strong></p>
 <ul class="simple">
-<li><p>We measure cross mapping using correlation. A stronger correlation is one indicator of stronger causality.</p></li>
-<li><p>The left chart shows the performance of the cross mapping from <span class="math notranslate nohighlight">\(M_y\)</span> to <span class="math notranslate nohighlight">\(M_x\)</span> to predict <span class="math notranslate nohighlight">\(X(t)\)</span>. This means we can predict <span class="math notranslate nohighlight">\(X\)</span> given <span class="math notranslate nohighlight">\(Y\)</span> which happens if <span class="math notranslate nohighlight">\(Y\)</span> has enough information about <span class="math notranslate nohighlight">\(X\)</span>. We say that <span class="math notranslate nohighlight">\(X\)</span> strongly influences or causes <span class="math notranslate nohighlight">\(Y\)</span>. Remember the intuition that if <span class="math notranslate nohighlight">\(X\)</span> causes <span class="math notranslate nohighlight">\(Y\)</span>, then information from <span class="math notranslate nohighlight">\(X\)</span> gets transferred to <span class="math notranslate nohighlight">\(Y\)</span>.</p></li>
-<li><p>We have shown cross-mapping in both directions though one direction is stronger.</p></li>
+<li><p>Chúng ta đo lường phép ánh xạ chéo (cross mapping) bằng hệ số tương quan. Tương quan càng mạnh là một chỉ báo cho quan hệ nhân quả càng mạnh.</p></li>
+<li><p>Biểu đồ bên trái cho thấy hiệu năng của phép ánh xạ chéo từ <span class="math notranslate nohighlight">\(M_y\)</span> sang <span class="math notranslate nohighlight">\(M_x\)</span> để dự đoán <span class="math notranslate nohighlight">\(X(t)\)</span>. Điều này có nghĩa là chúng ta có thể dự đoán <span class="math notranslate nohighlight">\(X\)</span> khi biết <span class="math notranslate nohighlight">\(Y\)</span>, điều xảy ra khi <span class="math notranslate nohighlight">\(Y\)</span> chứa đủ thông tin về <span class="math notranslate nohighlight">\(X\)</span>. Khi đó, ta nói rằng <span class="math notranslate nohighlight">\(X\)</span> tác động mạnh hoặc gây ra <span class="math notranslate nohighlight">\(Y\)</span>. Hãy nhớ trực giác rằng nếu <span class="math notranslate nohighlight">\(X\)</span> gây ra <span class="math notranslate nohighlight">\(Y\)</span> thì thông tin từ <span class="math notranslate nohighlight">\(X\)</span> sẽ được truyền sang <span class="math notranslate nohighlight">\(Y\)</span>.</p></li>
+<li><p>Chúng ta đã trình bày phép ánh xạ chéo theo cả hai hướng, mặc dù một hướng mạnh hơn hướng còn lại.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2045,7 +2049,7 @@ A test of Convergent Cross-Mapping. arXiv</a></p></li>
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Chapter 5 : Dynamical Forecasting Methods (Simplex and SMap Projections)</p>
+        <p class="prev-next-title">Chapter 5 : Chương 5: Các phương pháp dự báo động lực (Simplex và SMap Projections)</p>
       </div>
     </a>
     <a class="right-next"
@@ -2073,32 +2077,32 @@ A test of Convergent Cross-Mapping. arXiv</a></p></li>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#causal-ccm-package">causal-ccm Package</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#importance-of-understanding-causality">Importance of Understanding Causality</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#limitations-of-granger-causality">Limitations of Granger Causality</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ccm-addresses-limits-of-granger-causality">CCM addresses limits of Granger causality</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gioi-thieu">Giới thiệu</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#goi-causal-ccm">Gói causal-ccm</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tam-quan-trong-cua-viec-hieu-nhan-qua">Tầm quan trọng của việc hiểu Nhân quả</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#han-che-cua-nhan-qua-granger">Hạn chế của Nhân quả Granger</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ccm-giai-quyet-cac-han-che-cua-nhan-qua-granger">CCM giải quyết các hạn chế của Nhân quả Granger</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#related-concepts">Related Concepts</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deterministic-dynamical-systems">Deterministic Dynamical Systems</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attractors">Attractors</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#takens-embedding-theorem-and-shadow-manifolds">Takens’ Embedding Theorem and Shadow Manifolds</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cac-khai-niem-lien-quan">Các khái niệm liên quan</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#he-dong-luc-xac-dinh-deterministic-dynamical-systems">Hệ động lực xác định (Deterministic Dynamical Systems)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bo-hut-attractors">Bộ hút (Attractors)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dinh-ly-nhung-takens-va-cac-da-tap-bong-shadow-manifolds">Định lý nhúng Takens và các đa tạp bóng (Shadow Manifolds)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview-of-ccm">Overview of CCM</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-mapping">Cross Mapping</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convergence">Convergence</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tong-quan-ve-ccm">Tổng quan về CCM</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-mapping-anh-xa-cheo">Cross Mapping (Ánh xạ chéo)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hoi-tu-convergence">Hội tụ (Convergence)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-our-sample-system">Defining our Sample System</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#xac-dinh-he-thong-mau-cua-chung-ta">Xác định hệ thống mẫu của chúng ta</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ccm-algorithm">CCM Algorithm</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-ccm-functions">Defining CCM Functions</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#functions-for-visualizing">Functions for Visualizing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dinh-nghia-cac-ham-trong-ccm">Định nghĩa các hàm trong CCM</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cac-ham-dung-de-truc-quan-hoa">Các hàm dùng để trực quan hóa</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#applying-ccm-to-our-sample-systems">Applying CCM to our Sample Systems</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#can-ccm-predict-causality-in-our-test-system">Can CCM predict causality in our test system?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ccm-co-the-du-doan-quan-he-nhan-qua-trong-he-kiem-thu-cua-chung-ta-khong">CCM có thể dự đoán quan hệ nhân quả trong hệ kiểm thử của chúng ta không?</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-betas-affect-causality-as-indicated-by-convergence">How Betas Affect Causality As Indicated By Convergence</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-if-asymmetrically-coupled-the-effect-is-only-in-one-direction">What if asymmetrically coupled (the effect is only in one direction)?</a></li>
 </ul>
