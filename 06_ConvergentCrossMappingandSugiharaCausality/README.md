@@ -1,7 +1,7 @@
-## Introduction
-In the previous chapters we talked about Simplex Projection, a forecasting technique that looks for similar trends in the past to forecast the future by computing for nearest neighbors on an embedding. In this chapter, we discuss  Convergent Cross Mapping (CCM) also formulated by [Sugihara et al., 2012](https://science.sciencemag.org/content/338/6106/496) as a methodology that uses ideas from Simplex Projection to identify causality between variables in a complex dynamical system (e.g. ecosystem) using just time series data.
+## Giới thiệu
+Trong các chương trước, chúng ta đã nói về Simplex Projection, một kỹ thuật dự báo tìm kiếm các xu hướng tương tự trong quá khứ để dự báo tương lai bằng cách tính toán các láng giềng gần nhất trong một embedding. Trong chương này, chúng ta thảo luận về Convergent Cross Mapping (CCM), cũng được đề xuất bởi [Sugihara et al., 2012](https://science.sciencemag.org/content/338/6106/496) như một phương pháp sử dụng các ý tưởng từ Simplex Projection để xác định quan hệ nhân quả giữa các biến trong một hệ động lực phức tạp (ví dụ: hệ sinh thái) chỉ bằng dữ liệu chuỗi thời gian.
 
-We will go through the key ideas of CCM, how it addresses the limitations of Granger causality, and the algorithm behind it. We will then test the CCM framework on simulated data where we will deliberately adjust the influence of one variable over the other. Finally, we will apply CCM on some real world data to infer the relationships between variables in a system.
+Chúng ta sẽ lần lượt đi qua các ý tưởng cốt lõi của CCM, cách phương pháp này giải quyết các hạn chế của nhân quả Granger, và thuật toán đứng sau nó. Sau đó, chúng ta sẽ kiểm nghiệm khuôn khổ CCM trên dữ liệu mô phỏng, trong đó chúng ta cố ý điều chỉnh mức độ ảnh hưởng của một biến lên biến còn lại. Cuối cùng, chúng ta sẽ áp dụng CCM lên một số dữ liệu thực tế để suy luận các mối quan hệ giữa các biến trong một hệ thống.
 
-### causal-ccm Package
-`ccm_sugihara.ipynb` explains the CCM methodology in detail. If you wish to apply this in your own projects, install the framework using `pip install causal-ccm`. See `using_causal_ccm_package.ipynb` notebook for details how to use.
+### Gói causal-ccm
+`ccm_sugihara.ipynb` giải thích chi tiết phương pháp CCM. Nếu bạn muốn áp dụng phương pháp này trong các dự án của riêng mình, hãy cài đặt framework bằng lệnh `pip install causal-ccm`. Xem notebook `using_causal_ccm_package.ipynb` để biết chi tiết cách sử dụng.

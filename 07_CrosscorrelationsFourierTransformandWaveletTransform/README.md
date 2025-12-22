@@ -1,19 +1,19 @@
-# Chapter 7: Cross-Correlations, Fourier Transform, and Wavelet Transform
+# Chương 7: Cross-Correlations, Fourier Transform, and Wavelet Transform
 
-Gaining a deeper undersanding of causality, we look at time series forecasting through another lens.
+Để đạt được sự hiểu biết sâu hơn về nhân quả, chúng ta xem xét dự báo chuỗi thời gian dưới một góc nhìn khác.
 
-In this chapter, we will take a different approach to how we analzye time series that is complementary to forecasting. Previously, methods of explaining such as the Granger Causality, S-mapping, and Cross-mapping, focused on the time domain - the values of the time series when measured over time or in its phase space. While both are useful for many tasks, it can be often useful to transform these time domain measurements to unearth patterns which are difficult to tease out. Specifically, we want to look at the frequency domain to both analyze the dynamics and perform pre-processing techniques that may be used to modify real-world datasets.
+Trong chương này, chúng ta sẽ tiếp cận theo một cách khác trong việc phân tích chuỗi thời gian, mang tính bổ trợ cho dự báo. Trước đó, các phương pháp giải thích như Nhân quả Granger, S-mapping và Cross-mapping tập trung vào miền thời gian – tức là giá trị của chuỗi thời gian khi được đo theo thời gian hoặc trong không gian pha của nó. Mặc dù cả hai đều hữu ích cho nhiều tác vụ, nhưng trong nhiều trường hợp, việc biến đổi các phép đo trong miền thời gian có thể giúp khai phá các khuôn mẫu khó nhận ra. Cụ thể, chúng ta muốn xem xét miền tần số để vừa phân tích động lực, vừa thực hiện các kỹ thuật tiền xử lý có thể được dùng để điều chỉnh các bộ dữ liệu trong thế giới thực.
 
-We will be analyzing the dynamics of time series not exactly to make forecasts, but to understand them in terms of their frequencies in complement to the previous methods of causality and explainability presented.
+Chúng ta sẽ phân tích động lực của các chuỗi thời gian không hẳn để tạo dự báo, mà để hiểu chúng theo khía cạnh tần số, nhằm bổ sung cho các phương pháp nhân quả và khả năng giải thích đã được trình bày trước đó.
 
-We introduce three techniques:
+Chúng ta giới thiệu ba kỹ thuật:
 
-1. Cross-correlations
+1. Cross-correlations (Tương quan chéo)
 
-2. Fourier Transform
+2. Fourier Transform (Biến đổi Fourier)
 
-3. Wavelet Transform
+3. Wavelet Transform (Biến đổi Wavelet)
 
-and test their use on the Jena Climate Dataset (2009-2016) along with a handful of other datasets.
+và kiểm thử việc sử dụng chúng trên bộ dữ liệu khí hậu Jena (2009–2016) cùng với một số bộ dữ liệu khác.
 
 
